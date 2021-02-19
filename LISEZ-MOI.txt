@@ -1,0 +1,53 @@
+% Utilisation du dépôt SVN pour le projet
+%
+%
+
+
+**Remarque :** On peut engendrer une version pdf de ce fichier en faisant :
+
+~~~
+pandoc -N -o LISEZ-MOI.pdf LISEZ-MOI.txt
+~~~
+
+# Recommandation
+
+## Ne pas encombrer le serveur SVN avec des fichiers inutiles
+
+Ne pas mettre les fichiers .class sur SVN, et plus généralement, ne pas mettre
+les fichiers qui peuvent être engendrés (documentation javadoc, etc.).
+
+Mettre les .class sur le SVN c'est la garantie d'avoir des conflits.
+
+
+## Pousser régulièrement vos modifications
+
+Vous devez pousser régulièrement vos modifications.  Définissez de petits
+objectifs et dès qu'il est atteint vous pousser vos modifications
+sur le serveurs SVN.
+
+Faites aussi des `svn update` régulièrement pour limiter les conflits et
+communiquez avec vos coéquipiers !
+
+
+# Organisation du dépôt SVN
+
+src/
+
+: pour les sources de votre projet (fichiers .java)
+
+livrables/
+
+: les fichiers qui sont demandés dans le sujet.  Attention à
+respecter les noms.  Certains sont déjà là.  Il suffit de les remplacer.
+
+docs/
+
+: c'est ici que vous pouvez mettre les fichiers qui vous permettent
+d'obtenir le rapport (par exemple fichier LaTeX, markdown, etc.)
+
+
+# Autres informations
+
+Vous pouvez ajouter ici toute information utile pour comprendre
+l'organisation de votre dépôt...
+
