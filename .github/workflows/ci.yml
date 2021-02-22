@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**/*.java"
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          java-package: jdk+fx
+          architecture: x64
+      - name: Compile .class
+        run: find src -name "*.java" -exec javac -d build {} +
+      - name: Create .jar
+        run: jar cvfe build.jar Main .
+        working-directory: build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build.jar
+          path: build/build.jar
+  release:
+    if: contains(github.ref, 'tags')
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: build.jar
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: true
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build.jar
+          asset_name: build.jar
+          asset_content_type: application/java-archive
+  javadoc:
+    if: contains(github.ref, 'heads')
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy branch
+        run: git branch -C gh-pages && git checkout gh-pages
+      - name: Generate new javadoc
+        run: find src -name "*.java" -exec javadoc -d docs {} +
+      - name: Push new javadoc
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs
+          git commit -m "CI: Automated javadoc"
+          git push -f origin gh-pages
+  svn:
+    if: contains(github.ref, 'heads')
+    runs-on: ubuntu-20.04
+    env:
+      LINK: ${{ secrets.SVN_LINK }}
+      USERNAME: ${{ secrets.SVN_USERNAME }}
+      PASSWD: ${{ secrets.SVN_PASSWD }}
+      COMMIT_MSG: ${{ github.event.head_commit.message }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push new src
+        run: |
+          svn co "$LINK" --non-interactive --username "$USERNAME" --password "$PASSWD" svn-repo
+          cd svn-repo
+          svn rm src/*
+          cp -r ../src/* src/
+          svn add src --force
+          svn commit --non-interactive --username "$USERNAME" --password "$PASSWD" -m "$COMMIT_MSG"
