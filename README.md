@@ -1,4 +1,5 @@
 # yuru-new-horizons
+[![CI](https://github.com/NextFire/yuru-new-horizons/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NextFire/yuru-new-horizons/actions/workflows/ci.yml)
 
 ## Authors
 * [NextFire](https://github.com/NextFire)
