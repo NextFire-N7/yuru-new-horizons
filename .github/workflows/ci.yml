@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  svn:
+    runs-on: ubuntu-latest
+    env:
+      LINK: ${{ secrets.SVN_LINK }}
+      USERNAME: ${{ secrets.SVN_USERNAME }}
+      PASSWD: ${{ secrets.SVN_PASSWD }}
+      COMMIT_MSG: ${{ github.event.head_commit.message }}
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v2
+        with:
+          path: git-repo
+      - name: Checkout svn repo
+        run: svn co "$LINK" --non-interactive --username "$USERNAME" --password "$PASSWD" svn-repo
+      - name: Push git to svn
+        run: |
+          svn rm src/*
+          cp -r ../git-repo/* src/
+          svn add src/ --force
+          svn commit --non-interactive --username "$USERNAME" --password "$PASSWD" -m "$COMMIT_MSG"
+        working-directory: svn-repo
