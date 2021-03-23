@@ -23,7 +23,6 @@ jobs:
           name: desktop.jar
           path: desktop/build/libs/desktop*.jar
   deploy-html:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
