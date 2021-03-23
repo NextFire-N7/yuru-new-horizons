@@ -7074,7 +7074,7 @@ tXb,javaemul.internal.StringHashCache::increment()V,javaemul.internal.StringHash
 YuruNewHorizons,,moe.yuru.newhorizons.YuruNewHorizons,,moe/yuru/newhorizons/YuruNewHorizons.java,18,-1
 uXb,moe.yuru.newhorizons.YuruNewHorizons::$create(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$create,moe/yuru/newhorizons/YuruNewHorizons.java,32,0
 vXb,moe.yuru.newhorizons.YuruNewHorizons::$render(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$render,moe/yuru/newhorizons/YuruNewHorizons.java,81,0
-wXb,moe.yuru.newhorizons.YuruNewHorizons::$resize(Lmoe/yuru/newhorizons/YuruNewHorizons;II)V,moe.yuru.newhorizons.YuruNewHorizons,$resize,moe/yuru/newhorizons/YuruNewHorizons.java,107,0
+wXb,moe.yuru.newhorizons.YuruNewHorizons::$resize(Lmoe/yuru/newhorizons/YuruNewHorizons;II)V,moe.yuru.newhorizons.YuruNewHorizons,$resize,moe/yuru/newhorizons/YuruNewHorizons.java,108,0
 xXb,moe.yuru.newhorizons.YuruNewHorizons::YuruNewHorizons() <init>,moe.yuru.newhorizons.YuruNewHorizons,YuruNewHorizons,moe/yuru/newhorizons/YuruNewHorizons.java,18,0
 a,moe.yuru.newhorizons.YuruNewHorizons::batch,moe.yuru.newhorizons.YuruNewHorizons,batch,moe/yuru/newhorizons/YuruNewHorizons.java,27,-1
 b,moe.yuru.newhorizons.YuruNewHorizons::camera,moe.yuru.newhorizons.YuruNewHorizons,camera,moe/yuru/newhorizons/YuruNewHorizons.java,26,-1
