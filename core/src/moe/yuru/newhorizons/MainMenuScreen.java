@@ -1,26 +1,18 @@
 package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MainMenuScreen implements Screen {
     // Screen ~= JFrame
 
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private Batch batch;
+    private YuruNewHorizons game;
 
     private Music yuruTheme;
     private Sound nyanpasu;
@@ -32,14 +24,7 @@ public class MainMenuScreen implements Screen {
 
     // Les assets sont dans core/assets/
     public MainMenuScreen(YuruNewHorizons game) {
-        // La Camera fait la traduction entre notre code en 1280x720 et la taille réelle
-        // de la fenêtre
-        // Le Viewport permet de garder l'aspect ratio quand on resize la fenêtre
-        // le SpriteBatch enverra les instructions au moteur de rendu
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1280, 720);
-        viewport = new FitViewport(1280, 720, camera);
-        batch = game.getBatch();
+        this.game = game;
 
         // Charger la BGM (sur disque)
         yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
@@ -75,7 +60,7 @@ public class MainMenuScreen implements Screen {
         //     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         //         if (button == Buttons.LEFT) {
         //             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        //             camera.unproject(touchPos);
+        //             game.getCamera().unproject(touchPos);
         //             if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
         //                 nyanpasu.play();
         //                 return true;
@@ -90,21 +75,21 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
         // maj des données de la camera
-        camera.update();
+        game.getCamera().update();
         // dit au moteur d'utiliser la camera pour la trad code <-> taille réelle
-        batch.setProjectionMatrix(camera.combined);
+        game.getBatch().setProjectionMatrix(game.getCamera().combined);
 
         // Les instr de rendu entre begin et end seront faites en 1 coup (rendu
         // efficace, vive les fps)
-        batch.begin();
-        batch.draw(yuruBg, 0, 0, camera.viewportWidth, camera.viewportHeight);
-        batch.draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
-        batch.end();
+        game.getBatch().begin();
+        game.getBatch().draw(yuruBg, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
+        game.getBatch().draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
+        game.getBatch().end();
 
         // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de frame... (c'est plus simple)
         if (Gdx.input.justTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
+            game.getCamera().unproject(touchPos);
             if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
                 nyanpasu.play();
             }
@@ -114,7 +99,7 @@ public class MainMenuScreen implements Screen {
     // C'est pour gérer la "sauvegarde" de l'aspect ratio quand on resize la fenêtre
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        game.getViewport().update(width, height);
     }
 
     @Override
