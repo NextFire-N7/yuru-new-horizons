@@ -25,6 +25,7 @@ public class YuruNewHorizons extends Game {
         viewport = new FitViewport(1280, 720, camera);
         batch = new SpriteBatch();
         font = new BitmapFont(); // use libGDX's default Arial font
+
         this.setScreen(new MainMenuScreen(this));
     }
 

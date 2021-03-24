@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class MainMenuScreen implements Screen {
-    // Screen ~= JFrame
 
     private YuruNewHorizons game;
 
@@ -22,11 +21,11 @@ public class MainMenuScreen implements Screen {
     private Vector3 touchPos;
     private Rectangle renchonRectangle;
 
-    // Les assets sont dans core/assets/
     public MainMenuScreen(YuruNewHorizons game) {
         this.game = game;
 
         // Charger la BGM (sur disque)
+        // Les assets sont dans core/assets/
         yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
         yuruTheme.setLooping(true);
         yuruTheme.play();
@@ -84,6 +83,7 @@ public class MainMenuScreen implements Screen {
         game.getBatch().begin();
         game.getBatch().draw(yuruBg, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
         game.getBatch().draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
+        game.getFont().draw(game.getBatch(), "Yuru New Horizons ", 900, 600);
         game.getBatch().end();
 
         // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de frame... (c'est plus simple)
