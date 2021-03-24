@@ -21,7 +21,7 @@ rb,com.badlogic.gdx.Files$FileType::values()[Lcom/badlogic/gdx/Files$FileType;,c
 Game,,com.badlogic.gdx.Game,,com/badlogic/gdx/Game.java,26,-1
 sb,com.badlogic.gdx.Game::$resize(Lcom/badlogic/gdx/Game;II)V,com.badlogic.gdx.Game,$resize,com/badlogic/gdx/Game.java,50,0
 tb,com.badlogic.gdx.Game::$setScreen(Lcom/badlogic/gdx/Game;Lcom/badlogic/gdx/Screen;)V,com.badlogic.gdx.Game,$setScreen,com/badlogic/gdx/Game.java,57,0
-b,com.badlogic.gdx.Game::screen,com.badlogic.gdx.Game,screen,com/badlogic/gdx/Game.java,27,-1
+d,com.badlogic.gdx.Game::screen,com.badlogic.gdx.Game,screen,com/badlogic/gdx/Game.java,27,-1
 ub,com.badlogic.gdx.Gdx::app,com.badlogic.gdx.Gdx,app,com/badlogic/gdx/Gdx.java,29,-1
 vb,com.badlogic.gdx.Gdx::audio,com.badlogic.gdx.Gdx,audio,com/badlogic/gdx/Gdx.java,31,-1
 wb,com.badlogic.gdx.Gdx::files,com.badlogic.gdx.Gdx,files,com/badlogic/gdx/Gdx.java,33,-1
@@ -6104,8 +6104,8 @@ GMb,com.google.gwt.lang.ClassLiteralHolder::Ljavaemul_internal_EmulatedCharset$L
 HMb,com.google.gwt.lang.ClassLiteralHolder::Ljavaemul_internal_EmulatedCharset$UtfCharset_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljavaemul_internal_EmulatedCharset$UtfCharset_2_classLit,com/google/gwt/emul/javaemul/internal/EmulatedCharset.java,56,-1
 IMb,com.google.gwt.lang.ClassLiteralHolder::Ljavaemul_internal_EmulatedCharset_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljavaemul_internal_EmulatedCharset_2_classLit,com/google/gwt/emul/javaemul/internal/EmulatedCharset.java,23,-1
 JMb,com.google.gwt.lang.ClassLiteralHolder::Ljsinterop_annotations_JsType_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljsinterop_annotations_JsType_2_classLit,jsinterop/annotations/JsType.java,67,-1
-KMb,com.google.gwt.lang.ClassLiteralHolder::Lmoe_yuru_newhorizons_MainMenuScreen_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lmoe_yuru_newhorizons_MainMenuScreen_2_classLit,moe/yuru/newhorizons/MainMenuScreen.java,18,-1
-LMb,com.google.gwt.lang.ClassLiteralHolder::Lmoe_yuru_newhorizons_YuruNewHorizons_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lmoe_yuru_newhorizons_YuruNewHorizons_2_classLit,moe/yuru/newhorizons/YuruNewHorizons.java,7,-1
+KMb,com.google.gwt.lang.ClassLiteralHolder::Lmoe_yuru_newhorizons_MainMenuScreen_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lmoe_yuru_newhorizons_MainMenuScreen_2_classLit,moe/yuru/newhorizons/MainMenuScreen.java,12,-1
+LMb,com.google.gwt.lang.ClassLiteralHolder::Lmoe_yuru_newhorizons_YuruNewHorizons_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lmoe_yuru_newhorizons_YuruNewHorizons_2_classLit,moe/yuru/newhorizons/YuruNewHorizons.java,10,-1
 MMb,com.google.gwt.lang.ClassLiteralHolder::Lmoe_yuru_newhorizons_client_HtmlLauncher_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lmoe_yuru_newhorizons_client_HtmlLauncher_2_classLit,moe/yuru/newhorizons/client/HtmlLauncher.java,8,-1
 NMb,com.google.gwt.lang.ClassLiteralHolder::S_classLit,com.google.gwt.lang.ClassLiteralHolder,S_classLit,Unknown,0,-1
 OMb,com.google.gwt.lang.ClassLiteralHolder::V_classLit,com.google.gwt.lang.ClassLiteralHolder,V_classLit,Unknown,0,-1
@@ -7244,23 +7244,23 @@ CZb,javaemul.internal.StringHashCache::count,javaemul.internal.StringHashCache,c
 DZb,javaemul.internal.StringHashCache::front,javaemul.internal.StringHashCache,front,com/google/gwt/emul/javaemul/internal/StringHashCache.java,35,-1
 GZb,javaemul.internal.StringHashCache::getHashCode(Ljava/lang/String;)I,javaemul.internal.StringHashCache,getHashCode,com/google/gwt/emul/javaemul/internal/StringHashCache.java,41,0
 HZb,javaemul.internal.StringHashCache::increment()V,javaemul.internal.StringHashCache,increment,com/google/gwt/emul/javaemul/internal/StringHashCache.java,89,0
-MainMenuScreen,,moe.yuru.newhorizons.MainMenuScreen,,moe/yuru/newhorizons/MainMenuScreen.java,18,-1
-IZb,moe.yuru.newhorizons.MainMenuScreen::$render(Lmoe/yuru/newhorizons/MainMenuScreen;F)V,moe.yuru.newhorizons.MainMenuScreen,$render,moe/yuru/newhorizons/MainMenuScreen.java,91,0
-JZb,moe.yuru.newhorizons.MainMenuScreen::$resize(Lmoe/yuru/newhorizons/MainMenuScreen;II)V,moe.yuru.newhorizons.MainMenuScreen,$resize,moe/yuru/newhorizons/MainMenuScreen.java,116,0
-KZb,moe.yuru.newhorizons.MainMenuScreen::MainMenuScreen(Lmoe/yuru/newhorizons/YuruNewHorizons;) <init>,moe.yuru.newhorizons.MainMenuScreen,MainMenuScreen,moe/yuru/newhorizons/MainMenuScreen.java,34,0
-a,moe.yuru.newhorizons.MainMenuScreen::batch,moe.yuru.newhorizons.MainMenuScreen,batch,moe/yuru/newhorizons/MainMenuScreen.java,23,-1
-b,moe.yuru.newhorizons.MainMenuScreen::camera,moe.yuru.newhorizons.MainMenuScreen,camera,moe/yuru/newhorizons/MainMenuScreen.java,21,-1
-c,moe.yuru.newhorizons.MainMenuScreen::nyanpasu,moe.yuru.newhorizons.MainMenuScreen,nyanpasu,moe/yuru/newhorizons/MainMenuScreen.java,26,-1
-d,moe.yuru.newhorizons.MainMenuScreen::renchon,moe.yuru.newhorizons.MainMenuScreen,renchon,moe/yuru/newhorizons/MainMenuScreen.java,28,-1
-e,moe.yuru.newhorizons.MainMenuScreen::renchonRectangle,moe.yuru.newhorizons.MainMenuScreen,renchonRectangle,moe/yuru/newhorizons/MainMenuScreen.java,31,-1
-f,moe.yuru.newhorizons.MainMenuScreen::touchPos,moe.yuru.newhorizons.MainMenuScreen,touchPos,moe/yuru/newhorizons/MainMenuScreen.java,30,-1
-g,moe.yuru.newhorizons.MainMenuScreen::viewport,moe.yuru.newhorizons.MainMenuScreen,viewport,moe/yuru/newhorizons/MainMenuScreen.java,22,-1
-i,moe.yuru.newhorizons.MainMenuScreen::yuruBg,moe.yuru.newhorizons.MainMenuScreen,yuruBg,moe/yuru/newhorizons/MainMenuScreen.java,27,-1
-j,moe.yuru.newhorizons.MainMenuScreen::yuruTheme,moe.yuru.newhorizons.MainMenuScreen,yuruTheme,moe/yuru/newhorizons/MainMenuScreen.java,25,-1
-YuruNewHorizons,,moe.yuru.newhorizons.YuruNewHorizons,,moe/yuru/newhorizons/YuruNewHorizons.java,7,-1
-LZb,moe.yuru.newhorizons.YuruNewHorizons::$create(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$create,moe/yuru/newhorizons/YuruNewHorizons.java,13,0
-MZb,moe.yuru.newhorizons.YuruNewHorizons::$render(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$render,moe/yuru/newhorizons/YuruNewHorizons.java,20,0
-NZb,moe.yuru.newhorizons.YuruNewHorizons::YuruNewHorizons() <init>,moe.yuru.newhorizons.YuruNewHorizons,YuruNewHorizons,moe/yuru/newhorizons/YuruNewHorizons.java,7,0
-a,moe.yuru.newhorizons.YuruNewHorizons::batch,moe.yuru.newhorizons.YuruNewHorizons,batch,moe/yuru/newhorizons/YuruNewHorizons.java,9,-1
+MainMenuScreen,,moe.yuru.newhorizons.MainMenuScreen,,moe/yuru/newhorizons/MainMenuScreen.java,12,-1
+IZb,moe.yuru.newhorizons.MainMenuScreen::$render(Lmoe/yuru/newhorizons/MainMenuScreen;F)V,moe.yuru.newhorizons.MainMenuScreen,$render,moe/yuru/newhorizons/MainMenuScreen.java,76,0
+JZb,moe.yuru.newhorizons.MainMenuScreen::$resize(Lmoe/yuru/newhorizons/MainMenuScreen;II)V,moe.yuru.newhorizons.MainMenuScreen,$resize,moe/yuru/newhorizons/MainMenuScreen.java,101,0
+KZb,moe.yuru.newhorizons.MainMenuScreen::MainMenuScreen(Lmoe/yuru/newhorizons/YuruNewHorizons;) <init>,moe.yuru.newhorizons.MainMenuScreen,MainMenuScreen,moe/yuru/newhorizons/MainMenuScreen.java,26,0
+a,moe.yuru.newhorizons.MainMenuScreen::game,moe.yuru.newhorizons.MainMenuScreen,game,moe/yuru/newhorizons/MainMenuScreen.java,15,-1
+b,moe.yuru.newhorizons.MainMenuScreen::nyanpasu,moe.yuru.newhorizons.MainMenuScreen,nyanpasu,moe/yuru/newhorizons/MainMenuScreen.java,18,-1
+c,moe.yuru.newhorizons.MainMenuScreen::renchon,moe.yuru.newhorizons.MainMenuScreen,renchon,moe/yuru/newhorizons/MainMenuScreen.java,20,-1
+d,moe.yuru.newhorizons.MainMenuScreen::renchonRectangle,moe.yuru.newhorizons.MainMenuScreen,renchonRectangle,moe/yuru/newhorizons/MainMenuScreen.java,23,-1
+e,moe.yuru.newhorizons.MainMenuScreen::touchPos,moe.yuru.newhorizons.MainMenuScreen,touchPos,moe/yuru/newhorizons/MainMenuScreen.java,22,-1
+f,moe.yuru.newhorizons.MainMenuScreen::yuruBg,moe.yuru.newhorizons.MainMenuScreen,yuruBg,moe/yuru/newhorizons/MainMenuScreen.java,19,-1
+g,moe.yuru.newhorizons.MainMenuScreen::yuruTheme,moe.yuru.newhorizons.MainMenuScreen,yuruTheme,moe/yuru/newhorizons/MainMenuScreen.java,17,-1
+YuruNewHorizons,,moe.yuru.newhorizons.YuruNewHorizons,,moe/yuru/newhorizons/YuruNewHorizons.java,10,-1
+LZb,moe.yuru.newhorizons.YuruNewHorizons::$create(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$create,moe/yuru/newhorizons/YuruNewHorizons.java,18,0
+MZb,moe.yuru.newhorizons.YuruNewHorizons::$render(Lmoe/yuru/newhorizons/YuruNewHorizons;)V,moe.yuru.newhorizons.YuruNewHorizons,$render,moe/yuru/newhorizons/YuruNewHorizons.java,32,0
+NZb,moe.yuru.newhorizons.YuruNewHorizons::YuruNewHorizons() <init>,moe.yuru.newhorizons.YuruNewHorizons,YuruNewHorizons,moe/yuru/newhorizons/YuruNewHorizons.java,10,0
+a,moe.yuru.newhorizons.YuruNewHorizons::batch,moe.yuru.newhorizons.YuruNewHorizons,batch,moe/yuru/newhorizons/YuruNewHorizons.java,14,-1
+b,moe.yuru.newhorizons.YuruNewHorizons::camera,moe.yuru.newhorizons.YuruNewHorizons,camera,moe/yuru/newhorizons/YuruNewHorizons.java,12,-1
+c,moe.yuru.newhorizons.YuruNewHorizons::viewport,moe.yuru.newhorizons.YuruNewHorizons,viewport,moe/yuru/newhorizons/YuruNewHorizons.java,13,-1
 HtmlLauncher,,moe.yuru.newhorizons.client.HtmlLauncher,,moe/yuru/newhorizons/client/HtmlLauncher.java,8,-1
 OZb,moe.yuru.newhorizons.client.HtmlLauncher::HtmlLauncher() <init>,moe.yuru.newhorizons.client.HtmlLauncher,HtmlLauncher,moe/yuru/newhorizons/client/HtmlLauncher.java,8,0
