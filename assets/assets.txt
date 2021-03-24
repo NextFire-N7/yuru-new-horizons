@@ -1,9 +1,9 @@
 d:assets:assets:0:application/unknown:1
-a:nyanpasu.mp3:nyanpasu-ecf483d6c7ab2fd59128855c28a67a0a.mp3:32832:audio/mpeg:1
-a:yuru_theme.mp3:yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/mpeg:1
-i:badlogic.jpg:badlogic-ba3e909e98a4c58c6a15f043f2e1a8a7.jpg:68465:image/jpeg:1
 i:renchon.png:renchon-39f91b30bc0a65d97e7a8afd5e45f5d7.png:531532:image/png:1
+a:yuru_theme.mp3:yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/mpeg:1
 i:menu_bg.jpeg:menu_bg-b84d2d0ad03d982ceb9fe05a5ffa6cd3.jpeg:546159:image/jpeg:1
+a:nyanpasu.mp3:nyanpasu-ecf483d6c7ab2fd59128855c28a67a0a.mp3:32832:audio/mpeg:1
+i:badlogic.jpg:badlogic-ba3e909e98a4c58c6a15f043f2e1a8a7.jpg:68465:image/jpeg:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:default.fragment-e1c018bd48044c8b67c7bbc53145e540.glsl:5874:application/unknown:1
