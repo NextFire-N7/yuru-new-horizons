@@ -29,3 +29,5 @@ This game is an object-oriented programming and agile development engineering co
 * [DinoGurnari](https://github.com/DinoGurnari)
 * [Pwu-Edu7](https://github.com/Pwu-Edu7)
 * [atribout](https://github.com/atribout)
+* [Robik80](https://github.com/Robik80)
+* [reveghis](https://github.com/reveghis)
