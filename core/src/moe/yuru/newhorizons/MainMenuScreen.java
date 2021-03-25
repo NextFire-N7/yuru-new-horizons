@@ -30,21 +30,21 @@ public class MainMenuScreen implements Screen {
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
-        yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
+        yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
         yuruTheme.setLooping(true);
         yuruTheme.play();
 
         // Charger la hitsound (en RAM)
-        nyanpasu = Gdx.audio.newSound(Gdx.files.internal("nyanpasu.mp3"));
+        nyanpasu = Gdx.audio.newSound(Gdx.files.internal("audio/nyanpasu.mp3"));
 
         // Charger les images (en VRAM)
-        yuruBg = new Texture(Gdx.files.internal("menu_bg.jpeg"));
+        yuruBg = new Texture(Gdx.files.internal("images/menu_bg.jpeg"));
         yuruBg.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        renchon = new Texture(Gdx.files.internal("renchon.png"));
+        renchon = new Texture(Gdx.files.internal("images/renchon.png"));
         renchon.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
-        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
+        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 60;
         yuruFont = yuruFontGenerator.generateFont(parameter);
