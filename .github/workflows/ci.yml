@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -24,6 +26,7 @@ jobs:
           path: desktop/build/libs/desktop*.jar
   deploy-html:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -41,6 +44,7 @@ jobs:
   svn:
     needs: build-desktop
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     env:
       LINK: ${{ secrets.SVN_LINK }}
       USERNAME: ${{ secrets.SVN_USERNAME }}
