@@ -2,7 +2,6 @@ package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -12,7 +11,6 @@ public class YuruNewHorizons extends Game {
     private OrthographicCamera camera;
     private Viewport viewport;
     private SpriteBatch batch;
-    private BitmapFont font;
 
     @Override
     public void create() {
@@ -24,7 +22,6 @@ public class YuruNewHorizons extends Game {
         camera.setToOrtho(false, 1280, 720);
         viewport = new FitViewport(1280, 720, camera);
         batch = new SpriteBatch();
-        font = new BitmapFont(); // use libGDX's default Arial font
 
         this.setScreen(new MainMenuScreen(this));
     }
@@ -37,7 +34,6 @@ public class YuruNewHorizons extends Game {
     @Override
     public void dispose() {
         batch.dispose();
-        font.dispose();
     }
 
     public OrthographicCamera getCamera() {
@@ -50,10 +46,6 @@ public class YuruNewHorizons extends Game {
 
     public SpriteBatch getBatch() {
         return batch;
-    }
-
-    public BitmapFont getFont() {
-        return font;
     }
 
 }

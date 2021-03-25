@@ -6,6 +6,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -17,6 +20,7 @@ public class MainMenuScreen implements Screen {
     private Sound nyanpasu;
     private Texture yuruBg;
     private Texture renchon;
+    private BitmapFont yuruFont;
 
     private Vector3 touchPos;
     private Rectangle renchonRectangle;
@@ -38,6 +42,13 @@ public class MainMenuScreen implements Screen {
         yuruBg.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         renchon = new Texture(Gdx.files.internal("renchon.png"));
         renchon.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        
+        // Génération des fonts du titre (.ttf -> BitmapFont = image)
+        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 60;
+        yuruFont = yuruFontGenerator.generateFont(parameter);
+        yuruFontGenerator.dispose();
 
         // Pour l'input nyanpasu
         touchPos = new Vector3();
@@ -83,7 +94,7 @@ public class MainMenuScreen implements Screen {
         game.getBatch().begin();
         game.getBatch().draw(yuruBg, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
         game.getBatch().draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
-        game.getFont().draw(game.getBatch(), "Yuru New Horizons ", 900, 600);
+        yuruFont.draw(game.getBatch(), "Yuru New Horizons", 700, 600);
         game.getBatch().end();
 
         // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de frame... (c'est plus simple)
