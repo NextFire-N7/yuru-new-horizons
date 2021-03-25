@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-desktop:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -39,6 +39,7 @@ jobs:
           branch: gh-pages
           folder: html/build/dist/
   svn:
+    needs: build-desktop
     runs-on: ubuntu-latest
     env:
       LINK: ${{ secrets.SVN_LINK }}
