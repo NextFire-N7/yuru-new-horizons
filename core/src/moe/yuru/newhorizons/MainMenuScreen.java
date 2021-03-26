@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,6 +32,7 @@ public class MainMenuScreen implements Screen {
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
         yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
+        yuruTheme.setLooping(true);
 
         // Charger la hitsound (en RAM)
         nyanpasu = Gdx.audio.newSound(Gdx.files.internal("audio/nyanpasu.mp3"));
@@ -45,6 +47,8 @@ public class MainMenuScreen implements Screen {
         FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 60;
+        parameter.borderWidth = 5;
+        parameter.borderColor = Color.valueOf("E39256");
         yuruFont = yuruFontGenerator.generateFont(parameter);
         yuruFontGenerator.dispose();
 
@@ -56,9 +60,8 @@ public class MainMenuScreen implements Screen {
     // Tout ce qui se passe au lancement du menu
     @Override
     public void show() {
-        nyanpasu.play();
         yuruTheme.play();
-        yuruTheme.setLooping(true);
+        nyanpasu.play();
 
         // C'est le listener pour quand on clique sur Renchon ça fait nyanpasu
         // Ressemble pas mal à ce qu'on fait avec Swing en TP/TD (slide 54 du cours).
@@ -94,7 +97,7 @@ public class MainMenuScreen implements Screen {
         game.getBatch().begin();
         game.getBatch().draw(yuruBg, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
         game.getBatch().draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
-        yuruFont.draw(game.getBatch(), "Yuru New Horizons", 700, 600);
+        yuruFont.draw(game.getBatch(), "Yuru New Horizons", 600, 650);
         game.getBatch().end();
 
         // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de frame... (c'est plus simple)
