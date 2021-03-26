@@ -31,8 +31,6 @@ public class MainMenuScreen implements Screen {
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
         yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
-        yuruTheme.setLooping(true);
-        yuruTheme.play();
 
         // Charger la hitsound (en RAM)
         nyanpasu = Gdx.audio.newSound(Gdx.files.internal("audio/nyanpasu.mp3"));
@@ -59,6 +57,8 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         nyanpasu.play();
+        yuruTheme.play();
+        yuruTheme.setLooping(true);
 
         // C'est le listener pour quand on clique sur Renchon ça fait nyanpasu
         // Ressemble pas mal à ce qu'on fait avec Swing en TP/TD (slide 54 du cours).
