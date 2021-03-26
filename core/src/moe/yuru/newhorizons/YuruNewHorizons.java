@@ -1,6 +1,7 @@
 package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -11,6 +12,7 @@ public class YuruNewHorizons extends Game {
     private OrthographicCamera camera;
     private Viewport viewport;
     private SpriteBatch batch;
+    private FPSLogger fpslogger;
 
     @Override
     public void create() {
@@ -22,6 +24,8 @@ public class YuruNewHorizons extends Game {
         camera.setToOrtho(false, 1280, 720);
         viewport = new FitViewport(1280, 720, camera);
         batch = new SpriteBatch();
+
+        fpslogger = new FPSLogger();
 
         this.setScreen(new MainMenuScreen(this));
     }
@@ -36,16 +40,20 @@ public class YuruNewHorizons extends Game {
         batch.dispose();
     }
 
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
     public OrthographicCamera getCamera() {
         return camera;
     }
 
-    public Viewport getViewport() {
-        return viewport;
+    public FPSLogger getFpslogger() {
+        return fpslogger;
     }
 
-    public SpriteBatch getBatch() {
-        return batch;
+    public Viewport getViewport() {
+        return viewport;
     }
 
 }

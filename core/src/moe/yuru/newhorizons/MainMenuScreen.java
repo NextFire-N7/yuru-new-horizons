@@ -1,7 +1,9 @@
 package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -60,33 +62,36 @@ public class MainMenuScreen implements Screen {
     // Tout ce qui se passe au lancement du menu
     @Override
     public void show() {
-        yuruTheme.play();
         nyanpasu.play();
+        yuruTheme.play();
 
         // C'est le listener pour quand on clique sur Renchon ça fait nyanpasu
         // Ressemble pas mal à ce qu'on fait avec Swing en TP/TD (slide 54 du cours).
         // InputAdapter = classe implémentant InputProcessor, permet de n'avoir qu'à
         // @Override ce qui nous intéresse et ne pas avoir à implémenter toutes les
         // methodes dans la classe anonyme utilisée ci-dessous.
-        // Gdx.input.setInputProcessor(new InputAdapter() {
-        //     @Override
-        //     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        //         if (button == Buttons.LEFT) {
-        //             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        //             game.getCamera().unproject(touchPos);
-        //             if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
-        //                 nyanpasu.play();
-        //                 return true;
-        //             }
-        //         }
-        //         return false;
-        //     }
-        // });
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                if (button == Buttons.LEFT) {
+                    touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                    game.getCamera().unproject(touchPos);
+                    if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
+                        nyanpasu.stop();
+                        nyanpasu.play();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     // Etapes effectuées pour chaque rendu d'une frame (boucle infinie sort of)
     @Override
     public void render(float delta) {
+        game.getFpslogger().log();
+
         // maj des données de la camera
         game.getCamera().update();
         // dit au moteur d'utiliser la camera pour la trad code <-> taille réelle
@@ -100,14 +105,15 @@ public class MainMenuScreen implements Screen {
         yuruFont.draw(game.getBatch(), "Yuru New Horizons", 600, 650);
         game.getBatch().end();
 
-        // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de frame... (c'est plus simple)
-        if (Gdx.input.justTouched()) {
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            game.getCamera().unproject(touchPos);
-            if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
-                nyanpasu.play();
-            }
-        }
+        // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de
+        // frame... (pas ouf mais plus simple)
+        // if (Gdx.input.justTouched()) {
+        //     touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        //     game.getCamera().unproject(touchPos);
+        //     if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
+        //         nyanpasu.play();
+        //     }
+        // }
     }
 
     // C'est pour gérer la "sauvegarde" de l'aspect ratio quand on resize la fenêtre
@@ -134,7 +140,7 @@ public class MainMenuScreen implements Screen {
 
     }
 
-    // Evidemment on libère les ressources à la fin du programme
+    // Evidemment on libère les ressources à la fin
     @Override
     public void dispose() {
         yuruTheme.dispose();
