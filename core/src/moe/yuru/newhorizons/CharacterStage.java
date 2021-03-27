@@ -38,6 +38,7 @@ public class CharacterStage extends Stage {
     public CharacterStage(String name) {
         super();
         setChara(name);
+        charaSound.play();
     }
 
     /**
@@ -60,11 +61,13 @@ public class CharacterStage extends Stage {
         this.charaImage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                charaSound.stop();
                 charaImage.remove();
                 charaTexture.dispose();
                 charaSound.dispose();
                 setChara(names[random.nextInt(names.length)]);
                 addRandomCharaListener();
+                charaSound.play();
             }
         });
     }
@@ -83,7 +86,6 @@ public class CharacterStage extends Stage {
         addActor(charaImage);
 
         charaSound = Gdx.audio.newSound(Gdx.files.internal("audio/" + name + ".mp3"));
-        charaSound.play();
     }
 
     /**
