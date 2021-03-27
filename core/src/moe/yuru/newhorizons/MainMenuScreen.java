@@ -1,50 +1,50 @@
 package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Main menu of the game
+ */
 public class MainMenuScreen implements Screen {
 
     private YuruNewHorizons game;
 
     private Music yuruTheme;
-    private Sound nyanpasu;
     private Texture yuruBg;
-    private Texture renchon;
     private BitmapFont yuruFont;
 
-    private Vector3 touchPos;
-    private Rectangle renchonRectangle;
+    private CharacterStage characterStage;
+    private InputMultiplexer inputMultiplexer;
 
     public MainMenuScreen(YuruNewHorizons game) {
         this.game = game;
+
+        // Scène du perso à gauche
+        characterStage = new CharacterStage();
+        characterStage.addRandomCharaListener();
+
+        // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
+        inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(characterStage);
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
         yuruTheme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
         yuruTheme.setLooping(true);
 
-        // Charger la hitsound (en RAM)
-        nyanpasu = Gdx.audio.newSound(Gdx.files.internal("audio/nyanpasu.mp3"));
-
         // Charger les images (en VRAM)
-        yuruBg = new Texture(Gdx.files.internal("images/menu_bg.jpeg"));
+        yuruBg = new Texture(Gdx.files.internal("images/MainMenu.png"));
         yuruBg.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        renchon = new Texture(Gdx.files.internal("images/renchon.png"));
-        renchon.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        
+
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
         FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -53,38 +53,14 @@ public class MainMenuScreen implements Screen {
         parameter.borderColor = Color.valueOf("E39256");
         yuruFont = yuruFontGenerator.generateFont(parameter);
         yuruFontGenerator.dispose();
-
-        // Pour l'input nyanpasu
-        touchPos = new Vector3();
-        renchonRectangle = new Rectangle(100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
     }
 
     // Tout ce qui se passe au lancement du menu
     @Override
     public void show() {
-        nyanpasu.play();
+        // règle l'inputMultiplexer comme gestionnaire des inputs du menu
+        Gdx.input.setInputProcessor(inputMultiplexer);
         yuruTheme.play();
-
-        // C'est le listener pour quand on clique sur Renchon ça fait nyanpasu
-        // Ressemble pas mal à ce qu'on fait avec Swing en TP/TD (slide 54 du cours).
-        // InputAdapter = classe implémentant InputProcessor, permet de n'avoir qu'à
-        // @Override ce qui nous intéresse et ne pas avoir à implémenter toutes les
-        // methodes dans la classe anonyme utilisée ci-dessous.
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (button == Buttons.LEFT) {
-                    touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-                    game.getCamera().unproject(touchPos);
-                    if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
-                        nyanpasu.stop();
-                        nyanpasu.play();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
     }
 
     // Etapes effectuées pour chaque rendu d'une frame (boucle infinie sort of)
@@ -94,26 +70,20 @@ public class MainMenuScreen implements Screen {
 
         // maj des données de la camera
         game.getCamera().update();
-        // dit au moteur d'utiliser la camera pour la trad code <-> taille réelle
+        // dit au moteur d'utiliser le système de cood de la camera
         game.getBatch().setProjectionMatrix(game.getCamera().combined);
 
         // Les instr de rendu entre begin et end seront faites en 1 coup (rendu
         // efficace, vive les fps)
         game.getBatch().begin();
-        game.getBatch().draw(yuruBg, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
-        game.getBatch().draw(renchon, 100, 0, renchon.getWidth() / 2, renchon.getHeight() / 2);
+        game.getBatch().draw(yuruBg, 0, 0, 1280, 720);
         yuruFont.draw(game.getBatch(), "Yuru New Horizons", 600, 650);
         game.getBatch().end();
 
-        // Ici on peut ne pas utiliser de listener mais on poll à chaque rendu de
-        // frame... (pas ouf mais plus simple)
-        // if (Gdx.input.justTouched()) {
-        //     touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        //     game.getCamera().unproject(touchPos);
-        //     if (renchonRectangle.contains(touchPos.x, touchPos.y)) {
-        //         nyanpasu.play();
-        //     }
-        // }
+        // appelle les methodes act des acteurs de la scène si définies
+        characterStage.act();
+        // dessine la scène
+        characterStage.draw();
     }
 
     // C'est pour gérer la "sauvegarde" de l'aspect ratio quand on resize la fenêtre
@@ -144,9 +114,9 @@ public class MainMenuScreen implements Screen {
     @Override
     public void dispose() {
         yuruTheme.dispose();
-        nyanpasu.dispose();
         yuruBg.dispose();
-        renchon.dispose();
+        yuruFont.dispose();
+        characterStage.dispose();
     }
 
 }
