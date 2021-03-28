@@ -30,7 +30,7 @@ public class YuruNewHorizons extends Game {
         setMusicVolume(0.20f);
         setSoundVolume(0.30f);
 
-        this.setScreen(new MainMenuScreen(this));
+        this.setScreen(new SplashScreen(this));
     }
 
     @Override
