@@ -10,11 +10,59 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * Main menu of the game
  */
 public class MainMenuScreen implements Screen {
+
+    private class MainMenuMenuStage extends Stage {
+
+        private Skin skin;
+
+        public MainMenuMenuStage() {
+            super();
+            skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+
+            Button startButton = new TextButton("New Game", skin);
+            startButton.setSize(400, 75);
+            startButton.setPosition(690, 450);
+            addActor(startButton);
+
+            Button exitButton = new TextButton("Quit", skin);
+            exitButton.setSize(400, 75);
+            exitButton.setPosition(690, 75);
+            addActor(exitButton);
+
+            startButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    game.getScreen().dispose();
+                    game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
+                }
+            });
+
+            exitButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    Gdx.app.exit();
+                }
+            });
+        }
+
+        @Override
+        public void dispose() {
+            super.dispose();
+            skin.dispose();
+        }
+
+    }
 
     private YuruNewHorizons game;
 
@@ -22,8 +70,10 @@ public class MainMenuScreen implements Screen {
     private Texture yuruBg;
     private BitmapFont yuruFont;
 
-    private CharacterStage characterStage;
     private InputMultiplexer inputMultiplexer;
+
+    private CharacterStage characterStage;
+    private MainMenuMenuStage mainMenuMenuStage;
 
     public MainMenuScreen(YuruNewHorizons game) {
         this.game = game;
@@ -32,9 +82,13 @@ public class MainMenuScreen implements Screen {
         characterStage = new CharacterStage(game);
         characterStage.addRandomCharaListener();
 
+        // Scène des menus à droite
+        mainMenuMenuStage = new MainMenuMenuStage();
+
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(characterStage);
+        inputMultiplexer.addProcessor(mainMenuMenuStage);
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
@@ -86,6 +140,10 @@ public class MainMenuScreen implements Screen {
         characterStage.act();
         // dessine la scène
         characterStage.draw();
+
+        // pareil avec le menu
+        mainMenuMenuStage.act();
+        mainMenuMenuStage.draw();
     }
 
     // C'est pour gérer la "sauvegarde" de l'aspect ratio quand on resize la fenêtre
@@ -96,20 +154,17 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
+        yuruTheme.pause();
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
+        yuruTheme.play();
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-
+        yuruTheme.pause();
     }
 
     // Evidemment on libère les ressources à la fin
@@ -119,6 +174,7 @@ public class MainMenuScreen implements Screen {
         yuruBg.dispose();
         yuruFont.dispose();
         characterStage.dispose();
+        mainMenuMenuStage.dispose();
     }
 
 }
