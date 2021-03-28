@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Align;
  */
 public class CharacterStage extends Stage {
 
-    private static String[] names = { "renchon", "shimarin", "chino", "yui" };
+    private static String[] names = { "renchon", "shimarin", "chino", "yui", "gu" };
     private static int lastNb = -1;
     private static Random random = new Random();
 
