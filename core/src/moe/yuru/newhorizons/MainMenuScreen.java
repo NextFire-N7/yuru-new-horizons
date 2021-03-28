@@ -29,7 +29,7 @@ public class MainMenuScreen implements Screen {
         this.game = game;
 
         // Scène du perso à gauche
-        characterStage = new CharacterStage();
+        characterStage = new CharacterStage(game);
         characterStage.addRandomCharaListener();
 
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
@@ -46,7 +46,8 @@ public class MainMenuScreen implements Screen {
         yuruBg.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
-        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
+        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(
+                Gdx.files.internal("fonts/majuro_fino.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 60;
         parameter.borderWidth = 5;
@@ -60,6 +61,7 @@ public class MainMenuScreen implements Screen {
     public void show() {
         // règle l'inputMultiplexer comme gestionnaire des inputs du menu
         Gdx.input.setInputProcessor(inputMultiplexer);
+        yuruTheme.setVolume(game.getMusicVolume());
         yuruTheme.play();
     }
 

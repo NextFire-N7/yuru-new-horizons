@@ -18,7 +18,10 @@ import com.badlogic.gdx.utils.Align;
 public class CharacterStage extends Stage {
 
     private static String[] names = { "renchon", "shimarin", "chino" };
+    private static int lastNb = -1;
     private static Random random = new Random();
+
+    private YuruNewHorizons game;
 
     private Texture charaTexture;
     private Image charaImage;
@@ -27,18 +30,19 @@ public class CharacterStage extends Stage {
     /**
      * Create a random character stage
      */
-    public CharacterStage() {
-        this(names[random.nextInt(names.length)]);
+    public CharacterStage(YuruNewHorizons game) {
+        this(game, randomCharaDontRepeat());
     }
 
     /**
      * Create a stage for the character in input
+     * 
      * @param name name of the character
      */
-    public CharacterStage(String name) {
+    public CharacterStage(YuruNewHorizons game, String name) {
         super();
+        this.game = game;
         setChara(name);
-        charaSound.play();
     }
 
     /**
@@ -49,7 +53,7 @@ public class CharacterStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 charaSound.stop();
-                charaSound.play();
+                charaSound.play(game.getSoundVolume());
             }
         });
     }
@@ -65,15 +69,15 @@ public class CharacterStage extends Stage {
                 charaImage.remove();
                 charaTexture.dispose();
                 charaSound.dispose();
-                setChara(names[random.nextInt(names.length)]);
+                setChara(randomCharaDontRepeat());
                 addRandomCharaListener();
-                charaSound.play();
             }
         });
     }
 
     /**
      * Set attributs of the given character to the stage
+     * 
      * @param name name of the character
      */
     private void setChara(String name) {
@@ -86,10 +90,26 @@ public class CharacterStage extends Stage {
         addActor(charaImage);
 
         charaSound = Gdx.audio.newSound(Gdx.files.internal("audio/" + name + ".mp3"));
+        charaSound.play(game.getSoundVolume());
+    }
+
+    /**
+     * Get random character name without repetition.
+     * 
+     * @return a character name
+     */
+    private static String randomCharaDontRepeat() {
+        int nb;
+        do {
+            nb = random.nextInt(names.length);
+        } while (nb == lastNb);
+        lastNb = nb;
+        return names[nb];
     }
 
     /**
      * Fit the image nicely on the stage
+     * 
      * @param image image which size is to be adjusted
      */
     private void adjustImageSize(Image image) {
