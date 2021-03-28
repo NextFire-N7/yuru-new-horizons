@@ -27,7 +27,7 @@ public class MainMenuScreen implements Screen {
         private Skin skin;
 
         public MainMenuMenuStage() {
-            super();
+            super(game.getViewport(), game.getBatch());
             skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
             Button startButton = new TextButton("New Game", skin);
@@ -124,11 +124,8 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
         game.getFpslogger().log();
-
         // maj des données de la camera
         game.getCamera().update();
-        // dit au moteur d'utiliser le système de cood de la camera
-        game.getBatch().setProjectionMatrix(game.getCamera().combined);
 
         // Les instr de rendu entre begin et end seront faites en 1 coup (rendu
         // efficace, vive les fps)

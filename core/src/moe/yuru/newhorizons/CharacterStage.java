@@ -40,7 +40,7 @@ public class CharacterStage extends Stage {
      * @param name name of the character
      */
     public CharacterStage(YuruNewHorizons game, String name) {
-        super();
+        super(game.getViewport(), game.getBatch());
         this.game = game;
         setChara(name);
     }
@@ -89,7 +89,7 @@ public class CharacterStage extends Stage {
      * @param name name of the character
      */
     private void setChara(String name) {
-        charaTexture = new Texture(Gdx.files.internal("images/" + name + ".png"));
+        charaTexture = new Texture(Gdx.files.internal("characters/" + name + ".png"));
         charaTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         charaImage = new Image(charaTexture);
@@ -97,7 +97,7 @@ public class CharacterStage extends Stage {
         charaImage.setPosition(300, 0, Align.bottom);
         addActor(charaImage);
 
-        charaSound = Gdx.audio.newSound(Gdx.files.internal("audio/" + name + ".mp3"));
+        charaSound = Gdx.audio.newSound(Gdx.files.internal("characters/" + name + ".mp3"));
     }
 
     /**

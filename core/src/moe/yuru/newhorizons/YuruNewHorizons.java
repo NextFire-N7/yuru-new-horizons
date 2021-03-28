@@ -24,11 +24,12 @@ public class YuruNewHorizons extends Game {
         camera.setToOrtho(false, 1280, 720);
         viewport = new FitViewport(1280, 720, camera);
         batch = new SpriteBatch();
+        batch.setProjectionMatrix(camera.combined);
 
         fpslogger = new FPSLogger();
 
-        setMusicVolume(0.20f);
-        setSoundVolume(0.30f);
+        setMusicVolume(0.25f);
+        setSoundVolume(0.50f);
 
         this.setScreen(new SplashScreen(this));
     }

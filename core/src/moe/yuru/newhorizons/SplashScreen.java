@@ -40,6 +40,9 @@ public class SplashScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        game.getFpslogger().log();
+        game.getCamera().update();
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
