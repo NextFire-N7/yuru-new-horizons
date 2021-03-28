@@ -11,6 +11,11 @@ i:images/renchon.png:images/renchon-39f91b30bc0a65d97e7a8afd5e45f5d7.png:531532:
 i:images/MainMenu.png:images/MainMenu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
 i:images/chino.png:images/chino-c4f1264e77a8b2ac848ff1e5d257a928.png:379217:image/png:1
 i:images/shimarin.png:images/shimarin-928cb15e773d1820a9a5e9f959d4d269.png:238789:image/png:1
+d:skin:skin:0:application/unknown:1
+i:skin/uiskin.png:skin/uiskin-34b28ea01f92a90fa485f007870f9eff.png:28299:image/png:1
+t:skin/uiskin.atlas:skin/uiskin-196b39599bd3da038ec41629e5d8ed03.atlas:2925:application/unknown:1
+t:skin/uiskin.json:skin/uiskin-a74e57fc2c1c415b513777e08c3e4f4f.json:3331:application/unknown:1
+t:skin/default.fnt:skin/default-e1d33585b7132093ad20c66e3fb30be4.fnt:11528:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:default.fragment-e1c018bd48044c8b67c7bbc53145e540.glsl:5874:application/unknown:1
