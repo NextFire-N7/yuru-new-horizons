@@ -115,6 +115,7 @@ public class MainMenuScreen implements Screen {
     public void show() {
         // règle l'inputMultiplexer comme gestionnaire des inputs du menu
         Gdx.input.setInputProcessor(inputMultiplexer);
+        characterStage.playCharaSound();
         yuruTheme.setVolume(game.getMusicVolume());
         yuruTheme.play();
     }

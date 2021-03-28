@@ -52,8 +52,7 @@ public class CharacterStage extends Stage {
         this.charaImage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                charaSound.stop();
-                charaSound.play(game.getSoundVolume());
+                playCharaSound();
             }
         });
     }
@@ -71,8 +70,17 @@ public class CharacterStage extends Stage {
                 charaSound.dispose();
                 setChara(randomCharaDontRepeat());
                 addRandomCharaListener();
+                playCharaSound();
             }
         });
+    }
+
+    /**
+     * Play the character sound
+     */
+    public void playCharaSound() {
+        charaSound.stop();
+        charaSound.play(game.getSoundVolume());
     }
 
     /**
@@ -90,7 +98,6 @@ public class CharacterStage extends Stage {
         addActor(charaImage);
 
         charaSound = Gdx.audio.newSound(Gdx.files.internal("audio/" + name + ".mp3"));
-        charaSound.play(game.getSoundVolume());
     }
 
     /**
