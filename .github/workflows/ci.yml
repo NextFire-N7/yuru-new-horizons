@@ -17,6 +17,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: Build JAR
         run: ./gradlew desktop:dist
       - name: Upload JAR
@@ -24,12 +33,27 @@ jobs:
         with:
           name: desktop.jar
           path: desktop/build/libs/desktop*.jar
+      - name: Cleanup Gradle Cache
+        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
   deploy-html:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: Setup java
         uses: actions/setup-java@v1
         with:
@@ -41,6 +65,12 @@ jobs:
         with:
           branch: gh-pages
           folder: html/build/dist/
+      - name: Cleanup Gradle Cache
+        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
   svn:
     needs: build-desktop
     runs-on: ubuntu-latest
