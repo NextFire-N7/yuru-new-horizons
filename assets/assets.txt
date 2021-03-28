@@ -7,11 +7,13 @@ a:audio/renchon.mp3:audio/renchon-ecf483d6c7ab2fd59128855c28a67a0a.mp3:32832:aud
 a:audio/yuru_theme.mp3:audio/yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/mpeg:1
 a:audio/shimarin.mp3:audio/shimarin-f6b890ee52cffb26d44c358beb485a7e.mp3:21941:audio/mpeg:1
 a:audio/yui.mp3:audio/yui-b247e23f3323b495f01d870b8824ef70.mp3:19016:audio/mpeg:1
+a:audio/gu.mp3:audio/gu-b496f0b618fe824be19e50d84fbce200.mp3:9129:audio/mpeg:1
 d:images:images:0:application/unknown:1
 i:images/renchon.png:images/renchon-39f91b30bc0a65d97e7a8afd5e45f5d7.png:531532:image/png:1
 i:images/MainMenu.png:images/MainMenu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
 i:images/yui.png:images/yui-1f916612bb3cdb2c3e1e860dfaf7bcee.png:325669:image/png:1
 i:images/chino.png:images/chino-c4f1264e77a8b2ac848ff1e5d257a928.png:379217:image/png:1
+i:images/gu.png:images/gu-b8bd439494188287697e76f43acd2b19.png:85363:image/png:1
 i:images/shimarin.png:images/shimarin-928cb15e773d1820a9a5e9f959d4d269.png:238789:image/png:1
 d:skin:skin:0:application/unknown:1
 i:skin/uiskin.png:skin/uiskin-34b28ea01f92a90fa485f007870f9eff.png:28299:image/png:1
