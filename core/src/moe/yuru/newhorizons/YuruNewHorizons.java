@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.kotcrab.vis.ui.VisUI;
+import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 public class YuruNewHorizons extends Game {
 
@@ -20,6 +22,8 @@ public class YuruNewHorizons extends Game {
 
     @Override
     public void create() {
+        VisUI.load(SkinScale.X2);
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
         viewport = new FitViewport(1280, 720, camera);
@@ -41,6 +45,7 @@ public class YuruNewHorizons extends Game {
 
     @Override
     public void dispose() {
+        VisUI.dispose();
         batch.dispose();
     }
 

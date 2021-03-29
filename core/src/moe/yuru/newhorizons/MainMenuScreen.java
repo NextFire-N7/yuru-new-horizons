@@ -13,9 +13,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.kotcrab.vis.ui.widget.VisTextButton;
 
 /**
  * Main menu of the game
@@ -24,18 +23,15 @@ public class MainMenuScreen implements Screen {
 
     private class MainMenuMenuStage extends Stage {
 
-        private Skin skin;
-
         public MainMenuMenuStage() {
             super(game.getViewport(), game.getBatch());
-            skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
-            Button startButton = new TextButton("New Game", skin);
+            Button startButton = new VisTextButton("New Game");
             startButton.setSize(400, 75);
             startButton.setPosition(690, 450);
             addActor(startButton);
 
-            Button exitButton = new TextButton("Quit", skin);
+            Button exitButton = new VisTextButton("Quit");
             exitButton.setSize(400, 75);
             exitButton.setPosition(690, 75);
             addActor(exitButton);
@@ -59,7 +55,6 @@ public class MainMenuScreen implements Screen {
         @Override
         public void dispose() {
             super.dispose();
-            skin.dispose();
         }
 
     }
