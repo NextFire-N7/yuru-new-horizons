@@ -51,7 +51,7 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
-        yuruFont.draw(game.getBatch(), "Click to continue...", 10, 700);
+        yuruFont.draw(game.getBatch(), "Click to continue...", 850, 50);
         game.getBatch().end();
     }
 
