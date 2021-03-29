@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
@@ -17,18 +16,15 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 public class SplashScreen implements Screen {
 
     private final YuruNewHorizons game;
-    private BitmapFont yuruFont;
+    private BitmapFont font;
 
     public SplashScreen(final YuruNewHorizons game) {
         this.game = game;
-        FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(
-                Gdx.files.internal("fonts/majuro_fino.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 40;
         parameter.borderWidth = 5;
         parameter.borderColor = Color.valueOf("90CCDB");
-        yuruFont = yuruFontGenerator.generateFont(parameter);
-        yuruFontGenerator.dispose();
+        font = game.getFontGenerator().generateFont(parameter);
     }
 
     @Override
@@ -51,7 +47,7 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
-        yuruFont.draw(game.getBatch(), "Click to continue...", 850, 50);
+        font.draw(game.getBatch(), "Click to continue...", 850, 50);
         game.getBatch().end();
     }
 
@@ -80,7 +76,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
-        yuruFont.dispose();
+        font.dispose();
     }
 
 }

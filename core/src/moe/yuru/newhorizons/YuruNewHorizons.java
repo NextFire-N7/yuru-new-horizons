@@ -1,9 +1,11 @@
 package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
@@ -18,6 +20,7 @@ public class YuruNewHorizons extends Game {
     private Viewport viewport;
     private SpriteBatch batch;
 
+    private FreeTypeFontGenerator fontGenerator;
     private FPSLogger fpslogger;
 
     private Float musicVolume;
@@ -33,6 +36,7 @@ public class YuruNewHorizons extends Game {
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
 
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
         fpslogger = new FPSLogger();
 
         setMusicVolume(0.25f);
@@ -50,6 +54,7 @@ public class YuruNewHorizons extends Game {
     public void dispose() {
         VisUI.dispose();
         batch.dispose();
+        fontGenerator.dispose();
     }
 
     public OrthographicCamera getCamera() {
@@ -62,6 +67,10 @@ public class YuruNewHorizons extends Game {
 
     public SpriteBatch getBatch() {
         return batch;
+    }
+
+    public FreeTypeFontGenerator getFontGenerator() {
+        return fontGenerator;
     }
 
     public FPSLogger getFpslogger() {
