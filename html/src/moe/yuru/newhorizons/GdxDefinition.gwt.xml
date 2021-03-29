@@ -4,6 +4,7 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 	<inherits name="com.badlogic.gdx.graphics.g2d.freetype.freetype-gwt" />
 	<inherits name='com.badlogic.gdx.physics.box2d.box2d-gwt' />
+	<inherits name='com.kotcrab.vis.vis-ui' />
 
 	<inherits name='YuruNewHorizons' />
 	<entry-point class='moe.yuru.newhorizons.client.HtmlLauncher' />
