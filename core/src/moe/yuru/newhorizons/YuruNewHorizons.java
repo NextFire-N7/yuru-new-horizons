@@ -1,6 +1,8 @@
 package moe.yuru.newhorizons;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -35,7 +37,11 @@ public class YuruNewHorizons extends Game {
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
 
-        this.setScreen(new SplashScreen(this));
+        if (Gdx.app.getType() == ApplicationType.WebGL) {
+            this.setScreen(new SplashScreen(this));
+        } else {
+            this.setScreen(new MainMenuScreen(this));
+        }
     }
 
     @Override
