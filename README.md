@@ -7,8 +7,9 @@
 
 ## Play the game
 
-A compiled JAR of the game is available as [pipeline](https://github.com/NextFire/yuru-new-horizons/actions) artifact.  
-On macOS it will only work when the JVM is run with the `-XstartOnFirstThread` argument.
+A compiled JAR of the game is available as [pipeline](https://github.com/NextFire/yuru-new-horizons/actions) artifact. To start the game, launch a terminal, then:
+- on Windows and Linux: `java -jar <path to jar>`
+- on macOS: `java -XstartOnFirstThread -jar <path to jar>` 
 
 You can also play the web version of the game directly [here](https://nextfire.github.io/yuru-new-horizons/) (might be buggy).
 
