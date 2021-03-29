@@ -24,9 +24,8 @@ jobs:
         with:
           name: desktop.jar
           path: desktop/build/libs/desktop*.jar
-  deploy-html:
+  build-html:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -36,6 +35,21 @@ jobs:
           java-version: 11
       - name: Compile html
         run: ./gradlew html:dist
+      - name: Cache html build
+        uses: actions/cache@v2
+        with:
+          path: html/build/dist/
+          key: ynh-html-${{ github.run_id }}
+  deploy-html:
+    needs: build-html
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Restore cached html build
+        uses: actions/cache@v2
+        with:
+          path: html/build/dist/
+          key: ynh-html-${{ github.run_id }}
       - name: Deploy on Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
