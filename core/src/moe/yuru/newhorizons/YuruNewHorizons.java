@@ -11,6 +11,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
+/**
+ * Yuru New Horizons game class.
+ */
 public class YuruNewHorizons extends Game {
 
     private OrthographicCamera camera;

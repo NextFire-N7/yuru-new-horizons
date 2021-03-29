@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
+/**
+ * Main menu right buttons menu stage.
+ */
 class MainMenuMenuStage extends Stage {
 
     public MainMenuMenuStage(final YuruNewHorizons game) {

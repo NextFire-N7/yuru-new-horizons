@@ -9,6 +9,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
+/**
+ * Splash screen of the game.
+ * 
+ * Necessary on html to be able to play music in modern browsers.
+ */
 public class SplashScreen implements Screen {
 
     private final YuruNewHorizons game;
@@ -44,7 +49,7 @@ public class SplashScreen implements Screen {
         game.getCamera().update();
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
         yuruFont.draw(game.getBatch(), "Click to continue...", 10, 700);
         game.getBatch().end();

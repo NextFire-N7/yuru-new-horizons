@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
 /**
- * Character stage with character image and sound
+ * Character stage with character image and sound.
  */
 public class CharacterStage extends Stage {
 
