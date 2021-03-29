@@ -56,7 +56,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache html build
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: html/build/dist/
           key: ynh-html-${{ github.run_id }}
@@ -70,7 +70,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Restore cached html build
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: html/build/dist/
           key: ynh-html-${{ github.run_id }}
