@@ -7,9 +7,10 @@
 
 ## Play the game
 
-A compiled JAR of the game is available as [pipeline](https://github.com/NextFire/yuru-new-horizons/actions) artifact.
+A compiled JAR of the game is available as [pipeline](https://github.com/NextFire/yuru-new-horizons/actions) artifact.  
+On macOS it will only work when the JVM is run with the `-XstartOnFirstThread` argument.
 
-You can also play the web version of the game directly [here](https://nextfire.github.io/yuru-new-horizons/).
+You can also play the web version of the game directly [here](https://nextfire.github.io/yuru-new-horizons/) (might be buggy).
 
 
 ## Compilation
@@ -17,6 +18,8 @@ You can also play the web version of the game directly [here](https://nextfire.g
 This project uses Gradle as build automation tool.
 
 Clone this repo then launch `./gradlew desktop:run` to run the desktop version or `./gradlew html:superDev` for the web version of the game.
+
+A `launch.json` file is also provided for those working with Visual Studio Code.
 
 Instructions [here](https://github.com/libgdx/libgdx/wiki/Deploying-your-application) for deployements.
 

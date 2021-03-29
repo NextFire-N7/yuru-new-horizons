@@ -1,17 +1,16 @@
 package moe.yuru.newhorizons.desktop;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
-        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.title = "Yuru New Horizons";
-        config.width = 1280;
-        config.height = 720;
-        new LwjglApplication(new YuruNewHorizons(), config);
+        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config.setTitle("Yuru New Horizons");
+        config.setWindowedMode(1280, 720);
+        new Lwjgl3Application(new YuruNewHorizons(), config);
     }
 
 }
