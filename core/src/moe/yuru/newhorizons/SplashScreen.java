@@ -11,10 +11,10 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 
 public class SplashScreen implements Screen {
 
-    private YuruNewHorizons game;
+    private final YuruNewHorizons game;
     private BitmapFont yuruFont;
 
-    public SplashScreen(YuruNewHorizons game) {
+    public SplashScreen(final YuruNewHorizons game) {
         this.game = game;
         FreeTypeFontGenerator yuruFontGenerator = new FreeTypeFontGenerator(
                 Gdx.files.internal("fonts/majuro_fino.ttf"));

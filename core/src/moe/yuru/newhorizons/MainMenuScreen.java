@@ -10,56 +10,13 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.kotcrab.vis.ui.widget.VisTextButton;
 
 /**
  * Main menu of the game
  */
 public class MainMenuScreen implements Screen {
 
-    private class MainMenuMenuStage extends Stage {
-
-        public MainMenuMenuStage() {
-            super(game.getViewport(), game.getBatch());
-
-            Button startButton = new VisTextButton("New Game");
-            startButton.setSize(400, 75);
-            startButton.setPosition(690, 450);
-            addActor(startButton);
-
-            Button exitButton = new VisTextButton("Quit");
-            exitButton.setSize(400, 75);
-            exitButton.setPosition(690, 75);
-            addActor(exitButton);
-
-            startButton.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    game.getScreen().dispose();
-                    game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
-                }
-            });
-
-            exitButton.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    Gdx.app.exit();
-                }
-            });
-        }
-
-        @Override
-        public void dispose() {
-            super.dispose();
-        }
-
-    }
-
-    private YuruNewHorizons game;
+    private final YuruNewHorizons game;
 
     private Music yuruTheme;
     private Texture yuruBg;
@@ -70,7 +27,7 @@ public class MainMenuScreen implements Screen {
     private CharacterStage characterStage;
     private MainMenuMenuStage mainMenuMenuStage;
 
-    public MainMenuScreen(YuruNewHorizons game) {
+    public MainMenuScreen(final YuruNewHorizons game) {
         this.game = game;
 
         // Scène du perso à gauche
@@ -78,7 +35,7 @@ public class MainMenuScreen implements Screen {
         characterStage.addRandomCharaListener();
 
         // Scène des menus à droite
-        mainMenuMenuStage = new MainMenuMenuStage();
+        mainMenuMenuStage = new MainMenuMenuStage(game);
 
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
         inputMultiplexer = new InputMultiplexer();
@@ -91,7 +48,7 @@ public class MainMenuScreen implements Screen {
         yuruTheme.setLooping(true);
 
         // Charger les images (en VRAM)
-        yuruBg = new Texture(Gdx.files.internal("images/MainMenu.png"));
+        yuruBg = new Texture(Gdx.files.internal("images/main_menu.png"));
         yuruBg.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
