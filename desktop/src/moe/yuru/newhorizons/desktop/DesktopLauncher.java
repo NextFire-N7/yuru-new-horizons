@@ -2,6 +2,7 @@ package moe.yuru.newhorizons.desktop;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 public class DesktopLauncher {
