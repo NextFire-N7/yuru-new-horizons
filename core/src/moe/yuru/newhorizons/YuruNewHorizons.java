@@ -12,7 +12,7 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 /**
- * Yuru New Horizons game class.
+ * Yuru New Horizons inherited {@link Game} class.
  */
 public class YuruNewHorizons extends Game {
 

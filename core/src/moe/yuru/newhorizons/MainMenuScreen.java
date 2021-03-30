@@ -2,7 +2,6 @@ package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,9 +12,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 /**
  * Main menu of the game.
  */
-public class MainMenuScreen implements Screen {
-
-    private final YuruNewHorizons game;
+public class MainMenuScreen extends YuruScreen {
 
     private Music theme;
     private Texture background;
@@ -27,7 +24,7 @@ public class MainMenuScreen implements Screen {
     private MainMenuMenuStage mainMenuMenuStage;
 
     public MainMenuScreen(final YuruNewHorizons game) {
-        this.game = game;
+        super(game);
 
         // Scène du perso à gauche
         characterStage = new CharacterStage(game);
