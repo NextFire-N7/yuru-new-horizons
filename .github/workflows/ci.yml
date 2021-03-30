@@ -44,7 +44,7 @@ jobs:
           rm -rf src ../git-repo/.git
           cp -r ../git-repo src
           svn add --force src
-          svn status | grep ! | cut -d! -f2| sed 's/^ *//' | sed 's/^/"/g' | sed 's/$/"/g' | xargs svn rm
+          svn status | grep ! | cut -d! -f2| sed 's/^ *//' | sed 's/^/"/g' | sed 's/$/"/g' | xargs -r svn rm
           svn commit --non-interactive --username "$USERNAME" --password "$PASSWD" -m "$COMMIT_MSG"
         working-directory: svn-repo
   html-build:
