@@ -41,9 +41,10 @@ jobs:
         run: svn co "$LINK" --non-interactive --username "$USERNAME" --password "$PASSWD" svn-repo
       - name: Push git to svn
         run: |
-          svn rm src/*
-          cp -r ../git-repo/* src/
-          svn add src/ --force
+          rm -rf src
+          cp -r ../git-repo src
+          svn add --force src
+          svn status | grep ! | cut -d! -f2| sed 's/^ *//' | sed 's/^/"/g' | sed 's/$/"/g' | xargs svn rm
           svn commit --non-interactive --username "$USERNAME" --password "$PASSWD" -m "$COMMIT_MSG"
         working-directory: svn-repo
   html-build:
@@ -59,7 +60,7 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/cache@v2.1.4
         with:
-          path: html/build/dist/
+          path: html/build/dist
           key: ynh-html-${{ github.run_id }}
       - name: Build html
         run: ./gradlew html:dist
@@ -73,10 +74,10 @@ jobs:
       - name: Restore cached html build
         uses: actions/cache@v2.1.4
         with:
-          path: html/build/dist/
+          path: html/build/dist
           key: ynh-html-${{ github.run_id }}
       - name: Deploy on Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
-          folder: html/build/dist/
+          folder: html/build/dist
