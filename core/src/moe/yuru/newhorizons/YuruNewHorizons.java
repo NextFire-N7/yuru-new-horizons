@@ -11,6 +11,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
+import moe.yuru.newhorizons.models.BuildingStock;
+import moe.yuru.newhorizons.screens.SplashScreen;
+
 /**
  * Yuru New Horizons inherited {@link Game} class.
  */
@@ -41,6 +44,8 @@ public class YuruNewHorizons extends Game {
 
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
+
+        BuildingStock stock = new BuildingStock(this); // sert à rien ici mais ça montre que ça charge
 
         this.setScreen(new SplashScreen(this));
     }

@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+
+import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
  * Main menu of the game.

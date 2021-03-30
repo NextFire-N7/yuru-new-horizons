@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+
+import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
  * Splash screen of the {@link YuruNewHorizons}.

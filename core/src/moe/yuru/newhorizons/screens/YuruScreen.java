@@ -1,6 +1,8 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.screens;
 
 import com.badlogic.gdx.Screen;
+
+import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
  * Abstract implementation of {@link Screen} for this game. So that we don't

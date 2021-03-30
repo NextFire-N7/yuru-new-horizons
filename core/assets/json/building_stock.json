@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Camping",
+        "faction": "CULTURE",
+        "statsPerLevel": [
+            {
+                "cost": 0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 20
+            }
+        ]
+    },
+    {
+        "name": "School",
+        "faction": "SCIENCE",
+        "statsPerLevel": [
+            {
+                "cost": 20,
+                "coinsPerSecond": -10,
+                "resourcesPerSecond": 100
+            }
+        ]
+    }
+]
