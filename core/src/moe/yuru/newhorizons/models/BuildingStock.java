@@ -6,13 +6,13 @@ import com.badlogic.gdx.utils.Json;
 
 public class BuildingStock {
 
-    private Array<Building> stock;
+    private Array<BuildingModel> stock;
 
     public BuildingStock() {
-        stock = new Json().fromJson(Array.class, Building.class, Gdx.files.internal("json/building_stock.json"));
+        stock = new Json().fromJson(Array.class, BuildingModel.class, Gdx.files.internal("json/building_stock.json"));
     }
 
-    public Array<Building> getStock() {
+    public Array<BuildingModel> getStock() {
         return stock;
     }
 

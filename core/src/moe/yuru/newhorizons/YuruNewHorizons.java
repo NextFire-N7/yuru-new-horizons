@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
-import moe.yuru.newhorizons.models.Building;
+import moe.yuru.newhorizons.models.BuildingModel;
 import moe.yuru.newhorizons.models.BuildingStock;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
@@ -48,7 +48,7 @@ public class YuruNewHorizons extends Game {
 
         // sert à rien ici mais ça montre que ça charge
         BuildingStock stock = new BuildingStock();
-        Building building = stock.getStock().get(0);
+        BuildingModel model = stock.getStock().get(0);
 
         this.setScreen(new SplashScreen(this));
     }
