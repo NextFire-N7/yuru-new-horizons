@@ -2,8 +2,8 @@ package moe.yuru.newhorizons.models;
 
 public class BuildingStats {
 
-    private float cost;
-    private float coinsPerSecond;
-    private float resourcesPerSecond;
+    private int cost;
+    private int coinsPerSecond;
+    private int resourcesPerSecond;
 
 }

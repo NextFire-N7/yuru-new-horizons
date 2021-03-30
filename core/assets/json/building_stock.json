@@ -1,6 +1,6 @@
 [
     {
-        "name": "Camping",
+        "function": "Camping",
         "faction": "CULTURE",
         "statsPerLevel": [
             {
@@ -11,7 +11,7 @@
         ]
     },
     {
-        "name": "School",
+        "function": "School",
         "faction": "SCIENCE",
         "statsPerLevel": [
             {

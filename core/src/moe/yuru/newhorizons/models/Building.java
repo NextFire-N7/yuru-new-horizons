@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Building {
 
-    private String name;
+    private String function;
     private String faction;
     private Array<BuildingStats> statsPerLevel;
 
