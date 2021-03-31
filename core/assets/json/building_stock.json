@@ -1,5 +1,10 @@
 [
     {
+        "character": {
+            "id": "shimarin",
+            "lastName": "Shima",
+            "firstName": "Rin"
+        },
         "function": "Camping",
         "faction": "CULTURE",
         "statsPerLevel": [
@@ -11,6 +16,11 @@
         ]
     },
     {
+        "character": {
+            "id": "renchon",
+            "lastName": "Miyauchi",
+            "firstName": "Renge"
+        },
         "function": "School",
         "faction": "SCIENCE",
         "statsPerLevel": [

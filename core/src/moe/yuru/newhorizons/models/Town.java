@@ -4,6 +4,14 @@ import com.badlogic.gdx.utils.Array;
 
 public class Town {
 
-    private Array<Building> buildings;
+    private Array<BuildingInstance> buildings;
+
+    public Town() {
+        buildings = new Array<>();
+    }
+
+    public Array<BuildingInstance> getBuildings() {
+        return buildings;
+    }
 
 }

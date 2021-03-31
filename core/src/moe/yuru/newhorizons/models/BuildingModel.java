@@ -8,8 +8,12 @@ public class BuildingModel {
         SCIENCE, CULTURE, INDUSTRY, POLITIC
     }
 
+    private CharacterModel character;
     private String function;
     private Faction faction;
     private Array<BuildingStats> statsPerLevel;
+
+    private BuildingModel() {
+    }
 
 }

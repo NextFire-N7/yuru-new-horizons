@@ -6,4 +6,19 @@ public class BuildingStats {
     private int coinsPerSecond;
     private int resourcesPerSecond;
 
+    private BuildingStats() {
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getCoinsPerSecond() {
+        return coinsPerSecond;
+    }
+
+    public int getResourcesPerSecond() {
+        return resourcesPerSecond;
+    }
+
 }

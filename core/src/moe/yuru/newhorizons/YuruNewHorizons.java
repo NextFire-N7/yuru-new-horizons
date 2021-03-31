@@ -48,7 +48,6 @@ public class YuruNewHorizons extends Game {
 
         // sert à rien ici mais ça montre que ça charge
         BuildingStock stock = new BuildingStock();
-        BuildingModel model = stock.getStock().get(0);
 
         this.setScreen(new SplashScreen(this));
     }
