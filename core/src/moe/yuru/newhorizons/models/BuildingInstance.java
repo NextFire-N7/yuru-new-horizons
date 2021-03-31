@@ -3,8 +3,8 @@ package moe.yuru.newhorizons.models;
 import moe.yuru.newhorizons.models.Building.BuildingStats;
 
 /**
- * An {@link Building} instance and attributes once it has been built by
- * the player.
+ * {@link Building} instance and attributes once it has been built by the
+ * player.
  */
 public class BuildingInstance {
 
@@ -44,13 +44,6 @@ public class BuildingInstance {
     }
 
     /**
-     * @param model the new {@link Building} of the instance
-     */
-    public void setModel(Building model) {
-        this.model = model;
-    }
-
-    /**
      * @return the current building model
      */
     public int getLevel() {
@@ -58,10 +51,10 @@ public class BuildingInstance {
     }
 
     /**
-     * @param level the new building model
+     * Level up this building.
      */
-    public void setLevel(int level) {
-        this.level = level;
+    public void levelUp() {
+        level++;
     }
 
     /**

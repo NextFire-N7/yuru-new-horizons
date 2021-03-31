@@ -90,12 +90,12 @@ public class MainMenuScreen implements Screen {
         game.getBatch().end();
 
         // appelle les methodes act des acteurs de la scène si définies
-        buildingCharacterStage.act();
+        buildingCharacterStage.act(delta);
         // dessine la scène
         buildingCharacterStage.draw();
 
         // pareil avec le menu
-        mainMenuMenuStage.act();
+        mainMenuMenuStage.act(delta);
         mainMenuMenuStage.draw();
     }
 

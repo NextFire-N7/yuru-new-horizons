@@ -17,21 +17,29 @@ public class Building {
     }
 
     /**
-     * Represents the building statistics for a level. The type of the ressource
+     * Represents the building statistics for a level. The type of the resource
      * depends of the current faction.
      */
     public static class BuildingStats {
 
-        private int cost;
+        private int coinCost;
+        private int resourcesCost;
         private int coinsPerSecond;
-        /** Raw number, the type of the ressource depends of the current faction */
+        /** Raw number, the type of the resource depends of the current faction */
         private int resourcesPerSecond;
 
         /**
-         * @return the evolution cost (coins)
+         * @return the upgrade cost (coins)
          */
-        public int getCost() {
-            return cost;
+        public int getCoinCost() {
+            return coinCost;
+        }
+
+        /**
+         * @return the upgrade cost (resources)
+         */
+        public int getResourcesCost() {
+            return resourcesCost;
         }
 
         /**
@@ -42,7 +50,7 @@ public class Building {
         }
 
         /**
-         * @return the ressources generated/lost per second
+         * @return the resources generated/lost per second
          */
         public int getResourcesPerSecond() {
             return resourcesPerSecond;

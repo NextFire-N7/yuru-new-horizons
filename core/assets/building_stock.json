@@ -7,7 +7,8 @@
         "faction": "CULTURE",
         "statsArray": [
             {
-                "cost": 0,
+                "coinCost": 0,
+                "resourcesCost": 0,
                 "coinsPerSecond": 10,
                 "resourcesPerSecond": 20
             }
@@ -21,7 +22,8 @@
         "faction": "SCIENCE",
         "statsArray": [
             {
-                "cost": 20,
+                "coinCost": 0,
+                "resourcesCost": 0,
                 "coinsPerSecond": -10,
                 "resourcesPerSecond": 100
             }
@@ -35,7 +37,8 @@
         "faction": "CULTURE",
         "statsArray": [
             {
-                "cost": 20,
+                "coinCost": 0,
+                "resourcesCost": 0,
                 "coinsPerSecond": -10,
                 "resourcesPerSecond": 100
             }
@@ -49,7 +52,8 @@
         "faction": "CULTURE",
         "statsArray": [
             {
-                "cost": 20,
+                "coinCost": 0,
+                "resourcesCost": 0,
                 "coinsPerSecond": -10,
                 "resourcesPerSecond": 100
             }
@@ -63,7 +67,8 @@
         "faction": "CULTURE",
         "statsArray": [
             {
-                "cost": 20,
+                "coinCost": 0,
+                "resourcesCost": 0,
                 "coinsPerSecond": -10,
                 "resourcesPerSecond": 100
             }
