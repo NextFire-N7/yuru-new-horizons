@@ -11,7 +11,7 @@ public class BuildingStockWrapper {
 
     public BuildingStockWrapper() {
         Array<BuildingModel> buildingArray = new Json().fromJson(Array.class, BuildingModel.class,
-                Gdx.files.internal("json/building_stock.json"));
+                Gdx.files.internal("building_stock.json"));
 
         buildingStock = new ObjectMap<>();
         for (BuildingModel model : buildingArray) {

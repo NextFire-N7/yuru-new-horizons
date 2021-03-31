@@ -43,7 +43,7 @@ public class YuruNewHorizons extends Game {
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
 
-        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/majuro_fino.ttf"));
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
         fpslogger = new FPSLogger();
 
         setMusicVolume(0.25f);

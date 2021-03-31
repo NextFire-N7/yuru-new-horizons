@@ -45,11 +45,11 @@ public class MainMenuScreen implements Screen {
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
-        theme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
+        theme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
         theme.setLooping(true);
 
         // Charger les images (en VRAM)
-        background = new Texture(Gdx.files.internal("images/main_menu.png"));
+        background = new Texture(Gdx.files.internal("main_menu.png"));
         background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
