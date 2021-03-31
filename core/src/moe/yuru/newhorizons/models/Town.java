@@ -13,7 +13,7 @@ public class Town {
     private String layoutName;
     private Array<BuildingInstance> buildings;
     private float coins;
-    private ObjectMap<Building.Faction, Float> resources;
+    private ObjectMap<Faction, Float> resources;
 
     /**
      * @param layoutName name of the image used on {@link LayoutStage}
@@ -25,7 +25,7 @@ public class Town {
 
         // Starting resources
         coins = 10000f;
-        for (Building.Faction faction : Building.Faction.values()) {
+        for (Faction faction : Faction.values()) {
             resources.put(faction, 1000f);
         }
     }
@@ -73,7 +73,7 @@ public class Town {
     /**
      * @return current resources balance
      */
-    public ObjectMap<Building.Faction, Float> getResources() {
+    public ObjectMap<Faction, Float> getResources() {
         return resources;
     }
 
@@ -81,7 +81,7 @@ public class Town {
      * @param faction to add resources
      * @param amount  of resources to add
      */
-    public void addResources(Building.Faction faction, float amount) {
+    public void addResources(Faction faction, float amount) {
         resources.put(faction, resources.get(faction) + amount);
     }
 

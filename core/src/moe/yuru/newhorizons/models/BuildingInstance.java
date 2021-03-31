@@ -1,7 +1,5 @@
 package moe.yuru.newhorizons.models;
 
-import moe.yuru.newhorizons.models.Building.BuildingStats;
-
 /**
  * {@link Building} instance and attributes once it has been built by the
  * player.
