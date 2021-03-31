@@ -1,0 +1,77 @@
+[
+    {
+        "id": "shimarin",
+        "lastName": "Shima",
+        "firstName": "Rin",
+        "function": "Camping",
+        "faction": "CULTURE",
+        "statsArray": {
+            "1": {
+                "coinCost": -324,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
+            }
+        }
+    },
+    {
+        "id": "renchon",
+        "lastName": "Miyauchi",
+        "firstName": "Renge",
+        "function": "School",
+        "faction": "SCIENCE",
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
+            }
+        }
+    },
+    {
+        "id": "gu",
+        "lastName": "Miyauchi",
+        "firstName": "Gu",
+        "function": "Zoo",
+        "faction": "CULTURE",
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
+            }
+        }
+    },
+    {
+        "id": "chino",
+        "lastName": "Kafuu",
+        "firstName": "Chino",
+        "function": "Restaurant",
+        "faction": "CULTURE",
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
+            }
+        }
+    },
+    {
+        "id": "yui",
+        "lastName": "Hirasawa",
+        "firstName": "Yui",
+        "function": "Music Band",
+        "faction": "CULTURE",
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
+            }
+        }
+    }
+]
