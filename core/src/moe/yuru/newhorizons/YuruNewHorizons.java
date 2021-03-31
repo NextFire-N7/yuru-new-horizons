@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
+import moe.yuru.newhorizons.models.BuildingModel;
 import moe.yuru.newhorizons.models.BuildingStockWrapper;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
@@ -100,8 +102,8 @@ public class YuruNewHorizons extends Game {
         this.soundVolume = soundVolume;
     }
 
-    public BuildingStockWrapper getBuildingStockWrapper() {
-        return buildingStockWrapper;
+    public ObjectMap<String, BuildingModel> getBuildingStock() {
+        return buildingStockWrapper.getBuildingStock();
     }
 
 }

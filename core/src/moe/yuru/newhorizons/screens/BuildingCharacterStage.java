@@ -9,10 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingModel;
-import moe.yuru.newhorizons.models.BuildingStockWrapper;
 
 /**
  * Character stage with character image and sound.
@@ -32,7 +32,7 @@ public class BuildingCharacterStage extends Stage {
      * Create a random character stage
      */
     public BuildingCharacterStage(final YuruNewHorizons game) {
-        this(game, randomCharaDontRepeat(game.getBuildingStockWrapper()));
+        this(game, randomCharaDontRepeat(game.getBuildingStock()));
     }
 
     /**
@@ -69,7 +69,7 @@ public class BuildingCharacterStage extends Stage {
                 charaImage.remove();
                 charaTexture.dispose();
                 charaSound.dispose();
-                setChara(randomCharaDontRepeat(game.getBuildingStockWrapper()));
+                setChara(randomCharaDontRepeat(game.getBuildingStock()));
                 addRandomCharaListener();
                 playCharaSound();
             }
@@ -105,13 +105,13 @@ public class BuildingCharacterStage extends Stage {
      * 
      * @return a character name
      */
-    private static BuildingModel randomCharaDontRepeat(BuildingStockWrapper buildingStock) {
+    private static BuildingModel randomCharaDontRepeat(ObjectMap<String, BuildingModel> buildingStock) {
         int index;
         do {
-            index = random.nextInt(buildingStock.getBuildingArray().size);
+            index = random.nextInt(buildingStock.size);
         } while (index == lastNb);
         lastNb = index;
-        return buildingStock.getBuildingArray().get(index);
+        return buildingStock.values().toArray().get(index); // Yes.
     }
 
     /**
