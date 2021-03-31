@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
-        game.setTown(new Town("east-a4"));
+        game.setTown(new Town("east-a4")); // Debug purpose
         layoutStage = new LayoutStage(game);
     }
 
