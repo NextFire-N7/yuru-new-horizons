@@ -1,9 +1,5 @@
 package moe.yuru.newhorizons.models;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.Array;
 
 public class BuildingModel {
@@ -40,28 +36,6 @@ public class BuildingModel {
     private String function;
     private Faction faction;
     private Array<BuildingStats> statsArray;
-
-    public Texture getCharaTexture() {
-        Texture charaTexture = new Texture(Gdx.files.internal("characters/" + id + "_chara.png"));
-        charaTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        return charaTexture;
-    }
-
-    public Texture getCoverTexture() {
-        Texture coverTexture = new Texture(Gdx.files.internal("characters/" + id + "_cover.png"));
-        coverTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        return coverTexture;
-    }
-
-    public Texture getIconTexture() {
-        Texture iconTexture = new Texture(Gdx.files.internal("characters/" + id + "_icon.png"));
-        iconTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        return iconTexture;
-    }
-
-    public Sound getCharaSound() {
-        return Gdx.audio.newSound(Gdx.files.internal("characters/" + id + "_sound.mp3"));
-    }
 
     public BuildingStats getStats(int level) {
         return statsArray.get(level);

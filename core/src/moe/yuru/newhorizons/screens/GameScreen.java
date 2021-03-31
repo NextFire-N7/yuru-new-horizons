@@ -5,13 +5,18 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.Town;
+import moe.yuru.newhorizons.stages.LayoutStage;
 
 public class GameScreen implements Screen {
 
     private YuruNewHorizons game;
+    private LayoutStage layoutStage;
 
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
+        game.setTown(new Town("east-a4"));
+        layoutStage = new LayoutStage(game);
     }
 
     @Override
@@ -27,6 +32,9 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        layoutStage.act();
+        layoutStage.draw();
     }
 
     @Override
@@ -54,8 +62,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-
+        layoutStage.dispose();
     }
 
 }

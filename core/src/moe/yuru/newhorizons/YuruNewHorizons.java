@@ -2,6 +2,7 @@ package moe.yuru.newhorizons;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +15,8 @@ import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.BuildingModel;
 import moe.yuru.newhorizons.models.BuildingStockWrapper;
+import moe.yuru.newhorizons.models.Player;
+import moe.yuru.newhorizons.models.Town;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
 /**
@@ -24,14 +27,16 @@ public class YuruNewHorizons extends Game {
     private OrthographicCamera camera;
     private Viewport viewport;
     private SpriteBatch batch;
+    private FPSLogger fpslogger;
 
     private FreeTypeFontGenerator fontGenerator;
-    private FPSLogger fpslogger;
 
     private Float musicVolume;
     private Float soundVolume;
 
     private BuildingStockWrapper buildingStockWrapper;
+    private Player player;
+    private Town town;
 
     @Override
     public void create() {
@@ -42,28 +47,26 @@ public class YuruNewHorizons extends Game {
         viewport = new FitViewport(1280, 720, camera);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
-
-        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
         fpslogger = new FPSLogger();
 
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
+        
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
-
+        
         buildingStockWrapper = new BuildingStockWrapper();
 
         this.setScreen(new SplashScreen(this));
     }
 
     @Override
-    public void render() {
-        super.render(); // important!
-    }
-
-    @Override
     public void dispose() {
         VisUI.dispose();
         batch.dispose();
-        fontGenerator.dispose();
+    }
+
+    public ObjectMap<String, BuildingModel> getBuildingStock() {
+        return buildingStockWrapper.getBuildingStock();
     }
 
     public OrthographicCamera getCamera() {
@@ -78,12 +81,12 @@ public class YuruNewHorizons extends Game {
         return batch;
     }
 
-    public FreeTypeFontGenerator getFontGenerator() {
-        return fontGenerator;
-    }
-
     public FPSLogger getFpslogger() {
         return fpslogger;
+    }
+
+    public FreeTypeFontGenerator getFontGenerator() {
+        return fontGenerator;
     }
 
     public Float getMusicVolume() {
@@ -102,8 +105,20 @@ public class YuruNewHorizons extends Game {
         this.soundVolume = soundVolume;
     }
 
-    public ObjectMap<String, BuildingModel> getBuildingStock() {
-        return buildingStockWrapper.getBuildingStock();
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 
 }

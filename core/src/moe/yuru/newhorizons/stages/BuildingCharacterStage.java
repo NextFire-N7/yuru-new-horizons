@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import moe.yuru.newhorizons.AssetHelper;
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingModel;
 
@@ -44,6 +45,13 @@ public class BuildingCharacterStage extends Stage {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         setChara(buildingModel);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        charaTexture.dispose();
+        charaSound.dispose();
     }
 
     /**
@@ -90,14 +98,14 @@ public class BuildingCharacterStage extends Stage {
      * @param buildingModel name of the character
      */
     private void setChara(BuildingModel buildingModel) {
-        charaTexture = buildingModel.getCharaTexture();
+        charaTexture = AssetHelper.getCharaTexture(buildingModel);
 
         charaImage = new Image(charaTexture);
         adjustImageSize(charaImage);
         charaImage.setPosition(300, 0, Align.bottom);
         addActor(charaImage);
 
-        charaSound = buildingModel.getCharaSound();
+        charaSound = AssetHelper.getCharaSound(buildingModel);
     }
 
     /**
@@ -122,13 +130,6 @@ public class BuildingCharacterStage extends Stage {
     private void adjustImageSize(Image image) {
         float scaling = 0.9f * this.getHeight() / image.getHeight();
         image.setSize(scaling * image.getWidth(), scaling * image.getHeight());
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        charaTexture.dispose();
-        charaSound.dispose();
     }
 
 }
