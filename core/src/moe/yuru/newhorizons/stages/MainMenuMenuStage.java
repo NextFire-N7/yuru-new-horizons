@@ -12,10 +12,13 @@ import moe.yuru.newhorizons.screens.GameScreen;
 import moe.yuru.newhorizons.screens.MainMenuScreen;
 
 /**
- * Main menu right buttons menu stage.
+ * Main menu right buttons menu {@link Stage}.
  */
 public class MainMenuMenuStage extends Stage {
 
+    /**
+     * @param game the game instance
+     */
     public MainMenuMenuStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 

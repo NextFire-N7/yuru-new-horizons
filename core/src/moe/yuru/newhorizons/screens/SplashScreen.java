@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
- * Splash screen of the {@link YuruNewHorizons}.
+ * Splash {@link Screen}.
  * 
  * Necessary on html to be able to play music in modern browsers.
  */
@@ -20,6 +20,9 @@ public class SplashScreen implements Screen {
     private YuruNewHorizons game;
     private BitmapFont font;
 
+    /**
+     * @param game the game instance
+     */
     public SplashScreen(YuruNewHorizons game) {
         this.game = game;
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();

@@ -16,7 +16,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingModel;
 
 /**
- * Character stage with character image and sound.
+ * Building character {@link Stage}.
  */
 public class BuildingCharacterStage extends Stage {
 
@@ -30,16 +30,19 @@ public class BuildingCharacterStage extends Stage {
     private Sound charaSound;
 
     /**
-     * Create a random character stage
+     * Create a random character stage.
+     * 
+     * @param game the game instance
      */
     public BuildingCharacterStage(YuruNewHorizons game) {
         this(game, randomCharaDontRepeat(game.getBuildingStock()));
     }
 
     /**
-     * Create a stage for the character in input
+     * Create a character stage for the specified building in input.
      * 
-     * @param buildingModel name of the character
+     * @param game          the game instance
+     * @param buildingModel building of the character
      */
     public BuildingCharacterStage(YuruNewHorizons game, BuildingModel buildingModel) {
         super(game.getViewport(), game.getBatch());
@@ -55,7 +58,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Repeat character sound on each click on the image
+     * Repeat character sound on each click on the image.
      */
     public void addRepeatCharaSoundListener() {
         this.charaImage.addListener(new ClickListener() {
@@ -67,7 +70,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Set a random character on each click on the image
+     * Set a random character on each click on the image.
      */
     public void addRandomCharaListener() {
         this.charaImage.addListener(new ClickListener() {
@@ -85,7 +88,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Play the character sound
+     * Play the character sound.
      */
     public void playCharaSound() {
         charaSound.stop();
@@ -93,9 +96,9 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Set attributs of the given character to the stage
+     * Set attributs of the given character to the stage.
      * 
-     * @param buildingModel name of the character
+     * @param buildingModel building of the character
      */
     private void setChara(BuildingModel buildingModel) {
         charaTexture = AssetHelper.getCharaTexture(buildingModel);
@@ -109,9 +112,10 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Get random character name without repetition.
+     * Get random building without repetition.
      * 
-     * @return a character name
+     * @param buildingStock the building stock of the game
+     * @return a building model
      */
     private static BuildingModel randomCharaDontRepeat(ObjectMap<String, BuildingModel> buildingStock) {
         int index;
@@ -123,9 +127,9 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Fit the image nicely on the stage
+     * Fit the image nicely on the stage.
      * 
-     * @param image image which size is to be adjusted
+     * @param image the image which size is to be adjusted
      */
     private void adjustImageSize(Image image) {
         float scaling = 0.9f * this.getHeight() / image.getHeight();

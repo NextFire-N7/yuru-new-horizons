@@ -8,11 +8,17 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Town;
 import moe.yuru.newhorizons.stages.LayoutStage;
 
+/**
+ * Game {@link Screen}. This is where the player will spend most of his time.
+ */
 public class GameScreen implements Screen {
 
     private YuruNewHorizons game;
     private LayoutStage layoutStage;
 
+    /**
+     * @param game the game instance
+     */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
         game.setTown(new Town("east-a4"));

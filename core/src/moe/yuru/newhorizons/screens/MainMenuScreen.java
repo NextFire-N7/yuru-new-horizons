@@ -15,7 +15,7 @@ import moe.yuru.newhorizons.stages.BuildingCharacterStage;
 import moe.yuru.newhorizons.stages.MainMenuMenuStage;
 
 /**
- * Main menu of the game.
+ * Main menu {@link Screen}.
  */
 public class MainMenuScreen implements Screen {
 
@@ -30,6 +30,9 @@ public class MainMenuScreen implements Screen {
     private BuildingCharacterStage buildingCharacterStage;
     private MainMenuMenuStage mainMenuMenuStage;
 
+    /**
+     * @param game the game instance
+     */
     public MainMenuScreen(YuruNewHorizons game) {
         this.game = game;
 
