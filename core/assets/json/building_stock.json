@@ -1,13 +1,11 @@
 [
     {
-        "character": {
-            "id": "shimarin",
-            "lastName": "Shima",
-            "firstName": "Rin"
-        },
+        "id": "shimarin",
+        "lastName": "Shima",
+        "firstName": "Rin",
         "function": "Camping",
         "faction": "CULTURE",
-        "statsPerLevel": [
+        "statsArray": [
             {
                 "cost": 0,
                 "coinsPerSecond": 10,
@@ -16,14 +14,12 @@
         ]
     },
     {
-        "character": {
-            "id": "renchon",
-            "lastName": "Miyauchi",
-            "firstName": "Renge"
-        },
+        "id": "renchon",
+        "lastName": "Miyauchi",
+        "firstName": "Renge",
         "function": "School",
         "faction": "SCIENCE",
-        "statsPerLevel": [
+        "statsArray": [
             {
                 "cost": 20,
                 "coinsPerSecond": -10,

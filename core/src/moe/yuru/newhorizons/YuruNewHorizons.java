@@ -6,12 +6,14 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.BuildingModel;
+import moe.yuru.newhorizons.models.BuildingModel.BuildingStats;
 import moe.yuru.newhorizons.models.BuildingStock;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
@@ -47,7 +49,9 @@ public class YuruNewHorizons extends Game {
         setSoundVolume(0.50f);
 
         // sert à rien ici mais ça montre que ça charge
-        BuildingStock stock = new BuildingStock();
+        Array<BuildingModel> stock = BuildingStock.getStock();
+        BuildingStats stats = BuildingStock.getStock().get(0).getStats(0);
+        System.out.println(stats);
 
         this.setScreen(new SplashScreen(this));
     }

@@ -1,5 +1,7 @@
 package moe.yuru.newhorizons.models;
 
+import moe.yuru.newhorizons.models.BuildingModel.BuildingStats;
+
 public class BuildingInstance {
 
     private BuildingModel model;
@@ -9,9 +11,13 @@ public class BuildingInstance {
 
     public BuildingInstance(BuildingModel model, float posX, float posY) {
         this.model = model;
-        level = 1;
+        level = 0;
         this.posX = posX;
         this.posY = posY;
+    }
+
+    public BuildingStats getStats() {
+        return model.getStats(level);
     }
 
     public BuildingModel getModel() {
