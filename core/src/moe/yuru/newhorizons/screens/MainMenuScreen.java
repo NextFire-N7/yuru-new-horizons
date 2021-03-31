@@ -1,7 +1,8 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,10 +10,16 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
+import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.stages.BuildingCharacterStage;
+import moe.yuru.newhorizons.stages.MainMenuMenuStage;
+
 /**
- * Main menu of the game.
+ * Main menu {@link Screen}.
  */
-public class MainMenuScreen extends YuruScreen {
+public class MainMenuScreen implements Screen {
+
+    private YuruNewHorizons game;
 
     private Music theme;
     private Texture background;
@@ -20,31 +27,34 @@ public class MainMenuScreen extends YuruScreen {
 
     private InputMultiplexer inputMultiplexer;
 
-    private CharacterStage characterStage;
+    private BuildingCharacterStage buildingCharacterStage;
     private MainMenuMenuStage mainMenuMenuStage;
 
-    public MainMenuScreen(final YuruNewHorizons game) {
-        super(game);
+    /**
+     * @param game the game instance
+     */
+    public MainMenuScreen(YuruNewHorizons game) {
+        this.game = game;
 
         // Scène du perso à gauche
-        characterStage = new CharacterStage(game);
-        characterStage.addRandomCharaListener();
+        buildingCharacterStage = new BuildingCharacterStage(game);
+        buildingCharacterStage.addRandomCharaListener();
 
         // Scène des menus à droite
         mainMenuMenuStage = new MainMenuMenuStage(game);
 
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(characterStage);
+        inputMultiplexer.addProcessor(buildingCharacterStage);
         inputMultiplexer.addProcessor(mainMenuMenuStage);
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
-        theme = Gdx.audio.newMusic(Gdx.files.internal("audio/yuru_theme.mp3"));
+        theme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
         theme.setLooping(true);
 
         // Charger les images (en VRAM)
-        background = new Texture(Gdx.files.internal("images/main_menu.png"));
+        background = new Texture(Gdx.files.internal("main_menu.png"));
         background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         // Génération des fonts du titre (.ttf -> BitmapFont = image)
@@ -60,7 +70,7 @@ public class MainMenuScreen extends YuruScreen {
     public void show() {
         // règle l'inputMultiplexer comme gestionnaire des inputs du menu
         Gdx.input.setInputProcessor(inputMultiplexer);
-        characterStage.playCharaSound();
+        buildingCharacterStage.playCharaSound();
         theme.setVolume(game.getMusicVolume());
         theme.play();
     }
@@ -80,12 +90,12 @@ public class MainMenuScreen extends YuruScreen {
         game.getBatch().end();
 
         // appelle les methodes act des acteurs de la scène si définies
-        characterStage.act();
+        buildingCharacterStage.act(delta);
         // dessine la scène
-        characterStage.draw();
+        buildingCharacterStage.draw();
 
         // pareil avec le menu
-        mainMenuMenuStage.act();
+        mainMenuMenuStage.act(delta);
         mainMenuMenuStage.draw();
     }
 
@@ -116,7 +126,7 @@ public class MainMenuScreen extends YuruScreen {
         theme.dispose();
         background.dispose();
         font.dispose();
-        characterStage.dispose();
+        buildingCharacterStage.dispose();
         mainMenuMenuStage.dispose();
     }
 

@@ -1,23 +1,30 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
+import moe.yuru.newhorizons.YuruNewHorizons;
+
 /**
- * Splash screen of the {@link YuruNewHorizons}.
+ * Splash {@link Screen}.
  * 
  * Necessary on html to be able to play music in modern browsers.
  */
-public class SplashScreen extends YuruScreen {
+public class SplashScreen implements Screen {
 
+    private YuruNewHorizons game;
     private BitmapFont font;
 
-    public SplashScreen(final YuruNewHorizons game) {
-        super(game);
+    /**
+     * @param game the game instance
+     */
+    public SplashScreen(YuruNewHorizons game) {
+        this.game = game;
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 40;
         parameter.borderWidth = 5;
@@ -47,6 +54,11 @@ public class SplashScreen extends YuruScreen {
         game.getBatch().begin();
         font.draw(game.getBatch(), "Click to continue...", 850, 50);
         game.getBatch().end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        game.getViewport().update(width, height);
     }
 
     @Override

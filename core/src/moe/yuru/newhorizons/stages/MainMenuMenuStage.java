@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.stages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -7,12 +7,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
-/**
- * Main menu right buttons menu stage.
- */
-class MainMenuMenuStage extends Stage {
+import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.screens.GameScreen;
+import moe.yuru.newhorizons.screens.MainMenuScreen;
 
-    public MainMenuMenuStage(final YuruNewHorizons game) {
+/**
+ * Main menu right buttons menu {@link Stage}.
+ */
+public class MainMenuMenuStage extends Stage {
+
+    /**
+     * @param game the game instance
+     */
+    public MainMenuMenuStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
         Button startButton = new VisTextButton("New Game");
@@ -39,7 +46,7 @@ class MainMenuMenuStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.getScreen().dispose();
-                game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
+                game.setScreen(new GameScreen(game));
             }
         });
 
