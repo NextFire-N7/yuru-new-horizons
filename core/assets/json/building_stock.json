@@ -26,5 +26,47 @@
                 "resourcesPerSecond": 100
             }
         ]
+    },
+    {
+        "id": "gu",
+        "lastName": "Miyauchi",
+        "firstName": "Gu",
+        "function": "Zoo",
+        "faction": "CULTURE",
+        "statsArray": [
+            {
+                "cost": 20,
+                "coinsPerSecond": -10,
+                "resourcesPerSecond": 100
+            }
+        ]
+    },
+    {
+        "id": "chino",
+        "lastName": "Kafuu",
+        "firstName": "Chino",
+        "function": "Restaurant",
+        "faction": "CULTURE",
+        "statsArray": [
+            {
+                "cost": 20,
+                "coinsPerSecond": -10,
+                "resourcesPerSecond": 100
+            }
+        ]
+    },
+    {
+        "id": "yui",
+        "lastName": "Hirasawa",
+        "firstName": "Yui",
+        "function": "Music Band",
+        "faction": "CULTURE",
+        "statsArray": [
+            {
+                "cost": 20,
+                "coinsPerSecond": -10,
+                "resourcesPerSecond": 100
+            }
+        ]
     }
 ]

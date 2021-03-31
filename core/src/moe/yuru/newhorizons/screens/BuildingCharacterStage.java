@@ -2,10 +2,8 @@ package moe.yuru.newhorizons.screens;
 
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -13,15 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.BuildingModel;
+import moe.yuru.newhorizons.models.BuildingStockWrapper;
 
 /**
  * Character stage with character image and sound.
  */
-public class CharacterStage extends Stage {
+public class BuildingCharacterStage extends Stage {
 
-    private static String[] names = { "renchon", "shimarin", "chino", "yui", "gu" };
-    private static int lastNb = -1;
     private static Random random = new Random();
+    private static int lastNb = -1;
 
     private final YuruNewHorizons game;
 
@@ -32,19 +31,19 @@ public class CharacterStage extends Stage {
     /**
      * Create a random character stage
      */
-    public CharacterStage(final YuruNewHorizons game) {
-        this(game, randomCharaDontRepeat());
+    public BuildingCharacterStage(final YuruNewHorizons game) {
+        this(game, randomCharaDontRepeat(game.getBuildingStockWrapper()));
     }
 
     /**
      * Create a stage for the character in input
      * 
-     * @param name name of the character
+     * @param buildingModel name of the character
      */
-    public CharacterStage(final YuruNewHorizons game, String name) {
+    public BuildingCharacterStage(final YuruNewHorizons game, BuildingModel buildingModel) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
-        setChara(name);
+        setChara(buildingModel);
     }
 
     /**
@@ -70,7 +69,7 @@ public class CharacterStage extends Stage {
                 charaImage.remove();
                 charaTexture.dispose();
                 charaSound.dispose();
-                setChara(randomCharaDontRepeat());
+                setChara(randomCharaDontRepeat(game.getBuildingStockWrapper()));
                 addRandomCharaListener();
                 playCharaSound();
             }
@@ -88,18 +87,17 @@ public class CharacterStage extends Stage {
     /**
      * Set attributs of the given character to the stage
      * 
-     * @param name name of the character
+     * @param buildingModel name of the character
      */
-    private void setChara(String name) {
-        charaTexture = new Texture(Gdx.files.internal("images/" + name + ".png"));
-        charaTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    private void setChara(BuildingModel buildingModel) {
+        charaTexture = buildingModel.getCharaTexture();
 
         charaImage = new Image(charaTexture);
         adjustImageSize(charaImage);
         charaImage.setPosition(300, 0, Align.bottom);
         addActor(charaImage);
 
-        charaSound = Gdx.audio.newSound(Gdx.files.internal("audio/" + name + ".mp3"));
+        charaSound = buildingModel.getCharaSound();
     }
 
     /**
@@ -107,13 +105,13 @@ public class CharacterStage extends Stage {
      * 
      * @return a character name
      */
-    private static String randomCharaDontRepeat() {
-        int nb;
+    private static BuildingModel randomCharaDontRepeat(BuildingStockWrapper buildingStock) {
+        int index;
         do {
-            nb = random.nextInt(names.length);
-        } while (nb == lastNb);
-        lastNb = nb;
-        return names[nb];
+            index = random.nextInt(buildingStock.getBuildingArray().size);
+        } while (index == lastNb);
+        lastNb = index;
+        return buildingStock.getBuildingArray().get(index);
     }
 
     /**

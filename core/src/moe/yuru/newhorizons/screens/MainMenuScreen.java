@@ -22,22 +22,22 @@ public class MainMenuScreen extends YuruScreen {
 
     private InputMultiplexer inputMultiplexer;
 
-    private CharacterStage characterStage;
+    private BuildingCharacterStage buildingCharacterStage;
     private MainMenuMenuStage mainMenuMenuStage;
 
     public MainMenuScreen(final YuruNewHorizons game) {
         super(game);
 
         // Scène du perso à gauche
-        characterStage = new CharacterStage(game);
-        characterStage.addRandomCharaListener();
+        buildingCharacterStage = new BuildingCharacterStage(game);
+        buildingCharacterStage.addRandomCharaListener();
 
         // Scène des menus à droite
         mainMenuMenuStage = new MainMenuMenuStage(game);
 
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(characterStage);
+        inputMultiplexer.addProcessor(buildingCharacterStage);
         inputMultiplexer.addProcessor(mainMenuMenuStage);
 
         // Charger la BGM (sur disque)
@@ -62,7 +62,7 @@ public class MainMenuScreen extends YuruScreen {
     public void show() {
         // règle l'inputMultiplexer comme gestionnaire des inputs du menu
         Gdx.input.setInputProcessor(inputMultiplexer);
-        characterStage.playCharaSound();
+        buildingCharacterStage.playCharaSound();
         theme.setVolume(game.getMusicVolume());
         theme.play();
     }
@@ -82,9 +82,9 @@ public class MainMenuScreen extends YuruScreen {
         game.getBatch().end();
 
         // appelle les methodes act des acteurs de la scène si définies
-        characterStage.act();
+        buildingCharacterStage.act();
         // dessine la scène
-        characterStage.draw();
+        buildingCharacterStage.draw();
 
         // pareil avec le menu
         mainMenuMenuStage.act();
@@ -118,7 +118,7 @@ public class MainMenuScreen extends YuruScreen {
         theme.dispose();
         background.dispose();
         font.dispose();
-        characterStage.dispose();
+        buildingCharacterStage.dispose();
         mainMenuMenuStage.dispose();
     }
 

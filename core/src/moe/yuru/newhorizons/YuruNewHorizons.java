@@ -6,15 +6,12 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
-import moe.yuru.newhorizons.models.BuildingModel;
-import moe.yuru.newhorizons.models.BuildingModel.BuildingStats;
-import moe.yuru.newhorizons.models.BuildingStock;
+import moe.yuru.newhorizons.models.BuildingStockWrapper;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
 /**
@@ -32,6 +29,8 @@ public class YuruNewHorizons extends Game {
     private Float musicVolume;
     private Float soundVolume;
 
+    private BuildingStockWrapper buildingStockWrapper;
+
     @Override
     public void create() {
         VisUI.load(SkinScale.X2);
@@ -48,10 +47,7 @@ public class YuruNewHorizons extends Game {
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
 
-        // sert à rien ici mais ça montre que ça charge
-        Array<BuildingModel> stock = BuildingStock.getStock();
-        BuildingStats stats = BuildingStock.getStock().get(0).getStats(0);
-        System.out.println(stats);
+        buildingStockWrapper = new BuildingStockWrapper();
 
         this.setScreen(new SplashScreen(this));
     }
@@ -102,6 +98,10 @@ public class YuruNewHorizons extends Game {
 
     public void setSoundVolume(Float soundVolume) {
         this.soundVolume = soundVolume;
+    }
+
+    public BuildingStockWrapper getBuildingStockWrapper() {
+        return buildingStockWrapper;
     }
 
 }

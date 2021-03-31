@@ -1,6 +1,7 @@
 package moe.yuru.newhorizons.models;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.Array;
@@ -41,25 +42,33 @@ public class BuildingModel {
     private Array<BuildingStats> statsArray;
 
     public Texture getCharaTexture() {
-        Texture charaTexture = new Texture(Gdx.files.internal("images/chara_" + id));
+        Texture charaTexture = new Texture(Gdx.files.internal("images/" + id + "_chara.png"));
         charaTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         return charaTexture;
     }
 
     public Texture getCoverTexture() {
-        Texture coverTexture = new Texture(Gdx.files.internal("images/cover_" + id));
+        Texture coverTexture = new Texture(Gdx.files.internal("images/" + id + "_cover.png"));
         coverTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         return coverTexture;
     }
 
     public Texture getIconTexture() {
-        Texture iconTexture = new Texture(Gdx.files.internal("images/icon_" + id));
+        Texture iconTexture = new Texture(Gdx.files.internal("images/" + id + "_icon.png"));
         iconTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         return iconTexture;
     }
 
+    public Sound getCharaSound() {
+        return Gdx.audio.newSound(Gdx.files.internal("audio/" + id + "_chara.mp3"));
+    }
+
     public BuildingStats getStats(int level) {
         return statsArray.get(level);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getLastName() {
