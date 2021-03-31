@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.screens;
+package moe.yuru.newhorizons.stages;
 
 import java.util.Random;
 
@@ -22,7 +22,7 @@ public class BuildingCharacterStage extends Stage {
     private static Random random = new Random();
     private static int lastNb = -1;
 
-    private final YuruNewHorizons game;
+    private YuruNewHorizons game;
 
     private Texture charaTexture;
     private Image charaImage;
@@ -31,7 +31,7 @@ public class BuildingCharacterStage extends Stage {
     /**
      * Create a random character stage
      */
-    public BuildingCharacterStage(final YuruNewHorizons game) {
+    public BuildingCharacterStage(YuruNewHorizons game) {
         this(game, randomCharaDontRepeat(game.getBuildingStock()));
     }
 
@@ -40,7 +40,7 @@ public class BuildingCharacterStage extends Stage {
      * 
      * @param buildingModel name of the character
      */
-    public BuildingCharacterStage(final YuruNewHorizons game, BuildingModel buildingModel) {
+    public BuildingCharacterStage(YuruNewHorizons game, BuildingModel buildingModel) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         setChara(buildingModel);

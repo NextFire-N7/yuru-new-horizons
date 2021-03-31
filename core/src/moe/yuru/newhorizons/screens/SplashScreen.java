@@ -17,10 +17,10 @@ import moe.yuru.newhorizons.YuruNewHorizons;
  */
 public class SplashScreen implements Screen {
 
-    private final YuruNewHorizons game;
+    private YuruNewHorizons game;
     private BitmapFont font;
 
-    public SplashScreen(final YuruNewHorizons game) {
+    public SplashScreen(YuruNewHorizons game) {
         this.game = game;
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 40;

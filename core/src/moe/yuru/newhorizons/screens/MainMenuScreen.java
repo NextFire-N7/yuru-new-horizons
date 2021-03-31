@@ -11,13 +11,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.stages.BuildingCharacterStage;
+import moe.yuru.newhorizons.stages.MainMenuMenuStage;
 
 /**
  * Main menu of the game.
  */
 public class MainMenuScreen implements Screen {
 
-    private final YuruNewHorizons game;
+    private YuruNewHorizons game;
 
     private Music theme;
     private Texture background;
@@ -28,7 +30,7 @@ public class MainMenuScreen implements Screen {
     private BuildingCharacterStage buildingCharacterStage;
     private MainMenuMenuStage mainMenuMenuStage;
 
-    public MainMenuScreen(final YuruNewHorizons game) {
+    public MainMenuScreen(YuruNewHorizons game) {
         this.game = game;
 
         // Scène du perso à gauche

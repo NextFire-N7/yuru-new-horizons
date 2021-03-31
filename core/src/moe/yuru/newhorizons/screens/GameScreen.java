@@ -8,7 +8,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 
 public class GameScreen implements Screen {
 
-    private final YuruNewHorizons game;
+    private YuruNewHorizons game;
 
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
