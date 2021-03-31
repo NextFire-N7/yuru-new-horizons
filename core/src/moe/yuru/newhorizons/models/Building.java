@@ -1,6 +1,6 @@
 package moe.yuru.newhorizons.models;
 
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.IntMap;
 
 /**
  * Building model.
@@ -13,7 +13,7 @@ public class Building {
     private String function;
     private Faction faction;
     /** Contains the stats per level */
-    private Array<BuildingStats> statsArray;
+    private IntMap<BuildingStats> statsArray;
 
     /**
      * @param level The onscreen level minus one
@@ -59,9 +59,9 @@ public class Building {
     }
 
     /**
-     * @return the whole {@link Array} of stats for all levels
+     * @return the whole {@link IntMap} of stats for all levels
      */
-    public Array<BuildingStats> getStatsArray() {
+    public IntMap<BuildingStats> getStatsArray() {
         return statsArray;
     }
 

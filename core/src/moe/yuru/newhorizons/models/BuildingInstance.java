@@ -22,7 +22,7 @@ public class BuildingInstance {
      */
     public BuildingInstance(Building model, float posX, float posY) {
         this.model = model;
-        level = 0;
+        level = 1;
         this.posX = posX;
         this.posY = posY;
     }

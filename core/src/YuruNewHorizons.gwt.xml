@@ -3,4 +3,5 @@
 <module>
 	<source path="moe/yuru/newhorizons" />
 	<extend-configuration-property name="gdx.reflect.include" value="moe.yuru.newhorizons" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.utils.IntMap" />
 </module>

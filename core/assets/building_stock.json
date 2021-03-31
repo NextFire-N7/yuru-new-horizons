@@ -5,14 +5,14 @@
         "firstName": "Rin",
         "function": "Camping",
         "faction": "CULTURE",
-        "statsArray": [
-            {
-                "coinCost": 0,
-                "resourcesCost": 0,
-                "coinsPerSecond": 10,
-                "resourcesPerSecond": 20
+        "statsArray": {
+            "1": {
+                "coinCost": -324,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
             }
-        ]
+        }
     },
     {
         "id": "renchon",
@@ -20,14 +20,14 @@
         "firstName": "Renge",
         "function": "School",
         "faction": "SCIENCE",
-        "statsArray": [
-            {
-                "coinCost": 0,
-                "resourcesCost": 0,
-                "coinsPerSecond": -10,
-                "resourcesPerSecond": 100
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
             }
-        ]
+        }
     },
     {
         "id": "gu",
@@ -35,14 +35,14 @@
         "firstName": "Gu",
         "function": "Zoo",
         "faction": "CULTURE",
-        "statsArray": [
-            {
-                "coinCost": 0,
-                "resourcesCost": 0,
-                "coinsPerSecond": -10,
-                "resourcesPerSecond": 100
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
             }
-        ]
+        }
     },
     {
         "id": "chino",
@@ -50,14 +50,14 @@
         "firstName": "Chino",
         "function": "Restaurant",
         "faction": "CULTURE",
-        "statsArray": [
-            {
-                "coinCost": 0,
-                "resourcesCost": 0,
-                "coinsPerSecond": -10,
-                "resourcesPerSecond": 100
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
             }
-        ]
+        }
     },
     {
         "id": "yui",
@@ -65,13 +65,13 @@
         "firstName": "Yui",
         "function": "Music Band",
         "faction": "CULTURE",
-        "statsArray": [
-            {
-                "coinCost": 0,
-                "resourcesCost": 0,
-                "coinsPerSecond": -10,
-                "resourcesPerSecond": 100
+        "statsArray": {
+            "1": {
+                "coinCost": -132,
+                "resourcesCost": -123,
+                "coinsPerSecond": 2131,
+                "resourcesPerSecond": 2433
             }
-        ]
+        }
     }
 ]
