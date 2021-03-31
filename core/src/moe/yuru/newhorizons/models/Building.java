@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Building model.
  */
-public class BuildingModel {
+public class Building {
 
     /**
      * The possible factions for a building.

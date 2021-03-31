@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 import moe.yuru.newhorizons.AssetHelper;
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.models.BuildingModel;
+import moe.yuru.newhorizons.models.Building;
 
 /**
  * Building character {@link Stage}.
@@ -44,7 +44,7 @@ public class BuildingCharacterStage extends Stage {
      * @param game          the game instance
      * @param buildingModel building of the character
      */
-    public BuildingCharacterStage(YuruNewHorizons game, BuildingModel buildingModel) {
+    public BuildingCharacterStage(YuruNewHorizons game, Building buildingModel) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         setChara(buildingModel);
@@ -100,7 +100,7 @@ public class BuildingCharacterStage extends Stage {
      * 
      * @param buildingModel building of the character
      */
-    private void setChara(BuildingModel buildingModel) {
+    private void setChara(Building buildingModel) {
         charaTexture = AssetHelper.getCharaTexture(buildingModel);
 
         charaImage = new Image(charaTexture);
@@ -117,7 +117,7 @@ public class BuildingCharacterStage extends Stage {
      * @param buildingStock the building stock of the game
      * @return a building model
      */
-    private static BuildingModel randomCharaDontRepeat(ObjectMap<String, BuildingModel> buildingStock) {
+    private static Building randomCharaDontRepeat(ObjectMap<String, Building> buildingStock) {
         int index;
         do {
             index = random.nextInt(buildingStock.size);

@@ -10,27 +10,27 @@ import com.badlogic.gdx.utils.ObjectMap;
  */
 public class BuildingStockWrapper {
 
-    private ObjectMap<String, BuildingModel> buildingStock;
+    private ObjectMap<String, Building> buildingStock;
 
     /**
      * Deserialize the {@code building_stock.json} to its {@link ObjectMap}
      * {@code buildingStock}
      */
     public BuildingStockWrapper() {
-        Array<BuildingModel> buildingArray = new Json().fromJson(Array.class, BuildingModel.class,
+        Array<Building> buildingArray = new Json().fromJson(Array.class, Building.class,
                 Gdx.files.internal("building_stock.json"));
 
         buildingStock = new ObjectMap<>();
-        for (BuildingModel model : buildingArray) {
+        for (Building model : buildingArray) {
             buildingStock.put(model.getId(), model);
         }
     }
 
     /**
-     * @return an {@link ObjectMap} which keys are {@link BuildingModel#id} and
+     * @return an {@link ObjectMap} which keys are {@link Building#id} and
      *         values the models themselves
      */
-    public ObjectMap<String, BuildingModel> getBuildingStock() {
+    public ObjectMap<String, Building> getBuildingStock() {
         return buildingStock;
     }
 

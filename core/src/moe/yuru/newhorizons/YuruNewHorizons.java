@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
-import moe.yuru.newhorizons.models.BuildingModel;
+import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.BuildingStockWrapper;
 import moe.yuru.newhorizons.models.Player;
 import moe.yuru.newhorizons.models.Town;
@@ -70,7 +70,7 @@ public class YuruNewHorizons extends Game {
      * @return an {@link ObjectMap} which keys are the models id and values the
      *         models themselves
      */
-    public ObjectMap<String, BuildingModel> getBuildingStock() {
+    public ObjectMap<String, Building> getBuildingStock() {
         return buildingStockWrapper.getBuildingStock();
     }
 

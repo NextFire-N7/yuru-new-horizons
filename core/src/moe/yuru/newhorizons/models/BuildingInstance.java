@@ -1,15 +1,15 @@
 package moe.yuru.newhorizons.models;
 
-import moe.yuru.newhorizons.models.BuildingModel.BuildingStats;
+import moe.yuru.newhorizons.models.Building.BuildingStats;
 
 /**
- * An {@link BuildingModel} instance and attributes once it has been built by
+ * An {@link Building} instance and attributes once it has been built by
  * the player.
  */
 public class BuildingInstance {
 
-    /** The {@link BuildingModel} of this current instance */
-    private BuildingModel model;
+    /** The {@link Building} of this current instance */
+    private Building model;
     /** The actual building level */
     private int level;
     /** Position on screen: X axis */
@@ -22,7 +22,7 @@ public class BuildingInstance {
      * @param posX  on screen
      * @param posY  on screen
      */
-    public BuildingInstance(BuildingModel model, float posX, float posY) {
+    public BuildingInstance(Building model, float posX, float posY) {
         this.model = model;
         level = 0;
         this.posX = posX;
@@ -37,16 +37,16 @@ public class BuildingInstance {
     }
 
     /**
-     * @return the {@link BuildingModel} of the instance
+     * @return the {@link Building} of the instance
      */
-    public BuildingModel getModel() {
+    public Building getModel() {
         return model;
     }
 
     /**
-     * @param model the new {@link BuildingModel} of the instance
+     * @param model the new {@link Building} of the instance
      */
-    public void setModel(BuildingModel model) {
+    public void setModel(Building model) {
         this.model = model;
     }
 
