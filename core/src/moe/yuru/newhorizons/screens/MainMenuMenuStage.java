@@ -41,7 +41,7 @@ public class MainMenuMenuStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.getScreen().dispose();
-                game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
+                game.setScreen(new GameScreen(game));
             }
         });
 
