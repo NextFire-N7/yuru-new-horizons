@@ -22,37 +22,37 @@ public class Building {
      */
     public static class BuildingStats {
 
-        private int coinCost;
-        private int resourcesCost;
-        private int coinsPerSecond;
+        private float coinCost;
+        private float resourcesCost;
+        private float coinsPerSecond;
         /** Raw number, the type of the resource depends of the current faction */
-        private int resourcesPerSecond;
+        private float resourcesPerSecond;
 
         /**
          * @return the upgrade cost (coins)
          */
-        public int getCoinCost() {
+        public float getCoinCost() {
             return coinCost;
         }
 
         /**
          * @return the upgrade cost (resources)
          */
-        public int getResourcesCost() {
+        public float getResourcesCost() {
             return resourcesCost;
         }
 
         /**
          * @return the coins generated/lost per second
          */
-        public int getCoinsPerSecond() {
+        public float getCoinsPerSecond() {
             return coinsPerSecond;
         }
 
         /**
          * @return the resources generated/lost per second
          */
-        public int getResourcesPerSecond() {
+        public float getResourcesPerSecond() {
             return resourcesPerSecond;
         }
 

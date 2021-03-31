@@ -12,8 +12,8 @@ public class Town {
 
     private String layoutName;
     private Array<BuildingInstance> buildings;
-    private int coins;
-    private ObjectMap<Building.Faction, Integer> resources;
+    private float coins;
+    private ObjectMap<Building.Faction, Float> resources;
 
     /**
      * @param layoutName name of the image used on {@link LayoutStage}
@@ -24,9 +24,9 @@ public class Town {
         resources = new ObjectMap<>();
 
         // Starting resources
-        coins = 10000;
+        coins = 10000f;
         for (Building.Faction faction : Building.Faction.values()) {
-            resources.put(faction, 1000);
+            resources.put(faction, 1000f);
         }
     }
 
@@ -37,8 +37,8 @@ public class Town {
      */
     public void updateBalance(float delta) {
         for (BuildingInstance building : buildings) {
-            addCoins(building.getStats().getCoinsPerSecond());
-            addResources(building.getModel().getFaction(), building.getStats().getResourcesPerSecond());
+            addCoins(delta * building.getStats().getCoinsPerSecond());
+            addResources(building.getModel().getFaction(), delta * building.getStats().getResourcesPerSecond());
         }
     }
 
@@ -59,21 +59,21 @@ public class Town {
     /**
      * @return current coins balance
      */
-    public int getCoins() {
+    public float getCoins() {
         return coins;
     }
 
     /**
-     * @param coins to add/remove
+     * @param amount to add/remove
      */
-    public void addCoins(int coins) {
-        this.coins += coins;
+    public void addCoins(float amount) {
+        coins += amount;
     }
 
     /**
      * @return current resources balance
      */
-    public ObjectMap<Building.Faction, Integer> getResources() {
+    public ObjectMap<Building.Faction, Float> getResources() {
         return resources;
     }
 
@@ -81,7 +81,7 @@ public class Town {
      * @param faction to add resources
      * @param amount  of resources to add
      */
-    public void addResources(Building.Faction faction, int amount) {
+    public void addResources(Building.Faction faction, float amount) {
         resources.put(faction, resources.get(faction) + amount);
     }
 

@@ -14,7 +14,7 @@ public class BuildingStockWrapper {
 
     /**
      * Deserialize the {@code building_stock.json} to its {@link ObjectMap}
-     * {@code buildingStock}
+     * buildingStock
      */
     public BuildingStockWrapper() {
         Array<Building> buildingArray = new Json().fromJson(Array.class, Building.class,
@@ -27,8 +27,8 @@ public class BuildingStockWrapper {
     }
 
     /**
-     * @return an {@link ObjectMap} which keys are {@link Building#id} and
-     *         values the models themselves
+     * @return an {@link ObjectMap} which keys are {@link Building#id} and values
+     *         the models themselves
      */
     public ObjectMap<String, Building> getBuildingStock() {
         return buildingStock;
