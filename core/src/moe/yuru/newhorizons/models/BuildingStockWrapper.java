@@ -17,6 +17,7 @@ public class BuildingStockWrapper {
      * buildingStock
      */
     public BuildingStockWrapper() {
+        @SuppressWarnings("unchecked")
         Array<Building> buildingArray = new Json().fromJson(Array.class, Building.class,
                 Gdx.files.internal("building_stock.json"));
 
