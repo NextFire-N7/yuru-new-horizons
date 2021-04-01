@@ -22,7 +22,7 @@ public class LayoutStage extends Stage {
         super(game.getViewport(), game.getBatch());
 
         layoutTexture = AssetHelper.getLayoutTexture(game.getTown());
-        TextureRegion layoutTextureRegion = new TextureRegion(layoutTexture, 240, 190, 840, 680);
+        TextureRegion layoutTextureRegion = new TextureRegion(layoutTexture, 480, 380, 1680, 1370);
         Image layoutImage = new Image(layoutTextureRegion);
 
         float scaling = this.getHeight() / layoutImage.getHeight();
