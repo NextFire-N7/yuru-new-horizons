@@ -4,3 +4,7 @@ sourceCompatibility = 11
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project.name = appName + "-core"
+
+jar {
+  from sourceSets.main.java
+}
