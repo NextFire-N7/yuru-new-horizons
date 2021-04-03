@@ -15,7 +15,6 @@ a:yuru_theme.mp3:yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/m
 b:majuro_fino.ttf:majuro_fino-f4a7e9220306a60cd3f2858baca007a3.ttf:35952:application/unknown:1
 i:main_menu.png:main_menu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
 d:layouts:layouts:0:application/unknown:1
-b:layouts/waifu2x.sh:layouts/waifu2x-60ffe95cf4efb6edeb0d6c68b7e42541.sh:114:application/x-shar:1
 i:layouts/west-e3.png:layouts/west-e3-504bc3342ee11a6efb4e4b7fb3240453.png:1088724:image/png:1
 i:layouts/blank-flat.png:layouts/blank-flat-6fe9d5ae5f19a63f374f4b367750ce4b.png:453994:image/png:1
 i:layouts/east-e1.png:layouts/east-e1-10f527f879d469dbe02ec7a7eb06f3d6.png:1133546:image/png:1
