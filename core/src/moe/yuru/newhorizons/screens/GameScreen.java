@@ -22,7 +22,7 @@ public class GameScreen implements Screen {
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
-        game.setModel(new GameSolo(new Town("east-a1")));
+        game.setModel(new GameSolo(new Town("east-a1"))); // TODO: for debug purpose heh
         layoutStage = new LayoutStage(game);
     }
 
