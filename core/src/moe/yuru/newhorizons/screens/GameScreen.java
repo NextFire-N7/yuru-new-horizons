@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.GameSolo;
 import moe.yuru.newhorizons.models.Town;
 import moe.yuru.newhorizons.stages.LayoutStage;
 
@@ -22,7 +22,7 @@ public class GameScreen implements Screen {
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
-        game.setModel(new GameModel(new Town("east-a1")));
+        game.setModel(new GameSolo(new Town("east-a1")));
         layoutStage = new LayoutStage(game);
     }
 
@@ -41,6 +41,8 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.getModel().getTown().updateBalance(delta);
+        game.getModel().updateEnemy(delta);
+
         layoutStage.act(delta);
         layoutStage.draw();
     }

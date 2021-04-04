@@ -3,16 +3,10 @@ package moe.yuru.newhorizons.models;
 /**
  * Game model.
  */
-public class GameModel {
+public interface GameModel {
 
-    private Town town;
+    public void updateEnemy(float delta);
 
-    public GameModel(Town town) {
-        this.town = town;
-    }
-
-    public Town getTown() {
-        return town;
-    }
+    public Town getTown();
 
 }

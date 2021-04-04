@@ -18,7 +18,7 @@ import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
 /**
- * Yuru New Horizons {@link Game}.
+ * Yuru New Horizons {@link Game} view.
  */
 public class YuruNewHorizons extends Game {
 
