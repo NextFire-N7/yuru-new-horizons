@@ -14,8 +14,7 @@ import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.BuildingStockWrapper;
-import moe.yuru.newhorizons.models.Player;
-import moe.yuru.newhorizons.models.Town;
+import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
 /**
@@ -30,12 +29,11 @@ public class YuruNewHorizons extends Game {
 
     private FreeTypeFontGenerator fontGenerator;
 
+    private GameModel model;
+    private BuildingStockWrapper buildingStockWrapper;
+
     private Float musicVolume;
     private Float soundVolume;
-
-    private BuildingStockWrapper buildingStockWrapper;
-    private Player player;
-    private Town town;
 
     @Override
     public void create() {
@@ -111,6 +109,20 @@ public class YuruNewHorizons extends Game {
     }
 
     /**
+     * @return the {@link GameModel} of the current game
+     */
+    public GameModel getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the {@link GameModel} of the current game
+     */
+    public void setModel(GameModel model) {
+        this.model = model;
+    }
+
+    /**
      * @return the music volume of the game
      */
     public Float getMusicVolume() {
@@ -140,34 +152,6 @@ public class YuruNewHorizons extends Game {
      */
     public void setSoundVolume(Float soundVolume) {
         this.soundVolume = soundVolume;
-    }
-
-    /**
-     * @return the current {@link Player} of the game
-     */
-    public Player getPlayer() {
-        return player;
-    }
-
-    /**
-     * @param player the current {@link Player} of the game
-     */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    /**
-     * @return the current {@link Town} in the game
-     */
-    public Town getTown() {
-        return town;
-    }
-
-    /**
-     * @param town the current {@link Town} in the game
-     */
-    public void setTown(Town town) {
-        this.town = town;
     }
 
 }

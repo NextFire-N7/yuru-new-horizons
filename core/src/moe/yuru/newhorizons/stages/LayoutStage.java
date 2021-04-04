@@ -21,7 +21,7 @@ public class LayoutStage extends Stage {
     public LayoutStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
-        layoutTexture = AssetHelper.getLayoutTexture(game.getTown());
+        layoutTexture = AssetHelper.getLayoutTexture(game.getModel().getTown());
         TextureRegion layoutTextureRegion = new TextureRegion(layoutTexture, 480, 380, 1680, 1370);
         Image layoutImage = new Image(layoutTextureRegion);
 
