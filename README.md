@@ -4,7 +4,7 @@
 
 **Yuru New Horizons** is a relaxing city-building game with lots of Japanese pop culture references written in Java with libGDX.
 
-![Yuru New Horizons](https://user-images.githubusercontent.com/20094890/113302586-85435e80-9300-11eb-9e28-92e985eb5a61.png)
+[![Yuru New Horizons](https://user-images.githubusercontent.com/20094890/113302586-85435e80-9300-11eb-9e28-92e985eb5a61.png)](https://nextfire.github.io/yuru-new-horizons/)
 
 
 ## Play the game
