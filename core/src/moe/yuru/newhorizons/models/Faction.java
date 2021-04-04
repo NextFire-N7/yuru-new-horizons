@@ -5,6 +5,6 @@ package moe.yuru.newhorizons.models;
  */
 public enum Faction {
 
-    SCIENCE, CULTURE, INDUSTRY, POLITIC
+    SCIENCE, CULTURE, INDUSTRY, POLITICS
 
 }
