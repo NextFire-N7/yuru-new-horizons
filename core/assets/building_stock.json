@@ -7,10 +7,34 @@
         "faction": "CULTURE",
         "statsArray": {
             "1": {
-                "coinCost": -324,
-                "resourcesCost": -123,
-                "coinsPerSecond": 2131,
-                "resourcesPerSecond": 2433
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
             }
         }
     },
@@ -22,25 +46,73 @@
         "faction": "SCIENCE",
         "statsArray": {
             "1": {
-                "coinCost": -132,
-                "resourcesCost": -123,
-                "coinsPerSecond": 2131,
-                "resourcesPerSecond": 2433
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
             }
         }
     },
     {
         "id": "gu",
-        "lastName": "Miyauchi",
+        "lastName": "",
         "firstName": "Gu",
-        "function": "Zoo",
-        "faction": "CULTURE",
+        "function": "Mayor",
+        "faction": "POLITICS",
         "statsArray": {
             "1": {
-                "coinCost": -132,
-                "resourcesCost": -123,
-                "coinsPerSecond": 2131,
-                "resourcesPerSecond": 2433
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
             }
         }
     },
@@ -48,14 +120,38 @@
         "id": "chino",
         "lastName": "Kafuu",
         "firstName": "Chino",
-        "function": "Restaurant",
-        "faction": "CULTURE",
+        "function": "Coffee Manufacture",
+        "faction": "INDUSTRY",
         "statsArray": {
             "1": {
-                "coinCost": -132,
-                "resourcesCost": -123,
-                "coinsPerSecond": 2131,
-                "resourcesPerSecond": 2433
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
             }
         }
     },
@@ -67,10 +163,34 @@
         "faction": "CULTURE",
         "statsArray": {
             "1": {
-                "coinCost": -132,
-                "resourcesCost": -123,
-                "coinsPerSecond": 2131,
-                "resourcesPerSecond": 2433
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
             }
         }
     }
