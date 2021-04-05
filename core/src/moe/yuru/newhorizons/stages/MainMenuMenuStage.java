@@ -45,7 +45,7 @@ public class MainMenuMenuStage extends Stage {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getScreen().dispose();
+                dispose();
                 game.setScreen(new GameScreen(game));
             }
         });
@@ -53,7 +53,7 @@ public class MainMenuMenuStage extends Stage {
         ResumeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getScreen().dispose();
+                dispose();
                 game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
             }
         });
@@ -61,7 +61,7 @@ public class MainMenuMenuStage extends Stage {
         OptionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getScreen().dispose();
+                dispose();
                 game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
             }
         });
