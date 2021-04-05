@@ -77,7 +77,7 @@ jobs:
           path: html/build/dist
           key: ynh-html-${{ github.run_id }}
       - name: Deploy on Github Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
           folder: html/build/dist
