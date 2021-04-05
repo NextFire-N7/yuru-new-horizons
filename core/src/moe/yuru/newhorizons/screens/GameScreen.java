@@ -8,6 +8,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameSolo;
 import moe.yuru.newhorizons.models.Town;
 import moe.yuru.newhorizons.stages.LayoutStage;
+import moe.yuru.newhorizons.stages.TownStatsStage;
 
 /**
  * Game {@link Screen}. This is where the player will spend most of his time.
@@ -16,6 +17,7 @@ public class GameScreen implements Screen {
 
     private YuruNewHorizons game;
     private LayoutStage layoutStage;
+    private TownStatsStage townStatsStage;
 
     /**
      * @param game the game instance
@@ -24,6 +26,7 @@ public class GameScreen implements Screen {
         this.game = game;
         game.setModel(new GameSolo(new Town("east-a1"))); // TODO: for debug purpose heh
         layoutStage = new LayoutStage(game);
+        townStatsStage = new TownStatsStage(game);
     }
 
     @Override
@@ -45,6 +48,9 @@ public class GameScreen implements Screen {
 
         layoutStage.act(delta);
         layoutStage.draw();
+
+        townStatsStage.act(delta);
+        townStatsStage.draw();
     }
 
     @Override
@@ -73,6 +79,7 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         layoutStage.dispose();
+        townStatsStage.dispose();
     }
 
 }
