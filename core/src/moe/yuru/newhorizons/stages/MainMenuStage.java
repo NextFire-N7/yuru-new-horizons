@@ -3,8 +3,8 @@ package moe.yuru.newhorizons.stages;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
@@ -12,45 +12,43 @@ import moe.yuru.newhorizons.screens.GameScreen;
 import moe.yuru.newhorizons.screens.MainMenuScreen;
 
 /**
- * Main menu right buttons menu {@link Stage}.
+ * Main menu menu {@link Stage}.
  */
-public class MainMenuMenuStage extends Stage {
+public class MainMenuStage extends Stage {
 
     /**
      * @param game the game instance
      */
-    public MainMenuMenuStage(YuruNewHorizons game) {
+    public MainMenuStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
-        Button startButton = new VisTextButton("New Game");
-        startButton.setSize(400, 75);
-        startButton.setPosition(690, 450);
-        addActor(startButton);
+        VisTable table = new VisTable();
+        addActor(table);
+        table.setBounds(690, 50, 400, 500);
+        table.defaults().expandX().height(75).space(50).fill();
 
-        Button ResumeButton = new VisTextButton("Resume Game");
-        ResumeButton.setSize(400, 75);
-        ResumeButton.setPosition(690, 325);
-        addActor(ResumeButton);
+        VisTextButton startButton = new VisTextButton("New Game");
+        VisTextButton resumeButton = new VisTextButton("Resume Game");
+        VisTextButton optionsButton = new VisTextButton("Options");
+        VisTextButton exitButton = new VisTextButton("Quit");
 
-        Button OptionsButton = new VisTextButton("Options");
-        OptionsButton.setSize(400, 75);
-        OptionsButton.setPosition(690, 200);
-        addActor(OptionsButton);
-
-        Button exitButton = new VisTextButton("Quit");
-        exitButton.setSize(400, 75);
-        exitButton.setPosition(690, 75);
-        addActor(exitButton);
+        table.add(startButton);
+        table.row();
+        table.add(resumeButton);
+        table.row();
+        table.add(optionsButton);
+        table.row();
+        table.add(exitButton);
 
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game)); // A changer évidemment...
             }
         });
 
-        ResumeButton.addListener(new ClickListener() {
+        resumeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
@@ -58,7 +56,7 @@ public class MainMenuMenuStage extends Stage {
             }
         });
 
-        OptionsButton.addListener(new ClickListener() {
+        optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();

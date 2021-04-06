@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.stages.BuildingCharacterStage;
-import moe.yuru.newhorizons.stages.MainMenuMenuStage;
+import moe.yuru.newhorizons.stages.MainMenuStage;
 
 /**
  * Main menu {@link Screen}.
@@ -28,7 +28,7 @@ public class MainMenuScreen implements Screen {
     private InputMultiplexer inputMultiplexer;
 
     private BuildingCharacterStage buildingCharacterStage;
-    private MainMenuMenuStage mainMenuMenuStage;
+    private MainMenuStage mainMenuStage;
 
     /**
      * @param game the game instance
@@ -41,12 +41,12 @@ public class MainMenuScreen implements Screen {
         buildingCharacterStage.addRandomCharaListener();
 
         // Scène des menus à droite
-        mainMenuMenuStage = new MainMenuMenuStage(game);
+        mainMenuStage = new MainMenuStage(game);
 
         // rajoute à l'inputMultiplexer le gestionnaire d'input de characterStage
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(buildingCharacterStage);
-        inputMultiplexer.addProcessor(mainMenuMenuStage);
+        inputMultiplexer.addProcessor(mainMenuStage);
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
@@ -95,8 +95,8 @@ public class MainMenuScreen implements Screen {
         buildingCharacterStage.draw();
 
         // pareil avec le menu
-        mainMenuMenuStage.act(delta);
-        mainMenuMenuStage.draw();
+        mainMenuStage.act(delta);
+        mainMenuStage.draw();
     }
 
     // C'est pour gérer la "sauvegarde" de l'aspect ratio quand on resize la fenêtre
@@ -127,7 +127,7 @@ public class MainMenuScreen implements Screen {
         background.dispose();
         font.dispose();
         buildingCharacterStage.dispose();
-        mainMenuMenuStage.dispose();
+        mainMenuStage.dispose();
     }
 
 }
