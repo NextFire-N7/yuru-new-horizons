@@ -10,7 +10,7 @@ a:characters/chino_sound.mp3:characters/chino_sound-77c765b17f6d11bbd2e71b90e4c7
 a:characters/shimarin_sound.mp3:characters/shimarin_sound-c13599a8c3203f0269f7a94e7cfa3fb8.mp3:20896:audio/mpeg:1
 i:characters/renchon_chara.png:characters/renchon_chara-39f91b30bc0a65d97e7a8afd5e45f5d7.png:531532:image/png:1
 a:characters/yui_sound.mp3:characters/yui_sound-b247e23f3323b495f01d870b8824ef70.mp3:19016:audio/mpeg:1
-t:building_stock.json:building_stock-843eb7ec50da27e21ed3624492a2a929.json:5639:application/unknown:1
+t:building_stock.json:building_stock-fc8218a52d64e73a7bed81fd44a393f7.json:5829:application/unknown:1
 a:yuru_theme.mp3:yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/mpeg:1
 b:majuro_fino.ttf:majuro_fino-f4a7e9220306a60cd3f2858baca007a3.ttf:35952:application/unknown:1
 i:main_menu.png:main_menu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
