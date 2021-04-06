@@ -3,23 +3,23 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
-import moe.yuru.newhorizons.stages.LayoutStage;
+import moe.yuru.newhorizons.stages.MapStage;
 
 /**
  * Town model.
  */
 public class Town {
 
-    private String layoutName;
+    private String mapName;
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
 
     /**
-     * @param layoutName name of the image used on {@link LayoutStage}
+     * @param mapName name of the image used on {@link MapStage}
      */
-    public Town(String layoutName) {
-        this.layoutName = layoutName;
+    public Town(String mapName) {
+        this.mapName = mapName;
         buildings = new Array<>();
         resources = new ObjectMap<>();
 
@@ -43,10 +43,10 @@ public class Town {
     }
 
     /**
-     * @return the name of the layout image
+     * @return the name of the town map
      */
-    public String getLayoutName() {
-        return this.layoutName;
+    public String getMapName() {
+        return this.mapName;
     }
 
     /**

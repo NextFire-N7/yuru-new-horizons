@@ -61,15 +61,15 @@ public class AssetHelper {
     }
 
     /**
-     * Get the layout {@link Texture} of the given {@link Town}.
+     * Get the map {@link Texture} of the given {@link Town}.
      * 
      * @param town the town
-     * @return the {@link Texture} of its layout
+     * @return the {@link Texture} of its map
      */
-    public static Texture getLayoutTexture(Town town) {
-        Texture layoutTexture = new Texture(Gdx.files.internal("layouts/" + town.getLayoutName() + ".png"));
-        layoutTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        return layoutTexture;
+    public static Texture getMapTexture(Town town) {
+        Texture mapTexture = new Texture(Gdx.files.internal("maps/" + town.getMapName() + ".png"));
+        mapTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        return mapTexture;
     }
 
 }
