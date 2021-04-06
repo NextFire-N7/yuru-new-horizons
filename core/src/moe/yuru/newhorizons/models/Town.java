@@ -78,6 +78,14 @@ public class Town {
     }
 
     /**
+     * @param faction {@link Faction}
+     * @return {@code faction} ressource balance
+     */
+    public Float getResources(Faction faction) {
+        return resources.get(faction);
+    }
+
+    /**
      * @param faction to add resources
      * @param amount  of resources to add
      */

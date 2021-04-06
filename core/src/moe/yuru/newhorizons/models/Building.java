@@ -12,16 +12,10 @@ public class Building {
     private String firstName;
     private String function;
     private Faction faction;
+    private float sizeX;
+    private float sizeY;
     /** Contains the stats per level */
-    private IntMap<BuildingStats> statsArray;
-
-    /**
-     * @param level The onscreen level minus one
-     * @return the correspondant {@link BuildingStats}
-     */
-    public BuildingStats getStats(int level) {
-        return statsArray.get(level);
-    }
+    private IntMap<BuildingStats> stats;
 
     /**
      * @return the building id
@@ -52,17 +46,39 @@ public class Building {
     }
 
     /**
-     * @return the building {@link Faction}.
+     * @return the building {@link Faction}
      */
     public Faction getFaction() {
         return faction;
     }
 
     /**
+     * @return the building size on the X axis
+     */
+    public float getSizeX() {
+        return sizeX;
+    }
+
+    /**
+     * @return the building size on the Y axis
+     */
+    public float getSizeY() {
+        return sizeY;
+    }
+
+    /**
      * @return the whole {@link IntMap} of stats for all levels
      */
-    public IntMap<BuildingStats> getStatsArray() {
-        return statsArray;
+    public IntMap<BuildingStats> getStats() {
+        return stats;
+    }
+
+    /**
+     * @param level The onscreen level
+     * @return the correspondant {@link BuildingStats}
+     */
+    public BuildingStats getStats(int level) {
+        return stats.get(level);
     }
 
 }
