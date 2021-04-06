@@ -41,6 +41,7 @@ public class GameStage extends Stage {
         statsTable.setBounds(880, 710, 400, 0);
         statsTable.top();
         statsTable.columnDefaults(0).width(150);
+        statsTable.debug();
 
         statsTable.add(new VisLabel("Coins", Color.BLACK)).spaceBottom(10);
         coinsLabel = new VisLabel("", Color.BLACK);

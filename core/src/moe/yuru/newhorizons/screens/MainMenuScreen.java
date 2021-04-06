@@ -4,11 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.stages.BuildingCharacterStage;
@@ -23,7 +20,6 @@ public class MainMenuScreen implements Screen {
 
     private Music theme;
     private Texture background;
-    private BitmapFont font;
 
     private InputMultiplexer inputMultiplexer;
 
@@ -56,13 +52,6 @@ public class MainMenuScreen implements Screen {
         // Charger les images (en VRAM)
         background = new Texture(Gdx.files.internal("main_menu.png"));
         background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
-        // Génération des fonts du titre (.ttf -> BitmapFont = image)
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 60;
-        parameter.borderWidth = 5;
-        parameter.borderColor = Color.valueOf("E39256");
-        font = game.getFontGenerator().generateFont(parameter);
     }
 
     // Tout ce qui se passe au lancement du menu
@@ -86,7 +75,6 @@ public class MainMenuScreen implements Screen {
         // efficace, vive les fps)
         game.getBatch().begin();
         game.getBatch().draw(background, 0, 0, 1280, 720);
-        font.draw(game.getBatch(), "Yuru New Horizons", 600, 650);
         game.getBatch().end();
 
         // appelle les methodes act des acteurs de la scène si définies
@@ -125,7 +113,6 @@ public class MainMenuScreen implements Screen {
     public void dispose() {
         theme.dispose();
         background.dispose();
-        font.dispose();
         buildingCharacterStage.dispose();
         mainMenuStage.dispose();
     }
