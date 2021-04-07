@@ -1,6 +1,5 @@
 package moe.yuru.newhorizons.stages;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,22 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
-import com.kotcrab.vis.ui.widget.VisWindow;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
+import moe.yuru.newhorizons.screens.GameScreen;
 
 public class GameStage extends Stage {
-
-    public class ConstructWindow extends VisWindow {
-
-        public ConstructWindow(YuruNewHorizons game) {
-            super("Construct");
-            setBounds((Gdx.graphics.getWidth() - getWidth()) / 2, (Gdx.graphics.getHeight() - getHeight()) / 2,
-                    getWidth(), getHeight());
-        }
-
-    }
 
     private YuruNewHorizons game;
     private VisLabel coinsLabel;
@@ -72,14 +61,11 @@ public class GameStage extends Stage {
         VisTextButton constructButton = new VisTextButton("Construct");
         menuTable.add(constructButton);
 
-        ConstructWindow constructWindow = new ConstructWindow(game);
-        constructWindow.setVisible(false);
-        addActor(constructWindow);
-
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                constructWindow.setVisible(true);
+                game.getScreen().dispose();
+                game.setScreen(new GameScreen(game)); // A changer évidemment...
             }
         });
     }
