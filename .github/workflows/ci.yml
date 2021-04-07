@@ -38,7 +38,7 @@ jobs:
       - name: Install tools
         run: |
           sudo apt install graphviz
-          wget -O plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+          wget https://sourceforge.net/projects/plantuml/files/plantuml.jar
           wget https://github.com/mirajp1/java2plantuml/raw/master/java2plantuml.jar
       - name: Generate PlantUML puml
         run: |
