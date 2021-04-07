@@ -39,7 +39,7 @@ jobs:
         run: sudo apt install graphviz
       - name: Generate PlantUML puml
         run: |
-          java -jar java2plantuml.jar .
+          java -jar java2plantuml.jar core/src
           mv output.puml plantuml.puml
       - name: Generate PlantUML png
         run: java -jar plantuml.jar plantuml.puml
