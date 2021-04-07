@@ -22,8 +22,21 @@ jobs:
       - name: Upload jar
         uses: actions/upload-artifact@v2
         with:
-          name: desktop.jar
+          name: Desktop JAR
           path: desktop/build/libs/desktop*.jar
+      - name: Make PlantUML diagram
+        run: |
+          java -jar java2plantuml.jar .
+          mv output.puml uml.puml
+          sed -i '2 i !pragma graphviz_dot smetana' uml.puml
+          java -jar plantuml.jar uml.puml
+      - name: Upload PlantUML diagram
+        uses: actions/upload-artifact@v2
+        with:
+          name: PlantUML diagram
+          path: |
+            uml.puml
+            uml.png
   svn:
     needs: desktop-build
     runs-on: ubuntu-latest
