@@ -15,28 +15,41 @@ jobs:
       - name: Setup Java 11
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: "adopt"
           java-version: 11
-      - name: Build jar
+      - name: Build desktop jar
         run: ./gradlew desktop:dist
-      - name: Upload jar
+      - name: Upload desktop jar
         uses: actions/upload-artifact@v2
         with:
           name: Desktop JAR
           path: desktop/build/libs/desktop*.jar
-      - name: Make PlantUML diagram
+  plantuml:
+    needs: desktop-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Java 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: 11
+      - name: Install GraphViz
+        run: sudo apt install graphviz
+      - name: Generate PlantUML puml
         run: |
           java -jar java2plantuml.jar .
-          mv output.puml uml.puml
-          sed -i '2 i !pragma graphviz_dot smetana' uml.puml
-          java -jar plantuml.jar uml.puml
-      - name: Upload PlantUML diagram
+          mv output.puml plantuml.puml
+      - name: Generate PlantUML png
+        run: java -jar plantuml.jar plantuml.puml
+      - name: Upload PlantUML artifacts
         uses: actions/upload-artifact@v2
         with:
           name: PlantUML diagram
           path: |
-            uml.puml
-            uml.png
+            plantuml.puml
+            plantuml.png
   svn:
     needs: desktop-build
     runs-on: ubuntu-latest
@@ -69,7 +82,7 @@ jobs:
       - name: Setup Java 11
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: "adopt"
           java-version: 11
       - name: Cache html build
         if: github.event_name == 'push'
