@@ -6,18 +6,13 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Desktop – Windows/Linux",
-            "request": "launch",
-            "mainClass": "moe.yuru.newhorizons.desktop.DesktopLauncher",
-            "projectName": "yuru-new-horizons-desktop"
-        },
-        {
-            "type": "java",
-            "name": "Launch Desktop – macOS",
+            "name": "Launch DesktopLauncher",
             "request": "launch",
             "mainClass": "moe.yuru.newhorizons.desktop.DesktopLauncher",
             "projectName": "yuru-new-horizons-desktop",
-            "vmArgs": "-XstartOnFirstThread"
+            "osx": {
+                "vmArgs": "-XstartOnFirstThread"
+            }
         }
     ]
 }
