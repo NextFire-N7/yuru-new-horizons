@@ -5,19 +5,12 @@ sourceSets.main.resources.srcDirs = ["../core/assets"]
 project.ext.mainClassName = "moe.yuru.newhorizons.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../core/assets")
 
-import org.gradle.internal.os.OperatingSystem
-
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true
-
-    if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
-		// Required to run LWJGL3 Java apps on MacOS
-		jvmArgs += "-XstartOnFirstThread"
-	}
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
@@ -27,11 +20,6 @@ task debug(dependsOn: classes, type: JavaExec) {
     workingDir = project.assetsDir
     ignoreExitValue = true
     debug = true
-
-    if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
-		// Required to run LWJGL3 Java apps on MacOS
-		jvmArgs += "-XstartOnFirstThread"
-	}
 }
 
 task dist(type: Jar) {

@@ -8,6 +8,9 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
+        if (StartOnFirstThreadHelper.startNewJvmIfRequired()) {
+            return;
+        }
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Yuru New Horizons");
         config.setWindowedMode(1280, 720);
