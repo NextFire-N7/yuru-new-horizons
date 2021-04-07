@@ -35,8 +35,11 @@ jobs:
         with:
           distribution: "adopt"
           java-version: 11
-      - name: Install GraphViz
-        run: sudo apt install graphviz
+      - name: Install tools
+        run: |
+          sudo apt install graphviz
+          wget -O plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+          wget https://github.com/NextFire/yuru-new-horizons/raw/main/java2plantuml.jar
       - name: Generate PlantUML puml
         run: |
           java -jar java2plantuml.jar core/src
