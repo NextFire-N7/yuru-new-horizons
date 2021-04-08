@@ -32,20 +32,29 @@ public class GameStage extends Stage {
         screenTable.setFillParent(true);
         addActor(screenTable);
 
+        VisTable leftTable = new VisTable();
+        screenTable.add(leftTable).left().size(768, 720);
+    
         mapTexture = AssetHelper.getMapTexture(game.getModel().getTown());
         TextureRegion mapTextureRegion = new TextureRegion(mapTexture, 480, 375, 1680, 1375);
         Image mapImage = new Image(mapTextureRegion);
-        screenTable.add(mapImage).size(960, 720);
+        leftTable.add(mapImage).size(768, 576);
+
+        leftTable.row();
+        VisTable leftBottomTable = new VisTable();
+        leftTable.add(leftBottomTable).grow();
+
+        leftBottomTable.add(new VisLabel("Placeholder."));
 
         VisTable rightTable = new VisTable();
-        screenTable.add(rightTable).grow();
-        rightTable.defaults().grow();
+        screenTable.add(rightTable).right().grow();
+        rightTable.defaults().grow().pad(10);
 
         VisTable statsTable = new VisTable();
-        rightTable.add(statsTable).padTop(10);
+        rightTable.add(statsTable);
         statsTable.top();
-        statsTable.columnDefaults(0).left().width(120);
-        statsTable.columnDefaults(1).width(180);
+        statsTable.columnDefaults(0).left();
+        statsTable.columnDefaults(1).expandX();
 
         statsTable.add(new VisLabel("Coins"));
         coinsLabel = new VisLabel("");
