@@ -1,37 +1,28 @@
-package moe.yuru.newhorizons.models;
+package moe.yuru.newhorizons.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.ObjectMap;
+
+import moe.yuru.newhorizons.models.Building;
 
 /**
- * Wrapper class to make easier the json deserialization.
+ * Wrapper class for the building stock json deserialization.
  */
 public class BuildingStockWrapper {
 
-    private ObjectMap<String, Building> buildingStock;
+    /**
+     * Deserialize the {@code building_stock.json} to its {@link Array}
+     * buildingStock.
+     */
+    @SuppressWarnings("unchecked")
+    private static Array<Building> buildingStock = new Json().fromJson(Array.class, Building.class,
+            Gdx.files.internal("building_stock.json"));
 
     /**
-     * Deserialize the {@code building_stock.json} to its {@link ObjectMap}
-     * buildingStock
+     * @return the building stock deserialized from {@code building_stock.json}
      */
-    public BuildingStockWrapper() {
-        @SuppressWarnings("unchecked")
-        Array<Building> buildingArray = new Json().fromJson(Array.class, Building.class,
-                Gdx.files.internal("building_stock.json"));
-
-        buildingStock = new ObjectMap<>();
-        for (Building model : buildingArray) {
-            buildingStock.put(model.getId(), model);
-        }
-    }
-
-    /**
-     * @return an {@link ObjectMap} which keys are {@link Building#id} and values
-     *         the models themselves
-     */
-    public ObjectMap<String, Building> getBuildingStock() {
+    public static Array<Building> getBuildingStock() {
         return buildingStock;
     }
 
