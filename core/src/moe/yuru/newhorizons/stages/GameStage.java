@@ -32,24 +32,24 @@ public class GameStage extends Stage {
         statsTable.columnDefaults(0).width(150);
         statsTable.debug();
 
-        statsTable.add(new VisLabel("Coins", Color.BLACK)).spaceBottom(10);
-        coinsLabel = new VisLabel("", Color.BLACK);
+        statsTable.add(new VisLabel("Coins")).spaceBottom(10);
+        coinsLabel = new VisLabel("");
         statsTable.add(coinsLabel).space(10);
         statsTable.row();
-        statsTable.add(new VisLabel("Science", Color.BLACK));
-        scienceLabel = new VisLabel("", Color.BLACK);
+        statsTable.add(new VisLabel("Science"));
+        scienceLabel = new VisLabel("");
         statsTable.add(scienceLabel);
         statsTable.row();
-        statsTable.add(new VisLabel("Culture", Color.BLACK));
-        cultureLabel = new VisLabel("", Color.BLACK);
+        statsTable.add(new VisLabel("Culture"));
+        cultureLabel = new VisLabel("");
         statsTable.add(cultureLabel);
         statsTable.row();
-        statsTable.add(new VisLabel("Industry", Color.BLACK));
-        industryLabel = new VisLabel("", Color.BLACK);
+        statsTable.add(new VisLabel("Industry"));
+        industryLabel = new VisLabel("");
         statsTable.add(industryLabel);
         statsTable.row();
-        statsTable.add(new VisLabel("Politics", Color.BLACK));
-        politicsLabel = new VisLabel("", Color.BLACK);
+        statsTable.add(new VisLabel("Politics"));
+        politicsLabel = new VisLabel("");
         statsTable.add(politicsLabel);
 
         VisTable menuTable = new VisTable();

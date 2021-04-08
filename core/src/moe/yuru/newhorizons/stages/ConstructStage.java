@@ -45,7 +45,7 @@ public class ConstructStage extends Stage {
         factionTable.columnDefaults(0).width(200);
         factionTable.columnDefaults(1).width(1000);
         for (Faction faction : Faction.values()) {
-            factionTable.add(new VisLabel(faction.toString(), Color.BLACK));
+            factionTable.add(new VisLabel(faction.toString()));
             populate(factionTable, faction);
             factionTable.row();
         }
@@ -72,7 +72,7 @@ public class ConstructStage extends Stage {
 
         buildingsTable.defaults().space(50);
         for (int i = 0; i <= 20; i++) {
-            buildingsTable.add(new VisLabel("" + i, Color.BLACK));
+            buildingsTable.add(new VisLabel("" + i));
         }
     }
 

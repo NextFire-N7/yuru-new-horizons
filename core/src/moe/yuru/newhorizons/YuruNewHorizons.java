@@ -53,7 +53,6 @@ public class YuruNewHorizons extends Game {
 
         buildingStockWrapper = new BuildingStockWrapper();
 
-        Gdx.gl.glClearColor(1, 1, 1, 1);
         this.setScreen(new SplashScreen(this));
     }
 
