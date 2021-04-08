@@ -19,6 +19,9 @@ public class BuildingStockWrapper {
     private static Array<Building> buildingStock = new Json().fromJson(Array.class, Building.class,
             Gdx.files.internal("building_stock.json"));
 
+    private BuildingStockWrapper() {
+    }
+
     /**
      * @return the building stock deserialized from {@code building_stock.json}
      */

@@ -12,6 +12,10 @@ public class BuildingStats {
     /** Raw number, the type of the resource depends of the current faction */
     private float resourcesPerSecond;
 
+    public BuildingStats() {
+        // Must be defined for the json deserializer.
+    }
+
     /**
      * @return the upgrade cost (coins)
      */
