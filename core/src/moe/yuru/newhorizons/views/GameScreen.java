@@ -15,7 +15,6 @@ import moe.yuru.newhorizons.models.Town;
 public class GameScreen implements Screen {
 
     private YuruNewHorizons game;
-    private MapStage mapStage;
     private GameStage gameStage;
 
     private InputMultiplexer inputMultiplexer;
@@ -27,11 +26,9 @@ public class GameScreen implements Screen {
         this.game = game;
 
         game.setModel(new GameSolo(new Town("east-a1"))); // TODO: for debug purpose heh
-        mapStage = new MapStage(game);
         gameStage = new GameStage(game);
 
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(mapStage);
         inputMultiplexer.addProcessor(gameStage);
     }
 
@@ -49,9 +46,6 @@ public class GameScreen implements Screen {
 
         game.getModel().getTown().updateBalance(delta);
         game.getModel().updateEnemy(delta);
-
-        mapStage.act(delta);
-        mapStage.draw();
 
         gameStage.act(delta);
         gameStage.draw();
@@ -82,7 +76,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        mapStage.dispose();
         gameStage.dispose();
     }
 

@@ -2,7 +2,8 @@ package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 
@@ -11,9 +12,14 @@ public class StockScreen implements Screen {
     private YuruNewHorizons game;
     private StockStage stockStage;
 
+    private Texture background;
+
     public StockScreen(YuruNewHorizons game, Screen backScreen) {
         this.game = game;
         stockStage = new StockStage(game, backScreen);
+
+        background = new Texture(Gdx.files.internal("main_menu.png"));
+        background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
     }
 
     @Override
@@ -26,7 +32,9 @@ public class StockScreen implements Screen {
         game.getFpslogger().log();
         game.getCamera().update();
 
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.getBatch().begin();
+        game.getBatch().draw(background, 0, 0, 1280, 720);
+        game.getBatch().end();
 
         stockStage.act(delta);
         stockStage.draw();

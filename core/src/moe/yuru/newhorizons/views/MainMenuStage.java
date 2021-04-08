@@ -37,7 +37,6 @@ public class MainMenuStage extends Stage {
         VisTable table = new VisTable();
         addActor(table);
         table.setBounds(690, 0, 400, 720);
-        table.debug();
 
         table.add(title).space(50);
         table.row();
@@ -45,7 +44,6 @@ public class MainMenuStage extends Stage {
         VisTable menuTable = new VisTable();
         table.add(menuTable);
         menuTable.defaults().width(table.getWidth()).height(75).space(50);
-        menuTable.debug();
 
         VisTextButton startButton = new VisTextButton("New Game");
         VisTextButton resumeButton = new VisTextButton("Resume Game");

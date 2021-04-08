@@ -33,7 +33,6 @@ public class StockStage extends Stage {
         screenTable.setFillParent(true);
         addActor(screenTable);
         screenTable.pad(20);
-        screenTable.debug();
 
         VisTable factionTable = new VisTable();
 
@@ -52,6 +51,7 @@ public class StockStage extends Stage {
 
         factionTable.defaults().height(160);
         factionTable.columnDefaults(0).left().padRight(10);
+        factionTable.columnDefaults(1).width(1100);
         for (Faction faction : Faction.values()) {
             factionTable.add(new VisLabel(faction.toString()));
             factionTable.add(getBuildingsPane(faction));
@@ -62,6 +62,8 @@ public class StockStage extends Stage {
     private VisScrollPane getBuildingsPane(Faction faction) {
         VisTable buildingsTable = new VisTable();
         VisScrollPane buildingsPane = new VisScrollPane(buildingsTable);
+        buildingsTable.defaults().size(160).left();
+        buildingsTable.debug();
 
         buildingsPane.addListener(new InputListener() {
             @Override
@@ -77,20 +79,17 @@ public class StockStage extends Stage {
             }
         });
 
-        // TODO: pas du tout efficient
-        for (Building building : BuildingStockWrapper.getBuildingStock()) {
-            if (building.getFaction() == faction) {
-                VisTable buildingCell = getBuildingCell(building);
-                buildingsTable.add(buildingCell);
-                buildingCell.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        // TODO: A changer évidemment...
-                        game.getScreen().dispose();
-                        game.setScreen(backScreen);
-                    }
-                });
-            }
+        for (Building building : BuildingStockWrapper.getBuildingStockFactionMap().get(faction)) {
+            VisTable buildingCell = getBuildingCell(building);
+            buildingsTable.add(buildingCell);
+            buildingCell.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    // TODO: A changer évidemment...
+                    game.getScreen().dispose();
+                    game.setScreen(backScreen);
+                }
+            });
         }
 
         return buildingsPane;
@@ -98,12 +97,11 @@ public class StockStage extends Stage {
 
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
-        cell.setSize(160, 160);
+        cell.add(new VisLabel(building.getId()));
+        cell.row();
         Texture icon = AssetHelper.getIconTexture(building);
         Image image = new Image(icon);
-        image.setSize(50, 50);
         cell.add(image);
-        cell.pack();
         return cell;
     }
 
