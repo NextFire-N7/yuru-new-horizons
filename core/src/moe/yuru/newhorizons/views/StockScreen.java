@@ -1,11 +1,10 @@
-package moe.yuru.newhorizons.screens;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.stages.StockStage;
 
 public class StockScreen implements Screen {
 

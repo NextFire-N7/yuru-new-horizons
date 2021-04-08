@@ -3,8 +3,6 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
-import moe.yuru.newhorizons.stages.MapStage;
-
 /**
  * Town model.
  */
@@ -16,7 +14,7 @@ public class Town {
     private ObjectMap<Faction, Float> resources;
 
     /**
-     * @param mapName name of the image used on {@link MapStage}
+     * @param mapName name of the town map
      */
     public Town(String mapName) {
         this.mapName = mapName;

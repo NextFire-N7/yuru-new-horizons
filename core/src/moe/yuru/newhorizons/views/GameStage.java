@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.stages;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -9,7 +9,6 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
-import moe.yuru.newhorizons.screens.StockScreen;
 
 public class GameStage extends Stage {
 

@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.stages;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,8 +13,6 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.screens.GameScreen;
-import moe.yuru.newhorizons.screens.MainMenuScreen;
 
 /**
  * Main menu menu {@link Stage}.

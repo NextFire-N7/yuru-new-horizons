@@ -12,7 +12,7 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.GameModel;
-import moe.yuru.newhorizons.screens.SplashScreen;
+import moe.yuru.newhorizons.views.SplashScreen;
 
 /**
  * Yuru New Horizons {@link Game} view.

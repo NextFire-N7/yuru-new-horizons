@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.screens;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;

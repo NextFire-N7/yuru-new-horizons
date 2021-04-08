@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.screens;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.stages.BuildingCharacterStage;
-import moe.yuru.newhorizons.stages.MainMenuStage;
 
 /**
  * Main menu {@link Screen}.

@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.stages;
+package moe.yuru.newhorizons.views;
 
 import java.util.Random;
 

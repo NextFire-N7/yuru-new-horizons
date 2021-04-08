@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons.stages;
+package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
