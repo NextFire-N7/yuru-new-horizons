@@ -10,7 +10,7 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
-import moe.yuru.newhorizons.screens.GameScreen;
+import moe.yuru.newhorizons.screens.ConstructScreen;
 
 public class GameStage extends Stage {
 
@@ -64,8 +64,7 @@ public class GameStage extends Stage {
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getScreen().dispose();
-                game.setScreen(new GameScreen(game)); // A changer évidemment...
+                game.setScreen(new ConstructScreen(game));
             }
         });
     }

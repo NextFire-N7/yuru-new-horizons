@@ -47,7 +47,6 @@ public class GameScreen implements Screen {
         game.getFpslogger().log();
         game.getCamera().update();
 
-        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.getModel().getTown().updateBalance(delta);
