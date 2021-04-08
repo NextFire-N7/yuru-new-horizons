@@ -1,7 +1,6 @@
 package moe.yuru.newhorizons.stages;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -15,9 +14,9 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
 
-public class ConstructStage extends Stage {
+public class StockStage extends Stage {
 
-    public ConstructStage(YuruNewHorizons game) {
+    public StockStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         Screen backScreen = game.getScreen();
 

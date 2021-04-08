@@ -5,21 +5,21 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.stages.ConstructStage;
+import moe.yuru.newhorizons.stages.StockStage;
 
-public class ConstructScreen implements Screen {
+public class StockScreen implements Screen {
 
     private YuruNewHorizons game;
-    private ConstructStage constructStage;
+    private StockStage stockStage;
 
-    public ConstructScreen(YuruNewHorizons game) {
+    public StockScreen(YuruNewHorizons game) {
         this.game = game;
-        constructStage = new ConstructStage(game);
+        stockStage = new StockStage(game);
     }
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(constructStage);
+        Gdx.input.setInputProcessor(stockStage);
     }
 
     @Override
@@ -29,8 +29,8 @@ public class ConstructScreen implements Screen {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        constructStage.act(delta);
-        constructStage.draw();
+        stockStage.act(delta);
+        stockStage.draw();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ConstructScreen implements Screen {
 
     @Override
     public void dispose() {
-        constructStage.dispose();
+        stockStage.dispose();
     }
 
 }

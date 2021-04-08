@@ -1,6 +1,5 @@
 package moe.yuru.newhorizons.stages;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -10,7 +9,7 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
-import moe.yuru.newhorizons.screens.ConstructScreen;
+import moe.yuru.newhorizons.screens.StockScreen;
 
 public class GameStage extends Stage {
 
@@ -64,7 +63,7 @@ public class GameStage extends Stage {
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ConstructScreen(game));
+                game.setScreen(new StockScreen(game));
             }
         });
     }
