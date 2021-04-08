@@ -12,6 +12,7 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.views.GameScreen;
 import moe.yuru.newhorizons.views.SplashScreen;
 
 /**
@@ -27,6 +28,7 @@ public class YuruNewHorizons extends Game {
     private FreeTypeFontGenerator fontGenerator;
 
     private GameModel model;
+    private GameScreen gameScreen;
 
     private Float musicVolume;
     private Float soundVolume;
@@ -104,6 +106,14 @@ public class YuruNewHorizons extends Game {
      */
     public void setModel(GameModel model) {
         this.model = model;
+    }
+
+    public GameScreen getGameScreen() {
+        return gameScreen;
+    }
+
+    public void setGameScreen(GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
     }
 
     /**

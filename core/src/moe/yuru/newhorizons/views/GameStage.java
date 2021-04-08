@@ -34,7 +34,7 @@ public class GameStage extends Stage {
 
         VisTable leftTable = new VisTable();
         screenTable.add(leftTable).left().size(768, 720);
-    
+
         mapTexture = AssetHelper.getMapTexture(game.getModel().getTown());
         TextureRegion mapTextureRegion = new TextureRegion(mapTexture, 480, 375, 1680, 1375);
         Image mapImage = new Image(mapTextureRegion);
@@ -87,7 +87,7 @@ public class GameStage extends Stage {
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new StockScreen(game, game.getScreen()));
+                game.setScreen(new StockScreen(game));
             }
         });
     }
@@ -95,11 +95,11 @@ public class GameStage extends Stage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        coinsLabel.setText(String.valueOf(game.getModel().getTown().getCoins()));
-        scienceLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.SCIENCE)));
-        cultureLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.CULTURE)));
-        industryLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.INDUSTRY)));
-        politicsLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.POLITICS)));
+        coinsLabel.setText(String.valueOf((int) game.getModel().getTown().getCoins()));
+        scienceLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.SCIENCE).intValue()));
+        cultureLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.CULTURE).intValue()));
+        industryLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.INDUSTRY).intValue()));
+        politicsLabel.setText(String.valueOf(game.getModel().getTown().getResources(Faction.POLITICS).intValue()));
     }
 
     @Override

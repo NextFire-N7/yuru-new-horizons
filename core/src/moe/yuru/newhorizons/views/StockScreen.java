@@ -14,9 +14,9 @@ public class StockScreen implements Screen {
 
     private Texture background;
 
-    public StockScreen(YuruNewHorizons game, Screen backScreen) {
+    public StockScreen(YuruNewHorizons game) {
         this.game = game;
-        stockStage = new StockStage(game, backScreen);
+        stockStage = new StockStage(game);
 
         background = new Texture(Gdx.files.internal("main_menu.png"));
         background.setFilter(TextureFilter.Linear, TextureFilter.Linear);

@@ -1,6 +1,5 @@
 package moe.yuru.newhorizons.views;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisScrollPane;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -22,21 +23,20 @@ import moe.yuru.newhorizons.utils.BuildingStockWrapper;
 public class StockStage extends Stage {
 
     private YuruNewHorizons game;
-    private Screen backScreen;
+    private Array<Texture> textures;
 
-    public StockStage(YuruNewHorizons game, Screen backScreen) {
+    public StockStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
-        this.backScreen = backScreen;
+        textures = new Array<>();
 
         VisTable screenTable = new VisTable();
         screenTable.setFillParent(true);
         addActor(screenTable);
         screenTable.pad(20);
 
-        VisTable factionTable = new VisTable();
+        screenTable.add(getStockPane());
 
-        screenTable.add(factionTable);
         screenTable.row();
         VisTextButton backButton = new VisTextButton("Back");
         screenTable.add(backButton);
@@ -45,31 +45,51 @@ public class StockStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.getScreen().dispose();
-                game.setScreen(backScreen);
+                game.setScreen(game.getGameScreen());
             }
         });
+    }
 
-        factionTable.defaults().height(160);
-        factionTable.columnDefaults(0).left().padRight(10);
-        factionTable.columnDefaults(1).width(1100);
-        for (Faction faction : Faction.values()) {
-            factionTable.add(new VisLabel(faction.toString()));
-            factionTable.add(getBuildingsPane(faction));
-            factionTable.row();
+    @Override
+    public void dispose() {
+        super.dispose();
+        for (Texture texture : textures) {
+            texture.dispose();
         }
     }
 
-    private VisScrollPane getBuildingsPane(Faction faction) {
-        VisTable buildingsTable = new VisTable();
-        VisScrollPane buildingsPane = new VisScrollPane(buildingsTable);
-        buildingsTable.defaults().size(160).left();
-        buildingsTable.debug();
+    private VisScrollPane getStockPane() {
+        VisTable stockTable = new VisTable();
+        VisScrollPane stockPane = new VisScrollPane(stockTable);
 
-        buildingsPane.addListener(new InputListener() {
+        ObjectMap<Faction, Array<Building>> buildingStockMap = BuildingStockWrapper.getBuildingStockFactionMap();
+        int i = 0;
+        for (Faction faction : Faction.values()) {
+            for (Building building : buildingStockMap.get(faction)) {
+                VisTable buildingCell = getBuildingCell(building);
+                stockTable.defaults().height(300).width(250).pad(5);
+                stockTable.add(buildingCell);
+                if (++i == 4) {
+                    stockTable.row();
+                    i = 0;
+                }
+                buildingCell.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        // TODO: A changer évidemment...
+                        game.getScreen().dispose();
+                        game.setScreen(game.getGameScreen());
+                        game.getGameScreen().addBuildingTask(building);
+                    }
+                });
+            }
+        }
+
+        stockPane.addListener(new InputListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 super.enter(event, x, y, pointer, fromActor);
-                setScrollFocus(buildingsPane);
+                setScrollFocus(stockPane);
             }
 
             @Override
@@ -79,29 +99,28 @@ public class StockStage extends Stage {
             }
         });
 
-        for (Building building : BuildingStockWrapper.getBuildingStockFactionMap().get(faction)) {
-            VisTable buildingCell = getBuildingCell(building);
-            buildingsTable.add(buildingCell);
-            buildingCell.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    // TODO: A changer évidemment...
-                    game.getScreen().dispose();
-                    game.setScreen(backScreen);
-                }
-            });
-        }
-
-        return buildingsPane;
+        return stockPane;
     }
 
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
+        cell.setSize(200, 200);
         cell.add(new VisLabel(building.getId()));
         cell.row();
         Texture icon = AssetHelper.getIconTexture(building);
+        textures.add(icon);
         Image image = new Image(icon);
-        cell.add(image);
+        cell.add(image).size(100, 100);
+        cell.row();
+        VisTable statsCell = new VisTable();
+        cell.add(statsCell).grow();
+        statsCell.add(new VisLabel(building.getStats(1).getCoinCost() + " coins"));
+        statsCell.row();
+        statsCell.add(new VisLabel(building.getStats(1).getResourcesCost() + " resources"));
+        statsCell.row();
+        statsCell.add(new VisLabel(building.getStats(1).getCoinsPerSecond() + " CPS"));
+        statsCell.row();
+        statsCell.add(new VisLabel(building.getStats(1).getResourcesPerSecond() + " RPS"));
         return cell;
     }
 

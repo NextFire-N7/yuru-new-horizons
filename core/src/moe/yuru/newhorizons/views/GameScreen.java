@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.GameSolo;
 import moe.yuru.newhorizons.models.Town;
 
@@ -16,6 +17,7 @@ public class GameScreen implements Screen {
 
     private YuruNewHorizons game;
     private GameStage gameStage;
+    private MapStage mapStage;
 
     private InputMultiplexer inputMultiplexer;
 
@@ -26,10 +28,14 @@ public class GameScreen implements Screen {
         this.game = game;
 
         game.setModel(new GameSolo(new Town("east-a1"))); // TODO: for debug purpose heh
+        game.setGameScreen(this);
+
         gameStage = new GameStage(game);
+        mapStage = new MapStage(game);
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
+        inputMultiplexer.addProcessor(mapStage);
     }
 
     @Override
@@ -49,6 +55,9 @@ public class GameScreen implements Screen {
 
         gameStage.act(delta);
         gameStage.draw();
+
+        mapStage.act(delta);
+        mapStage.draw();
     }
 
     @Override
@@ -77,6 +86,10 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameStage.dispose();
+    }
+
+    public void addBuildingTask(Building building) {
+        mapStage.addBuildingTask(building);
     }
 
 }
