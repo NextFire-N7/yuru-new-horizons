@@ -12,6 +12,7 @@ public class Town {
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
+    private Building toConstruct;
 
     /**
      * @param mapName name of the town map
@@ -20,12 +21,30 @@ public class Town {
         this.mapName = mapName;
         buildings = new Array<>();
         resources = new ObjectMap<>();
+        toConstruct = null;
 
         // Starting resources
         coins = 10000f;
         for (Faction faction : Faction.values()) {
             resources.put(faction, 1000f);
         }
+    }
+
+    /**
+     * Validate current location for the pending construction and create and add the
+     * associated {@link BuildingInstance} to the town.
+     * 
+     * @param x X axis position
+     * @param y Y axis position
+     * @return the {@link BuildingInstance} created
+     */
+    public BuildingInstance validateConstruction(float x, float y) {
+        addCoins(toConstruct.getStats(1).getCoinCost());
+        addResources(toConstruct.getFaction(), toConstruct.getStats(1).getResourcesCost());
+        BuildingInstance instance = new BuildingInstance(toConstruct, x, y);
+        buildings.add(new BuildingInstance(toConstruct, x, y));
+        toConstruct = null;
+        return instance;
     }
 
     /**
@@ -85,10 +104,24 @@ public class Town {
 
     /**
      * @param faction to add resources
-     * @param amount  of resources to add
+     * @param amount  of resources to addsss
      */
     public void addResources(Faction faction, float amount) {
         resources.put(faction, resources.get(faction) + amount);
+    }
+
+    /**
+     * @return current {@link Building} to be placed
+     */
+    public Building getToConstruct() {
+        return toConstruct;
+    }
+
+    /**
+     * @param building to be placed
+     */
+    public void setToConstruct(Building building) {
+        toConstruct = building;
     }
 
 }

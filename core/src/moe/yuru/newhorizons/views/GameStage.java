@@ -14,6 +14,9 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
 
+/**
+ * GameScreen {@link Stage}.
+ */
 public class GameStage extends Stage {
 
     private YuruNewHorizons game;
@@ -24,6 +27,9 @@ public class GameStage extends Stage {
     private VisLabel politicsLabel;
     private Texture mapTexture;
 
+    /**
+     * @param game the game instance
+     */
     public GameStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
@@ -87,6 +93,7 @@ public class GameStage extends Stage {
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.setScreen(new StockScreen(game));
             }
         });

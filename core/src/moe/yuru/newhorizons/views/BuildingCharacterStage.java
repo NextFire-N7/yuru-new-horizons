@@ -65,6 +65,7 @@ public class BuildingCharacterStage extends Stage {
         this.charaImage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 playCharaSound();
             }
         });
@@ -77,6 +78,7 @@ public class BuildingCharacterStage extends Stage {
         this.charaImage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 charaSound.stop();
                 charaImage.remove();
                 charaTexture.dispose();

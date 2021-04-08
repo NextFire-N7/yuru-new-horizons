@@ -20,11 +20,17 @@ import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.BuildingStockWrapper;
 
+/**
+ * New building selector {@link Stage}.
+ */
 public class StockStage extends Stage {
 
     private YuruNewHorizons game;
     private Array<Texture> textures;
 
+    /**
+     * @param game the game instance
+     */
     public StockStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
@@ -44,6 +50,7 @@ public class StockStage extends Stage {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.getScreen().dispose();
                 game.setScreen(game.getGameScreen());
             }
@@ -58,6 +65,9 @@ public class StockStage extends Stage {
         }
     }
 
+    /**
+     * @return the stock scrolling pane
+     */
     private VisScrollPane getStockPane() {
         VisTable stockTable = new VisTable();
         VisScrollPane stockPane = new VisScrollPane(stockTable);
@@ -76,10 +86,10 @@ public class StockStage extends Stage {
                 buildingCell.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        // TODO: A changer évidemment...
+                        super.clicked(event, x, y);
+                        game.getModel().getTown().setToConstruct(building);
                         game.getScreen().dispose();
                         game.setScreen(game.getGameScreen());
-                        game.getGameScreen().addBuildingTask(building);
                     }
                 });
             }
@@ -102,6 +112,12 @@ public class StockStage extends Stage {
         return stockPane;
     }
 
+    /**
+     * Return a "card" for the given {@link Building}
+     * 
+     * @param building from stock
+     * @return a {@link VisTable} which acts as an infocard
+     */
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
         cell.setSize(200, 200);

@@ -37,6 +37,7 @@ public class SplashScreen implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                super.touchDown(screenX, screenY, pointer, button);
                 dispose();
                 game.setScreen(new MainMenuScreen(game));
                 return true;

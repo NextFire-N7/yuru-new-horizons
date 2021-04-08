@@ -54,6 +54,7 @@ public class YuruNewHorizons extends Game {
 
     @Override
     public void dispose() {
+        super.dispose();
         VisUI.dispose();
         batch.dispose();
     }

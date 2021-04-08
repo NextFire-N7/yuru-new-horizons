@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 
+/**
+ * New building selector {@link Screen}.
+ */
 public class StockScreen implements Screen {
 
     private YuruNewHorizons game;
@@ -14,6 +17,9 @@ public class StockScreen implements Screen {
 
     private Texture background;
 
+    /**
+     * @param game the game instance
+     */
     public StockScreen(YuruNewHorizons game) {
         this.game = game;
         stockStage = new StockStage(game);

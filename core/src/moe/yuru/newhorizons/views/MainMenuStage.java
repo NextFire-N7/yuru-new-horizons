@@ -61,6 +61,7 @@ public class MainMenuStage extends Stage {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.getScreen().dispose();
                 game.setScreen(new GameScreen(game)); // A changer évidemment...
             }
@@ -69,6 +70,7 @@ public class MainMenuStage extends Stage {
         resumeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.getScreen().dispose();
                 game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
             }
@@ -77,6 +79,7 @@ public class MainMenuStage extends Stage {
         optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.getScreen().dispose();
                 game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
             }
@@ -85,6 +88,7 @@ public class MainMenuStage extends Stage {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 Gdx.app.exit();
             }
         });

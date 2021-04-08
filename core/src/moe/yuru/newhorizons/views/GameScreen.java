@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.GameSolo;
 import moe.yuru.newhorizons.models.Town;
 
@@ -86,10 +85,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameStage.dispose();
-    }
-
-    public void addBuildingTask(Building building) {
-        mapStage.addBuildingTask(building);
     }
 
 }
