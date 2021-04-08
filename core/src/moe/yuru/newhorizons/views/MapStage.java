@@ -45,7 +45,7 @@ public class MapStage extends Stage {
         super.act(delta);
         if (toAdd != null) {
             mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            game.getCamera().unproject(mouse_position);
+            game.getViewport().unproject(mouse_position);
             toAdd.setPosition(mouse_position.x - toAdd.getWidth() / 2, mouse_position.y - toAdd.getHeight() / 2);
         }
     }
