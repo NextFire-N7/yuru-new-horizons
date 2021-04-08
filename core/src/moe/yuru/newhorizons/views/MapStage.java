@@ -3,6 +3,7 @@ package moe.yuru.newhorizons.views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -20,6 +21,7 @@ public class MapStage extends Stage {
     private Rectangle mapArea;
     private Image toAdd;
     private Array<Texture> textures;
+    private Vector3 mouse_position;
 
     public MapStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
@@ -27,6 +29,7 @@ public class MapStage extends Stage {
         mapArea = new Rectangle(0, 144, 768, 576);
         toAdd = null;
         textures = new Array<>();
+        mouse_position = new Vector3();
         for (BuildingInstance instance : game.getModel().getTown().getBuildings()) {
             Texture iconTexture = AssetHelper.getIconTexture(instance.getModel());
             textures.add(iconTexture);
@@ -41,8 +44,9 @@ public class MapStage extends Stage {
     public void act(float delta) {
         super.act(delta);
         if (toAdd != null) {
-            toAdd.setPosition(Gdx.input.getX() - toAdd.getWidth() / 2,
-                    Gdx.graphics.getHeight() - Gdx.input.getY() - toAdd.getHeight() / 2);
+            mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            game.getCamera().unproject(mouse_position);
+            toAdd.setPosition(mouse_position.x - toAdd.getWidth() / 2, mouse_position.y - toAdd.getHeight() / 2);
         }
     }
 
