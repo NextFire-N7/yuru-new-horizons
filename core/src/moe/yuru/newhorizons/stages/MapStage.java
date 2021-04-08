@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import moe.yuru.newhorizons.AssetHelper;
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.utils.AssetHelper;
 
 /**
  * Town map {@link Stage}.

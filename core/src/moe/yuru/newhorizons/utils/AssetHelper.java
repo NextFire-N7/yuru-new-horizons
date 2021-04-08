@@ -1,4 +1,4 @@
-package moe.yuru.newhorizons;
+package moe.yuru.newhorizons.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;

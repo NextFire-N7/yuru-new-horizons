@@ -63,7 +63,7 @@ public class GameStage extends Stage {
         constructButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new StockScreen(game));
+                game.setScreen(new StockScreen(game, game.getScreen()));
             }
         });
     }

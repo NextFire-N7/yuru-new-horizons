@@ -12,9 +12,9 @@ public class StockScreen implements Screen {
     private YuruNewHorizons game;
     private StockStage stockStage;
 
-    public StockScreen(YuruNewHorizons game) {
+    public StockScreen(YuruNewHorizons game, Screen backScreen) {
         this.game = game;
-        stockStage = new StockStage(game);
+        stockStage = new StockStage(game, backScreen);
     }
 
     @Override

@@ -6,14 +6,11 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.VisUI.SkinScale;
 
-import moe.yuru.newhorizons.models.Building;
-import moe.yuru.newhorizons.models.BuildingStockWrapper;
 import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.screens.SplashScreen;
 
@@ -30,7 +27,6 @@ public class YuruNewHorizons extends Game {
     private FreeTypeFontGenerator fontGenerator;
 
     private GameModel model;
-    private BuildingStockWrapper buildingStockWrapper;
 
     private Float musicVolume;
     private Float soundVolume;
@@ -51,8 +47,6 @@ public class YuruNewHorizons extends Game {
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
 
-        buildingStockWrapper = new BuildingStockWrapper();
-
         this.setScreen(new SplashScreen(this));
     }
 
@@ -60,16 +54,6 @@ public class YuruNewHorizons extends Game {
     public void dispose() {
         VisUI.dispose();
         batch.dispose();
-    }
-
-    /**
-     * Get the building stock of the game.
-     * 
-     * @return an {@link ObjectMap} which keys are the models id and values the
-     *         models themselves
-     */
-    public ObjectMap<String, Building> getBuildingStock() {
-        return buildingStockWrapper.getBuildingStock();
     }
 
     /**

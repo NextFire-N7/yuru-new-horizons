@@ -9,11 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.Array;
 
-import moe.yuru.newhorizons.AssetHelper;
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
+import moe.yuru.newhorizons.utils.AssetHelper;
+import moe.yuru.newhorizons.utils.BuildingStockWrapper;
 
 /**
  * Building character {@link Stage}.
@@ -35,7 +36,7 @@ public class BuildingCharacterStage extends Stage {
      * @param game the game instance
      */
     public BuildingCharacterStage(YuruNewHorizons game) {
-        this(game, randomCharaDontRepeat(game.getBuildingStock()));
+        this(game, randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
     }
 
     /**
@@ -80,7 +81,7 @@ public class BuildingCharacterStage extends Stage {
                 charaImage.remove();
                 charaTexture.dispose();
                 charaSound.dispose();
-                setChara(randomCharaDontRepeat(game.getBuildingStock()));
+                setChara(randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
                 addRandomCharaListener();
                 playCharaSound();
             }
@@ -117,13 +118,13 @@ public class BuildingCharacterStage extends Stage {
      * @param buildingStock the building stock of the game
      * @return a building model
      */
-    private static Building randomCharaDontRepeat(ObjectMap<String, Building> buildingStock) {
+    private static Building randomCharaDontRepeat(Array<Building> buildingStock) {
         int index;
         do {
             index = random.nextInt(buildingStock.size);
         } while (index == lastNb);
         lastNb = index;
-        return buildingStock.values().toArray().get(index); // Yes.
+        return buildingStock.get(index);
     }
 
     /**
