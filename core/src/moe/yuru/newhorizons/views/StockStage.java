@@ -41,7 +41,7 @@ public class StockStage extends Stage {
         addActor(screenTable);
         screenTable.pad(20);
 
-        screenTable.add(getStockPane());
+        screenTable.add(getStockPane()).grow();
 
         screenTable.row();
         VisTextButton backButton = new VisTextButton("Back");
@@ -70,6 +70,7 @@ public class StockStage extends Stage {
      */
     private VisScrollPane getStockPane() {
         VisTable stockTable = new VisTable();
+        stockTable.defaults().height(400).width(300).pad(30);
         VisScrollPane stockPane = new VisScrollPane(stockTable);
 
         ObjectMap<Faction, Array<Building>> buildingStockMap = BuildingStockWrapper.getBuildingStockFactionMap();
@@ -77,9 +78,8 @@ public class StockStage extends Stage {
         for (Faction faction : Faction.values()) {
             for (Building building : buildingStockMap.get(faction)) {
                 VisTable buildingCell = getBuildingCell(building);
-                stockTable.defaults().height(300).width(250).pad(5);
                 stockTable.add(buildingCell);
-                if (++i == 4) {
+                if (++i == 3) {
                     stockTable.row();
                     i = 0;
                 }
@@ -121,7 +121,11 @@ public class StockStage extends Stage {
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
         cell.setSize(200, 200);
-        cell.add(new VisLabel(building.getId()));
+        cell.add(new VisLabel(building.getLastName() + " " + building.getFirstName()));
+        cell.row();
+        cell.add(new VisLabel(building.getFaction().toString()));
+        cell.row();
+        cell.add(new VisLabel(building.getFunction()));
         cell.row();
         Texture icon = AssetHelper.getIconTexture(building);
         textures.add(icon);
