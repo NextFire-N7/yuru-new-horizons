@@ -15,9 +15,9 @@ public class Town {
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
-    private Building toPlace;
     private Float coinsPerSecond;
     private ObjectMap<Faction, Float> resourcesPerSecond;
+    private Building toPlace;
 
     /**
      * @param mapName name of the town map
@@ -27,6 +27,8 @@ public class Town {
         this.mapName = mapName;
         buildings = new Array<>();
         resources = new ObjectMap<>();
+        coinsPerSecond = 0f;
+        resourcesPerSecond = new ObjectMap<>();
         toPlace = null;
 
         // Starting resources
@@ -51,6 +53,7 @@ public class Town {
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
         buildings.add(new BuildingInstance(toPlace, x, y));
         toPlace = null;
+        updatePerSecond();
         gameModel.notifyListeners(new Event(this, "validated", instance));
     }
 
@@ -62,7 +65,7 @@ public class Town {
     public void updateBalance(float delta) {
         addCoins(delta * coinsPerSecond);
         for (Faction faction : Faction.values()) {
-            addResources(faction, delta * resourcesPerSecond.get(faction));
+            addResources(faction, delta * resourcesPerSecond.get(faction, 0f));
         }
     }
 
@@ -71,13 +74,10 @@ public class Town {
      */
     public void updatePerSecond() {
         coinsPerSecond = 0f;
-        for (BuildingInstance instance : buildings) {
-            coinsPerSecond += instance.getStats().getCoinsPerSecond();
-        }
-
         resourcesPerSecond = new ObjectMap<>();
         float rpspf;
         for (BuildingInstance instance : buildings) {
+            coinsPerSecond += instance.getStats().getCoinsPerSecond();
             rpspf = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
             rpspf += instance.getStats().getResourcesPerSecond();
             resourcesPerSecond.put(instance.getModel().getFaction(), rpspf);
