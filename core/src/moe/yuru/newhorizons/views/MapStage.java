@@ -65,6 +65,22 @@ public class MapStage extends Stage implements Listener {
         }
     }
 
+    @Override
+    public void processEvent(Event evt) {
+        if (evt.getSource() == game.getGameModel().getTown()) {
+            switch (evt.getName()) {
+            case "toPlace":
+                setToPlace((Building) evt.getObject());
+                break;
+            case "validated":
+                addInstanceActor((BuildingInstance) evt.getObject());
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
     /**
      * Adds the actor for the given {@link BuildingInstance} to the map.
      * 
@@ -103,20 +119,6 @@ public class MapStage extends Stage implements Listener {
                 }
             }
         });
-    }
-
-    @Override
-    public void processEvent(Event evt) {
-        switch (evt.getName()) {
-        case "toPlace":
-            setToPlace((Building) evt.getObject());
-            break;
-        case "validated":
-            addInstanceActor((BuildingInstance) evt.getObject());
-            break;
-        default:
-            break;
-        }
     }
 
 }
