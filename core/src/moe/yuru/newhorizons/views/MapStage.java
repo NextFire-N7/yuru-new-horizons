@@ -14,13 +14,13 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.BuildingInstance;
 import moe.yuru.newhorizons.utils.AssetHelper;
-import moe.yuru.newhorizons.utils.GameEvent;
-import moe.yuru.newhorizons.utils.GameListener;
+import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.Listener;
 
 /**
  * Town buildings vizualisation {@link Stage}.
  */
-public class MapStage extends Stage implements GameListener {
+public class MapStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
@@ -39,11 +39,11 @@ public class MapStage extends Stage implements GameListener {
         textures = new Array<>();
         mouse_position = new Vector3();
 
-        for (BuildingInstance instance : game.getModel().getTown().getBuildings()) {
+        for (BuildingInstance instance : game.getGameModel().getTown().getBuildings()) {
             addInstanceActor(instance);
         }
 
-        game.getModel().getTown().addListener(this);
+        game.getGameModel().addListener(this);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MapStage extends Stage implements GameListener {
                 super.clicked(event, x, y);
                 if (mapArea.contains(x, y)) {
                     removeListener(this);
-                    game.getModel().getTown().validateConstruction(x - toPlaceImage.getWidth() / 2,
+                    game.getGameModel().getTown().validateConstruction(x - toPlaceImage.getWidth() / 2,
                             y - toPlaceImage.getHeight() / 2);
                     toPlaceImage.remove();
                     toPlaceImage = null;
@@ -106,7 +106,7 @@ public class MapStage extends Stage implements GameListener {
     }
 
     @Override
-    public void processEvent(GameEvent evt) {
+    public void processEvent(Event evt) {
         switch (evt.getName()) {
         case "toPlace":
             setToPlace((Building) evt.getObject());

@@ -3,21 +3,14 @@ package moe.yuru.newhorizons.models;
 /**
  * Solo {@link GameModel}.
  */
-public class GameSolo implements GameModel {
+public class GameSolo extends GameModel {
 
-    private Town town;
-
-    public GameSolo(Town town) {
-        this.town = town;
+    public GameSolo(String mapName) {
+        super(mapName);
     }
 
     @Override
     public void updateEnemy(float delta) {
-    }
-
-    @Override
-    public Town getTown() {
-        return town;
     }
 
 }

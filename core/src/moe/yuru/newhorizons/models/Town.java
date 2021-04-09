@@ -3,31 +3,31 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
-import moe.yuru.newhorizons.utils.GameEvent;
-import moe.yuru.newhorizons.utils.GameListener;
-import moe.yuru.newhorizons.utils.GameNotifier;
+import moe.yuru.newhorizons.utils.Event;
 
 /**
  * Town model.
  */
-public class Town implements GameNotifier {
+public class Town {
 
+    private GameModel gameModel;
     private String mapName;
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
     private Building toPlace;
-    private Array<GameListener> listeners;
+    private Float coinsPerSecond;
+    private ObjectMap<Faction, Float> resourcesPerSecond;
 
     /**
      * @param mapName name of the town map
      */
-    public Town(String mapName) {
+    public Town(GameModel gameModel, String mapName) {
+        this.gameModel = gameModel;
         this.mapName = mapName;
         buildings = new Array<>();
         resources = new ObjectMap<>();
         toPlace = null;
-        listeners = new Array<>();
 
         // Starting resources
         coins = 10000f;
@@ -51,7 +51,7 @@ public class Town implements GameNotifier {
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
         buildings.add(new BuildingInstance(toPlace, x, y));
         toPlace = null;
-        nofify(new GameEvent(this, "validated", instance));
+        gameModel.notifyListeners(new Event(this, "validated", instance));
     }
 
     /**
@@ -60,21 +60,27 @@ public class Town implements GameNotifier {
      * @param delta last frametime
      */
     public void updateBalance(float delta) {
-        for (BuildingInstance building : buildings) {
-            addCoins(delta * building.getStats().getCoinsPerSecond());
-            addResources(building.getModel().getFaction(), delta * building.getStats().getResourcesPerSecond());
+        addCoins(delta * coinsPerSecond);
+        for (Faction faction : Faction.values()) {
+            addResources(faction, delta * resourcesPerSecond.get(faction));
         }
     }
 
     /**
-     * Sends an event to all registered listeners.
-     * 
-     * @param name       of the event
-     * @param attachment any object to be attached
+     * Updates total town coins and resources per second
      */
-    private void nofify(GameEvent event) {
-        for (GameListener listener : listeners) {
-            listener.processEvent(event);
+    public void updatePerSecond() {
+        coinsPerSecond = 0f;
+        for (BuildingInstance instance : buildings) {
+            coinsPerSecond += instance.getStats().getCoinsPerSecond();
+        }
+
+        resourcesPerSecond = new ObjectMap<>();
+        float rpspf;
+        for (BuildingInstance instance : buildings) {
+            rpspf = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
+            rpspf += instance.getStats().getResourcesPerSecond();
+            resourcesPerSecond.put(instance.getModel().getFaction(), rpspf);
         }
     }
 
@@ -117,7 +123,7 @@ public class Town implements GameNotifier {
      * @param faction {@link Faction}
      * @return {@code faction} ressource balance
      */
-    public Float getResources(Faction faction) {
+    public float getResources(Faction faction) {
         return resources.get(faction);
     }
 
@@ -143,14 +149,7 @@ public class Town implements GameNotifier {
      */
     public void setToPlace(Building building) {
         toPlace = building;
-        nofify(new GameEvent(this, "toPlace", toPlace));
-    }
-
-    /**
-     * @param listener to be registered
-     */
-    public void addListener(GameListener listener) {
-        listeners.add(listener);
+        gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
     }
 
 }

@@ -27,7 +27,7 @@ public class YuruNewHorizons extends Game {
 
     private FreeTypeFontGenerator fontGenerator;
 
-    private GameModel model;
+    private GameModel gameModel;
     private GameScreen gameScreen;
 
     private Float musicVolume;
@@ -98,15 +98,15 @@ public class YuruNewHorizons extends Game {
     /**
      * @return the {@link GameModel} of the current game
      */
-    public GameModel getModel() {
-        return model;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
     /**
-     * @param model the {@link GameModel} of the current game
+     * @param gameModel the {@link GameModel} of the current game
      */
-    public void setModel(GameModel model) {
-        this.model = model;
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     public GameScreen getGameScreen() {

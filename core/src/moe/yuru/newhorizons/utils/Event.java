@@ -3,7 +3,7 @@ package moe.yuru.newhorizons.utils;
 /**
  * Simple event in the game.
  */
-public class GameEvent {
+public class Event {
 
     private Object source;
     private String name;
@@ -16,7 +16,7 @@ public class GameEvent {
      * @param name   of the event
      * @param object any attachement, can be {@code null}
      */
-    public GameEvent(Object source, String name, Object object) {
+    public Event(Object source, String name, Object object) {
         this.source = source;
         this.name = name;
         this.object = object;

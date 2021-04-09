@@ -26,7 +26,7 @@ public class GameScreen implements Screen {
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
 
-        game.setModel(new GameSolo(new Town("east-a1"))); // TODO: for debug purpose heh
+        game.setGameModel(new GameSolo("east-a1")); // TODO: for debug purpose heh
         game.setGameScreen(this);
 
         gameStage = new GameStage(game);
@@ -49,8 +49,8 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.getModel().getTown().updateBalance(delta);
-        game.getModel().updateEnemy(delta);
+        game.getGameModel().getTown().updateBalance(delta);
+        game.getGameModel().updateEnemy(delta);
 
         gameStage.act(delta);
         gameStage.draw();
