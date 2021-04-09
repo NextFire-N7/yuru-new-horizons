@@ -1,8 +1,5 @@
 package moe.yuru.newhorizons.views;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,11 +14,13 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.BuildingInstance;
 import moe.yuru.newhorizons.utils.AssetHelper;
+import moe.yuru.newhorizons.utils.GameEvent;
+import moe.yuru.newhorizons.utils.GameListener;
 
 /**
  * Town buildings vizualisation {@link Stage}.
  */
-public class MapStage extends Stage implements PropertyChangeListener {
+public class MapStage extends Stage implements GameListener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
@@ -44,7 +43,7 @@ public class MapStage extends Stage implements PropertyChangeListener {
             addInstanceActor(instance);
         }
 
-        game.getModel().getTown().addPropertyChangeListener(this);
+        game.getModel().getTown().addListener(this);
     }
 
     @Override
@@ -107,13 +106,13 @@ public class MapStage extends Stage implements PropertyChangeListener {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()) {
+    public void processEvent(GameEvent evt) {
+        switch (evt.getName()) {
         case "toPlace":
-            setToPlace((Building) evt.getNewValue());
+            setToPlace((Building) evt.getObject());
             break;
         case "validated":
-            addInstanceActor((BuildingInstance) evt.getNewValue());
+            addInstanceActor((BuildingInstance) evt.getObject());
             break;
         default:
             break;

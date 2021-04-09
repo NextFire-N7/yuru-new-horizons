@@ -1,22 +1,23 @@
 package moe.yuru.newhorizons.models;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+
+import moe.yuru.newhorizons.utils.GameEvent;
+import moe.yuru.newhorizons.utils.GameListener;
+import moe.yuru.newhorizons.utils.GameNotifier;
 
 /**
  * Town model.
  */
-public class Town {
+public class Town implements GameNotifier {
 
     private String mapName;
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
     private Building toPlace;
-    private PropertyChangeSupport pcs;
+    private Array<GameListener> listeners;
 
     /**
      * @param mapName name of the town map
@@ -26,7 +27,7 @@ public class Town {
         buildings = new Array<>();
         resources = new ObjectMap<>();
         toPlace = null;
-        pcs = new PropertyChangeSupport(this);
+        listeners = new Array<>();
 
         // Starting resources
         coins = 10000f;
@@ -50,7 +51,7 @@ public class Town {
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
         buildings.add(new BuildingInstance(toPlace, x, y));
         toPlace = null;
-        pcs.firePropertyChange("validated", null, instance);
+        nofify(new GameEvent(this, "validated", instance));
     }
 
     /**
@@ -62,6 +63,18 @@ public class Town {
         for (BuildingInstance building : buildings) {
             addCoins(delta * building.getStats().getCoinsPerSecond());
             addResources(building.getModel().getFaction(), delta * building.getStats().getResourcesPerSecond());
+        }
+    }
+
+    /**
+     * Sends an event to all registered listeners.
+     * 
+     * @param name       of the event
+     * @param attachment any object to be attached
+     */
+    private void nofify(GameEvent event) {
+        for (GameListener listener : listeners) {
+            listener.processEvent(event);
         }
     }
 
@@ -129,15 +142,15 @@ public class Town {
      * @param building to be placed
      */
     public void setToPlace(Building building) {
-        pcs.firePropertyChange("toPlace", toPlace, building);
         toPlace = building;
+        nofify(new GameEvent(this, "toPlace", toPlace));
     }
 
     /**
      * @param listener to be registered
      */
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        pcs.addPropertyChangeListener(listener);
+    public void addListener(GameListener listener) {
+        listeners.add(listener);
     }
 
 }
