@@ -1,5 +1,8 @@
 package moe.yuru.newhorizons.models;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -12,7 +15,8 @@ public class Town {
     private Array<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
-    private Building toConstruct;
+    private Building toPlace;
+    private PropertyChangeSupport pcs;
 
     /**
      * @param mapName name of the town map
@@ -21,7 +25,8 @@ public class Town {
         this.mapName = mapName;
         buildings = new Array<>();
         resources = new ObjectMap<>();
-        toConstruct = null;
+        toPlace = null;
+        pcs = new PropertyChangeSupport(this);
 
         // Starting resources
         coins = 10000f;
@@ -31,24 +36,25 @@ public class Town {
     }
 
     /**
-     * Validate current location for the pending construction and create and add the
-     * associated {@link BuildingInstance} to the town.
+     * Validates current location for the pending construction and create and add
+     * the associated {@link BuildingInstance} to the town. Fires an event when
+     * done.
      * 
      * @param x X axis position
      * @param y Y axis position
      * @return the {@link BuildingInstance} created
      */
-    public BuildingInstance validateConstruction(float x, float y) {
-        addCoins(toConstruct.getStats(1).getCoinCost());
-        addResources(toConstruct.getFaction(), toConstruct.getStats(1).getResourcesCost());
-        BuildingInstance instance = new BuildingInstance(toConstruct, x, y);
-        buildings.add(new BuildingInstance(toConstruct, x, y));
-        toConstruct = null;
-        return instance;
+    public void validateConstruction(float x, float y) {
+        addCoins(toPlace.getStats(1).getCoinCost());
+        addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
+        BuildingInstance instance = new BuildingInstance(toPlace, x, y);
+        buildings.add(new BuildingInstance(toPlace, x, y));
+        toPlace = null;
+        pcs.firePropertyChange("validated", null, instance);
     }
 
     /**
-     * Update coins and resources balance since the last frame
+     * Updates coins and resources balance since the last frame
      * 
      * @param delta last frametime
      */
@@ -63,7 +69,7 @@ public class Town {
      * @return the name of the town map
      */
     public String getMapName() {
-        return this.mapName;
+        return mapName;
     }
 
     /**
@@ -113,15 +119,25 @@ public class Town {
     /**
      * @return current {@link Building} to be placed
      */
-    public Building getToConstruct() {
-        return toConstruct;
+    public Building getToPlace() {
+        return toPlace;
     }
 
     /**
+     * Sets a pending building to be placed. Fires an event when done.
+     * 
      * @param building to be placed
      */
-    public void setToConstruct(Building building) {
-        toConstruct = building;
+    public void setToPlace(Building building) {
+        pcs.firePropertyChange("toPlace", toPlace, building);
+        toPlace = building;
+    }
+
+    /**
+     * @param listener to be registered
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
     }
 
 }

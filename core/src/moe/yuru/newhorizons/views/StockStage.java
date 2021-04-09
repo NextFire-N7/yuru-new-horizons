@@ -87,7 +87,7 @@ public class StockStage extends Stage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.getModel().getTown().setToConstruct(building);
+                        game.getModel().getTown().setToPlace(building);
                         game.getScreen().dispose();
                         game.setScreen(game.getGameScreen());
                     }
@@ -113,7 +113,7 @@ public class StockStage extends Stage {
     }
 
     /**
-     * Return a "card" for the given {@link Building}
+     * Returns a "card" for the given {@link Building}
      * 
      * @param building from stock
      * @return a {@link VisTable} which acts as an infocard

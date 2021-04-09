@@ -125,7 +125,7 @@ public class YuruNewHorizons extends Game {
     }
 
     /**
-     * Set the music volume of the game.
+     * Sets the music volume of the game.
      * 
      * @param musicVolume a {@link Float} between {@code 0.0f} and {@code 1.0f}
      */
@@ -141,7 +141,7 @@ public class YuruNewHorizons extends Game {
     }
 
     /**
-     * Set the sound effects volume of the game.
+     * Sets the sound effects volume of the game.
      * 
      * @param soundVolume a {@link Float} between {@code 0.0f} and {@code 1.0f}
      */

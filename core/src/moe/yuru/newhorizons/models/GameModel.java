@@ -6,7 +6,7 @@ package moe.yuru.newhorizons.models;
 public interface GameModel {
 
     /**
-     * Update ennemy statistics since last frame.
+     * Updates ennemy statistics since last frame.
      * 
      * @param delta last frametime
      */

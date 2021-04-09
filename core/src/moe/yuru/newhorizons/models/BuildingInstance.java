@@ -28,6 +28,8 @@ public class BuildingInstance {
     }
 
     /**
+     * Shortcut to {@code this.getModel().getStats(this.getLevel())}
+     * 
      * @return the building stats for its current {@link BuildingInstance#level}
      */
     public BuildingStats getStats() {

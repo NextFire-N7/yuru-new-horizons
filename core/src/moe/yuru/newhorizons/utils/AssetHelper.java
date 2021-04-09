@@ -20,7 +20,7 @@ public class AssetHelper {
     }
 
     /**
-     * Get the character {@link Texture} of the given {@link Building}.
+     * Gets the character {@link Texture} of the given {@link Building}.
      * 
      * @param model the building model
      * @return the {@link Texture} of its character
@@ -32,7 +32,7 @@ public class AssetHelper {
     }
 
     /**
-     * Get the cover background {@link Texture} of the given {@link Building}.
+     * Gets the cover background {@link Texture} of the given {@link Building}.
      * 
      * @param model the building model
      * @return the {@link Texture} of its cover background
@@ -44,7 +44,7 @@ public class AssetHelper {
     }
 
     /**
-     * Get the icon {@link Texture} of the given {@link Building}.
+     * Gets the icon {@link Texture} of the given {@link Building}.
      * 
      * @param model the building model
      * @return the {@link Texture} of its icon
@@ -56,7 +56,7 @@ public class AssetHelper {
     }
 
     /**
-     * Get the character {@link Sound} of the given {@link Building}.
+     * Gets the character {@link Sound} of the given {@link Building}.
      * 
      * @param model the building model
      * @return the {@link Sound} of its character
@@ -66,7 +66,7 @@ public class AssetHelper {
     }
 
     /**
-     * Get the map {@link Texture} of the given {@link Town}.
+     * Gets the map {@link Texture} of the given {@link Town}.
      * 
      * @param town the town
      * @return the {@link Texture} of its map

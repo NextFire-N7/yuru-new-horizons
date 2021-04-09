@@ -31,7 +31,7 @@ public class BuildingCharacterStage extends Stage {
     private Sound charaSound;
 
     /**
-     * Create a random character stage.
+     * Creates a random character stage.
      * 
      * @param game the game instance
      */
@@ -40,7 +40,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Create a character stage for the specified building in input.
+     * Creates a character stage for the specified building in input.
      * 
      * @param game          the game instance
      * @param buildingModel building of the character
@@ -59,7 +59,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Repeat character sound on each click on the image.
+     * Repeats character sound on each click on the image.
      */
     public void addRepeatCharaSoundListener() {
         this.charaImage.addListener(new ClickListener() {
@@ -72,7 +72,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Set a random character on each click on the image.
+     * Sets a random character on each click on the image.
      */
     public void addRandomCharaListener() {
         this.charaImage.addListener(new ClickListener() {
@@ -91,7 +91,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Play the character sound.
+     * Plays the character sound.
      */
     public void playCharaSound() {
         charaSound.stop();
@@ -99,7 +99,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Set attributs of the given character to the stage.
+     * Sets attributs of the given character to the stage.
      * 
      * @param buildingModel building of the character
      */
@@ -115,7 +115,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Get random building without repetition.
+     * Gets random building without repetition.
      * 
      * @param buildingStock the building stock of the game
      * @return a building model
@@ -130,7 +130,7 @@ public class BuildingCharacterStage extends Stage {
     }
 
     /**
-     * Fit the image nicely on the stage.
+     * Fits the image nicely on the stage.
      * 
      * @param image the image which size is to be adjusted
      */

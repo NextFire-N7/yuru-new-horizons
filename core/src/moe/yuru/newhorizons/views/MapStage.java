@@ -1,5 +1,8 @@
 package moe.yuru.newhorizons.views;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,12 +21,12 @@ import moe.yuru.newhorizons.utils.AssetHelper;
 /**
  * Town buildings vizualisation {@link Stage}.
  */
-public class MapStage extends Stage {
+public class MapStage extends Stage implements PropertyChangeListener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
     private Array<Texture> textures;
-    private Image toBePlacedImage;
+    private Image toPlaceImage;
     private Vector3 mouse_position;
 
     /**
@@ -33,26 +36,25 @@ public class MapStage extends Stage {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         mapArea = new Rectangle(0, 144, 768, 576);
-        toBePlacedImage = null;
+        toPlaceImage = null;
         textures = new Array<>();
         mouse_position = new Vector3();
 
         for (BuildingInstance instance : game.getModel().getTown().getBuildings()) {
             addInstanceActor(instance);
         }
+
+        game.getModel().getTown().addPropertyChangeListener(this);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (toBePlacedImage == null && game.getModel().getTown().getToConstruct() != null) {
-            newToBePlaced(game.getModel().getTown().getToConstruct());
-        }
-        if (toBePlacedImage != null) {
+        if (toPlaceImage != null) {
             mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             game.getViewport().unproject(mouse_position);
-            toBePlacedImage.setPosition(mouse_position.x - toBePlacedImage.getWidth() / 2,
-                    mouse_position.y - toBePlacedImage.getHeight() / 2);
+            toPlaceImage.setPosition(mouse_position.x - toPlaceImage.getWidth() / 2,
+                    mouse_position.y - toPlaceImage.getHeight() / 2);
         }
     }
 
@@ -65,7 +67,7 @@ public class MapStage extends Stage {
     }
 
     /**
-     * Add the actor for the given {@link BuildingInstance} to the map.
+     * Adds the actor for the given {@link BuildingInstance} to the map.
      * 
      * @param instance a town {@link BuildingInstance}
      */
@@ -79,30 +81,43 @@ public class MapStage extends Stage {
     }
 
     /**
-     * Create the moving on screen building for position confirmation.
+     * Creates the moving on screen building for position confirmation.
      * 
      * @param building the {@link Building} to be placed
      */
-    private void newToBePlaced(Building building) {
+    private void setToPlace(Building building) {
         Texture iconTexture = AssetHelper.getIconTexture(building);
-        toBePlacedImage = new Image(iconTexture);
-        toBePlacedImage.setSize(building.getSizeX(), building.getSizeY());
-        addActor(toBePlacedImage);
+        toPlaceImage = new Image(iconTexture);
+        toPlaceImage.setSize(building.getSizeX(), building.getSizeY());
+        addActor(toPlaceImage);
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if (mapArea.contains(x, y)) {
                     removeListener(this);
-                    BuildingInstance instance = game.getModel().getTown().validateConstruction(
-                            x - toBePlacedImage.getWidth() / 2, y - toBePlacedImage.getHeight() / 2);
-                    toBePlacedImage.remove();
-                    toBePlacedImage = null;
+                    game.getModel().getTown().validateConstruction(x - toPlaceImage.getWidth() / 2,
+                            y - toPlaceImage.getHeight() / 2);
+                    toPlaceImage.remove();
+                    toPlaceImage = null;
                     iconTexture.dispose();
-                    addInstanceActor(instance);
                 }
             }
         });
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+        case "toPlace":
+            setToPlace((Building) evt.getNewValue());
+            break;
+        case "validated":
+            addInstanceActor((BuildingInstance) evt.getNewValue());
+            break;
+        default:
+            break;
+        }
     }
 
 }

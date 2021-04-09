@@ -14,7 +14,7 @@ import moe.yuru.newhorizons.models.Faction;
 public class BuildingStockWrapper {
 
     /**
-     * Deserialize the {@code building_stock.json} to its {@link Array}
+     * Deserializes the {@code building_stock.json} to its {@link Array}
      * buildingStock.
      */
     @SuppressWarnings("unchecked")
