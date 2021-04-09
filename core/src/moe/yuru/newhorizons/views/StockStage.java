@@ -120,6 +120,7 @@ public class StockStage extends Stage {
      */
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
+        cell.debug();
         cell.setSize(200, 200);
         cell.add(new VisLabel(building.getLastName() + " " + building.getFirstName()));
         cell.row();
@@ -133,7 +134,7 @@ public class StockStage extends Stage {
         cell.add(image).size(100, 100);
         cell.row();
         VisTable statsCell = new VisTable();
-        cell.add(statsCell).grow();
+        cell.add(statsCell);
         statsCell.add(new VisLabel(building.getStats(1).getCoinCost() + " coins"));
         statsCell.row();
         statsCell.add(new VisLabel(building.getStats(1).getResourcesCost() + " resources"));
