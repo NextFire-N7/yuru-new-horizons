@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameSolo;
-import moe.yuru.newhorizons.models.Town;
 
 /**
  * Game {@link Screen}. This is where the player will spend most of his time.
