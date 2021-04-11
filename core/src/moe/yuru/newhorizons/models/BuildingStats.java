@@ -12,8 +12,10 @@ public class BuildingStats {
     /** Raw number, the type of the resource depends of the current faction */
     private float resourcesPerSecond;
 
+    /**
+     * Do not use. It is defined for the json deserializer.
+     */
     public BuildingStats() {
-        // Must be defined for the json deserializer.
     }
 
     /**

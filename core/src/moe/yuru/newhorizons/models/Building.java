@@ -17,8 +17,10 @@ public class Building {
     /** Contains the stats per level */
     private IntMap<BuildingStats> stats;
 
+    /**
+     * Do not use. It is defined for the json deserializer.
+     */
     public Building() {
-        // Must be defined for the json deserializer.
     }
 
     /**
