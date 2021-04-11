@@ -13,11 +13,13 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
+import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.Listener;
 
 /**
  * GameScreen {@link Stage}.
  */
-public class GameStage extends Stage {
+public class GameStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private VisLabel coinsLabel;
@@ -26,6 +28,7 @@ public class GameStage extends Stage {
     private VisLabel industryLabel;
     private VisLabel politicsLabel;
     private Texture mapTexture;
+    private VisTextButton constructButton;
 
     /**
      * @param game the game instance
@@ -33,27 +36,18 @@ public class GameStage extends Stage {
     public GameStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
-
-        VisTable screenTable = new VisTable();
-        screenTable.setFillParent(true);
-        addActor(screenTable);
-
-        VisTable leftTable = new VisTable();
-        screenTable.add(leftTable).left().size(768, 720);
+        game.getGameModel().addListener(this);
 
         mapTexture = AssetHelper.getMapTexture(game.getGameModel().getTown());
         TextureRegion mapTextureRegion = new TextureRegion(mapTexture, 480, 375, 1680, 1375);
         Image mapImage = new Image(mapTextureRegion);
-        leftTable.add(mapImage).size(768, 576);
-
-        leftTable.row();
-        VisTable leftBottomTable = new VisTable();
-        leftTable.add(leftBottomTable).grow();
-
-        leftBottomTable.add(new VisLabel("Placeholder."));
+        mapImage.setBounds(0, 144, 768, 576);
+        addActor(mapImage);
 
         VisTable rightTable = new VisTable();
-        screenTable.add(rightTable).right().grow();
+        addActor(rightTable);
+        rightTable.setSize(512, 720);
+        rightTable.setPosition(768, 0);
         rightTable.defaults().grow().pad(10);
 
         VisTable statsTable = new VisTable();
@@ -84,10 +78,10 @@ public class GameStage extends Stage {
 
         rightTable.row();
         VisTable menuTable = new VisTable();
-        rightTable.add(menuTable).padBottom(10);
+        rightTable.add(menuTable);
         menuTable.bottom();
 
-        VisTextButton constructButton = new VisTextButton("Construct");
+        constructButton = new VisTextButton("Construct");
         menuTable.add(constructButton);
 
         constructButton.addListener(new ClickListener() {
@@ -113,6 +107,19 @@ public class GameStage extends Stage {
     public void dispose() {
         super.dispose();
         mapTexture.dispose();
+    }
+
+    @Override
+    public void processEvent(Event event) {
+        if (event.getSource() == game.getGameModel().getTown()) {
+            if (event.getName().equals("toPlace")) {
+                if (event.getValue() != null) {
+                    constructButton.setVisible(false);
+                } else {
+                    constructButton.setVisible(true);
+                }
+            }
+        }
     }
 
 }

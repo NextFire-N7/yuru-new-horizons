@@ -45,7 +45,7 @@ public class StockStage extends Stage {
 
         screenTable.row();
         VisTextButton backButton = new VisTextButton("Back");
-        screenTable.add(backButton);
+        screenTable.add(backButton).pad(10);
 
         backButton.addListener(new ClickListener() {
             @Override

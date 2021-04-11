@@ -7,19 +7,19 @@ public class Event {
 
     private Object source;
     private String name;
-    private Object object;
+    private Object value;
 
     /**
      * Creates a new event to be send to listeners.
      * 
      * @param source of the event (probably {@code this})
      * @param name   of the event
-     * @param object any attachement, can be {@code null}
+     * @param value  any attachement, can be {@code null}
      */
-    public Event(Object source, String name, Object object) {
+    public Event(Object source, String name, Object value) {
         this.source = source;
         this.name = name;
-        this.object = object;
+        this.value = value;
     }
 
     /**
@@ -37,10 +37,10 @@ public class Event {
     }
 
     /**
-     * @return the attached object
+     * @return the attached value
      */
-    public Object getObject() {
-        return object;
+    public Object getValue() {
+        return value;
     }
 
 }

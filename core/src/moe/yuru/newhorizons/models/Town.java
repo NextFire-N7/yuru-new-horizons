@@ -53,6 +53,7 @@ public class Town {
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
         buildings.add(new BuildingInstance(toPlace, x, y));
         toPlace = null;
+        gameModel.notifyListeners(new Event(this, "toPlace", null));
         updatePerSecond();
         gameModel.notifyListeners(new Event(this, "validated", instance));
     }

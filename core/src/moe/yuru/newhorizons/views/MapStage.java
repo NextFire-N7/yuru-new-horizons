@@ -66,14 +66,16 @@ public class MapStage extends Stage implements Listener {
     }
 
     @Override
-    public void processEvent(Event evt) {
-        if (evt.getSource() == game.getGameModel().getTown()) {
-            switch (evt.getName()) {
+    public void processEvent(Event event) {
+        if (event.getSource() == game.getGameModel().getTown()) {
+            switch (event.getName()) {
             case "toPlace":
-                setToPlace((Building) evt.getObject());
+                if (event.getValue() != null) {
+                    setToPlace((Building) event.getValue());
+                }
                 break;
             case "validated":
-                addInstanceActor((BuildingInstance) evt.getObject());
+                addInstanceActor((BuildingInstance) event.getValue());
                 break;
             default:
                 break;

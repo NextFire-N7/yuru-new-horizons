@@ -11,7 +11,7 @@ import moe.yuru.newhorizons.models.Faction;
 /**
  * Wrapper class for the building stock json deserialization.
  */
-public class BuildingStockWrapper {
+public final class BuildingStockWrapper {
 
     /**
      * Deserializes the {@code building_stock.json} to its {@link Array}
@@ -37,7 +37,7 @@ public class BuildingStockWrapper {
      */
     public static ObjectMap<String, Building> getBuildingStockIdMap() {
         ObjectMap<String, Building> buildingsMap = new ObjectMap<>();
-        for (Building building : BuildingStockWrapper.getBuildingStock()) {
+        for (Building building : buildingStock) {
             buildingsMap.put(building.getId(), building);
         }
         return buildingsMap;
@@ -48,7 +48,7 @@ public class BuildingStockWrapper {
      */
     public static ObjectMap<Faction, Array<Building>> getBuildingStockFactionMap() {
         ObjectMap<Faction, Array<Building>> buildingsMap = new ObjectMap<>();
-        for (Building building : BuildingStockWrapper.getBuildingStock()) {
+        for (Building building : buildingStock) {
             Array<Building> factionArray = buildingsMap.get(building.getFaction(), new Array<>());
             factionArray.add(building);
             buildingsMap.put(building.getFaction(), factionArray);

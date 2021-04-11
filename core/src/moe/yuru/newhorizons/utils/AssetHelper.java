@@ -11,7 +11,7 @@ import moe.yuru.newhorizons.models.Town;
 /**
  * Helper class, returns assets linked to models.
  */
-public class AssetHelper {
+public final class AssetHelper {
 
     private static final String CHARACTERS_PATH = "characters/";
     private static final String MAPS_PATH = "maps/";

@@ -1,15 +1,14 @@
 package moe.yuru.newhorizons.utils;
 
 /**
- * Can send GameEvents to registered {@link GameListener}s.
+ * Can send Events to previously registered {@link Listener}s.
  */
 public interface Notifier {
 
     /**
      * Sends an event to all registered listeners.
      * 
-     * @param name       of the event
-     * @param attachment any object to be attached
+     * @param event to be sent
      */
     public void notifyListeners(Event event);
 
