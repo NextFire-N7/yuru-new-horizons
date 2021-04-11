@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.ObjectSet;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisScrollPane;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -26,7 +27,7 @@ import moe.yuru.newhorizons.utils.BuildingStockWrapper;
 public class StockStage extends Stage {
 
     private YuruNewHorizons game;
-    private Array<Texture> textures;
+    private ObjectSet<Texture> textures;
 
     /**
      * @param game the game instance
@@ -34,7 +35,7 @@ public class StockStage extends Stage {
     public StockStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
-        textures = new Array<>();
+        textures = new ObjectSet<>();
 
         VisTable screenTable = new VisTable();
         screenTable.setFillParent(true);

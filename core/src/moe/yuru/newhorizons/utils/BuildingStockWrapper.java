@@ -14,8 +14,7 @@ import moe.yuru.newhorizons.models.Faction;
 public final class BuildingStockWrapper {
 
     /**
-     * Deserializes the {@code building_stock.json} to its {@link Array}
-     * buildingStock.
+     * Deserializes the {@code building_stock.json}.
      */
     @SuppressWarnings("unchecked")
     private static Array<Building> buildingStock = new Json().fromJson(Array.class, Building.class,
@@ -25,8 +24,7 @@ public final class BuildingStockWrapper {
     }
 
     /**
-     * @return the building stock array deserialized from
-     *         {@code building_stock.json}
+     * @return the building stock array
      */
     public static Array<Building> getBuildingStock() {
         return buildingStock;

@@ -1,7 +1,7 @@
 package moe.yuru.newhorizons.models;
 
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.ObjectSet;
 
 import moe.yuru.newhorizons.utils.Event;
 
@@ -12,7 +12,7 @@ public class Town {
 
     private GameModel gameModel;
     private String mapName;
-    private Array<BuildingInstance> buildings;
+    private ObjectSet<BuildingInstance> buildings;
     private float coins;
     private ObjectMap<Faction, Float> resources;
     private Float coinsPerSecond;
@@ -25,7 +25,7 @@ public class Town {
     public Town(GameModel gameModel, String mapName) {
         this.gameModel = gameModel;
         this.mapName = mapName;
-        buildings = new Array<>();
+        buildings = new ObjectSet<>();
         resources = new ObjectMap<>();
         coinsPerSecond = 0f;
         resourcesPerSecond = new ObjectMap<>();
@@ -93,9 +93,9 @@ public class Town {
     }
 
     /**
-     * @return the {@link BuildingInstance}s of this town as an {@link Array}
+     * @return the {@link BuildingInstance}s of this town
      */
-    public Array<BuildingInstance> getBuildings() {
+    public ObjectSet<BuildingInstance> getBuildings() {
         return buildings;
     }
 

@@ -1,19 +1,19 @@
 package moe.yuru.newhorizons.utils;
 
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectSet;
 
 /**
  * Can send Events to previously registered {@link Listener}s.
  */
 public abstract class Notifier {
 
-    private Array<Listener> listeners;
+    private ObjectSet<Listener> listeners;
 
     /**
-     * Initializes the listeners array.
+     * Initializes the listeners set.
      */
     public Notifier() {
-        listeners = new Array<>();
+        listeners = new ObjectSet<>();
     }
 
     /**
@@ -38,7 +38,7 @@ public abstract class Notifier {
      * @param listener to be unregistered
      */
     public void removeListener(Listener listener) {
-        listeners.removeValue(listener, true);
+        listeners.remove(listener);
     }
 
 }

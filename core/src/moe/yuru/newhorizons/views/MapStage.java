@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectSet;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
@@ -24,7 +24,7 @@ public class MapStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
-    private Array<Texture> textures;
+    private ObjectSet<Texture> textures;
     private Image toPlaceImage;
     private Vector3 mouse_position;
 
@@ -36,7 +36,7 @@ public class MapStage extends Stage implements Listener {
         this.game = game;
         mapArea = new Rectangle(0, 144, 768, 576);
         toPlaceImage = null;
-        textures = new Array<>();
+        textures = new ObjectSet<>();
         mouse_position = new Vector3();
 
         for (BuildingInstance instance : game.getGameModel().getTown().getBuildings()) {
