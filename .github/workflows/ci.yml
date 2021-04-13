@@ -89,7 +89,7 @@ jobs:
           java-version: 11
       - name: Cache html build
         if: github.event_name == 'push'
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.5
         with:
           path: html/build/dist
           key: ynh-html-${{ github.run_id }}
@@ -103,7 +103,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Restore cached html build
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.5
         with:
           path: html/build/dist
           key: ynh-html-${{ github.run_id }}
