@@ -2,13 +2,15 @@ package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ObjectSet;
+import com.kotcrab.vis.ui.widget.VisImageButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
@@ -25,7 +27,7 @@ public class MapStage extends Stage implements Listener {
     private YuruNewHorizons game;
     private Rectangle mapArea;
     private ObjectSet<Texture> textures;
-    private Image toPlaceImage;
+    private VisImageButton toPlaceButton;
     private Vector3 mouse_position;
 
     /**
@@ -35,7 +37,7 @@ public class MapStage extends Stage implements Listener {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         mapArea = new Rectangle(0, 144, 768, 576);
-        toPlaceImage = null;
+        toPlaceButton = null;
         textures = new ObjectSet<>();
         mouse_position = new Vector3();
 
@@ -49,11 +51,11 @@ public class MapStage extends Stage implements Listener {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (toPlaceImage != null) {
+        if (toPlaceButton != null) {
             mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             game.getViewport().unproject(mouse_position);
-            toPlaceImage.setPosition(mouse_position.x - toPlaceImage.getWidth() / 2,
-                    mouse_position.y - toPlaceImage.getHeight() / 2);
+            toPlaceButton.setPosition(mouse_position.x - toPlaceButton.getWidth() / 2,
+                    mouse_position.y - toPlaceButton.getHeight() / 2);
         }
     }
 
@@ -91,10 +93,10 @@ public class MapStage extends Stage implements Listener {
     private void addInstanceActor(BuildingInstance instance) {
         Texture iconTexture = AssetHelper.getIconTexture(instance.getModel());
         textures.add(iconTexture);
-        Image iconImage = new Image(iconTexture);
-        iconImage.setSize(instance.getModel().getSizeX(), instance.getModel().getSizeY());
-        iconImage.setPosition(instance.getPosX(), instance.getPosY());
-        addActor(iconImage);
+        VisImageButton button = new VisImageButton(new TextureRegionDrawable(new TextureRegion(iconTexture)));
+        button.setSize(instance.getModel().getSizeX(), instance.getModel().getSizeY());
+        button.setPosition(instance.getPosX(), instance.getPosY());
+        addActor(button);
     }
 
     /**
@@ -104,19 +106,19 @@ public class MapStage extends Stage implements Listener {
      */
     private void setToPlace(Building building) {
         Texture iconTexture = AssetHelper.getIconTexture(building);
-        toPlaceImage = new Image(iconTexture);
-        toPlaceImage.setSize(building.getSizeX(), building.getSizeY());
-        addActor(toPlaceImage);
+        toPlaceButton = new VisImageButton(new TextureRegionDrawable(new TextureRegion(iconTexture)));
+        toPlaceButton.setSize(building.getSizeX(), building.getSizeY());
+        addActor(toPlaceButton);
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if (mapArea.contains(x, y)) {
                     removeListener(this);
-                    game.getGameModel().getTown().validateConstruction(x - toPlaceImage.getWidth() / 2,
-                            y - toPlaceImage.getHeight() / 2);
-                    toPlaceImage.remove();
-                    toPlaceImage = null;
+                    game.getGameModel().getTown().validateConstruction(x - toPlaceButton.getWidth() / 2,
+                            y - toPlaceButton.getHeight() / 2);
+                    toPlaceButton.remove();
+                    toPlaceButton = null;
                     iconTexture.dispose();
                 }
             }
