@@ -122,7 +122,7 @@ public class MapStage extends Stage implements Listener {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if (mapArea.contains(x, y)) {
+                if (mapArea.contains(x + toPlaceButton.getWidth() / 2, y - toPlaceButton.getHeight() / 2)) {
                     removeListener(this);
                     game.getGameModel().getTown().validateConstruction(x - toPlaceButton.getWidth() / 2,
                             y - toPlaceButton.getHeight() / 2);
