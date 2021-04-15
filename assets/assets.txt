@@ -22,7 +22,7 @@ a:characters/shimarin_sound.mp3:characters/shimarin_sound-c13599a8c3203f0269f7a9
 i:characters/kanna_chara.png:characters/kanna_chara-750d3d594895d0f6a627f7b0272cecf5.png:29862:image/png:1
 i:characters/renchon_chara.png:characters/renchon_chara-39f91b30bc0a65d97e7a8afd5e45f5d7.png:531532:image/png:1
 a:characters/yui_sound.mp3:characters/yui_sound-b247e23f3323b495f01d870b8824ef70.mp3:19016:audio/mpeg:1
-a:characters/kanna_sound.mp3:characters/kanna_sound-c76b17d4c8df8593f1700471d842459b.mp3:19572:audio/mpeg:1
+a:characters/kanna_sound.mp3:characters/kanna_sound-6c76055bc6fcf1e7a838ab3dbbff98a3.mp3:32116:audio/mpeg:1
 i:characters/yui_icon.png:characters/yui_icon-aac01d5946431f9d811a276f26bf7cd6.png:21556:image/png:1
 t:building_stock.json:building_stock-7daa33ceec1241873972bf7721225411.json:6987:application/unknown:1
 d:maps:maps:0:application/unknown:1
