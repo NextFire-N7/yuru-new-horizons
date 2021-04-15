@@ -121,7 +121,6 @@ public class StockStage extends Stage {
      */
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
-        cell.debug();
         cell.setSize(200, 200);
         cell.add(new VisLabel(building.getLastName() + " " + building.getFirstName()));
         cell.row();
