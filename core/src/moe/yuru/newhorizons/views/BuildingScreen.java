@@ -1,6 +1,7 @@
 package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,6 +29,17 @@ public class BuildingScreen implements Screen {
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(buildingCharacterStage);
+
+        // TODO: for debug...
+        inputMultiplexer.addProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                super.touchDown(screenX, screenY, pointer, button);
+                dispose();
+                game.setScreen(game.getGameScreen());
+                return true;
+            }
+        });
     }
 
     @Override
