@@ -15,14 +15,11 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 public class MainMenuScreen implements Screen {
 
     private YuruNewHorizons game;
-
-    private Music theme;
-    private Texture background;
-
-    private InputMultiplexer inputMultiplexer;
-
     private BuildingCharacterStage buildingCharacterStage;
     private MainMenuStage mainMenuStage;
+    private Texture background;
+    private Music theme;
+    private InputMultiplexer inputMultiplexer;
 
     /**
      * @param game the game instance
@@ -42,14 +39,14 @@ public class MainMenuScreen implements Screen {
         inputMultiplexer.addProcessor(buildingCharacterStage);
         inputMultiplexer.addProcessor(mainMenuStage);
 
+        // Charger les images (en VRAM)
+        background = new Texture(Gdx.files.internal("main_menu.png"));
+        background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
         theme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
         theme.setLooping(true);
-
-        // Charger les images (en VRAM)
-        background = new Texture(Gdx.files.internal("main_menu.png"));
-        background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
     }
 
     // Tout ce qui se passe au lancement du menu

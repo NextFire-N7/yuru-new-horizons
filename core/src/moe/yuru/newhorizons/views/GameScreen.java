@@ -16,7 +16,6 @@ public class GameScreen implements Screen {
     private YuruNewHorizons game;
     private GameStage gameStage;
     private MapStage mapStage;
-
     private InputMultiplexer inputMultiplexer;
 
     /**

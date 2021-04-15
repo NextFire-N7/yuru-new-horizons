@@ -25,7 +25,6 @@ public class BuildingCharacterStage extends Stage {
     private static int lastNb = -1;
 
     private YuruNewHorizons game;
-
     private Texture charaTexture;
     private Image charaImage;
     private Sound charaSound;
