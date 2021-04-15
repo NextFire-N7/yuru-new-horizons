@@ -71,7 +71,7 @@ public class StockStage extends Stage {
      */
     private VisScrollPane getStockPane() {
         VisTable stockTable = new VisTable();
-        stockTable.defaults().height(400).width(300).pad(30);
+        stockTable.defaults().height(400).width(250).pad(20);
         VisScrollPane stockPane = new VisScrollPane(stockTable);
 
         ObjectMap<Faction, Array<Building>> buildingStockMap = BuildingStockWrapper.getBuildingStockFactionMap();
@@ -80,7 +80,7 @@ public class StockStage extends Stage {
             for (Building building : buildingStockMap.get(faction)) {
                 VisTable buildingCell = getBuildingCell(building);
                 stockTable.add(buildingCell);
-                if (++i == 3) {
+                if (++i == 4) {
                     stockTable.row();
                     i = 0;
                 }

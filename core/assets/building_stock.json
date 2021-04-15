@@ -85,8 +85,8 @@
         "id": "gu",
         "lastName": "Mister",
         "firstName": "Gu",
-        "function": "Mayor",
-        "faction": "POLITICS",
+        "function": "Zoo",
+        "faction": "CULTURE",
         "sizeX": 100,
         "sizeY": 50,
         "stats": {
@@ -126,7 +126,7 @@
         "id": "chino",
         "lastName": "Kafuu",
         "firstName": "Chino",
-        "function": "Coffee Manufacture",
+        "function": "Cafe",
         "faction": "INDUSTRY",
         "sizeX": 100,
         "sizeY": 50,
@@ -169,6 +169,47 @@
         "firstName": "Yui",
         "function": "Music Band",
         "faction": "CULTURE",
+        "sizeX": 100,
+        "sizeY": 50,
+        "stats": {
+            "1": {
+                "coinCost": -1000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 5
+            },
+            "2": {
+                "coinCost": -2000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 10
+            },
+            "3": {
+                "coinCost": -4000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 20
+            },
+            "4": {
+                "coinCost": -8000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 80,
+                "resourcesPerSecond": 40
+            },
+            "5": {
+                "coinCost": -16000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 160,
+                "resourcesPerSecond": 80
+            }
+        }
+    },
+    {
+        "id": "kanna",
+        "lastName": "Kobayashi",
+        "firstName": "Kanna",
+        "function": "Loli Police",
+        "faction": "POLITICS",
         "sizeX": 100,
         "sizeY": 50,
         "stats": {
