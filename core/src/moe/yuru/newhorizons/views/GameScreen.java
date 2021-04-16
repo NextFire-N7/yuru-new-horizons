@@ -16,6 +16,7 @@ public class GameScreen implements Screen {
     private YuruNewHorizons game;
     private GameStage gameStage;
     private MapStage mapStage;
+    private BuildingPlacingStage buildingPlacingStage;
     private InputMultiplexer inputMultiplexer;
 
     /**
@@ -24,15 +25,17 @@ public class GameScreen implements Screen {
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
 
-        game.setGameModel(new GameSolo("east-a1")); // TODO: for debug purpose heh
+        game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
         game.setGameScreen(this);
 
         gameStage = new GameStage(game);
         mapStage = new MapStage(game);
+        buildingPlacingStage = new BuildingPlacingStage(game);
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
         inputMultiplexer.addProcessor(mapStage);
+        inputMultiplexer.addProcessor(buildingPlacingStage);
     }
 
     @Override
@@ -55,6 +58,9 @@ public class GameScreen implements Screen {
 
         mapStage.act(delta);
         mapStage.draw();
+
+        buildingPlacingStage.act(delta);
+        buildingPlacingStage.draw();
     }
 
     @Override

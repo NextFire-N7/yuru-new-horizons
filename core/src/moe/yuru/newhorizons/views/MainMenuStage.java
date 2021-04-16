@@ -63,27 +63,27 @@ public class MainMenuStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
-                game.setScreen(new GameScreen(game)); // A changer évidemment...
+                game.setScreen(new GameScreen(game)); // TODO: game personalization screen
             }
         });
 
-        resumeButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                game.getScreen().dispose();
-                game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
-            }
-        });
+        // resumeButton.addListener(new ClickListener() {
+        //     @Override
+        //     public void clicked(InputEvent event, float x, float y) {
+        //         super.clicked(event, x, y);
+        //         game.getScreen().dispose();
+        //         game.setScreen(new MainMenuScreen(game)); // TODO: resume game...
+        //     }
+        // });
 
-        optionsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                game.getScreen().dispose();
-                game.setScreen(new MainMenuScreen(game)); // A changer évidemment...
-            }
-        });
+        // optionsButton.addListener(new ClickListener() {
+        //     @Override
+        //     public void clicked(InputEvent event, float x, float y) {
+        //         super.clicked(event, x, y);
+        //         game.getScreen().dispose();
+        //         game.setScreen(new MainMenuScreen(game)); // TODO: options menu...
+        //     }
+        // });
 
         exitButton.addListener(new ClickListener() {
             @Override

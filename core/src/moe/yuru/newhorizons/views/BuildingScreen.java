@@ -30,7 +30,7 @@ public class BuildingScreen implements Screen {
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(buildingCharacterStage);
 
-        // TODO: for debug...
+        // TODO: associated stage w/ exit button
         inputMultiplexer.addProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
