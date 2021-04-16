@@ -111,14 +111,8 @@ public class GameStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
-        if (event.getSource() == game.getGameModel().getTown()) {
-            if (event.getName().equals("toPlace")) {
-                if (event.getValue() != null) {
-                    constructButton.setVisible(false);
-                } else {
-                    constructButton.setVisible(true);
-                }
-            }
+        if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("toPlace")) {
+            constructButton.setVisible((event.getValue() != null) ? false : true);
         }
     }
 
