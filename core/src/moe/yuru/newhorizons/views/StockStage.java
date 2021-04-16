@@ -71,7 +71,7 @@ public class StockStage extends Stage {
      */
     private VisScrollPane getStockPane() {
         VisTable stockTable = new VisTable();
-        stockTable.defaults().height(400).width(250).pad(20);
+        stockTable.defaults().height(370).width(250).pad(20);
         VisScrollPane stockPane = new VisScrollPane(stockTable);
 
         ObjectMap<Faction, Array<Building>> buildingStockMap = BuildingStockWrapper.getBuildingStockFactionMap();
@@ -135,13 +135,14 @@ public class StockStage extends Stage {
         cell.row();
         VisTable statsCell = new VisTable();
         cell.add(statsCell);
-        statsCell.add(new VisLabel(building.getStats(1).getCoinCost() + " coins"));
+        statsCell.add(new VisLabel(building.getStats(1).getCoinCost() + " Coins"));
         statsCell.row();
-        statsCell.add(new VisLabel(building.getStats(1).getResourcesCost() + " resources"));
+        statsCell.add(new VisLabel(building.getStats(1).getResourcesCost() + " " + building.getFaction().toString()));
         statsCell.row();
-        statsCell.add(new VisLabel(building.getStats(1).getCoinsPerSecond() + " CPS"));
+        statsCell.add(new VisLabel("+" + building.getStats(1).getCoinsPerSecond() + " Coins/s"));
         statsCell.row();
-        statsCell.add(new VisLabel(building.getStats(1).getResourcesPerSecond() + " RPS"));
+        statsCell.add(new VisLabel(
+                "+" + building.getStats(1).getResourcesPerSecond() + " " + building.getFaction().toString() + "/s"));
         return cell;
     }
 
