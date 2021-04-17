@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.VisUI;
-import com.kotcrab.vis.ui.VisUI.SkinScale;
 
 import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.views.GameScreen;
@@ -35,7 +34,7 @@ public class YuruNewHorizons extends Game {
 
     @Override
     public void create() {
-        VisUI.load(SkinScale.X2);
+        VisUI.load();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);

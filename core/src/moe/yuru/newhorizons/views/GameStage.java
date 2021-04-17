@@ -50,7 +50,7 @@ public class GameStage extends Stage implements Listener {
         rightTable.setPosition(768, 0);
         rightTable.defaults().grow().pad(10);
 
-        VisTable statsTable = new VisTable();
+        VisTable statsTable = new VisTable(true);
         rightTable.add(statsTable);
         statsTable.top();
         statsTable.columnDefaults(0).left();
@@ -77,9 +77,10 @@ public class GameStage extends Stage implements Listener {
         statsTable.add(politicsLabel);
 
         rightTable.row();
-        VisTable menuTable = new VisTable();
+        VisTable menuTable = new VisTable(true);
         rightTable.add(menuTable);
         menuTable.bottom();
+        menuTable.defaults().growX();
 
         constructButton = new VisTextButton("Construct");
         menuTable.add(constructButton);

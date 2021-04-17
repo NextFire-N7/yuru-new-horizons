@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
+import com.kotcrab.vis.ui.layout.GridGroup;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisScrollPane;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -40,7 +41,7 @@ public class StockStage extends Stage {
         VisTable screenTable = new VisTable();
         screenTable.setFillParent(true);
         addActor(screenTable);
-        screenTable.pad(20);
+        screenTable.pad(10);
 
         screenTable.add(getStockPane()).grow();
 
@@ -70,20 +71,17 @@ public class StockStage extends Stage {
      * @return the stock scrolling pane
      */
     private VisScrollPane getStockPane() {
-        VisTable stockTable = new VisTable();
-        stockTable.defaults().height(370).width(250).pad(20);
-        VisScrollPane stockPane = new VisScrollPane(stockTable);
+        GridGroup group = new GridGroup();
+        group.setItemSize(300, 200);
+        VisScrollPane stockPane = new VisScrollPane(group);
+        stockPane.setScrollingDisabled(true, false);
 
         ObjectMap<Faction, Array<Building>> buildingStockMap = BuildingStockWrapper.getBuildingStockFactionMap();
-        int i = 0;
         for (Faction faction : Faction.values()) {
             for (Building building : buildingStockMap.get(faction)) {
                 VisTable buildingCell = getBuildingCell(building);
-                stockTable.add(buildingCell);
-                if (++i == 4) {
-                    stockTable.row();
-                    i = 0;
-                }
+                group.addActor(buildingCell);
+
                 buildingCell.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -121,28 +119,46 @@ public class StockStage extends Stage {
      */
     private VisTable getBuildingCell(Building building) {
         VisTable cell = new VisTable();
-        cell.setSize(200, 200);
+
         cell.add(new VisLabel(building.getLastName() + " " + building.getFirstName()));
         cell.row();
-        cell.add(new VisLabel(building.getFaction().toString()));
-        cell.row();
-        cell.add(new VisLabel(building.getFunction()));
-        cell.row();
+        cell.addSeparator();
+
+        VisTable subTable = new VisTable();
+        cell.add(subTable).grow();
+
+        VisTable leftTable = new VisTable();
+        leftTable.defaults().expandY();
+        leftTable.add(new VisLabel(building.getFaction().toString()));
+        leftTable.row();
+        leftTable.add(new VisLabel(building.getFunction()));
+        leftTable.row();
+        leftTable.addSeparator();
         Texture icon = AssetHelper.getIconTexture(building);
         textures.add(icon);
         Image image = new Image(icon);
-        cell.add(image).size(100, 100);
-        cell.row();
-        VisTable statsCell = new VisTable();
-        cell.add(statsCell);
-        statsCell.add(new VisLabel(building.getStats(1).getCoinCost() + " Coins"));
-        statsCell.row();
-        statsCell.add(new VisLabel(building.getStats(1).getResourcesCost() + " " + building.getFaction().toString()));
-        statsCell.row();
-        statsCell.add(new VisLabel("+" + building.getStats(1).getCoinsPerSecond() + " Coins/s"));
-        statsCell.row();
-        statsCell.add(new VisLabel(
+        leftTable.add(image).size(100, 100);
+
+        VisTable rightTable = new VisTable();
+        rightTable.defaults().expandY();
+        rightTable.add(new VisLabel("Costs"));
+        rightTable.row();
+        rightTable.add(new VisLabel(building.getStats(1).getCoinCost() + " Coins"));
+        rightTable.row();
+        rightTable.add(new VisLabel(building.getStats(1).getResourcesCost() + " " + building.getFaction().toString()));
+        rightTable.row();
+        rightTable.addSeparator();
+        rightTable.add(new VisLabel("Incomes"));
+        rightTable.row();
+        rightTable.add(new VisLabel("+" + building.getStats(1).getCoinsPerSecond() + " Coins/s"));
+        rightTable.row();
+        rightTable.add(new VisLabel(
                 "+" + building.getStats(1).getResourcesPerSecond() + " " + building.getFaction().toString() + "/s"));
+
+        subTable.add(leftTable).grow();
+        subTable.addSeparator(true);
+        subTable.add(rightTable).grow();
+
         return cell;
     }
 
