@@ -89,6 +89,8 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameStage.dispose();
+        mapStage.dispose();
+        buildingPlacingStage.dispose();
     }
 
 }

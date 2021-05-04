@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingInstance;
@@ -25,7 +24,6 @@ public class BuildingScreen implements Screen {
         buildingCharacterStage.addRepeatCharaSoundListener();
 
         background = AssetHelper.getCoverTexture(instance.getModel());
-        background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(buildingCharacterStage);

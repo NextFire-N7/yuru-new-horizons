@@ -20,7 +20,8 @@ public class Town {
     private Building toPlace;
 
     /**
-     * @param mapName name of the town map
+     * @param gameModel game model
+     * @param mapName   name of the town map
      */
     public Town(GameModel gameModel, String mapName) {
         this.gameModel = gameModel;
@@ -42,7 +43,7 @@ public class Town {
      * Validates current location for the pending construction and create and add
      * the associated {@link BuildingInstance} to the town. Fires an event when
      * done.
-     * 
+     *
      * @param x X axis position
      * @param y Y axis position
      * @return the {@link BuildingInstance} created
@@ -51,7 +52,7 @@ public class Town {
         addCoins(toPlace.getStats(1).getCoinCost());
         addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
-        buildings.add(new BuildingInstance(toPlace, x, y));
+        buildings.add(instance);
         toPlace = null;
         gameModel.notifyListeners(new Event(this, "toPlace", null));
         updatePerSecond();
@@ -60,7 +61,7 @@ public class Town {
 
     /**
      * Updates coins and resources balance since the last frame
-     * 
+     *
      * @param delta last frametime
      */
     public void updateBalance(float delta) {
@@ -145,7 +146,7 @@ public class Town {
 
     /**
      * Sets a pending building to be placed. Fires an event when done.
-     * 
+     *
      * @param building to be placed
      */
     public void setToPlace(Building building) {
