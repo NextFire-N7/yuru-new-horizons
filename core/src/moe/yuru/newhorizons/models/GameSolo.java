@@ -1,7 +1,9 @@
 package moe.yuru.newhorizons.models;
 
 /**
- * Solo {@link GameModel}.
+ * Implementation of {@link GameModel} for a solo game.
+ * 
+ * @author NextFire
  */
 public class GameSolo extends GameModel {
 
@@ -16,6 +18,7 @@ public class GameSolo extends GameModel {
 
     @Override
     public void updateEnemy(float delta) {
+        // No ennemy in a solo game
     }
 
 }

@@ -6,26 +6,37 @@ import com.badlogic.gdx.utils.ObjectSet;
 import moe.yuru.newhorizons.utils.Event;
 
 /**
- * Town model.
+ * Town model. Linked to a {@link GameModel}, it keeps player's
+ * {@link BuildingInstance}s and tracks his resources.
+ * 
+ * @author NextFire
  */
 public class Town {
 
     private GameModel gameModel;
     private String mapName;
+
     private ObjectSet<BuildingInstance> buildings;
+
     private float coins;
     private ObjectMap<Faction, Float> resources;
+
     private Float coinsPerSecond;
     private ObjectMap<Faction, Float> resourcesPerSecond;
+
     private Building toPlace;
 
     /**
+     * Creates a new town linked to the specified {@link GameModel}.
+     * 
      * @param gameModel game model
      * @param mapName   name of the town map
      */
     public Town(GameModel gameModel, String mapName) {
         this.gameModel = gameModel;
         this.mapName = mapName;
+
+        // Init fields
         buildings = new ObjectSet<>();
         resources = new ObjectMap<>();
         coinsPerSecond = 0f;
@@ -46,11 +57,12 @@ public class Town {
      *
      * @param x X axis position
      * @param y Y axis position
-     * @return the {@link BuildingInstance} created
+     * @return the building instance created
      */
     public void validateConstruction(float x, float y) {
         addCoins(toPlace.getStats(1).getCoinCost());
         addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
+
         BuildingInstance instance = new BuildingInstance(toPlace, x, y);
         buildings.add(instance);
         toPlace = null;
@@ -65,7 +77,9 @@ public class Town {
      * @param delta last frametime
      */
     public void updateBalance(float delta) {
+        // Coins
         addCoins(delta * coinsPerSecond);
+        // Faction resources
         for (Faction faction : Faction.values()) {
             addResources(faction, delta * resourcesPerSecond.get(faction, 0f));
         }
@@ -75,14 +89,16 @@ public class Town {
      * Updates total town coins and resources per second
      */
     public void updatePerSecond() {
+        // Reset
         coinsPerSecond = 0f;
         resourcesPerSecond = new ObjectMap<>();
-        float rpspf;
+        // Update
+        float rpsPerFaction;
         for (BuildingInstance instance : buildings) {
             coinsPerSecond += instance.getStats().getCoinsPerSecond();
-            rpspf = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
-            rpspf += instance.getStats().getResourcesPerSecond();
-            resourcesPerSecond.put(instance.getModel().getFaction(), rpspf);
+            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
+            rpsPerFaction += instance.getStats().getResourcesPerSecond();
+            resourcesPerSecond.put(instance.getModel().getFaction(), rpsPerFaction);
         }
     }
 
@@ -131,7 +147,7 @@ public class Town {
 
     /**
      * @param faction to add resources
-     * @param amount  of resources to addsss
+     * @param amount  of resources to add
      */
     public void addResources(Faction faction, float amount) {
         resources.put(faction, resources.get(faction) + amount);

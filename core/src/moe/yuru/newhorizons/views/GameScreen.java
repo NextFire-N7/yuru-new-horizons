@@ -9,7 +9,9 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameSolo;
 
 /**
- * Game {@link Screen}. This is where the player will spend most of his time.
+ * Game screen. This is where the player will spend most of his time.
+ * 
+ * @author NextFire
  */
 public class GameScreen implements Screen {
 
@@ -25,13 +27,16 @@ public class GameScreen implements Screen {
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
 
+        // Set a new game model in the game
         game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
         game.setGameScreen(this);
 
+        // Summon stages
         gameStage = new GameStage(game);
         mapStage = new MapStage(game);
         placingStage = new PlacingStage(game);
 
+        // Inputs
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
         inputMultiplexer.addProcessor(mapStage);
@@ -48,8 +53,10 @@ public class GameScreen implements Screen {
         game.getFpslogger().log();
         game.getCamera().update();
 
+        // Black background
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Update model
         game.getGameModel().getTown().updateBalance(delta);
         game.getGameModel().updateEnemy(delta);
 

@@ -10,6 +10,8 @@ import moe.yuru.newhorizons.models.Town;
 
 /**
  * Helper class, returns assets linked to models.
+ * 
+ * @author NextFire
  */
 public final class AssetHelper {
 

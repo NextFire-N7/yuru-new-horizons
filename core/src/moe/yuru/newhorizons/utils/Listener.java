@@ -1,8 +1,9 @@
 package moe.yuru.newhorizons.utils;
 
 /**
- * Can process {@link Event}s send by Notifiers to which it has been
- * registered.
+ * Can process {@link Event}s send by Notifiers to which it has been registered.
+ * 
+ * @author NextFire
  */
 public interface Listener {
 

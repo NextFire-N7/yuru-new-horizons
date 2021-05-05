@@ -1,24 +1,23 @@
 package moe.yuru.newhorizons.models;
 
 /**
- * {@link Building} instance and attributes once it has been built by the
+ * A {@link Building} and supplemental attributes once it has been built by the
  * player.
+ * 
+ * @author NextFire
  */
 public class BuildingInstance {
 
-    /** The {@link Building} of this current instance */
     private Building model;
-    /** The actual building level */
     private int level;
-    /** Position on screen: X axis */
+
     private float posX;
-    /** Position on screen: Y axis */
     private float posY;
 
     /**
      * @param model of the instance
-     * @param posX  on screen
-     * @param posY  on screen
+     * @param posX  on screen (horizontally)
+     * @param posY  on screen (vertically)
      */
     public BuildingInstance(Building model, float posX, float posY) {
         this.model = model;
@@ -28,23 +27,23 @@ public class BuildingInstance {
     }
 
     /**
-     * Shortcut to {@code this.getModel().getStats(this.getLevel())}
+     * Shortcut to {@code this.getModel().getStats(this.getLevel())}.
      * 
-     * @return the building stats for its current {@link BuildingInstance#level}
+     * @return the building stats for this instance current level
      */
     public BuildingStats getStats() {
         return model.getStats(level);
     }
 
     /**
-     * @return the {@link Building} of the instance
+     * @return this instance {@link Building} model
      */
     public Building getModel() {
         return model;
     }
 
     /**
-     * @return the current building model
+     * @return this instance current level
      */
     public int getLevel() {
         return level;
@@ -58,28 +57,28 @@ public class BuildingInstance {
     }
 
     /**
-     * @return the X position of the building
+     * @return this instance horizontal position
      */
     public float getPosX() {
         return posX;
     }
 
     /**
-     * @param posX the new X position of the building
+     * @param posX a new horizontal position
      */
     public void setPosX(float posX) {
         this.posX = posX;
     }
 
     /**
-     * @return the Y position of the building
+     * @return this instance vertical position
      */
     public float getPosY() {
         return posY;
     }
 
     /**
-     * @param posY the new Y position of the building
+     * @param posY a new vertical position
      */
     public void setPosY(float posY) {
         this.posY = posY;

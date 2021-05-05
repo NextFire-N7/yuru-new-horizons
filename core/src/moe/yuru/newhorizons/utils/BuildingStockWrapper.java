@@ -9,7 +9,9 @@ import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.Faction;
 
 /**
- * Wrapper class for the building stock json deserialization.
+ * Wrapper class for the building stock JSON deserialization.
+ * 
+ * @author NextFire
  */
 public final class BuildingStockWrapper {
 

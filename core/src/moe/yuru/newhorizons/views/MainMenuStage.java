@@ -15,7 +15,9 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
- * Main menu menu {@link Stage}.
+ * Main menu menu. Contains the game title and the buttons on the right.
+ * 
+ * @author NextFire
  */
 public class MainMenuStage extends Stage {
 
@@ -27,29 +29,35 @@ public class MainMenuStage extends Stage {
     public MainMenuStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
+        // See, it's a pain to use custom fonts...
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 60;
         parameter.borderWidth = 5;
         parameter.borderColor = Color.valueOf("E39256");
         font = game.getFontGenerator().generateFont(parameter);
-        VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
 
+        // Main table for the title and menu buttons
         VisTable table = new VisTable();
         addActor(table);
         table.setBounds(690, 0, 400, 720);
 
+        // Title label
+        VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
         table.add(title).space(50);
         table.row();
 
+        // Table for the buttons
         VisTable menuTable = new VisTable();
         table.add(menuTable);
         menuTable.defaults().width(table.getWidth()).height(75).space(50);
 
+        // Buttons
         VisTextButton startButton = new VisTextButton("New Game");
         VisTextButton resumeButton = new VisTextButton("Resume Game");
         VisTextButton optionsButton = new VisTextButton("Options");
         VisTextButton exitButton = new VisTextButton("Quit");
 
+        // Adding them to the menu table
         menuTable.add(startButton);
         menuTable.row();
         menuTable.add(resumeButton);
@@ -58,6 +66,7 @@ public class MainMenuStage extends Stage {
         menuTable.row();
         menuTable.add(exitButton);
 
+        // Buttons controllers
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -68,21 +77,21 @@ public class MainMenuStage extends Stage {
         });
 
         // resumeButton.addListener(new ClickListener() {
-        //     @Override
-        //     public void clicked(InputEvent event, float x, float y) {
-        //         super.clicked(event, x, y);
-        //         game.getScreen().dispose();
-        //         game.setScreen(new MainMenuScreen(game)); // TODO: resume game...
-        //     }
+        // @Override
+        // public void clicked(InputEvent event, float x, float y) {
+        // super.clicked(event, x, y);
+        // game.getScreen().dispose();
+        // game.setScreen(new xxxScreen(game)); // TODO: resume game...
+        // }
         // });
 
         // optionsButton.addListener(new ClickListener() {
-        //     @Override
-        //     public void clicked(InputEvent event, float x, float y) {
-        //         super.clicked(event, x, y);
-        //         game.getScreen().dispose();
-        //         game.setScreen(new MainMenuScreen(game)); // TODO: options menu...
-        //     }
+        // @Override
+        // public void clicked(InputEvent event, float x, float y) {
+        // super.clicked(event, x, y);
+        // game.getScreen().dispose();
+        // game.setScreen(new xxxScreen(game)); // TODO: options menu...
+        // }
         // });
 
         exitButton.addListener(new ClickListener() {

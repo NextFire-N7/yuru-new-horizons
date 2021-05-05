@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
- * Main menu {@link Screen}.
+ * Main menu. English readers, sorry for French comments in this one.
+ * 
+ * @author NextFire
  */
 public class MainMenuScreen implements Screen {
 

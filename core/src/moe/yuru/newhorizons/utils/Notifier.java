@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.ObjectSet;
 
 /**
  * Can send Events to previously registered {@link Listener}s.
+ * 
+ * @author NextFire
  */
 public abstract class Notifier {
 

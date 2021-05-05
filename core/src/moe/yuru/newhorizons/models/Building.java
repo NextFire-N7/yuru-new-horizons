@@ -3,28 +3,34 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.IntMap;
 
 /**
- * Building model.
+ * Model which contains generic attributes related to a building.
+ * 
+ * @author NextFire
  */
 public class Building {
 
     private String id;
+
     private String lastName;
     private String firstName;
+
     private String function;
     private Faction faction;
+
     private float sizeX;
     private float sizeY;
-    /** Contains the stats per level */
+
     private IntMap<BuildingStats> stats;
 
     /**
-     * Do not use. It is defined for the json deserializer.
+     * Sole constructor. Do not use. It is defined for the JSON deserializer.
      */
+    @Deprecated
     public Building() {
     }
 
     /**
-     * @return the building id
+     * @return the building unique id
      */
     public String getId() {
         return id;
@@ -59,14 +65,14 @@ public class Building {
     }
 
     /**
-     * @return the building size on the X axis
+     * @return the building size on the X axis (width)
      */
     public float getSizeX() {
         return sizeX;
     }
 
     /**
-     * @return the building size on the Y axis
+     * @return the building size on the Y axis (height)
      */
     public float getSizeY() {
         return sizeY;
@@ -80,7 +86,7 @@ public class Building {
     }
 
     /**
-     * @param level The onscreen level
+     * @param level between {@code 1} and {@code 5}
      * @return the correspondant {@link BuildingStats}
      */
     public BuildingStats getStats(int level) {

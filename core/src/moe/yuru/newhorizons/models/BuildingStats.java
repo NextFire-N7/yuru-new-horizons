@@ -3,18 +3,20 @@ package moe.yuru.newhorizons.models;
 /**
  * Represents the building statistics for a level. The type of the resource
  * depends of the current faction.
+ * 
+ * @author NextFire
  */
 public class BuildingStats {
 
     private float coinCost;
     private float resourcesCost;
     private float coinsPerSecond;
-    /** Raw number, the type of the resource depends of the current faction */
     private float resourcesPerSecond;
 
     /**
-     * Do not use. It is defined for the json deserializer.
+     * Sole constructor. Do not use. It is defined for the json deserializer.
      */
+    @Deprecated
     public BuildingStats() {
     }
 

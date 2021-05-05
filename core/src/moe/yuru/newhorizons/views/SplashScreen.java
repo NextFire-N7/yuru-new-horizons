@@ -11,9 +11,10 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
- * Splash {@link Screen}.
+ * Dumb splash {@link Screen}. Necessary on html to be able to play music in
+ * modern browsers.
  * 
- * Necessary on html to be able to play music in modern browsers.
+ * @author NextFire
  */
 public class SplashScreen implements Screen {
 
@@ -25,6 +26,8 @@ public class SplashScreen implements Screen {
      */
     public SplashScreen(YuruNewHorizons game) {
         this.game = game;
+
+        // Fonts...
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 40;
         parameter.borderWidth = 5;
@@ -34,6 +37,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void show() {
+        // Click anywhere to access the main menu
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -52,6 +56,7 @@ public class SplashScreen implements Screen {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Drawing
         game.getBatch().begin();
         font.draw(game.getBatch(), "Click to continue...", 850, 50);
         game.getBatch().end();

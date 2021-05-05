@@ -3,7 +3,10 @@ package moe.yuru.newhorizons.models;
 import moe.yuru.newhorizons.utils.Notifier;
 
 /**
- * Game model.
+ * Abstract game model. Contains player town and ennemy. Extends
+ * {@link Notifier} so it can notify possible registered listeners.
+ * 
+ * @author NextFire
  */
 public abstract class GameModel extends Notifier {
 

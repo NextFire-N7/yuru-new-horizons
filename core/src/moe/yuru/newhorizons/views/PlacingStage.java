@@ -18,7 +18,11 @@ import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
- * Controller {@link Stage} for the building position choice.
+ * Controller for building position choice. It essentially consists of a moving
+ * building button which follows player mouse when a building is waiting to be
+ * placed. For that it listens to the game model.
+ * 
+ * @author NextFire
  */
 public class PlacingStage extends Stage implements Listener {
 
@@ -33,15 +37,22 @@ public class PlacingStage extends Stage implements Listener {
     public PlacingStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
+
+        // Area corresponding to the map, you should not be able to place a building
+        // elsewhere :oof:
         mapArea = new Rectangle(0, 144, 768, 576);
+
         toPlaceButton = null;
         mouse_position = new Vector3();
+
+        // Registering
         game.getGameModel().addListener(this);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
+        // If a moving button is defined, follow player cursor
         if (toPlaceButton != null) {
             mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             game.getViewport().unproject(mouse_position);
@@ -52,6 +63,7 @@ public class PlacingStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
+        // If a building is to place, trigger setToPlace
         if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("toPlace")
                 && event.getValue() != null) {
             setToPlace((Building) event.getValue());
@@ -59,29 +71,37 @@ public class PlacingStage extends Stage implements Listener {
     }
 
     /**
-     * Creates the moving on screen building for position confirmation.
+     * Defines the moving button for position confirmation.
      * 
      * @param building the {@link Building} to be placed
      */
     private void setToPlace(Building building) {
         Texture iconTexture = AssetHelper.getIconTexture(building);
+
+        // Create a new button which sizes are the building ones and add it to the stage
         toPlaceButton = new VisImageButton(new TextureRegionDrawable(new TextureRegion(iconTexture)));
         toPlaceButton.setSize(building.getSizeX(), building.getSizeY());
         addActor(toPlaceButton);
+
+        // If the player click on screen...
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                // ...at a valid position...
                 if (mapArea.contains(x + toPlaceButton.getWidth() / 2, y - toPlaceButton.getHeight() / 2)) {
                     removeListener(this);
+                    // ...ask the model to validate the construction at the mouse position...
                     game.getGameModel().getTown().validateConstruction(x - toPlaceButton.getWidth() / 2,
                             y - toPlaceButton.getHeight() / 2);
+                    // ...then destruct this button...
                     toPlaceButton.remove();
                     toPlaceButton = null;
                     iconTexture.dispose();
                 }
             }
         });
+        // ...don't worry, it will reappear soon on the MapStage!
     }
 
 }

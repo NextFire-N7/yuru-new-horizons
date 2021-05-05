@@ -2,6 +2,8 @@ package moe.yuru.newhorizons.utils;
 
 /**
  * Simple event in the game.
+ * 
+ * @author NextFire
  */
 public class Event {
 

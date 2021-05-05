@@ -2,6 +2,8 @@ package moe.yuru.newhorizons.models;
 
 /**
  * The possible factions for a building.
+ * 
+ * @author NextFire
  */
 public enum Faction {
 

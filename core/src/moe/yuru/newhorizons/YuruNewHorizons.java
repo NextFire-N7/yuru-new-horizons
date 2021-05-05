@@ -15,40 +15,68 @@ import moe.yuru.newhorizons.views.GameScreen;
 import moe.yuru.newhorizons.views.SplashScreen;
 
 /**
- * Yuru New Horizons {@link Game} view.
+ * Yuru New Horizons {@link Game} entrypoint for all plateforms.
+ * 
+ * @author NextFire
  */
 public class YuruNewHorizons extends Game {
 
+    // Graphics
     private OrthographicCamera camera;
     private Viewport viewport;
     private SpriteBatch batch;
     private FPSLogger fpslogger;
 
+    // Assets
     private FreeTypeFontGenerator fontGenerator;
 
+    // Game model & screen
     private GameModel gameModel;
     private GameScreen gameScreen;
 
+    // Volumes
     private Float musicVolume;
     private Float soundVolume;
 
+    /**
+     * Sole constructor. Should not be called. This class is only instantiated once
+     * in libGDX starters classes, which directly call {@link #create} afterwards.
+     */
+    public YuruNewHorizons() {
+        super();
+    }
+
     @Override
     public void create() {
+        // In libGDX, visual elements (labels, buttons,...) are provided by skins such
+        // as VisUI
         VisUI.load();
 
+        // The camera ensures we can render using our target resolution of 1280 by 720
+        // no matter what the actual screen resolution is
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
+
+        // The viewport ensures our game looks good on whatever screen resolution or
+        // aspect ratio
         viewport = new FitViewport(1280, 720, camera);
+
+        // The SpriteBatch is a special class that is used to draw 2D images
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
+
+        // Only to flex our 60 fps
         fpslogger = new FPSLogger();
 
+        // Using custom fonts in libGDX is really a pain, check their wiki
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
 
+        // Default volume
         setMusicVolume(0.25f);
         setSoundVolume(0.50f);
 
-        this.setScreen(new SplashScreen(this));
+        // Game window shows a new splash screen, time to play!
+        setScreen(new SplashScreen(this));
     }
 
     @Override
@@ -59,90 +87,110 @@ public class YuruNewHorizons extends Game {
     }
 
     /**
-     * @return the {@link OrthographicCamera} of the game
+     * If you need a Camera for any method call, use this one.
+     * 
+     * @return a {@link OrthographicCamera} defined once for all
      */
     public OrthographicCamera getCamera() {
         return camera;
     }
 
     /**
-     * @return the {@link Viewport} of the game
+     * If you need a Viewport for any method call, use this one.
+     * 
+     * @return a {@link Viewport} defined once for all
      */
     public Viewport getViewport() {
         return viewport;
     }
 
     /**
-     * @return the {@link SpriteBatch} of the game
+     * Inside a Screen {@code render} method, drawing methods should be called
+     * between this {@link SpriteBatch} {@code begin} and {@code end} method calls.
+     * 
+     * @return a SpriteBatch defined once for all
      */
     public SpriteBatch getBatch() {
         return batch;
     }
 
     /**
-     * @return the {@link FPSLogger} of the game
+     * Its {@code log} method is to be used inside each Screen {@code render}
+     * method.
+     * 
+     * @return the {@link FPSLogger}
      */
     public FPSLogger getFpslogger() {
         return fpslogger;
     }
 
     /**
-     * @return the {@code majuro_fino.ttf} aka the Yuru Camp manga font
-     *         {@link FreeTypeFontGenerator} of the game
+     * @return {@code majuro_fino.ttf} also known as Yuru Camp manga font
+     *         {@link FreeTypeFontGenerator}
      */
     public FreeTypeFontGenerator getFontGenerator() {
         return fontGenerator;
     }
 
     /**
-     * @return the {@link GameModel} of the current game
+     * @return current {@link GameModel}, can be {@code null}
      */
     public GameModel getGameModel() {
         return gameModel;
     }
 
     /**
-     * @param gameModel the {@link GameModel} of the current game
+     * Defines the model.
+     * 
+     * @param gameModel current {@link GameModel}
      */
     public void setGameModel(GameModel gameModel) {
         this.gameModel = gameModel;
     }
 
+    /**
+     * @return player's {@link GameScreen}, can be {@code null}
+     */
     public GameScreen getGameScreen() {
         return gameScreen;
     }
 
+    /**
+     * Saves an access to the game screen of the game.
+     * 
+     * @param gameScreen player's {@link GameScreen}
+     */
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
     /**
-     * @return the music volume of the game
+     * Should be used as argument for Sound's {@code play} method.
+     * 
+     * @return the music volume
      */
     public Float getMusicVolume() {
         return musicVolume;
     }
 
     /**
-     * Sets the music volume of the game.
-     * 
-     * @param musicVolume a {@link Float} between {@code 0.0f} and {@code 1.0f}
+     * @param musicVolume between {@code 0.0f} and {@code 1.0f}
      */
     public void setMusicVolume(Float musicVolume) {
         this.musicVolume = musicVolume;
     }
 
     /**
-     * @return the sound effects volume of the game
+     * Should be used as argument for Music's {@code setVolume} method.
+     * 
+     * @return the sound effects volume
      */
     public Float getSoundVolume() {
         return soundVolume;
     }
 
     /**
-     * Sets the sound effects volume of the game.
-     * 
-     * @param soundVolume a {@link Float} between {@code 0.0f} and {@code 1.0f}
+     * @param soundVolume between {@code 0.0f} and {@code 1.0f}
      */
     public void setSoundVolume(Float soundVolume) {
         this.soundVolume = soundVolume;

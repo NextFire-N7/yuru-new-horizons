@@ -17,7 +17,10 @@ import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.BuildingStockWrapper;
 
 /**
- * Building character {@link Stage}.
+ * Shows the character on the left. On click, can play its sound or let the
+ * place to another character.
+ * 
+ * @author NextFire
  */
 public class BuildingCharacterStage extends Stage {
 
@@ -80,8 +83,10 @@ public class BuildingCharacterStage extends Stage {
                 super.clicked(event, x, y);
                 charaSound.stop();
                 charaImage.remove();
+                // Dispose current assets
                 charaTexture.dispose();
                 charaSound.dispose();
+                // Change chara
                 setChara(randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
                 addRandomCharaListener();
                 playCharaSound();

@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
- * New building selector {@link Screen}.
+ * New building selector. Showcases all possible buildings in the game. Not a
+ * lot here, take a look at {@link StockStage} intead.
+ * 
+ * @author NextFire
  */
 public class StockScreen implements Screen {
 
