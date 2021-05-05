@@ -18,9 +18,9 @@ import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
- * Controller {@link Stage} for building position choice.
+ * Controller {@link Stage} for the building position choice.
  */
-public class BuildingPlacingStage extends Stage implements Listener {
+public class PlacingStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
@@ -30,7 +30,7 @@ public class BuildingPlacingStage extends Stage implements Listener {
     /**
      * @param game the game instance
      */
-    public BuildingPlacingStage(YuruNewHorizons game) {
+    public PlacingStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         mapArea = new Rectangle(0, 144, 768, 576);

@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
     private YuruNewHorizons game;
     private GameStage gameStage;
     private MapStage mapStage;
-    private BuildingPlacingStage buildingPlacingStage;
+    private PlacingStage placingStage;
     private InputMultiplexer inputMultiplexer;
 
     /**
@@ -30,12 +30,12 @@ public class GameScreen implements Screen {
 
         gameStage = new GameStage(game);
         mapStage = new MapStage(game);
-        buildingPlacingStage = new BuildingPlacingStage(game);
+        placingStage = new PlacingStage(game);
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
         inputMultiplexer.addProcessor(mapStage);
-        inputMultiplexer.addProcessor(buildingPlacingStage);
+        inputMultiplexer.addProcessor(placingStage);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class GameScreen implements Screen {
         mapStage.act(delta);
         mapStage.draw();
 
-        buildingPlacingStage.act(delta);
-        buildingPlacingStage.draw();
+        placingStage.act(delta);
+        placingStage.draw();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class GameScreen implements Screen {
     public void dispose() {
         gameStage.dispose();
         mapStage.dispose();
-        buildingPlacingStage.dispose();
+        placingStage.dispose();
     }
 
 }
