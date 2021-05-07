@@ -15,6 +15,7 @@ import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Listener;
+import moe.yuru.newhorizons.utils.SaveGame;
 
 /**
  * Contains the town map layout, town stats at the upper right and menus on the
@@ -36,6 +37,7 @@ public class GameStage extends Stage implements Listener {
     private VisLabel politicsLabel;
 
     private VisTextButton constructButton;
+    private VisTextButton saveButton;
 
     /**
      * @param game the game instance
@@ -107,6 +109,19 @@ public class GameStage extends Stage implements Listener {
                 game.setScreen(new StockScreen(game)); // new construction screen
             }
         });
+    
+        // Adding save button to the menu table
+        saveButton = new VisTextButton("Save");
+        menuTable.add(saveButton);
+
+        saveButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                SaveGame.save(game.getGameModel());; // new construction screen
+            }
+        });
+
     }
 
     @Override
