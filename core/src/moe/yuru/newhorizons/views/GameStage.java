@@ -118,7 +118,7 @@ public class GameStage extends Stage implements Listener {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                SaveGame.save(game.getGameModel());; // new construction screen
+                SaveGame.save(game.getGameModel().getTown());; // save the town
             }
         });
 
