@@ -2,6 +2,8 @@ package moe.yuru.newhorizons.models;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 
 import moe.yuru.newhorizons.utils.Event;
 
@@ -11,7 +13,7 @@ import moe.yuru.newhorizons.utils.Event;
  * 
  * @author NextFire
  */
-public class Town {
+public class Town implements Json.Serializable {
 
     private GameModel gameModel;
     private String mapName;
@@ -168,6 +170,24 @@ public class Town {
     public void setToPlace(Building building) {
         toPlace = building;
         gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
+    }
+
+    @Override
+    public void write(Json json) {
+        json.writeValue("MapName", mapName);
+        json.writeValue("Buildings", buildings);
+        json.writeValue("Coins", coins);
+        json.writeValue("Ressources", resources);
+        json.writeValue("Coins/s", coinsPerSecond);
+        json.writeValue("Ressources/s",resourcesPerSecond);
+        json.writeValue("Buildings to place", toPlace);
+
+    }
+
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        //TODO
+        
     }
 
 }
