@@ -13,11 +13,13 @@ public class SaveGame {
      */
     public static void save(Town town) {
 
+        // Creation of a json containing the town
         Json json = new Json();
         json.setOutputType(OutputType.json);
         //json.setElementType(Ress.class, "value", float.class);
         String jeustr = json.prettyPrint(town);
 
+        // Save the json in a file
         FileHandle file = Gdx.files.local("core/assets/save.json");
         file.writeString(jeustr, false); 
 

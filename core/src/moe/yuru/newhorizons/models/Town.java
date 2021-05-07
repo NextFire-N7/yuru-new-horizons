@@ -172,6 +172,9 @@ public class Town implements Json.Serializable {
         gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
     }
 
+    /**
+     * Custom write methode for Town to make a custom serialization.
+     */
     @Override
     public void write(Json json) {
         json.writeValue("MapName", mapName);
@@ -184,6 +187,9 @@ public class Town implements Json.Serializable {
 
     }
 
+    /**
+     * Custom read methode for Town to make a custom serialization.
+     */
     @Override
     public void read(Json json, JsonValue jsonData) {
         //TODO
