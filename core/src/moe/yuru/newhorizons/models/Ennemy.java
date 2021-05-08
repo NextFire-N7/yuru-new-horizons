@@ -1,15 +1,12 @@
 package moe.yuru.newhorizons.models;
 
-public abstract class Ennemy {
-
-    public Ennemy() {
-    }
+public interface Ennemy {
 
     /**
      * Updates ennemy statistics since last frame.
      * 
      * @param delta last frametime
      */
-    abstract public void update(float delta);
+    public void update(float delta);
 
 }

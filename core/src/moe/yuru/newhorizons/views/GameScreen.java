@@ -6,8 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.EnnemyNull;
 import moe.yuru.newhorizons.models.GameModel;
-import moe.yuru.newhorizons.models.GameSolo;
 
 /**
  * Game screen. This is where the player will spend most of his time.
@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
      * @param game the game instance
      */
     public GameScreen(YuruNewHorizons game) {
-        this(game, new GameSolo("east-a1"));
+        this(game, new GameModel("east-a1", new EnnemyNull()));
     }
 
     /**

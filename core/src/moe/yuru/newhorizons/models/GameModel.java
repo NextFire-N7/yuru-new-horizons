@@ -4,17 +4,17 @@ import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Notifier;
 
 /**
- * Abstract game model. Contains player town and ennemy. Extends
- * {@link Notifier} so it can notify possible registered listeners.
+ * Game model. Contains player town and ennemy. Extends {@link Notifier} so it
+ * can notify possible registered listeners.
  * 
  * @author NextFire
  */
-public abstract class GameModel extends Notifier {
+public class GameModel extends Notifier {
 
     private Town town;
-    protected Ennemy ennemy;
+    private Ennemy ennemy;
 
-    private Building toPlace;
+    private transient Building toPlace;
 
     public GameModel() {
     }
@@ -23,10 +23,12 @@ public abstract class GameModel extends Notifier {
      * Initializes the notifier and the game town.
      * 
      * @param mapName name of the chousen map
+     * @param ennemy  player ennemy
      */
-    public GameModel(String mapName) {
+    public GameModel(String mapName, Ennemy ennemy) {
         super();
         town = new Town(mapName);
+        this.ennemy = ennemy;
         toPlace = null;
     }
 
