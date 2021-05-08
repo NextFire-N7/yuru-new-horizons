@@ -14,6 +14,9 @@ public class BuildingInstance {
     private float posX;
     private float posY;
 
+    public BuildingInstance() {
+    }
+
     /**
      * @param model of the instance
      * @param posX  on screen (horizontally)

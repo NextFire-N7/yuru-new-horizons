@@ -14,11 +14,11 @@ public class GameModelSave {
     public static void save(GameModel model) {
         Json json = new Json();
         json.setOutputType(OutputType.json);
-        json.toJson(model, GameModel.class, Gdx.files.internal("save.json"));
+        json.toJson(model, GameModel.class, Gdx.files.local("save.json"));
     }
 
     public static GameModel load() {
-        return new Json().fromJson(GameModel.class, Gdx.files.internal("save.json"));
+        return new Json().fromJson(GameModel.class, Gdx.files.local("save.json"));
     }
 
 }

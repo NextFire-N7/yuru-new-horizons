@@ -14,7 +14,7 @@ public class GameModel extends Notifier {
     private Town town;
     private Ennemy ennemy;
 
-    private transient Building toPlace;
+    private Building toPlace;
 
     public GameModel() {
     }

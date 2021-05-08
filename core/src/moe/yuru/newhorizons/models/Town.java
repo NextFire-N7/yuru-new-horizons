@@ -21,6 +21,9 @@ public class Town {
     private float coinsPerSecond;
     private ObjectMap<Faction, Float> resourcesPerSecond;
 
+    public Town() {
+    }
+
     /**
      * Creates a new town.
      * 
