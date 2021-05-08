@@ -1,104 +1,11 @@
 {
-"MapName": "east-a1",
-"Buildings": {
-	"values": [
-		{
-			"class": "moe.yuru.newhorizons.models.BuildingInstance",
-			"model": {
-				"id": "kanna",
-				"lastName": "Kamui",
-				"firstName": "Kanna",
-				"function": "Loli Police",
-				"faction": "POLITICS",
-				"sizeX": 100,
-				"sizeY": 50,
-				"stats": {
-					"5": {
-						"coinCost": -16000,
-						"resourcesCost": -4000,
-						"coinsPerSecond": 160,
-						"resourcesPerSecond": 80
-					},
-					"2": {
-						"coinCost": -2000,
-						"resourcesCost": -500,
-						"coinsPerSecond": 20,
-						"resourcesPerSecond": 10
-					},
-					"4": {
-						"coinCost": -8000,
-						"resourcesCost": -2000,
-						"coinsPerSecond": 80,
-						"resourcesPerSecond": 40
-					},
-					"1": {
-						"coinCost": -1000,
-						"coinsPerSecond": 10,
-						"resourcesPerSecond": 5
-					},
-					"3": {
-						"coinCost": -4000,
-						"resourcesCost": -1000,
-						"coinsPerSecond": 40,
-						"resourcesPerSecond": 20
-					}
-				}
-			},
-			"level": 1,
-			"posX": 284,
-			"posY": 395.00003
-		},
-		{
-			"class": "moe.yuru.newhorizons.models.BuildingInstance",
-			"model": {
-				"id": "yui",
-				"lastName": "Hirasawa",
-				"firstName": "Yui",
-				"function": "Music Band",
-				"faction": "CULTURE",
-				"sizeX": 100,
-				"sizeY": 50,
-				"stats": {
-					"5": {
-						"coinCost": -16000,
-						"resourcesCost": -4000,
-						"coinsPerSecond": 160,
-						"resourcesPerSecond": 80
-					},
-					"2": {
-						"coinCost": -2000,
-						"resourcesCost": -500,
-						"coinsPerSecond": 20,
-						"resourcesPerSecond": 10
-					},
-					"4": {
-						"coinCost": -8000,
-						"resourcesCost": -2000,
-						"coinsPerSecond": 80,
-						"resourcesPerSecond": 40
-					},
-					"1": {
-						"coinCost": -1000,
-						"coinsPerSecond": 10,
-						"resourcesPerSecond": 5
-					},
-					"3": {
-						"coinCost": -4000,
-						"resourcesCost": -1000,
-						"coinsPerSecond": 40,
-						"resourcesPerSecond": 20
-					}
-				}
-			},
-			"level": 1,
-			"posX": 432,
-			"posY": 501
-		}
-	]
+"mapName": "east-a1",
+"buildings": {
+	"values": []
 },
-"Coins": 8046.679,
-"Ressources": {
-	"SCIENCE": {
+"coins": 10000,
+"resources": {
+	"CULTURE": {
 		"class": "java.lang.Float",
 		"value": 1000
 	},
@@ -108,62 +15,14 @@
 	},
 	"POLITICS": {
 		"class": "java.lang.Float",
-		"value": 1015.0029
+		"value": 1000
 	},
-	"CULTURE": {
+	"SCIENCE": {
 		"class": "java.lang.Float",
-		"value": 1008.3336
+		"value": 1000
 	}
 },
-"Coins/s": 20,
-"Ressources/s": {
-	"POLITICS": {
-		"class": "java.lang.Float",
-		"value": 5
-	},
-	"CULTURE": {
-		"class": "java.lang.Float",
-		"value": 5
-	}
-},
-"Buildings to place": {
-	"id": "gu",
-	"lastName": "Mister",
-	"firstName": "Gu",
-	"function": "Zoo",
-	"faction": "CULTURE",
-	"sizeX": 100,
-	"sizeY": 50,
-	"stats": {
-		"5": {
-			"coinCost": -16000,
-			"resourcesCost": -4000,
-			"coinsPerSecond": 160,
-			"resourcesPerSecond": 80
-		},
-		"2": {
-			"coinCost": -2000,
-			"resourcesCost": -500,
-			"coinsPerSecond": 20,
-			"resourcesPerSecond": 10
-		},
-		"4": {
-			"coinCost": -8000,
-			"resourcesCost": -2000,
-			"coinsPerSecond": 80,
-			"resourcesPerSecond": 40
-		},
-		"1": {
-			"coinCost": -1000,
-			"coinsPerSecond": 10,
-			"resourcesPerSecond": 5
-		},
-		"3": {
-			"coinCost": -4000,
-			"resourcesCost": -1000,
-			"coinsPerSecond": 40,
-			"resourcesPerSecond": 20
-		}
-	}
-}
+"coinsPerSecond": 0,
+"resourcesPerSecond": {},
+"toPlace": null
 }

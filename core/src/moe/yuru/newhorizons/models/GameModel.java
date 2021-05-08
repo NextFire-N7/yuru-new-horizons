@@ -23,6 +23,17 @@ public abstract class GameModel extends Notifier {
     }
 
     /**
+     * Initializes the notifier and the game town when loading a game.
+     * 
+     * @param mapName name of the chousen map
+     * @param town town loaded
+     */
+    public GameModel(String mapName, Town town) {
+        super();
+        this.town = town;
+    }
+
+    /**
      * Updates ennemy statistics since last frame.
      * 
      * @param delta last frametime

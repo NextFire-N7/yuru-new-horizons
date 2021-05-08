@@ -25,4 +25,14 @@ public class SaveGame {
 
     }
 
+    /**
+     * Load a saved game
+     */
+    public static Town load() {
+        Json json = new Json();
+        FileHandle file = Gdx.files.local("core/assets/save.json");
+        Town town = json.fromJson(Town.class, file.readString());
+        return town;
+    }
+
 }

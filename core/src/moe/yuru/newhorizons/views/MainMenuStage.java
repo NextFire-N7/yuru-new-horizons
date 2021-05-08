@@ -72,18 +72,18 @@ public class MainMenuStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
-                game.setScreen(new GameScreen(game)); // TODO: game personalization screen
+                game.setScreen(new GameScreen(game, true)); // TODO: game personalization screen
             }
         });
 
-        // resumeButton.addListener(new ClickListener() {
-        // @Override
-        // public void clicked(InputEvent event, float x, float y) {
-        // super.clicked(event, x, y);
-        // game.getScreen().dispose();
-        // game.setScreen(new xxxScreen(game)); // TODO: resume game...
-        // }
-        // });
+        resumeButton.addListener(new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+        super.clicked(event, x, y);
+        game.getScreen().dispose();
+        game.setScreen(new GameScreen(game, false)); // TODO: resume game...
+        }
+        });
 
         // optionsButton.addListener(new ClickListener() {
         // @Override

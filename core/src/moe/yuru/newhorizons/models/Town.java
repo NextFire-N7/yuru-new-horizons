@@ -52,6 +52,22 @@ public class Town implements Json.Serializable {
         }
     }
 
+    public Town() {
+
+        // Init fields
+        buildings = new ObjectSet<>();
+        resources = new ObjectMap<>();
+        coinsPerSecond = 0f;
+        resourcesPerSecond = new ObjectMap<>();
+        toPlace = null;
+
+        // Starting resources
+        coins = 10000f;
+        for (Faction faction : Faction.values()) {
+            resources.put(faction, 1000f);
+        }
+    }
+
     /**
      * Validates current location for the pending construction and create and add
      * the associated {@link BuildingInstance} to the town. Fires an event when
@@ -102,6 +118,13 @@ public class Town implements Json.Serializable {
             rpsPerFaction += instance.getStats().getResourcesPerSecond();
             resourcesPerSecond.put(instance.getModel().getFaction(), rpsPerFaction);
         }
+    }
+
+    /**
+     * @return true if the game mode is Solo
+     */
+    public boolean getGameMode() {
+        return(this.gameModel instanceof GameSolo);
     }
 
     /**
@@ -173,27 +196,34 @@ public class Town implements Json.Serializable {
     }
 
     /**
-     * Custom write methode for Town to make a custom serialization.
+     * Custom write method for Town to make a custom serialization.
      */
     @Override
     public void write(Json json) {
-        json.writeValue("MapName", mapName);
-        json.writeValue("Buildings", buildings);
-        json.writeValue("Coins", coins);
-        json.writeValue("Ressources", resources);
-        json.writeValue("Coins/s", coinsPerSecond);
-        json.writeValue("Ressources/s",resourcesPerSecond);
-        json.writeValue("Buildings to place", toPlace);
+        // if (gameModel instanceof GameSolo) {
+        //     json.writeValue("gameModel", "GameSolo");
+        // } else {
+        //     json.writeValue("gameModel", "GameMulti");
+        // }
+        json.writeValue("mapName", mapName);
+        json.writeValue("buildings", buildings);
+        json.writeValue("coins", coins);
+        json.writeValue("resources", resources);
+        json.writeValue("coinsPerSecond", coinsPerSecond);
+        json.writeValue("resourcesPerSecond",resourcesPerSecond);
+        json.writeValue("toPlace", toPlace);
 
     }
 
     /**
-     * Custom read methode for Town to make a custom serialization.
+     * Custom read method for Town to make a custom serialization.
      */
     @Override
     public void read(Json json, JsonValue jsonData) {
-        //TODO
-        
+        // if (jsonData.child().asString().equals("GameSolo")) {
+        //     gameModel = new GameSolo(jsonData.child().next().asString(), this);
+        // }
+        json.readFields(this, jsonData);
     }
 
 }

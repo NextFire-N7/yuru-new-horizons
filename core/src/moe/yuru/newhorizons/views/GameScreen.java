@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameSolo;
+import moe.yuru.newhorizons.models.Town;
+import moe.yuru.newhorizons.utils.SaveGame;
 
 /**
  * Game screen. This is where the player will spend most of his time.
@@ -24,11 +26,18 @@ public class GameScreen implements Screen {
     /**
      * @param game the game instance
      */
-    public GameScreen(YuruNewHorizons game) {
+    public GameScreen(YuruNewHorizons game, boolean isNewGame) {
         this.game = game;
 
-        // Set a new game model in the game
-        game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
+        if (isNewGame) {
+            // Set a new game model in the game
+            game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
+        } else {
+            Town loadedTown = SaveGame.load();
+            if (loadedTown.getGameMode()) {
+                game.setGameModel(new GameSolo(loadedTown.getMapName(), loadedTown)); 
+            }
+        }
         game.setGameScreen(this);
 
         // Summon stages

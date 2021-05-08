@@ -16,6 +16,16 @@ public class GameSolo extends GameModel {
         super(mapName);
     }
 
+    /**
+     * Loads a solo game.
+     * 
+     * @param mapName name of the chousen map
+     * @param town loaded
+     */
+    public GameSolo(String mapName, Town town) {
+        super(mapName, town);
+    }
+
     @Override
     public void updateEnemy(float delta) {
         // No ennemy in a solo game
