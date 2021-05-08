@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.models.GameSolo;
 
 /**
@@ -22,13 +23,24 @@ public class GameScreen implements Screen {
     private InputMultiplexer inputMultiplexer;
 
     /**
+     * New game screen with a new default game model for debug. TODO: proper new
+     * game selection
+     * 
      * @param game the game instance
      */
     public GameScreen(YuruNewHorizons game) {
+        this(game, new GameSolo("east-a1"));
+    }
+
+    /**
+     * @param game  the game instance
+     * @param model an existing game model
+     */
+    public GameScreen(YuruNewHorizons game, GameModel model) {
         this.game = game;
 
-        // Set a new game model in the game
-        game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
+        // Set the game model of the game
+        game.setGameModel(model);
         game.setGameScreen(this);
 
         // Summon stages

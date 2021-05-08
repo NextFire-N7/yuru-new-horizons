@@ -13,6 +13,7 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.utils.GameModelSave;
 
 /**
  * Main menu menu. Contains the game title and the buttons on the right.
@@ -76,14 +77,14 @@ public class MainMenuStage extends Stage {
             }
         });
 
-        // resumeButton.addListener(new ClickListener() {
-        // @Override
-        // public void clicked(InputEvent event, float x, float y) {
-        // super.clicked(event, x, y);
-        // game.getScreen().dispose();
-        // game.setScreen(new xxxScreen(game)); // TODO: resume game...
-        // }
-        // });
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.getScreen().dispose();
+                game.setScreen(new GameScreen(game, GameModelSave.load())); // TODO: resume game...
+            }
+        });
 
         // optionsButton.addListener(new ClickListener() {
         // @Override
