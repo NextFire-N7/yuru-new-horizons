@@ -16,6 +16,9 @@ public abstract class GameModel extends Notifier {
 
     private Building toPlace;
 
+    public GameModel() {
+    }
+
     /**
      * Initializes the notifier and the game town.
      * 

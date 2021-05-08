@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.ObjectSet;
  */
 public abstract class Notifier {
 
-    private ObjectSet<Listener> listeners;
+    private transient ObjectSet<Listener> listeners;
 
     /**
      * Initializes the listeners set.
@@ -23,7 +23,7 @@ public abstract class Notifier {
      * 
      * @param event to be sent
      */
-    public void notifyListeners(Event event) {
+    protected void notifyListeners(Event event) {
         for (Listener listener : listeners) {
             listener.processEvent(event);
         }
