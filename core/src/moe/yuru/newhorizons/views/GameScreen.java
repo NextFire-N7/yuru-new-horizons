@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameSolo;
-import moe.yuru.newhorizons.models.Town;
+import moe.yuru.newhorizons.models.TownContent;
 import moe.yuru.newhorizons.utils.SaveGame;
 
 /**
@@ -33,7 +33,7 @@ public class GameScreen implements Screen {
             // Set a new game model in the game
             game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
         } else {
-            Town loadedTown = SaveGame.load();
+            TownContent loadedTown = SaveGame.load();
             if (loadedTown.getGameMode()) {
                 game.setGameModel(new GameSolo(loadedTown.getMapName(), loadedTown)); 
             }

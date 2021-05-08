@@ -28,9 +28,9 @@ public abstract class GameModel extends Notifier {
      * @param mapName name of the chousen map
      * @param town town loaded
      */
-    public GameModel(String mapName, Town town) {
+    public GameModel(String mapName, TownContent town) {
         super();
-        this.town = town;
+        this.town = new Town(this, town);
     }
 
     /**

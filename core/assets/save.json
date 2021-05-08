@@ -1,28 +1,64 @@
 {
+"isSolo": true,
 "mapName": "east-a1",
 "buildings": {
-	"values": []
+	"values": [
+		{
+			"model": {
+				"id": "renchon",
+				"lastName": "Miyauchi",
+				"firstName": "Renge",
+				"function": "School",
+				"faction": "SCIENCE",
+				"sizeX": 100,
+				"sizeY": 50,
+				"stats": {
+					"5": {
+						"coinCost": -16000,
+						"resourcesCost": -4000,
+						"coinsPerSecond": 160,
+						"resourcesPerSecond": 80
+					},
+					"2": {
+						"coinCost": -2000,
+						"resourcesCost": -500,
+						"coinsPerSecond": 20,
+						"resourcesPerSecond": 10
+					},
+					"4": {
+						"coinCost": -8000,
+						"resourcesCost": -2000,
+						"coinsPerSecond": 80,
+						"resourcesPerSecond": 40
+					},
+					"1": {
+						"coinCost": -1000,
+						"coinsPerSecond": 10,
+						"resourcesPerSecond": 5
+					},
+					"3": {
+						"coinCost": -4000,
+						"resourcesCost": -1000,
+						"coinsPerSecond": 40,
+						"resourcesPerSecond": 20
+					}
+				}
+			},
+			"level": 1,
+			"posX": 244,
+			"posY": 380.00003
+		}
+	]
 },
-"coins": 10000,
+"coins": 9010.996,
 "resources": {
-	"CULTURE": {
-		"class": "java.lang.Float",
-		"value": 1000
-	},
-	"INDUSTRY": {
-		"class": "java.lang.Float",
-		"value": 1000
-	},
-	"POLITICS": {
-		"class": "java.lang.Float",
-		"value": 1000
-	},
-	"SCIENCE": {
-		"class": "java.lang.Float",
-		"value": 1000
-	}
+	"POLITICS": 1000,
+	"SCIENCE": 1005.49835,
+	"CULTURE": 1000,
+	"INDUSTRY": 1000
 },
-"coinsPerSecond": 0,
-"resourcesPerSecond": {},
-"toPlace": null
+"coinsPerSecond": 10,
+"resourcesPerSecond": {
+	"SCIENCE": 5
+}
 }

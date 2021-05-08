@@ -1,6 +1,6 @@
 package moe.yuru.newhorizons.utils;
 
-import moe.yuru.newhorizons.models.Town;
+import moe.yuru.newhorizons.models.TownContent;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.Gdx;
@@ -11,7 +11,7 @@ public class SaveGame {
      * Save the town into a json file
      * @param town
      */
-    public static void save(Town town) {
+    public static void save(TownContent town) {
 
         // Creation of a json containing the town
         Json json = new Json();
@@ -25,13 +25,21 @@ public class SaveGame {
 
     }
 
+    public static void testjson(TownContent townContent) {
+        Json json = new Json();
+        json.setOutputType(OutputType.json);
+        //json.setElementType(Ress.class, "value", float.class);
+        System.out.println(json.prettyPrint(townContent));
+    }
+
     /**
      * Load a saved game
      */
-    public static Town load() {
+    public static TownContent load() {
         Json json = new Json();
         FileHandle file = Gdx.files.local("core/assets/save.json");
-        Town town = json.fromJson(Town.class, file.readString());
+        TownContent town = json.fromJson(TownContent.class, file.readString());
+        System.out.println("load oui");
         return town;
     }
 

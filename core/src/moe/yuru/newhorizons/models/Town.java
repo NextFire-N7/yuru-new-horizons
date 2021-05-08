@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.SaveGame;
 
 /**
  * Town model. Linked to a {@link GameModel}, it keeps player's
@@ -16,17 +17,18 @@ import moe.yuru.newhorizons.utils.Event;
 public class Town implements Json.Serializable {
 
     private GameModel gameModel;
-    private String mapName;
+    // private String mapName;
 
-    private ObjectSet<BuildingInstance> buildings;
+    // private ObjectSet<BuildingInstance> buildings;
 
-    private float coins;
-    private ObjectMap<Faction, Float> resources;
+    // private float coins;
+    // private ObjectMap<Faction, Float> resources;
 
-    private Float coinsPerSecond;
-    private ObjectMap<Faction, Float> resourcesPerSecond;
+    // private Float coinsPerSecond;
+    // private ObjectMap<Faction, Float> resourcesPerSecond;
 
-    private Building toPlace;
+    // private Building toPlace;
+    private TownContent content;
 
     /**
      * Creates a new town linked to the specified {@link GameModel}.
@@ -36,36 +38,31 @@ public class Town implements Json.Serializable {
      */
     public Town(GameModel gameModel, String mapName) {
         this.gameModel = gameModel;
-        this.mapName = mapName;
+        this.content = new TownContent();
+        if (gameModel instanceof GameSolo) {
+                this.content.setGameMode(true);
+            } else {
+                this.content.setGameMode(false);
+            }
+        this.content.setMapName(mapName);
 
         // Init fields
-        buildings = new ObjectSet<>();
-        resources = new ObjectMap<>();
-        coinsPerSecond = 0f;
-        resourcesPerSecond = new ObjectMap<>();
-        toPlace = null;
-
+        this.content.setBuildings(new ObjectSet<>());
+        this.content.setResources(new ObjectMap<>());
+        this.content.setCoinsPerSecond(0f);
+        this.content.setResourcesPerSecond(new ObjectMap<>());
+        
         // Starting resources
-        coins = 10000f;
+        this.content.setCoins(10000f);
         for (Faction faction : Faction.values()) {
-            resources.put(faction, 1000f);
+            this.content.getResources().put(faction, 1000f);
         }
     }
 
-    public Town() {
-
-        // Init fields
-        buildings = new ObjectSet<>();
-        resources = new ObjectMap<>();
-        coinsPerSecond = 0f;
-        resourcesPerSecond = new ObjectMap<>();
-        toPlace = null;
-
-        // Starting resources
-        coins = 10000f;
-        for (Faction faction : Faction.values()) {
-            resources.put(faction, 1000f);
-        }
+    public Town(GameModel gameModel, TownContent townContent) {
+        this.gameModel = gameModel;
+        SaveGame.testjson(townContent);
+        this.content = townContent;
     }
 
     /**
@@ -78,12 +75,12 @@ public class Town implements Json.Serializable {
      * @return the building instance created
      */
     public void validateConstruction(float x, float y) {
-        addCoins(toPlace.getStats(1).getCoinCost());
-        addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
+        addCoins(this.content.getToPlace().getStats(1).getCoinCost());
+        addResources(this.content.getToPlace().getFaction(), this.content.getToPlace().getStats(1).getResourcesCost());
 
-        BuildingInstance instance = new BuildingInstance(toPlace, x, y);
-        buildings.add(instance);
-        toPlace = null;
+        BuildingInstance instance = new BuildingInstance(this.content.getToPlace(), x, y);
+        this.content.getBuildings().add(instance);
+        this.setToPlace(null);
         gameModel.notifyListeners(new Event(this, "toPlace", null));
         updatePerSecond();
         gameModel.notifyListeners(new Event(this, "validated", instance));
@@ -96,10 +93,10 @@ public class Town implements Json.Serializable {
      */
     public void updateBalance(float delta) {
         // Coins
-        addCoins(delta * coinsPerSecond);
+        addCoins(delta * this.content.getCoinsPerSecond());
         // Faction resources
         for (Faction faction : Faction.values()) {
-            addResources(faction, delta * resourcesPerSecond.get(faction, 0f));
+            addResources(faction, delta * this.content.getResourcesPerSecond().get(faction, 0f));
         }
     }
 
@@ -108,15 +105,15 @@ public class Town implements Json.Serializable {
      */
     public void updatePerSecond() {
         // Reset
-        coinsPerSecond = 0f;
-        resourcesPerSecond = new ObjectMap<>();
+        this.content.setCoinsPerSecond(0f);
+        this.content.setResourcesPerSecond(new ObjectMap<>());
         // Update
         float rpsPerFaction;
-        for (BuildingInstance instance : buildings) {
-            coinsPerSecond += instance.getStats().getCoinsPerSecond();
-            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
+        for (BuildingInstance instance : this.content.getBuildings()) {
+            this.content.setCoinsPerSecond(this.content.getCoinsPerSecond() + instance.getStats().getCoinsPerSecond());
+            rpsPerFaction = this.content.getResourcesPerSecond().get(instance.getModel().getFaction(), 0f);
             rpsPerFaction += instance.getStats().getResourcesPerSecond();
-            resourcesPerSecond.put(instance.getModel().getFaction(), rpsPerFaction);
+            this.content.getResourcesPerSecond().put(instance.getModel().getFaction(), rpsPerFaction);
         }
     }
 
@@ -131,35 +128,35 @@ public class Town implements Json.Serializable {
      * @return the name of the town map
      */
     public String getMapName() {
-        return mapName;
+        return this.content.getMapName();
     }
 
     /**
      * @return the {@link BuildingInstance}s of this town
      */
     public ObjectSet<BuildingInstance> getBuildings() {
-        return buildings;
+        return this.content.getBuildings();
     }
 
     /**
      * @return current coins balance
      */
     public float getCoins() {
-        return coins;
+        return this.content.getCoins();
     }
 
     /**
      * @param amount to add/remove
      */
     public void addCoins(float amount) {
-        coins += amount;
+        this.content.setCoins(this.content.getCoins() + amount);
     }
 
     /**
      * @return current resources balance
      */
     public ObjectMap<Faction, Float> getResources() {
-        return resources;
+        return this.content.getResources();
     }
 
     /**
@@ -167,7 +164,7 @@ public class Town implements Json.Serializable {
      * @return {@code faction} ressource balance
      */
     public float getResources(Faction faction) {
-        return resources.get(faction);
+        return this.content.getResources().get(faction);
     }
 
     /**
@@ -175,14 +172,14 @@ public class Town implements Json.Serializable {
      * @param amount  of resources to add
      */
     public void addResources(Faction faction, float amount) {
-        resources.put(faction, resources.get(faction) + amount);
+        this.content.getResources().put(faction, this.content.getResources().get(faction) + amount);
     }
 
     /**
      * @return current {@link Building} to be placed
      */
     public Building getToPlace() {
-        return toPlace;
+        return this.content.getToPlace();
     }
 
     /**
@@ -191,8 +188,8 @@ public class Town implements Json.Serializable {
      * @param building to be placed
      */
     public void setToPlace(Building building) {
-        toPlace = building;
-        gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
+        this.content.setToPlace(building);
+        gameModel.notifyListeners(new Event(this, "toPlace", this.content.getToPlace()));
     }
 
     /**
@@ -205,13 +202,13 @@ public class Town implements Json.Serializable {
         // } else {
         //     json.writeValue("gameModel", "GameMulti");
         // }
-        json.writeValue("mapName", mapName);
-        json.writeValue("buildings", buildings);
-        json.writeValue("coins", coins);
-        json.writeValue("resources", resources);
-        json.writeValue("coinsPerSecond", coinsPerSecond);
-        json.writeValue("resourcesPerSecond",resourcesPerSecond);
-        json.writeValue("toPlace", toPlace);
+        // json.writeValue("mapName", mapName);
+        // json.writeValue("buildings", buildings);
+        // json.writeValue("coins", coins);
+        // json.writeValue("resources", resources);
+        // json.writeValue("coinsPerSecond", coinsPerSecond);
+        // json.writeValue("resourcesPerSecond",resourcesPerSecond);
+        // json.writeValue("toPlace", toPlace);
 
     }
 
@@ -224,6 +221,10 @@ public class Town implements Json.Serializable {
         //     gameModel = new GameSolo(jsonData.child().next().asString(), this);
         // }
         json.readFields(this, jsonData);
+    }
+
+    public TownContent getTownContent() {
+        return this.content;
     }
 
 }

@@ -22,8 +22,8 @@ public class GameSolo extends GameModel {
      * @param mapName name of the chousen map
      * @param town loaded
      */
-    public GameSolo(String mapName, Town town) {
-        super(mapName, town);
+    public GameSolo(String mapName, TownContent townContent) {
+        super(mapName, townContent);
     }
 
     @Override

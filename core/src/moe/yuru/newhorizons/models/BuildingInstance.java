@@ -26,6 +26,9 @@ public class BuildingInstance {
         this.posY = posY;
     }
 
+    public BuildingInstance() {
+    }
+
     /**
      * Shortcut to {@code this.getModel().getStats(this.getLevel())}.
      * 
