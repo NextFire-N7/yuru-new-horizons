@@ -14,11 +14,14 @@ public class GameSolo extends GameModel {
      */
     public GameSolo(String mapName) {
         super(mapName);
-    }
+        ennemy = new Ennemy() {
 
-    @Override
-    public void updateEnemy(float delta) {
-        // No ennemy in a solo game
+            @Override
+            public void update(float delta) {
+                // No ennemy in this game mode
+            }
+
+        };
     }
 
 }

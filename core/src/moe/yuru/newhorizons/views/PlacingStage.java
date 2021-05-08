@@ -64,8 +64,7 @@ public class PlacingStage extends Stage implements Listener {
     @Override
     public void processEvent(Event event) {
         // If a building is to place, trigger setToPlace
-        if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("toPlace")
-                && event.getValue() != null) {
+        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace") && event.getValue() != null) {
             setToPlace((Building) event.getValue());
         }
     }
@@ -92,7 +91,7 @@ public class PlacingStage extends Stage implements Listener {
                 if (mapArea.contains(x + toPlaceButton.getWidth() / 2, y - toPlaceButton.getHeight() / 2)) {
                     removeListener(this);
                     // ...ask the model to validate the construction at the mouse position...
-                    game.getGameModel().getTown().validateConstruction(x - toPlaceButton.getWidth() / 2,
+                    game.getGameModel().validateConstruction(x - toPlaceButton.getWidth() / 2,
                             y - toPlaceButton.getHeight() / 2);
                     // ...then destruct this button...
                     toPlaceButton.remove();

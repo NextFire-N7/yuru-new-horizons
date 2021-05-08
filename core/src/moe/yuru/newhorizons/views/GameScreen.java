@@ -57,8 +57,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Update model
-        game.getGameModel().getTown().updateBalance(delta);
-        game.getGameModel().updateEnemy(delta);
+        game.getGameModel().update(delta);
 
         gameStage.act(delta);
         gameStage.draw();

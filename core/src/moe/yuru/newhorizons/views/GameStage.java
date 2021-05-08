@@ -129,7 +129,7 @@ public class GameStage extends Stage implements Listener {
     @Override
     public void processEvent(Event event) {
         // Hide constructButton if a building is currently placed
-        if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("toPlace")) {
+        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace")) {
             constructButton.setVisible((event.getValue() != null) ? false : true);
         }
     }

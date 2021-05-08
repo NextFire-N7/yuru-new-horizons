@@ -3,17 +3,14 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
 
-import moe.yuru.newhorizons.utils.Event;
-
 /**
- * Town model. Linked to a {@link GameModel}, it keeps player's
- * {@link BuildingInstance}s and tracks his resources.
+ * Town model. It keeps player's {@link BuildingInstance}s and tracks his
+ * resources.
  * 
  * @author NextFire
  */
 public class Town {
 
-    private GameModel gameModel;
     private String mapName;
 
     private ObjectSet<BuildingInstance> buildings;
@@ -21,19 +18,15 @@ public class Town {
     private float coins;
     private ObjectMap<Faction, Float> resources;
 
-    private Float coinsPerSecond;
+    private float coinsPerSecond;
     private ObjectMap<Faction, Float> resourcesPerSecond;
 
-    private Building toPlace;
-
     /**
-     * Creates a new town linked to the specified {@link GameModel}.
+     * Creates a new town.
      * 
-     * @param gameModel game model
-     * @param mapName   name of the town map
+     * @param mapName name of the town map
      */
-    public Town(GameModel gameModel, String mapName) {
-        this.gameModel = gameModel;
+    public Town(String mapName) {
         this.mapName = mapName;
 
         // Init fields
@@ -41,7 +34,6 @@ public class Town {
         resources = new ObjectMap<>();
         coinsPerSecond = 0f;
         resourcesPerSecond = new ObjectMap<>();
-        toPlace = null;
 
         // Starting resources
         coins = 10000f;
@@ -51,32 +43,11 @@ public class Town {
     }
 
     /**
-     * Validates current location for the pending construction and create and add
-     * the associated {@link BuildingInstance} to the town. Fires an event when
-     * done.
-     *
-     * @param x X axis position
-     * @param y Y axis position
-     * @return the building instance created
-     */
-    public void validateConstruction(float x, float y) {
-        addCoins(toPlace.getStats(1).getCoinCost());
-        addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
-
-        BuildingInstance instance = new BuildingInstance(toPlace, x, y);
-        buildings.add(instance);
-        toPlace = null;
-        gameModel.notifyListeners(new Event(this, "toPlace", null));
-        updatePerSecond();
-        gameModel.notifyListeners(new Event(this, "validated", instance));
-    }
-
-    /**
      * Updates coins and resources balance since the last frame
      *
      * @param delta last frametime
      */
-    public void updateBalance(float delta) {
+    public void update(float delta) {
         // Coins
         addCoins(delta * coinsPerSecond);
         // Faction resources
@@ -151,23 +122,6 @@ public class Town {
      */
     public void addResources(Faction faction, float amount) {
         resources.put(faction, resources.get(faction) + amount);
-    }
-
-    /**
-     * @return current {@link Building} to be placed
-     */
-    public Building getToPlace() {
-        return toPlace;
-    }
-
-    /**
-     * Sets a pending building to be placed. Fires an event when done.
-     *
-     * @param building to be placed
-     */
-    public void setToPlace(Building building) {
-        toPlace = building;
-        gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
     }
 
 }
