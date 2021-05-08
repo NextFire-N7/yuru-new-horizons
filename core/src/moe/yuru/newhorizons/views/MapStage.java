@@ -40,7 +40,7 @@ public class MapStage extends Stage implements Listener {
         textures = new ObjectSet<>();
 
         // Initialization
-        for (BuildingInstance instance : game.getGameModel().getTown().getBuildings()) {
+        for (BuildingInstance instance : game.getGameModel().getTownBuildings()) {
             addInstanceActor(instance);
         }
 

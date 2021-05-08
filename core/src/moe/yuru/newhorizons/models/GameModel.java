@@ -1,5 +1,7 @@
 package moe.yuru.newhorizons.models;
 
+import com.badlogic.gdx.utils.ObjectSet;
+
 import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Notifier;
 
@@ -64,20 +66,6 @@ public class GameModel extends Notifier {
     }
 
     /**
-     * @return player {@link Town}
-     */
-    public Town getTown() {
-        return town;
-    }
-
-    /**
-     * @return game {@link Ennemy}
-     */
-    public Ennemy getEnnemy() {
-        return ennemy;
-    }
-
-    /**
      * Sets a pending building to be placed. Fires an event when done.
      *
      * @param building to be placed
@@ -85,6 +73,22 @@ public class GameModel extends Notifier {
     public void setToPlace(Building building) {
         toPlace = building;
         notifyListeners(new Event(this, "toPlace", toPlace));
+    }
+
+    public String getTownMapName() {
+        return town.getMapName();
+    }
+
+    public ObjectSet<BuildingInstance> getTownBuildings() {
+        return town.getBuildings();
+    }
+
+    public float getTownCoins() {
+        return town.getCoins();
+    }
+
+    public float getTownResources(Faction faction) {
+        return town.getResources(faction);
     }
 
 }

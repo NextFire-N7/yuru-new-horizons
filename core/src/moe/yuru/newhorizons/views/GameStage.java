@@ -49,7 +49,7 @@ public class GameStage extends Stage implements Listener {
         game.getGameModel().addListener(this);
 
         // Add map actor to the stage
-        mapTexture = AssetHelper.getMapTexture(game.getGameModel().getTown());
+        mapTexture = AssetHelper.getTownMapTexture(game.getGameModel());
         TextureRegion mapTextureRegion = new TextureRegion(mapTexture, 480, 375, 1680, 1375);
         Image mapImage = new Image(mapTextureRegion);
         mapImage.setBounds(0, 144, 768, 576);
@@ -139,11 +139,11 @@ public class GameStage extends Stage implements Listener {
     public void act(float delta) {
         super.act(delta);
         // Update labels according to the town balance
-        coinsLabel.setText(String.valueOf((int) game.getGameModel().getTown().getCoins()));
-        scienceLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.SCIENCE)));
-        cultureLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.CULTURE)));
-        industryLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.INDUSTRY)));
-        politicsLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.POLITICS)));
+        coinsLabel.setText(String.valueOf((int) game.getGameModel().getTownCoins()));
+        scienceLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.SCIENCE)));
+        cultureLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.CULTURE)));
+        industryLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.INDUSTRY)));
+        politicsLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.POLITICS)));
     }
 
     @Override

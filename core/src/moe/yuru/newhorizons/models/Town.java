@@ -105,13 +105,6 @@ public class Town {
     }
 
     /**
-     * @return current resources balance
-     */
-    public ObjectMap<String, Float> getResources() {
-        return resources;
-    }
-
-    /**
      * @param faction {@link Faction}
      * @return {@code faction} ressource balance
      */
