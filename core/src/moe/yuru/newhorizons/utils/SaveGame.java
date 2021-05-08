@@ -25,6 +25,10 @@ public class SaveGame {
 
     }
 
+    /**
+     * Test method used to check that json are well saved and loaded
+     * @param townContent
+     */
     public static void testjson(TownContent townContent) {
         Json json = new Json();
         json.setOutputType(OutputType.json);

@@ -59,6 +59,11 @@ public class Town implements Json.Serializable {
         }
     }
 
+    /**
+     * Constructor used to load a game
+     * @param gameModel
+     * @param townContent
+     */
     public Town(GameModel gameModel, TownContent townContent) {
         this.gameModel = gameModel;
         SaveGame.testjson(townContent);

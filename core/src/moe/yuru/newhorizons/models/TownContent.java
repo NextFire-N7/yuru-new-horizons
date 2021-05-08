@@ -2,6 +2,9 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
 
+/**
+ * This class contains the data of the game and is used to save and load a game
+ */
 public class TownContent {
     private boolean isSolo;
     private String mapName;
