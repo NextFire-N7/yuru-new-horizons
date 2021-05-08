@@ -14,7 +14,8 @@ public class GameModelSave {
     public static void save(GameModel model) {
         Json json = new Json();
         json.setOutputType(OutputType.json);
-        json.toJson(model, GameModel.class, Gdx.files.local("save.json"));
+        String prettySave = json.prettyPrint(model);
+        Gdx.files.local("save.json").writeString(prettySave, false);
     }
 
     public static GameModel load() {

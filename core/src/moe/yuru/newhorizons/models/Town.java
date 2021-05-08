@@ -16,10 +16,10 @@ public class Town {
     private ObjectSet<BuildingInstance> buildings;
 
     private float coins;
-    private ObjectMap<Faction, Float> resources;
+    private ObjectMap<String, Float> resources;
 
     private float coinsPerSecond;
-    private ObjectMap<Faction, Float> resourcesPerSecond;
+    private ObjectMap<String, Float> resourcesPerSecond;
 
     public Town() {
     }
@@ -41,7 +41,7 @@ public class Town {
         // Starting resources
         coins = 10000f;
         for (Faction faction : Faction.values()) {
-            resources.put(faction, 1000f);
+            resources.put(faction.name(), 1000f);
         }
     }
 
@@ -55,7 +55,7 @@ public class Town {
         addCoins(delta * coinsPerSecond);
         // Faction resources
         for (Faction faction : Faction.values()) {
-            addResources(faction, delta * resourcesPerSecond.get(faction, 0f));
+            addResources(faction, delta * resourcesPerSecond.get(faction.name(), 0f));
         }
     }
 
@@ -70,9 +70,9 @@ public class Town {
         float rpsPerFaction;
         for (BuildingInstance instance : buildings) {
             coinsPerSecond += instance.getStats().getCoinsPerSecond();
-            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
+            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction().name(), 0f);
             rpsPerFaction += instance.getStats().getResourcesPerSecond();
-            resourcesPerSecond.put(instance.getModel().getFaction(), rpsPerFaction);
+            resourcesPerSecond.put(instance.getModel().getFaction().name(), rpsPerFaction);
         }
     }
 
@@ -107,7 +107,7 @@ public class Town {
     /**
      * @return current resources balance
      */
-    public ObjectMap<Faction, Float> getResources() {
+    public ObjectMap<String, Float> getResources() {
         return resources;
     }
 
@@ -116,7 +116,7 @@ public class Town {
      * @return {@code faction} ressource balance
      */
     public float getResources(Faction faction) {
-        return resources.get(faction);
+        return resources.get(faction.name());
     }
 
     /**
@@ -124,7 +124,7 @@ public class Town {
      * @param amount  of resources to add
      */
     public void addResources(Faction faction, float amount) {
-        resources.put(faction, resources.get(faction) + amount);
+        resources.put(faction.name(), resources.get(faction.name()) + amount);
     }
 
 }

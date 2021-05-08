@@ -13,6 +13,8 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.EnnemyNull;
 import moe.yuru.newhorizons.utils.GameModelSave;
 
 /**
@@ -73,6 +75,7 @@ public class MainMenuStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
+                game.setGameModel(new GameModel("east-a1", new EnnemyNull()));
                 game.setScreen(new GameScreen(game)); // TODO: game personalization screen
             }
         });
@@ -82,7 +85,8 @@ public class MainMenuStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
-                game.setScreen(new GameScreen(game, GameModelSave.load())); // TODO: resume game...
+                game.setGameModel(GameModelSave.load());
+                game.setScreen(new GameScreen(game));
             }
         });
 
