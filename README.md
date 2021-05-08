@@ -1,6 +1,7 @@
 # yuru-new-horizons
 
 [![CI](https://github.com/NextFire/yuru-new-horizons/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NextFire/yuru-new-horizons/actions/workflows/ci.yml)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/NextFire/yuru-new-horizons)
 
 **Yuru New Horizons** is a relaxing city builder game with lots of Japanese pop culture references written in Java with libGDX.
 
