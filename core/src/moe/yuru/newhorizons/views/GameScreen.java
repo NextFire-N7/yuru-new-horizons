@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
     private InputMultiplexer inputMultiplexer;
 
     /**
-     * @param game  the game instance
+     * @param game the game instance
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;

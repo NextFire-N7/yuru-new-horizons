@@ -52,7 +52,7 @@ public class PlacingStage extends Stage implements Listener {
     @Override
     public void act(float delta) {
         super.act(delta);
-        // If a moving button is defined, follow player cursor
+        // If a moving button is defined, follow player's cursor
         if (toPlaceButton != null) {
             mouse_position.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             game.getViewport().unproject(mouse_position);
@@ -82,7 +82,7 @@ public class PlacingStage extends Stage implements Listener {
         toPlaceButton.setSize(building.getSizeX(), building.getSizeY());
         addActor(toPlaceButton);
 
-        // If the player click on screen...
+        // If the player clicks on screen...
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

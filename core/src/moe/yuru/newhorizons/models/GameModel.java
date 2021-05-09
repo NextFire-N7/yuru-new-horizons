@@ -6,42 +6,47 @@ import moe.yuru.newhorizons.utils.Event;
 import moe.yuru.newhorizons.utils.Notifier;
 
 /**
- * Game model. Contains player town and ennemy. Extends {@link Notifier} so it
- * can notify possible registered listeners.
+ * Game model. Contains player's town and opponent. Extends {@link Notifier} so
+ * it can notify possible registered listeners. Also serves as a {@link Town}
+ * proxy.
  * 
  * @author NextFire
  */
 public class GameModel extends Notifier {
 
     private Town town;
-    private Ennemy ennemy;
+    private Opponent opponent;
 
     private Building toPlace;
 
+    /**
+     * Do not use. Defined for the JSON deserializer.
+     */
+    @Deprecated
     public GameModel() {
     }
 
     /**
      * Initializes the notifier and the game town.
      * 
-     * @param mapName name of the chousen map
-     * @param ennemy  player ennemy
+     * @param mapName  name of the chousen map
+     * @param opponent player's {@link Opponent}
      */
-    public GameModel(String mapName, Ennemy ennemy) {
+    public GameModel(String mapName, Opponent opponent) {
         super();
         town = new Town(mapName);
-        this.ennemy = ennemy;
+        this.opponent = opponent;
         toPlace = null;
     }
 
     /**
-     * Updates town and ennemy. TODO: checks for victory
+     * Updates town and opponent. TODO: checks for victory
      * 
      * @param delta last frametime
      */
     public void update(float delta) {
         town.update(delta);
-        ennemy.update(delta);
+        opponent.update(delta);
     }
 
     /**
@@ -75,18 +80,31 @@ public class GameModel extends Notifier {
         notifyListeners(new Event(this, "toPlace", toPlace));
     }
 
+    /**
+     * @return town map name
+     */
     public String getTownMapName() {
         return town.getMapName();
     }
 
+    /**
+     * @return town building instances
+     */
     public ObjectSet<BuildingInstance> getTownBuildings() {
         return town.getBuildings();
     }
 
+    /**
+     * @return town coins
+     */
     public float getTownCoins() {
         return town.getCoins();
     }
 
+    /**
+     * @param faction a game faction
+     * @return town resources in this given faction
+     */
     public float getTownResources(Faction faction) {
         return town.getResources(faction);
     }

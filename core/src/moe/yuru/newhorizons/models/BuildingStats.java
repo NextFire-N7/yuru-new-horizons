@@ -14,7 +14,7 @@ public class BuildingStats {
     private float resourcesPerSecond;
 
     /**
-     * Sole constructor. Do not use. It is defined for the json deserializer.
+     * Do not use. Defined for the JSON deserializer.
      */
     @Deprecated
     public BuildingStats() {

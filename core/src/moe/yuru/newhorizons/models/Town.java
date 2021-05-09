@@ -16,11 +16,15 @@ public class Town {
     private ObjectSet<BuildingInstance> buildings;
 
     private float coins;
-    private ObjectMap<String, Float> resources;
+    private ObjectMap<String, Float> resources; // Keys are strings as in JSON
 
     private float coinsPerSecond;
-    private ObjectMap<String, Float> resourcesPerSecond;
+    private ObjectMap<String, Float> resourcesPerSecond; // Keys are strings as in JSON
 
+    /**
+     * Do not use. Defined for the JSON deserializer.
+     */
+    @Deprecated
     public Town() {
     }
 
@@ -105,16 +109,16 @@ public class Town {
     }
 
     /**
-     * @param faction {@link Faction}
-     * @return {@code faction} ressource balance
+     * @param faction a game faction
+     * @return ressource balance in this faction
      */
     public float getResources(Faction faction) {
         return resources.get(faction.name());
     }
 
     /**
-     * @param faction to add resources
-     * @param amount  of resources to add
+     * @param faction a game faction
+     * @param amount  of resources to add in this faction
      */
     public void addResources(Faction faction, float amount) {
         resources.put(faction.name(), resources.get(faction.name()) + amount);

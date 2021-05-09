@@ -14,6 +14,10 @@ public class BuildingInstance {
     private float posX;
     private float posY;
 
+    /**
+     * Do not use. Defined for the JSON deserializer.
+     */
+    @Deprecated
     public BuildingInstance() {
     }
 
