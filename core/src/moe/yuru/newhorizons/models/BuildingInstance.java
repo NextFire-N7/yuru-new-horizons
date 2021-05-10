@@ -15,6 +15,13 @@ public class BuildingInstance {
     private float posY;
 
     /**
+     * Do not use. Defined for the JSON deserializer.
+     */
+    @Deprecated
+    public BuildingInstance() {
+    }
+
+    /**
      * @param model of the instance
      * @param posX  on screen (horizontally)
      * @param posY  on screen (vertically)

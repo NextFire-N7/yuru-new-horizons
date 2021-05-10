@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import moe.yuru.newhorizons.models.Building;
+import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.models.Town;
 
 /**
@@ -68,13 +69,14 @@ public final class AssetHelper {
     }
 
     /**
-     * Gets the map {@link Texture} of the given {@link Town}.
+     * Gets the map {@link Texture} of the {@link Town} of a given
+     * {@link GameModel}.
      * 
-     * @param town the town
+     * @param model the game model
      * @return the {@link Texture} of its map
      */
-    public static Texture getMapTexture(Town town) {
-        Texture mapTexture = new Texture(Gdx.files.internal(MAPS_PATH + town.getMapName() + ".png"));
+    public static Texture getTownMapTexture(GameModel model) {
+        Texture mapTexture = new Texture(Gdx.files.internal(MAPS_PATH + model.getTownMapName() + ".png"));
         mapTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         return mapTexture;
     }

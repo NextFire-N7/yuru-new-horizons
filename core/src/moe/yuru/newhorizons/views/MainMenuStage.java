@@ -13,6 +13,9 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.OpponentVoid;
+import moe.yuru.newhorizons.utils.GameModelSave;
 
 /**
  * Main menu menu. Contains the game title and the buttons on the right.
@@ -72,18 +75,20 @@ public class MainMenuStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
+                game.setGameModel(new GameModel("east-a1", new OpponentVoid()));
                 game.setScreen(new GameScreen(game)); // TODO: game personalization screen
             }
         });
 
-        // resumeButton.addListener(new ClickListener() {
-        // @Override
-        // public void clicked(InputEvent event, float x, float y) {
-        // super.clicked(event, x, y);
-        // game.getScreen().dispose();
-        // game.setScreen(new xxxScreen(game)); // TODO: resume game...
-        // }
-        // });
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.getScreen().dispose();
+                game.setGameModel(GameModelSave.load());
+                game.setScreen(new GameScreen(game));
+            }
+        });
 
         // optionsButton.addListener(new ClickListener() {
         // @Override

@@ -14,6 +14,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.GameModelSave;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
@@ -35,7 +36,7 @@ public class GameStage extends Stage implements Listener {
     private VisLabel industryLabel;
     private VisLabel politicsLabel;
 
-    private VisTextButton constructButton;
+    private VisTable menuTable;
 
     /**
      * @param game the game instance
@@ -48,7 +49,7 @@ public class GameStage extends Stage implements Listener {
         game.getGameModel().addListener(this);
 
         // Add map actor to the stage
-        mapTexture = AssetHelper.getMapTexture(game.getGameModel().getTown());
+        mapTexture = AssetHelper.getTownMapTexture(game.getGameModel());
         TextureRegion mapTextureRegion = new TextureRegion(mapTexture, 480, 375, 1680, 1375);
         Image mapImage = new Image(mapTextureRegion);
         mapImage.setBounds(0, 144, 768, 576);
@@ -91,13 +92,13 @@ public class GameStage extends Stage implements Listener {
 
         // Menu table at the bottom of the right table
         rightTable.row();
-        VisTable menuTable = new VisTable(true);
+        menuTable = new VisTable(true);
         rightTable.add(menuTable);
         menuTable.bottom();
         menuTable.defaults().growX();
 
         // Adding buttons to the menu table
-        constructButton = new VisTextButton("Construct");
+        VisTextButton constructButton = new VisTextButton("Construct");
         menuTable.add(constructButton);
 
         constructButton.addListener(new ClickListener() {
@@ -107,17 +108,42 @@ public class GameStage extends Stage implements Listener {
                 game.setScreen(new StockScreen(game)); // new construction screen
             }
         });
+
+        menuTable.row();
+        VisTextButton saveButton = new VisTextButton("Save");
+        menuTable.add(saveButton);
+
+        saveButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                GameModelSave.save(game.getGameModel());
+            }
+        });
+
+        menuTable.row();
+        VisTextButton exitButton = new VisTextButton("Exit");
+        menuTable.add(exitButton);
+
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                dispose();
+                game.setScreen(new MainMenuScreen(game));
+            }
+        });
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
         // Update labels according to the town balance
-        coinsLabel.setText(String.valueOf((int) game.getGameModel().getTown().getCoins()));
-        scienceLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.SCIENCE)));
-        cultureLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.CULTURE)));
-        industryLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.INDUSTRY)));
-        politicsLabel.setText(String.valueOf((int) game.getGameModel().getTown().getResources(Faction.POLITICS)));
+        coinsLabel.setText(String.valueOf((int) game.getGameModel().getTownCoins()));
+        scienceLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.SCIENCE)));
+        cultureLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.CULTURE)));
+        industryLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.INDUSTRY)));
+        politicsLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.POLITICS)));
     }
 
     @Override
@@ -128,9 +154,9 @@ public class GameStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
-        // Hide constructButton if a building is currently placed
-        if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("toPlace")) {
-            constructButton.setVisible((event.getValue() != null) ? false : true);
+        // Hide menuTable if a building is currently placed
+        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace")) {
+            menuTable.setVisible((event.getValue() != null) ? false : true);
         }
     }
 

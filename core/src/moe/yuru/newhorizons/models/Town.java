@@ -3,37 +3,37 @@ package moe.yuru.newhorizons.models;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
 
-import moe.yuru.newhorizons.utils.Event;
-
 /**
- * Town model. Linked to a {@link GameModel}, it keeps player's
- * {@link BuildingInstance}s and tracks his resources.
+ * Town model. It keeps player's {@link BuildingInstance}s and tracks his
+ * resources.
  * 
  * @author NextFire
  */
 public class Town {
 
-    private GameModel gameModel;
     private String mapName;
 
     private ObjectSet<BuildingInstance> buildings;
 
     private float coins;
-    private ObjectMap<Faction, Float> resources;
+    private ObjectMap<String, Float> resources; // Keys are strings as in JSON
 
-    private Float coinsPerSecond;
-    private ObjectMap<Faction, Float> resourcesPerSecond;
-
-    private Building toPlace;
+    private float coinsPerSecond;
+    private ObjectMap<String, Float> resourcesPerSecond; // Keys are strings as in JSON
 
     /**
-     * Creates a new town linked to the specified {@link GameModel}.
-     * 
-     * @param gameModel game model
-     * @param mapName   name of the town map
+     * Do not use. Defined for the JSON deserializer.
      */
-    public Town(GameModel gameModel, String mapName) {
-        this.gameModel = gameModel;
+    @Deprecated
+    public Town() {
+    }
+
+    /**
+     * Creates a new town.
+     * 
+     * @param mapName name of the town map
+     */
+    public Town(String mapName) {
         this.mapName = mapName;
 
         // Init fields
@@ -41,34 +41,12 @@ public class Town {
         resources = new ObjectMap<>();
         coinsPerSecond = 0f;
         resourcesPerSecond = new ObjectMap<>();
-        toPlace = null;
 
         // Starting resources
         coins = 10000f;
         for (Faction faction : Faction.values()) {
-            resources.put(faction, 1000f);
+            resources.put(faction.name(), 1000f);
         }
-    }
-
-    /**
-     * Validates current location for the pending construction and create and add
-     * the associated {@link BuildingInstance} to the town. Fires an event when
-     * done.
-     *
-     * @param x X axis position
-     * @param y Y axis position
-     * @return the building instance created
-     */
-    public void validateConstruction(float x, float y) {
-        addCoins(toPlace.getStats(1).getCoinCost());
-        addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
-
-        BuildingInstance instance = new BuildingInstance(toPlace, x, y);
-        buildings.add(instance);
-        toPlace = null;
-        gameModel.notifyListeners(new Event(this, "toPlace", null));
-        updatePerSecond();
-        gameModel.notifyListeners(new Event(this, "validated", instance));
     }
 
     /**
@@ -76,12 +54,12 @@ public class Town {
      *
      * @param delta last frametime
      */
-    public void updateBalance(float delta) {
+    public void update(float delta) {
         // Coins
         addCoins(delta * coinsPerSecond);
         // Faction resources
         for (Faction faction : Faction.values()) {
-            addResources(faction, delta * resourcesPerSecond.get(faction, 0f));
+            addResources(faction, delta * resourcesPerSecond.get(faction.name(), 0f));
         }
     }
 
@@ -96,9 +74,9 @@ public class Town {
         float rpsPerFaction;
         for (BuildingInstance instance : buildings) {
             coinsPerSecond += instance.getStats().getCoinsPerSecond();
-            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction(), 0f);
+            rpsPerFaction = resourcesPerSecond.get(instance.getModel().getFaction().name(), 0f);
             rpsPerFaction += instance.getStats().getResourcesPerSecond();
-            resourcesPerSecond.put(instance.getModel().getFaction(), rpsPerFaction);
+            resourcesPerSecond.put(instance.getModel().getFaction().name(), rpsPerFaction);
         }
     }
 
@@ -131,43 +109,19 @@ public class Town {
     }
 
     /**
-     * @return current resources balance
-     */
-    public ObjectMap<Faction, Float> getResources() {
-        return resources;
-    }
-
-    /**
-     * @param faction {@link Faction}
-     * @return {@code faction} ressource balance
+     * @param faction a game faction
+     * @return ressource balance in this faction
      */
     public float getResources(Faction faction) {
-        return resources.get(faction);
+        return resources.get(faction.name());
     }
 
     /**
-     * @param faction to add resources
-     * @param amount  of resources to add
+     * @param faction a game faction
+     * @param amount  of resources to add in this faction
      */
     public void addResources(Faction faction, float amount) {
-        resources.put(faction, resources.get(faction) + amount);
-    }
-
-    /**
-     * @return current {@link Building} to be placed
-     */
-    public Building getToPlace() {
-        return toPlace;
-    }
-
-    /**
-     * Sets a pending building to be placed. Fires an event when done.
-     *
-     * @param building to be placed
-     */
-    public void setToPlace(Building building) {
-        toPlace = building;
-        gameModel.notifyListeners(new Event(this, "toPlace", toPlace));
+        resources.put(faction.name(), resources.get(faction.name()) + amount);
     }
 
 }

@@ -1,7 +1,8 @@
 package moe.yuru.newhorizons.models;
 
 /**
- * The possible factions for a building.
+ * The possible factions for a building. The player earns resources in each of
+ * them.
  * 
  * @author NextFire
  */

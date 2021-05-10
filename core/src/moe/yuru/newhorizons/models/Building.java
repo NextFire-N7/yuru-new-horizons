@@ -23,7 +23,7 @@ public class Building {
     private IntMap<BuildingStats> stats;
 
     /**
-     * Sole constructor. Do not use. It is defined for the JSON deserializer.
+     * Do not use. Defined for the JSON deserializer.
      */
     @Deprecated
     public Building() {

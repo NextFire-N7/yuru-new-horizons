@@ -98,7 +98,7 @@ public class StockStage extends Stage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.getGameModel().getTown().setToPlace(building);
+                        game.getGameModel().setToPlace(building);
                         game.getScreen().dispose();
                         game.setScreen(game.getGameScreen());
                     }

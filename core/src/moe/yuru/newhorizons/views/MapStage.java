@@ -40,7 +40,7 @@ public class MapStage extends Stage implements Listener {
         textures = new ObjectSet<>();
 
         // Initialization
-        for (BuildingInstance instance : game.getGameModel().getTown().getBuildings()) {
+        for (BuildingInstance instance : game.getGameModel().getTownBuildings()) {
             addInstanceActor(instance);
         }
 
@@ -60,7 +60,7 @@ public class MapStage extends Stage implements Listener {
     public void processEvent(Event event) {
         // If a new building has been registered and validated by the model, call
         // addInstanceActor to add the newly missing button on stage.
-        if (event.getSource() == game.getGameModel().getTown() && event.getName().equals("validated")) {
+        if (event.getSource() == game.getGameModel() && event.getName().equals("validated")) {
             addInstanceActor((BuildingInstance) event.getValue());
         }
     }

@@ -35,8 +35,8 @@ public class YuruNewHorizons extends Game {
     private GameScreen gameScreen;
 
     // Volumes
-    private Float musicVolume;
-    private Float soundVolume;
+    private float musicVolume;
+    private float soundVolume;
 
     /**
      * Sole constructor. Should not be called. This class is only instantiated once
@@ -169,14 +169,14 @@ public class YuruNewHorizons extends Game {
      * 
      * @return the music volume
      */
-    public Float getMusicVolume() {
+    public float getMusicVolume() {
         return musicVolume;
     }
 
     /**
      * @param musicVolume between {@code 0.0f} and {@code 1.0f}
      */
-    public void setMusicVolume(Float musicVolume) {
+    public void setMusicVolume(float musicVolume) {
         this.musicVolume = musicVolume;
     }
 
@@ -185,14 +185,14 @@ public class YuruNewHorizons extends Game {
      * 
      * @return the sound effects volume
      */
-    public Float getSoundVolume() {
+    public float getSoundVolume() {
         return soundVolume;
     }
 
     /**
      * @param soundVolume between {@code 0.0f} and {@code 1.0f}
      */
-    public void setSoundVolume(Float soundVolume) {
+    public void setSoundVolume(float soundVolume) {
         this.soundVolume = soundVolume;
     }
 

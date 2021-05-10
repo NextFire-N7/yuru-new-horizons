@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.models.GameSolo;
 
 /**
  * Game screen. This is where the player will spend most of his time.
@@ -26,9 +25,6 @@ public class GameScreen implements Screen {
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
-
-        // Set a new game model in the game
-        game.setGameModel(new GameSolo("east-a1")); // TODO: map selection
         game.setGameScreen(this);
 
         // Summon stages
@@ -57,8 +53,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Update model
-        game.getGameModel().getTown().updateBalance(delta);
-        game.getGameModel().updateEnemy(delta);
+        game.getGameModel().update(delta);
 
         gameStage.act(delta);
         gameStage.draw();
