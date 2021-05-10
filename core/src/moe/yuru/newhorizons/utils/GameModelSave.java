@@ -16,6 +16,7 @@ import moe.yuru.newhorizons.models.GameModel;
 public class GameModelSave {
 
     private static Json json = new Json();
+    // Save file: ~/.prefs/YuruNewHorizons
     private static Preferences prefs = Gdx.app.getPreferences("YuruNewHorizons");
 
     private GameModelSave() {
@@ -30,6 +31,7 @@ public class GameModelSave {
         json.setOutputType(OutputType.json);
         String prettySave = json.prettyPrint(model);
         prefs.putString("save", prettySave);
+        prefs.flush();
     }
 
     /**
