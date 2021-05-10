@@ -9,6 +9,7 @@ import moe.yuru.newhorizons.models.GameModel;
 /**
  * {@link GameModel} JSON serializer/dezerialiser.
  * 
+ * @author DinoGurnari
  * @author NextFire
  */
 public class GameModelSave {

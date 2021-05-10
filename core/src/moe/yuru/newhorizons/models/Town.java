@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ObjectSet;
  * resources.
  * 
  * @author NextFire
+ * @author DinoGurnari
  */
 public class Town {
 
