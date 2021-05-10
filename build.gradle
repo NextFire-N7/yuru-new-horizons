@@ -29,7 +29,7 @@ allprojects {
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
         gdxFreetypeGwtVersion = '1.9.10.1'
-        visuiVersion = '1.4.11'
+        visuiVersion = '1.5.0'
     }
 
     repositories {
