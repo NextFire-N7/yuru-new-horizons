@@ -1,6 +1,7 @@
 package moe.yuru.newhorizons.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 
@@ -14,26 +15,28 @@ import moe.yuru.newhorizons.models.GameModel;
  */
 public class GameModelSave {
 
+    private static Json json = new Json();
+    private static Preferences prefs = Gdx.app.getPreferences("YuruNewHorizons");
+
     private GameModelSave() {
     }
 
     /**
-     * Saves the given model to a JSON file. Town + Opponent.
+     * Saves the given model to a JSON string in preferences. Town + Opponent.
      * 
      * @param model {@link GameModel} to save
      */
     public static void save(GameModel model) {
-        Json json = new Json();
         json.setOutputType(OutputType.json);
         String prettySave = json.prettyPrint(model);
-        Gdx.files.local("save.json").writeString(prettySave, false);
+        prefs.putString("save", prettySave);
     }
 
     /**
      * @return previously saved {@link GameModel}
      */
     public static GameModel load() {
-        return new Json().fromJson(GameModel.class, Gdx.files.local("save.json"));
+        return json.fromJson(GameModel.class, prefs.getString("save"));
     }
 
 }
