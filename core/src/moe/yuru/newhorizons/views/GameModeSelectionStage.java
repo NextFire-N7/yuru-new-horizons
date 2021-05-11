@@ -1,36 +1,35 @@
 package moe.yuru.newhorizons.views;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.utils.GameModelSave;
+import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.OpponentVoid;
 
 /**
- * Main menu menu. Contains the game title and the buttons on the right.
- * 
- * @author NextFire
+ * Game mode selection menu.
+ * @author DinoGurnari
  */
-public class MainMenuStage extends Stage {
+public class GameModeSelectionStage extends Stage {
 
     private BitmapFont font;
 
     /**
      * @param game the game instance
      */
-    public MainMenuStage(YuruNewHorizons game) {
+    public GameModeSelectionStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
-        // See, it's a pain to use custom fonts...
+        // Custom font
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 60;
         parameter.borderWidth = 5;
@@ -40,7 +39,7 @@ public class MainMenuStage extends Stage {
         // Main table for the title and menu buttons
         VisTable table = new VisTable();
         addActor(table);
-        table.setBounds(690, 0, 400, 720);
+        table.setBounds(450, 0, 400, 720);
 
         // Title label
         VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
@@ -53,54 +52,43 @@ public class MainMenuStage extends Stage {
         menuTable.defaults().width(table.getWidth()).height(75).space(50);
 
         // Buttons
-        VisTextButton startButton = new VisTextButton("New Game");
-        VisTextButton resumeButton = new VisTextButton("Resume Game");
-        VisTextButton optionsButton = new VisTextButton("Options");
-        VisTextButton exitButton = new VisTextButton("Quit");
+        VisTextButton soloButton = new VisTextButton("Solo Game Mode");
+        VisTextButton versusButton = new VisTextButton("Versus Game Mode");
+        VisTextButton exitButton = new VisTextButton("Back");
 
         // Adding them to the menu table
-        menuTable.add(startButton);
+        menuTable.add(soloButton);
         menuTable.row();
-        menuTable.add(resumeButton);
-        menuTable.row();
-        menuTable.add(optionsButton);
+        menuTable.add(versusButton);
         menuTable.row();
         menuTable.add(exitButton);
 
-        // Buttons controllers
-        startButton.addListener(new ClickListener() {
+         // Buttons controllers
+         soloButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
-                game.setScreen(new GameModeSelectionScreen(game)); // TODO: game personalization screen
+                game.setGameModel(new GameModel("east-a1", new OpponentVoid()));
+                game.setScreen(new GameScreen(game)); // TODO: game personalization screen
             }
         });
 
-        resumeButton.addListener(new ClickListener() {
+        versusButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.getScreen().dispose();
-                game.setGameModel(GameModelSave.load());
+                game.setGameModel(new GameModel("east-a1", new OpponentNormal()));
                 game.setScreen(new GameScreen(game));
             }
         });
 
-        // optionsButton.addListener(new ClickListener() {
-        // @Override
-        // public void clicked(InputEvent event, float x, float y) {
-        // super.clicked(event, x, y);
-        // game.getScreen().dispose();
-        // game.setScreen(new xxxScreen(game)); // TODO: options menu...
-        // }
-        // });
-
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                Gdx.app.exit();
+                dispose();
+                game.setScreen(new MainMenuScreen(game));
             }
         });
     }
@@ -110,5 +98,5 @@ public class MainMenuStage extends Stage {
         super.dispose();
         font.dispose();
     }
-
+    
 }
