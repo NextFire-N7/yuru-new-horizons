@@ -39,7 +39,7 @@ public class GameModeSelectionStage extends Stage {
         // Main table for the title and menu buttons
         VisTable table = new VisTable();
         addActor(table);
-        table.setBounds(450, 0, 400, 720);
+        table.setBounds(440, 0, 400, 720);
 
         // Title label
         VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
