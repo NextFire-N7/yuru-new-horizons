@@ -3,20 +3,22 @@ package moe.yuru.newhorizons.views;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.OpponentNormal;
 import moe.yuru.newhorizons.models.OpponentVoid;
 
 /**
  * Game mode selection menu.
+ * 
  * @author DinoGurnari
  */
 public class GameModeSelectionStage extends Stage {
@@ -63,8 +65,8 @@ public class GameModeSelectionStage extends Stage {
         menuTable.row();
         menuTable.add(exitButton);
 
-         // Buttons controllers
-         soloButton.addListener(new ClickListener() {
+        // Buttons controllers
+        soloButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -98,5 +100,5 @@ public class GameModeSelectionStage extends Stage {
         super.dispose();
         font.dispose();
     }
-    
+
 }

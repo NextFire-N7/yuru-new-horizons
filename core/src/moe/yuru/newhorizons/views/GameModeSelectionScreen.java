@@ -10,6 +10,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 
 /**
  * Game mode selection.
+ * 
  * @author DinoGurnari
  */
 public class GameModeSelectionScreen implements Screen {
@@ -38,7 +39,6 @@ public class GameModeSelectionScreen implements Screen {
         Gdx.input.setInputProcessor(gModeSelectionStage);
         theme.setVolume(game.getMusicVolume());
         theme.play();
-        
     }
 
     @Override
@@ -50,36 +50,31 @@ public class GameModeSelectionScreen implements Screen {
         game.getBatch().begin();
         game.getBatch().draw(background, 0, 0, 1280, 720);
         game.getBatch().end();
-        
+
         // appelle les methodes act des acteurs de la scène si définies
         gModeSelectionStage.act(delta);
         // dessine la scène
         gModeSelectionStage.draw();
-        
     }
 
     @Override
     public void resize(int width, int height) {
         game.getViewport().update(width, height);
-        
     }
 
     @Override
     public void pause() {
         theme.pause();
-        
     }
 
     @Override
     public void resume() {
         theme.play();
-        
     }
 
     @Override
     public void hide() {
         theme.pause();
-        
     }
 
     @Override
@@ -87,7 +82,6 @@ public class GameModeSelectionScreen implements Screen {
         theme.dispose();
         background.dispose();
         gModeSelectionStage.dispose();
-        
     }
-    
+
 }

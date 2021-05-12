@@ -1,6 +1,4 @@
-package moe.yuru.newhorizons.views;
-
-import moe.yuru.newhorizons.models.Opponent;
+package moe.yuru.newhorizons.models;
 
 public class OpponentNormal implements Opponent {
 
