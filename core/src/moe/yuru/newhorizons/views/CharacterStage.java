@@ -22,7 +22,7 @@ import moe.yuru.newhorizons.utils.BuildingStockWrapper;
  * 
  * @author NextFire
  */
-public class BuildingCharacterStage extends Stage {
+public class CharacterStage extends Stage {
 
     private static Random random = new Random();
     private static int lastNb = -1;
@@ -37,7 +37,7 @@ public class BuildingCharacterStage extends Stage {
      * 
      * @param game the game instance
      */
-    public BuildingCharacterStage(YuruNewHorizons game) {
+    public CharacterStage(YuruNewHorizons game) {
         this(game, randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
     }
 
@@ -47,7 +47,7 @@ public class BuildingCharacterStage extends Stage {
      * @param game          the game instance
      * @param buildingModel building of the character
      */
-    public BuildingCharacterStage(YuruNewHorizons game, Building buildingModel) {
+    public CharacterStage(YuruNewHorizons game, Building buildingModel) {
         super(game.getViewport(), game.getBatch());
         this.game = game;
         setChara(buildingModel);
@@ -81,17 +81,24 @@ public class BuildingCharacterStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                charaSound.stop();
-                charaImage.remove();
-                // Dispose current assets
-                charaTexture.dispose();
-                charaSound.dispose();
-                // Change chara
-                setChara(randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
-                addRandomCharaListener();
+                switchRandom();
                 playCharaSound();
             }
         });
+    }
+
+    /**
+     * Changes the current character to a random one and re-add the random listener.
+     */
+    public void switchRandom() {
+        charaSound.stop();
+        charaImage.remove();
+        // Dispose current assets
+        charaTexture.dispose();
+        charaSound.dispose();
+        // Change chara
+        setChara(randomCharaDontRepeat(BuildingStockWrapper.getBuildingStock()));
+        addRandomCharaListener();
     }
 
     /**

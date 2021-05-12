@@ -129,8 +129,11 @@ public class GameStage extends Stage implements Listener {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                dispose();
-                game.setScreen(new MainMenuScreen(game));
+                // kill game screen and model then return to main menu
+                game.getGameScreen().dispose();
+                game.setGameScreen(null);
+                game.setGameModel(null);
+                game.setScreen(game.getMainMenuScreen());
             }
         });
     }

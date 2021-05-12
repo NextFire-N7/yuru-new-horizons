@@ -20,7 +20,7 @@ public class BuildingScreen implements Screen {
 
     private YuruNewHorizons game;
     private Texture background;
-    private BuildingCharacterStage buildingCharacterStage;
+    private CharacterStage characterStage;
     private InputMultiplexer inputMultiplexer;
 
     /**
@@ -33,14 +33,14 @@ public class BuildingScreen implements Screen {
         this.game = game;
 
         // Left character stage
-        buildingCharacterStage = new BuildingCharacterStage(game, instance.getModel());
-        buildingCharacterStage.addRepeatCharaSoundListener();
+        characterStage = new CharacterStage(game, instance.getModel());
+        characterStage.addRepeatCharaSoundListener();
 
         background = AssetHelper.getCoverTexture(instance.getModel());
 
         // Inputs
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(buildingCharacterStage);
+        inputMultiplexer.addProcessor(characterStage);
 
         // TODO: associated stage w/ exit button
         inputMultiplexer.addProcessor(new InputAdapter() {
@@ -57,7 +57,7 @@ public class BuildingScreen implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
-        buildingCharacterStage.playCharaSound();
+        characterStage.playCharaSound();
     }
 
     @Override
@@ -70,8 +70,8 @@ public class BuildingScreen implements Screen {
         game.getBatch().draw(background, 0, 0, 1280, 720);
         game.getBatch().end();
 
-        buildingCharacterStage.act(delta);
-        buildingCharacterStage.draw();
+        characterStage.act(delta);
+        characterStage.draw();
     }
 
     @Override
@@ -100,7 +100,7 @@ public class BuildingScreen implements Screen {
     @Override
     public void dispose() {
         background.dispose();
-        buildingCharacterStage.dispose();
+        characterStage.dispose();
     }
 
 }

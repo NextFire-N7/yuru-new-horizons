@@ -1,13 +1,8 @@
 package moe.yuru.newhorizons.views;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
@@ -20,10 +15,9 @@ import moe.yuru.newhorizons.models.OpponentVoid;
  * Game mode selection menu.
  * 
  * @author DinoGurnari
+ * @author NextFire
  */
 public class GameModeSelectionStage extends Stage {
-
-    private BitmapFont font;
 
     /**
      * @param game the game instance
@@ -31,27 +25,11 @@ public class GameModeSelectionStage extends Stage {
     public GameModeSelectionStage(YuruNewHorizons game) {
         super(game.getViewport(), game.getBatch());
 
-        // Custom font
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 60;
-        parameter.borderWidth = 5;
-        parameter.borderColor = Color.valueOf("E39256");
-        font = game.getFontGenerator().generateFont(parameter);
-
-        // Main table for the title and menu buttons
+        // Table for the menu buttons
         VisTable table = new VisTable();
         addActor(table);
-        table.setBounds(440, 0, 400, 720);
-
-        // Title label
-        VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
-        table.add(title).space(50);
-        table.row();
-
-        // Table for the buttons
-        VisTable menuTable = new VisTable();
-        table.add(menuTable);
-        menuTable.defaults().width(table.getWidth()).height(75).space(50);
+        table.setBounds(690, 0, 400, 625);
+        table.defaults().width(table.getWidth()).height(75).space(50);
 
         // Buttons
         VisTextButton soloButton = new VisTextButton("Solo Game Mode");
@@ -59,18 +37,17 @@ public class GameModeSelectionStage extends Stage {
         VisTextButton exitButton = new VisTextButton("Back");
 
         // Adding them to the menu table
-        menuTable.add(soloButton);
-        menuTable.row();
-        menuTable.add(versusButton);
-        menuTable.row();
-        menuTable.add(exitButton);
+        table.add(soloButton);
+        table.row();
+        table.add(versusButton);
+        table.row();
+        table.add(exitButton);
 
         // Buttons controllers
         soloButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.getScreen().dispose();
                 game.setGameModel(new GameModel("east-a1", new OpponentVoid()));
                 game.setScreen(new GameScreen(game)); // TODO: game personalization screen
             }
@@ -80,7 +57,6 @@ public class GameModeSelectionStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.getScreen().dispose();
                 game.setGameModel(new GameModel("east-a1", new OpponentNormal()));
                 game.setScreen(new GameScreen(game));
             }
@@ -89,16 +65,9 @@ public class GameModeSelectionStage extends Stage {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                dispose();
-                game.setScreen(new MainMenuScreen(game));
+                game.getMainMenuScreen().switchRightStage(new MainMenuStage(game));
             }
         });
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        font.dispose();
     }
 
 }
