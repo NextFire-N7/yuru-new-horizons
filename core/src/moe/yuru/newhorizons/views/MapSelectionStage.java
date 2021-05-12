@@ -16,7 +16,7 @@ import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.models.OpponentVoid;
 
 /**
- * Game mode selection menu.
+ * Map selection menu.
  * @author DinoGurnari
  */
 public class MapSelectionStage extends Stage {
