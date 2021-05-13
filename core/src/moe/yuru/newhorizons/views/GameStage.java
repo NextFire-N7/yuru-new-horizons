@@ -95,7 +95,7 @@ public class GameStage extends Stage implements Listener {
         menuTable = new VisTable(true);
         rightTable.add(menuTable);
         menuTable.bottom();
-        menuTable.defaults().growX();
+        menuTable.defaults().growX().height(30);
 
         // Adding buttons to the menu table
         VisTextButton constructButton = new VisTextButton("Construct");
@@ -130,10 +130,10 @@ public class GameStage extends Stage implements Listener {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 // kill game screen and model then return to main menu
-                game.getGameScreen().dispose();
-                game.setGameScreen(null);
+                game.getScreen().dispose();
                 game.setGameModel(null);
-                game.setScreen(game.getMainMenuScreen());
+                game.setGameScreen(null);
+                game.setScreen(new MainMenuScreen(game));
             }
         });
     }

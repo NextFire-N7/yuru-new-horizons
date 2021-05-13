@@ -3,6 +3,7 @@ package moe.yuru.newhorizons.views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
@@ -19,13 +20,13 @@ public class GameScreen implements Screen {
     private MapStage mapStage;
     private PlacingStage placingStage;
     private InputMultiplexer inputMultiplexer;
+    private Music theme;
 
     /**
      * @param game the game instance
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
-        game.setGameScreen(this);
 
         // Summon stages
         gameStage = new GameStage(game);
@@ -37,11 +38,17 @@ public class GameScreen implements Screen {
         inputMultiplexer.addProcessor(gameStage);
         inputMultiplexer.addProcessor(mapStage);
         inputMultiplexer.addProcessor(placingStage);
+
+        // Audio
+        theme = Gdx.audio.newMusic(Gdx.files.internal("theme2.mp3"));
+        theme.setLooping(true);
+        theme.setVolume(game.getMusicVolume());
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
+        theme.play();
     }
 
     @Override
@@ -72,14 +79,12 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
+        theme.pause();
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
+        theme.play();
     }
 
     @Override
@@ -93,6 +98,7 @@ public class GameScreen implements Screen {
         gameStage.dispose();
         mapStage.dispose();
         placingStage.dispose();
+        theme.dispose();
     }
 
 }

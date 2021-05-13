@@ -47,8 +47,8 @@ public class BuildingScreen implements Screen {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 super.touchDown(screenX, screenY, pointer, button);
-                dispose();
                 game.setScreen(game.getGameScreen());
+                dispose();
                 return true;
             }
         });
@@ -81,14 +81,12 @@ public class BuildingScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
+        game.getGameScreen().pause();
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
+        game.getGameScreen().resume();
     }
 
     @Override
