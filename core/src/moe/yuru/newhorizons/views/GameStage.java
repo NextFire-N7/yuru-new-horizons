@@ -14,6 +14,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Faction;
 import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.EventType;
 import moe.yuru.newhorizons.utils.GameModelSave;
 import moe.yuru.newhorizons.utils.Listener;
 
@@ -158,8 +159,12 @@ public class GameStage extends Stage implements Listener {
     @Override
     public void processEvent(Event event) {
         // Hide menuTable if a building is currently placed
-        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace")) {
-            menuTable.setVisible((event.getValue() != null) ? false : true);
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.TO_PLACE) {
+            if (event.getValue() != null) {
+                menuTable.setVisible(false);
+            } else {
+                menuTable.setVisible(true);
+            }
         }
     }
 

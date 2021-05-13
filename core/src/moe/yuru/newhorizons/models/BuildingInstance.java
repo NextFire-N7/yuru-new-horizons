@@ -23,8 +23,8 @@ public class BuildingInstance {
 
     /**
      * @param model of the instance
-     * @param posX  on screen (horizontally)
-     * @param posY  on screen (vertically)
+     * @param posX  of the bottom left corner
+     * @param posY  of the bottom left corner
      */
     public BuildingInstance(Building model, float posX, float posY) {
         this.model = model;

@@ -9,6 +9,7 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingInstance;
 import moe.yuru.newhorizons.utils.AssetHelper;
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.EventType;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
@@ -55,7 +56,7 @@ public class MapStage extends Stage implements Listener {
     public void processEvent(Event event) {
         // If a new building has been registered and validated by the model, call
         // addInstanceActor to add the newly missing button on stage.
-        if (event.getSource() == game.getGameModel() && event.getName().equals("validated")) {
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.VALIDATED) {
             BuildingInstance instance = (BuildingInstance) event.getValue();
             addInstanceActor(instance);
 

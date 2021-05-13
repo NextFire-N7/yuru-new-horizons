@@ -6,10 +6,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.kotcrab.vis.ui.util.dialog.Dialogs;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
+import moe.yuru.newhorizons.models.NegativeBalanceException;
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.EventType;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
@@ -25,6 +28,7 @@ public class PlacingStage extends Stage implements Listener {
     private Rectangle mapArea;
     private BuildingButton toPlaceButton;
     private Vector3 mouse_position;
+    private ClickListener clickListener;
 
     /**
      * @param game the game instance
@@ -58,9 +62,15 @@ public class PlacingStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
-        // If a building is to place, trigger setToPlace
-        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace") && event.getValue() != null) {
-            setToPlace((Building) event.getValue());
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.TO_PLACE) {
+            // If a building is to place, trigger setToPlace
+            if (event.getValue() != null && toPlaceButton == null) {
+                setToPlace((Building) event.getValue());
+            } else if (event.getValue() == null) { // Else, kill that button
+                removeListener(clickListener);
+                toPlaceButton.remove();
+                toPlaceButton = null;
+            }
         }
     }
 
@@ -75,23 +85,24 @@ public class PlacingStage extends Stage implements Listener {
         addActor(toPlaceButton);
 
         // If the player clicks on screen...
-        addListener(new ClickListener() {
+        clickListener = new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                // ...at a valid position...
+                // ...on the map...
                 if (mapArea.contains(x + toPlaceButton.getWidth() / 2, y - toPlaceButton.getHeight() / 2)) {
-                    removeListener(this);
                     // ...ask the model to validate the construction at the mouse position...
-                    game.getGameModel().validateConstruction(x - toPlaceButton.getWidth() / 2,
-                            y - toPlaceButton.getHeight() / 2);
-                    // ...then destruct this button...
-                    toPlaceButton.remove();
-                    toPlaceButton = null;
+                    try {
+                        game.getGameModel().validateConstruction(x - toPlaceButton.getWidth() / 2,
+                                y - toPlaceButton.getHeight() / 2);
+                    } catch (NegativeBalanceException e) {
+                        // ...oof he's too poor...
+                        Dialogs.showErrorDialog(PlacingStage.this, "You are too poor to do that.");
+                    }
                 }
             }
-        });
-        // ...don't worry, it will reappear soon on the MapStage!
+        };
+        addListener(clickListener);
     }
 
 }

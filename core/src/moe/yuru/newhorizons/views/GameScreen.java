@@ -7,13 +7,16 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
+import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.EventType;
+import moe.yuru.newhorizons.utils.Listener;
 
 /**
  * Game screen. This is where the player will spend most of his time.
  * 
  * @author NextFire
  */
-public class GameScreen implements Screen {
+public class GameScreen implements Screen, Listener {
 
     private YuruNewHorizons game;
     private GameStage gameStage;
@@ -27,6 +30,7 @@ public class GameScreen implements Screen {
      */
     public GameScreen(YuruNewHorizons game) {
         this.game = game;
+        game.getGameModel().addListener(this);
 
         // Summon stages
         gameStage = new GameStage(game);
@@ -99,6 +103,18 @@ public class GameScreen implements Screen {
         mapStage.dispose();
         placingStage.dispose();
         theme.dispose();
+    }
+
+    @Override
+    public void processEvent(Event event) {
+        // Disable building screens while placing a building
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.TO_PLACE) {
+            if (event.getValue() != null) {
+                inputMultiplexer.removeProcessor(mapStage);
+            } else {
+                inputMultiplexer.addProcessor(mapStage);
+            }
+        }
     }
 
 }
