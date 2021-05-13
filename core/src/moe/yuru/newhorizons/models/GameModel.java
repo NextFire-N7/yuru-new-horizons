@@ -68,8 +68,7 @@ public class GameModel extends Notifier {
      *        and the player has paid. Returns instance.
      */
     public void validateConstruction(float x, float y) throws NegativeBalanceException {
-        try {
-            checkPosition(toPlace, x, y);
+        if (checkPosition(toPlace, x, y)) {
             try {
                 // Pay the construction
                 town.addCoins(toPlace.getStats(1).getCoinCost());
@@ -85,20 +84,29 @@ public class GameModel extends Notifier {
                 toPlace = null;
                 notifyListeners(new Event(this, EventType.Construction.TO_PLACE, null));
             }
-        } catch (IllegalPositionException e) {
+        } else {
             // Position wasn't valid, retry
             setToPlace(toPlace);
         }
     }
 
-    private void checkPosition(Building building, float x, float y) throws IllegalPositionException {
+    /**
+     * Ensure that the new building will not overlap existing ones.
+     * 
+     * @param building to place
+     * @param x        X axis position of the origin (bottom left)
+     * @param y        Y axis position of the origin (bottom left)
+     * @return {@code true} if the position is ok, {@code false} otherwise
+     */
+    private boolean checkPosition(Building building, float x, float y) {
         for (BuildingInstance instance : town.getBuildings()) {
             if (instance.getPosX() - building.getSizeX() < x && x < instance.getPosX() + instance.getModel().getSizeX()
                     && instance.getPosY() - building.getSizeY() < y
                     && y < instance.getPosY() + instance.getModel().getSizeY()) {
-                throw new IllegalPositionException();
+                return false;
             }
         }
+        return true;
     }
 
     /**
