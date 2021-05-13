@@ -12,7 +12,6 @@ import com.kotcrab.vis.ui.VisUI;
 
 import moe.yuru.newhorizons.models.GameModel;
 import moe.yuru.newhorizons.views.GameScreen;
-import moe.yuru.newhorizons.views.MainMenuScreen;
 import moe.yuru.newhorizons.views.SplashScreen;
 
 /**
@@ -31,10 +30,9 @@ public class YuruNewHorizons extends Game {
     // Assets
     private FreeTypeFontGenerator fontGenerator;
 
-    // Game model & screens
+    // Game model and screen
     private GameModel gameModel;
     private GameScreen gameScreen;
-    private MainMenuScreen mainMenuScreen;
 
     // Volumes
     private float musicVolume;
@@ -73,10 +71,9 @@ public class YuruNewHorizons extends Game {
         // Using custom fonts in libGDX is really a pain, check their wiki
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
 
-        // Define model and screens
+        // (Un)Define(d) model and screen
         gameModel = null;
         gameScreen = null;
-        mainMenuScreen = new MainMenuScreen(this);
 
         // Default volume
         setMusicVolume(0.25f);
@@ -91,7 +88,6 @@ public class YuruNewHorizons extends Game {
         super.dispose();
         VisUI.dispose();
         batch.dispose();
-        mainMenuScreen.dispose();
     }
 
     /**
@@ -170,13 +166,6 @@ public class YuruNewHorizons extends Game {
      */
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
-    }
-
-    /**
-     * @return main menu screen
-     */
-    public MainMenuScreen getMainMenuScreen() {
-        return mainMenuScreen;
     }
 
     /**

@@ -20,9 +20,10 @@ import moe.yuru.newhorizons.models.OpponentVoid;
 public class GameModeSelectionStage extends Stage {
 
     /**
-     * @param game the game instance
+     * @param game   the game instance
+     * @param parent main menu screen to which this stage is attached
      */
-    public GameModeSelectionStage(YuruNewHorizons game) {
+    public GameModeSelectionStage(YuruNewHorizons game, MainMenuScreen parent) {
         super(game.getViewport(), game.getBatch());
 
         // Table for the menu buttons
@@ -49,7 +50,9 @@ public class GameModeSelectionStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setGameModel(new GameModel("east-a1", new OpponentVoid()));
-                game.setScreen(new GameScreen(game)); // TODO: game personalization screen
+                game.setGameScreen(new GameScreen(game));
+                game.setScreen(game.getGameScreen()); // TODO: game personalization screen
+                parent.dispose();
             }
         });
 
@@ -58,14 +61,16 @@ public class GameModeSelectionStage extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setGameModel(new GameModel("east-a1", new OpponentNormal()));
-                game.setScreen(new GameScreen(game));
+                game.setGameScreen(new GameScreen(game));
+                game.setScreen(game.getGameScreen()); // TODO: game personalization screen
+                parent.dispose();
             }
         });
 
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getMainMenuScreen().switchRightStage(new MainMenuStage(game));
+                parent.switchRightStage(new MainMenuStage(game, parent));
             }
         });
     }

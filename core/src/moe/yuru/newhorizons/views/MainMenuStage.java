@@ -18,9 +18,10 @@ import moe.yuru.newhorizons.utils.GameModelSave;
 public class MainMenuStage extends Stage {
 
     /**
-     * @param game the game instance
+     * @param game   the game instance
+     * @param parent main menu screen
      */
-    public MainMenuStage(YuruNewHorizons game) {
+    public MainMenuStage(YuruNewHorizons game, MainMenuScreen parent) {
         super(game.getViewport(), game.getBatch());
 
         // Table for the menu buttons
@@ -49,7 +50,7 @@ public class MainMenuStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.getMainMenuScreen().switchRightStage(new GameModeSelectionStage(game));
+                parent.switchRightStage(new GameModeSelectionStage(game, parent));
             }
         });
 
@@ -57,8 +58,12 @@ public class MainMenuStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                // Load save
                 game.setGameModel(GameModelSave.load());
-                game.setScreen(new GameScreen(game));
+                // Go to game screen and dispose main menu
+                game.setGameScreen(new GameScreen(game));
+                game.setScreen(game.getGameScreen());
+                parent.dispose();
             }
         });
 

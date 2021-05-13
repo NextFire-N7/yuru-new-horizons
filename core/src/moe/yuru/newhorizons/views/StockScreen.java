@@ -48,14 +48,12 @@ public class StockScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
+        game.getGameScreen().pause();
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
+        game.getGameScreen().resume();
     }
 
     @Override

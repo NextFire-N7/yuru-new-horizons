@@ -88,6 +88,14 @@ public class CharacterStage extends Stage {
     }
 
     /**
+     * Plays the character sound.
+     */
+    public void playCharaSound() {
+        charaSound.stop();
+        charaSound.play(game.getSoundVolume());
+    }
+
+    /**
      * Changes the current character to a random one and re-add the random listener.
      */
     public void switchRandom() {
@@ -102,11 +110,18 @@ public class CharacterStage extends Stage {
     }
 
     /**
-     * Plays the character sound.
+     * Gets random building without repetition.
+     * 
+     * @param buildingStock the building stock of the game
+     * @return a building model
      */
-    public void playCharaSound() {
-        charaSound.stop();
-        charaSound.play(game.getSoundVolume());
+    private static Building randomCharaDontRepeat(Array<Building> buildingStock) {
+        int index;
+        do {
+            index = random.nextInt(buildingStock.size);
+        } while (index == lastNb);
+        lastNb = index;
+        return buildingStock.get(index);
     }
 
     /**
@@ -123,21 +138,6 @@ public class CharacterStage extends Stage {
         addActor(charaImage);
 
         charaSound = AssetHelper.getCharaSound(buildingModel);
-    }
-
-    /**
-     * Gets random building without repetition.
-     * 
-     * @param buildingStock the building stock of the game
-     * @return a building model
-     */
-    private static Building randomCharaDontRepeat(Array<Building> buildingStock) {
-        int index;
-        do {
-            index = random.nextInt(buildingStock.size);
-        } while (index == lastNb);
-        lastNb = index;
-        return buildingStock.get(index);
     }
 
     /**

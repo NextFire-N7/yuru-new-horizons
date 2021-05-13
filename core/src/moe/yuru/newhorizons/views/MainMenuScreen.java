@@ -58,7 +58,7 @@ public class MainMenuScreen implements Screen {
 
         // Charger la BGM (sur disque)
         // Les assets sont dans core/assets/
-        theme = Gdx.audio.newMusic(Gdx.files.internal("yuru_theme.mp3"));
+        theme = Gdx.audio.newMusic(Gdx.files.internal("theme1.mp3"));
         theme.setLooping(true);
     }
 
@@ -66,7 +66,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         // Scène des menus à droite
-        switchRightStage(new MainMenuStage(game));
+        switchRightStage(new MainMenuStage(game, this));
 
         // règle l'inputMultiplexer comme gestionnaire des inputs du menu
         Gdx.input.setInputProcessor(inputMultiplexer);

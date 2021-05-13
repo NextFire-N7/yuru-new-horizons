@@ -1,13 +1,9 @@
 package moe.yuru.newhorizons.views;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.ObjectSet;
-import com.kotcrab.vis.ui.widget.VisImageButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingInstance;
@@ -24,7 +20,7 @@ import moe.yuru.newhorizons.utils.Listener;
 public class MapStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
-    private ObjectSet<Texture> textures;
+    private Sound sound;
 
     /**
      * Creates a new MapStage and initializes already built buildings. It also
@@ -36,13 +32,11 @@ public class MapStage extends Stage implements Listener {
         super(game.getViewport(), game.getBatch());
         this.game = game;
 
-        // Yes I'm aware of the libGDX asset manager but I'm too lazy to use it...
-        textures = new ObjectSet<>();
-
         // Initialization
         for (BuildingInstance instance : game.getGameModel().getTownBuildings()) {
             addInstanceActor(instance);
         }
+        sound = null;
 
         // Registering
         game.getGameModel().addListener(this);
@@ -51,9 +45,10 @@ public class MapStage extends Stage implements Listener {
     @Override
     public void dispose() {
         super.dispose();
-        for (Texture texture : textures) {
-            texture.dispose();
+        if (sound != null) {
+            sound.dispose();
         }
+        BuildingButton.disposeAll();
     }
 
     @Override
@@ -61,7 +56,16 @@ public class MapStage extends Stage implements Listener {
         // If a new building has been registered and validated by the model, call
         // addInstanceActor to add the newly missing button on stage.
         if (event.getSource() == game.getGameModel() && event.getName().equals("validated")) {
-            addInstanceActor((BuildingInstance) event.getValue());
+            BuildingInstance instance = (BuildingInstance) event.getValue();
+            addInstanceActor(instance);
+
+            // Play chara sound
+            if (sound != null) {
+                // dispose the old one
+                sound.dispose();
+            }
+            sound = AssetHelper.getCharaSound(instance.getModel());
+            sound.play(game.getSoundVolume());
         }
     }
 
@@ -71,20 +75,17 @@ public class MapStage extends Stage implements Listener {
      * @param instance a town {@link BuildingInstance}
      */
     private void addInstanceActor(BuildingInstance instance) {
-        // Get the texture
-        Texture iconTexture = AssetHelper.getIconTexture(instance.getModel());
-        textures.add(iconTexture);
-
         // Place a new button where it must be placed
-        VisImageButton button = new VisImageButton(new TextureRegionDrawable(new TextureRegion(iconTexture)));
-        button.setSize(instance.getModel().getSizeX(), instance.getModel().getSizeY());
-        button.setPosition(instance.getPosX(), instance.getPosY());
+        BuildingButton button = new BuildingButton(instance);
         addActor(button);
 
         // Add a controller to switch to the building screen when clicking on the button
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                if (sound != null) {
+                    sound.stop();
+                }
                 game.setScreen(new BuildingScreen(game, instance));
             }
         });
