@@ -18,8 +18,9 @@ i:maps/east-f1.png:maps/east-f1-c9350a3a1cb9f551d8babbb9b0c18ae6.png:1142274:ima
 i:maps/east-d4.png:maps/east-d4-ff3e1c89c8df4536efe1ea6e639dd7f5.png:1129336:image/png:1
 i:maps/east-a1.png:maps/east-a1-68831a2bbf27b5ca4511c0c999752389.png:1100892:image/png:1
 i:maps/west-f1.png:maps/west-f1-1816b3c34c61adb7fa98f499baf26be9.png:1183591:image/png:1
+a:theme2.mp3:theme2-f8eed997162ff1e6d69096d0f3f3e218.mp3:3404175:audio/mpeg:1
+a:theme1.mp3:theme1-35099918c689f9fa303dbc6b5977c89a.mp3:5533044:audio/mpeg:1
 t:building_stock.json:building_stock-7daa33ceec1241873972bf7721225411.json:6987:application/unknown:1
-a:yuru_theme.mp3:yuru_theme-db15f21d92efa5bd3d69545b37e2cd62.mp3:4916359:audio/mpeg:1
 i:main_menu.png:main_menu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
 d:characters:characters:0:application/unknown:1
 a:characters/yui_sound.mp3:characters/yui_sound-b247e23f3323b495f01d870b8824ef70.mp3:19016:audio/mpeg:1
