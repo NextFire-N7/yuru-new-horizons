@@ -63,13 +63,15 @@ public class PlacingStage extends Stage implements Listener {
     @Override
     public void processEvent(Event event) {
         if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.TO_PLACE) {
-            // If a building is to place, trigger setToPlace
-            if (event.getValue() != null && toPlaceButton == null) {
-                setToPlace((Building) event.getValue());
-            } else if (event.getValue() == null) { // Else, kill that button
+            // Remove old button
+            if (toPlaceButton != null) {
                 removeListener(clickListener);
                 toPlaceButton.remove();
                 toPlaceButton = null;
+            }
+            // If a building is to place, trigger setToPlace
+            if (event.getValue() != null) {
+                setToPlace((Building) event.getValue());
             }
         }
     }
