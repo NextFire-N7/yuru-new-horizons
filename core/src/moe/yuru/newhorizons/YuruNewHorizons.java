@@ -30,7 +30,7 @@ public class YuruNewHorizons extends Game {
     // Assets
     private FreeTypeFontGenerator fontGenerator;
 
-    // Game model & screen
+    // Game model and screen
     private GameModel gameModel;
     private GameScreen gameScreen;
 
@@ -70,6 +70,10 @@ public class YuruNewHorizons extends Game {
 
         // Using custom fonts in libGDX is really a pain, check their wiki
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("majuro_fino.ttf"));
+
+        // (Un)Define(d) model and screen
+        gameModel = null;
+        gameScreen = null;
 
         // Default volume
         setMusicVolume(0.25f);

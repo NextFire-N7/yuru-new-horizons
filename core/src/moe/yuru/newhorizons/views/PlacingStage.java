@@ -1,20 +1,18 @@
 package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.kotcrab.vis.ui.widget.VisImageButton;
+import com.kotcrab.vis.ui.util.dialog.Dialogs;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
-import moe.yuru.newhorizons.utils.AssetHelper;
+import moe.yuru.newhorizons.models.NegativeBalanceException;
 import moe.yuru.newhorizons.utils.Event;
+import moe.yuru.newhorizons.utils.EventType;
 import moe.yuru.newhorizons.utils.Listener;
 
 /**
@@ -28,8 +26,9 @@ public class PlacingStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private Rectangle mapArea;
-    private VisImageButton toPlaceButton;
+    private BuildingButton toPlaceButton;
     private Vector3 mouse_position;
+    private ClickListener clickListener;
 
     /**
      * @param game the game instance
@@ -63,9 +62,15 @@ public class PlacingStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
-        // If a building is to place, trigger setToPlace
-        if (event.getSource() == game.getGameModel() && event.getName().equals("toPlace") && event.getValue() != null) {
-            setToPlace((Building) event.getValue());
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.TO_PLACE) {
+            // If a building is to place, trigger setToPlace
+            if (event.getValue() != null && toPlaceButton == null) {
+                setToPlace((Building) event.getValue());
+            } else if (event.getValue() == null) { // Else, kill that button
+                removeListener(clickListener);
+                toPlaceButton.remove();
+                toPlaceButton = null;
+            }
         }
     }
 
@@ -75,32 +80,29 @@ public class PlacingStage extends Stage implements Listener {
      * @param building the {@link Building} to be placed
      */
     private void setToPlace(Building building) {
-        Texture iconTexture = AssetHelper.getIconTexture(building);
-
-        // Create a new button which sizes are the building ones and add it to the stage
-        toPlaceButton = new VisImageButton(new TextureRegionDrawable(new TextureRegion(iconTexture)));
-        toPlaceButton.setSize(building.getSizeX(), building.getSizeY());
+        // Create a new button
+        toPlaceButton = new BuildingButton(building);
         addActor(toPlaceButton);
 
         // If the player clicks on screen...
-        addListener(new ClickListener() {
+        clickListener = new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                // ...at a valid position...
+                // ...on the map...
                 if (mapArea.contains(x + toPlaceButton.getWidth() / 2, y - toPlaceButton.getHeight() / 2)) {
-                    removeListener(this);
                     // ...ask the model to validate the construction at the mouse position...
-                    game.getGameModel().validateConstruction(x - toPlaceButton.getWidth() / 2,
-                            y - toPlaceButton.getHeight() / 2);
-                    // ...then destruct this button...
-                    toPlaceButton.remove();
-                    toPlaceButton = null;
-                    iconTexture.dispose();
+                    try {
+                        game.getGameModel().validateConstruction(x - toPlaceButton.getWidth() / 2,
+                                y - toPlaceButton.getHeight() / 2);
+                    } catch (NegativeBalanceException e) {
+                        // ...oof he's too poor...
+                        Dialogs.showErrorDialog(PlacingStage.this, "You are too poor to do that.");
+                    }
                 }
             }
-        });
-        // ...don't worry, it will reappear soon on the MapStage!
+        };
+        addListener(clickListener);
     }
 
 }

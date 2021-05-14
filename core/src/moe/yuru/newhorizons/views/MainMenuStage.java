@@ -1,14 +1,9 @@
 package moe.yuru.newhorizons.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
@@ -16,41 +11,24 @@ import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.utils.GameModelSave;
 
 /**
- * Main menu menu. Contains the game title and the buttons on the right.
+ * Main menu menu. Contains the main menu buttons on the right.
  * 
  * @author NextFire
  */
 public class MainMenuStage extends Stage {
 
-    private BitmapFont font;
-
     /**
-     * @param game the game instance
+     * @param game   the game instance
+     * @param parent main menu screen
      */
-    public MainMenuStage(YuruNewHorizons game) {
+    public MainMenuStage(YuruNewHorizons game, MainMenuScreen parent) {
         super(game.getViewport(), game.getBatch());
 
-        // See, it's a pain to use custom fonts...
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 60;
-        parameter.borderWidth = 5;
-        parameter.borderColor = Color.valueOf("E39256");
-        font = game.getFontGenerator().generateFont(parameter);
-
-        // Main table for the title and menu buttons
+        // Table for the menu buttons
         VisTable table = new VisTable();
         addActor(table);
-        table.setBounds(690, 0, 400, 720);
-
-        // Title label
-        VisLabel title = new VisLabel("Yuru New Horizons", new LabelStyle(font, Color.WHITE));
-        table.add(title).space(50);
-        table.row();
-
-        // Table for the buttons
-        VisTable menuTable = new VisTable();
-        table.add(menuTable);
-        menuTable.defaults().width(table.getWidth()).height(75).space(50);
+        table.setBounds(690, 0, 400, 625);
+        table.defaults().width(table.getWidth()).height(75).space(50);
 
         // Buttons
         VisTextButton startButton = new VisTextButton("New Game");
@@ -59,21 +37,20 @@ public class MainMenuStage extends Stage {
         VisTextButton exitButton = new VisTextButton("Quit");
 
         // Adding them to the menu table
-        menuTable.add(startButton);
-        menuTable.row();
-        menuTable.add(resumeButton);
-        menuTable.row();
-        menuTable.add(optionsButton);
-        menuTable.row();
-        menuTable.add(exitButton);
+        table.add(startButton);
+        table.row();
+        table.add(resumeButton);
+        table.row();
+        table.add(optionsButton);
+        table.row();
+        table.add(exitButton);
 
         // Buttons controllers
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.getScreen().dispose();
-                game.setScreen(new GameModeSelectionScreen(game)); // TODO: game personalization screen
+                parent.switchRightStage(new GameModeSelectionStage(game, parent));
             }
         });
 
@@ -81,9 +58,12 @@ public class MainMenuStage extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.getScreen().dispose();
+                // Load save
                 game.setGameModel(GameModelSave.load());
-                game.setScreen(new GameScreen(game));
+                // Go to game screen and dispose main menu
+                game.setGameScreen(new GameScreen(game));
+                game.setScreen(game.getGameScreen());
+                parent.dispose();
             }
         });
 
@@ -103,12 +83,6 @@ public class MainMenuStage extends Stage {
                 Gdx.app.exit();
             }
         });
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        font.dispose();
     }
 
 }

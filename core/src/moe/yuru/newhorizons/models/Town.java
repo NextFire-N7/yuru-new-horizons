@@ -54,8 +54,9 @@ public class Town {
      * Updates coins and resources balance since the last frame
      *
      * @param delta last frametime
+     * @throws NegativeBalanceException one of the town resources is in debt
      */
-    public void update(float delta) {
+    public void update(float delta) throws NegativeBalanceException {
         // Coins
         addCoins(delta * coinsPerSecond);
         // Faction resources
@@ -104,8 +105,13 @@ public class Town {
 
     /**
      * @param amount to add/remove
+     * @throws NegativeBalanceException if balance would become negative after this
+     *                                  operation
      */
-    public void addCoins(float amount) {
+    public void addCoins(float amount) throws NegativeBalanceException {
+        if (coins + amount < 0) {
+            throw new NegativeBalanceException();
+        }
         coins += amount;
     }
 
@@ -120,8 +126,13 @@ public class Town {
     /**
      * @param faction a game faction
      * @param amount  of resources to add in this faction
+     * @throws NegativeBalanceException if balance would become negative after this
+     *                                  operation
      */
-    public void addResources(Faction faction, float amount) {
+    public void addResources(Faction faction, float amount) throws NegativeBalanceException {
+        if (resources.get(faction.name()) + amount < 0) {
+            throw new NegativeBalanceException();
+        }
         resources.put(faction.name(), resources.get(faction.name()) + amount);
     }
 
