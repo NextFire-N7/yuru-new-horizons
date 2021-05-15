@@ -9,12 +9,13 @@ public interface EventType {
 
     /**
      * Building constructions related.
-     * 
-     * @author NextFire
      */
     public enum Construction implements EventType {
 
-        VALIDATED, TO_PLACE
+        /** A validated construction */
+        VALIDATED,
+        /** A new building or nothing has to be placed */
+        TO_PLACE
 
     }
 
