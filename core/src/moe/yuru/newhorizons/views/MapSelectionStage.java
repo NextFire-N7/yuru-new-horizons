@@ -13,6 +13,7 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.OpponentNormal;
 import moe.yuru.newhorizons.models.OpponentVoid;
 
 /**
