@@ -12,31 +12,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     },
@@ -53,31 +58,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     },
@@ -94,31 +104,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     },
@@ -135,31 +150,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     },
@@ -176,31 +196,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     },
@@ -217,31 +242,36 @@
                 "coinCost": -1000,
                 "resourcesCost": -0,
                 "coinsPerSecond": 10,
-                "resourcesPerSecond": 5
+                "resourcesPerSecond": 5,
+                "homes": 5
             },
             "2": {
                 "coinCost": -2000,
                 "resourcesCost": -500,
                 "coinsPerSecond": 20,
-                "resourcesPerSecond": 10
+                "resourcesPerSecond": 10,
+                "homes": 5
             },
             "3": {
                 "coinCost": -4000,
                 "resourcesCost": -1000,
                 "coinsPerSecond": 40,
-                "resourcesPerSecond": 20
+                "resourcesPerSecond": 20,
+                "homes": 5
             },
             "4": {
                 "coinCost": -8000,
                 "resourcesCost": -2000,
                 "coinsPerSecond": 80,
-                "resourcesPerSecond": 40
+                "resourcesPerSecond": 40,
+                "homes": 5
             },
             "5": {
                 "coinCost": -16000,
                 "resourcesCost": -4000,
                 "coinsPerSecond": 160,
-                "resourcesPerSecond": 80
+                "resourcesPerSecond": 80,
+                "homes": 5
             }
         }
     }

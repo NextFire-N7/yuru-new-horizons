@@ -175,7 +175,10 @@ public class StockStage extends Stage {
         rightTable.add(new VisLabel("+" + building.getStats(1).getCoinsPerSecond() + " Coins/s"));
         rightTable.row();
         rightTable.add(new VisLabel(
-                "+" + building.getStats(1).getResourcesPerSecond() + " " + building.getFaction().toString() + "/s"));
+            "+" + building.getStats(1).getResourcesPerSecond() + " " + building.getFaction().toString() + "/s"));
+        rightTable.row();
+        rightTable.addSeparator();
+        rightTable.add(new VisLabel("+" + building.getStats(1).getHomes() + " Homes"));
 
         subTable.add(leftTable).grow();
         subTable.addSeparator(true);

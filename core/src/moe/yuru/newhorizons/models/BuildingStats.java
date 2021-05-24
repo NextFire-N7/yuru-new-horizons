@@ -12,6 +12,7 @@ public class BuildingStats {
     private float resourcesCost;
     private float coinsPerSecond;
     private float resourcesPerSecond;
+    private int homes;
 
     /**
      * Do not use. Defined for the JSON deserializer.
@@ -46,6 +47,13 @@ public class BuildingStats {
      */
     public float getResourcesPerSecond() {
         return resourcesPerSecond;
+    }
+
+    /**
+     * @return number of homes
+     */
+    public int getHomes() {
+        return homes;
     }
 
 }
