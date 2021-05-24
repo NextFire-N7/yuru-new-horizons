@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
@@ -32,10 +33,13 @@ public class GameStage extends Stage implements Listener {
     private Texture mapTexture;
 
     private VisLabel coinsLabel;
-    private VisLabel scienceLabel;
-    private VisLabel cultureLabel;
-    private VisLabel industryLabel;
-    private VisLabel politicsLabel;
+    private VisLabel coinsPerSecondLabel;
+
+    private ObjectMap<Faction, VisLabel> resourcesLabels;
+    private ObjectMap<Faction, VisLabel> perSecondLabels;
+
+    private VisLabel populationLabel;
+    private VisLabel populationPerSecondLabel;
 
     private VisTable menuTable;
 
@@ -74,22 +78,28 @@ public class GameStage extends Stage implements Listener {
         statsTable.add(new VisLabel("Coins"));
         coinsLabel = new VisLabel("");
         statsTable.add(coinsLabel);
+        coinsPerSecondLabel = new VisLabel("");
+        statsTable.add(coinsPerSecondLabel);
+
+        resourcesLabels = new ObjectMap<>();
+        perSecondLabels = new ObjectMap<>();
+        for (Faction faction : Faction.values()) {
+            statsTable.row();
+            statsTable.add(new VisLabel(faction.toString()));
+
+            resourcesLabels.put(faction, new VisLabel(""));
+            statsTable.add(resourcesLabels.get(faction));
+
+            perSecondLabels.put(faction, new VisLabel(""));
+            statsTable.add(perSecondLabels.get(faction));
+        }
+
         statsTable.row();
-        statsTable.add(new VisLabel("Science"));
-        scienceLabel = new VisLabel("");
-        statsTable.add(scienceLabel);
-        statsTable.row();
-        statsTable.add(new VisLabel("Culture"));
-        cultureLabel = new VisLabel("");
-        statsTable.add(cultureLabel);
-        statsTable.row();
-        statsTable.add(new VisLabel("Industry"));
-        industryLabel = new VisLabel("");
-        statsTable.add(industryLabel);
-        statsTable.row();
-        statsTable.add(new VisLabel("Politics"));
-        politicsLabel = new VisLabel("");
-        statsTable.add(politicsLabel);
+        statsTable.add(new VisLabel("Population"));
+        populationLabel = new VisLabel("");
+        statsTable.add(populationLabel);
+        populationPerSecondLabel = new VisLabel("");
+        statsTable.add(populationPerSecondLabel);
 
         // Menu table at the bottom of the right table
         rightTable.row();
@@ -143,11 +153,19 @@ public class GameStage extends Stage implements Listener {
     public void act(float delta) {
         super.act(delta);
         // Update labels according to the town balance
+        // Coins
         coinsLabel.setText(String.valueOf((int) game.getGameModel().getTownCoins()));
-        scienceLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.SCIENCE)));
-        cultureLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.CULTURE)));
-        industryLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.INDUSTRY)));
-        politicsLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.POLITICS)));
+        coinsPerSecondLabel.setText("(+" + game.getGameModel().getCoinsPerSecond() + ")");
+
+        // Faction resources
+        for (Faction faction : Faction.values()) {
+            resourcesLabels.get(faction).setText(String.valueOf((int) game.getGameModel().getTownResources(faction)));
+            perSecondLabels.get(faction).setText("(+" + game.getGameModel().getResourcesPerSecond(faction) + ")");
+        }
+
+        // Population
+        populationLabel.setText((int) game.getGameModel().getPopulation() + "/" + game.getGameModel().getHouses());
+        populationPerSecondLabel.setText("(+" + game.getGameModel().getPopulationPerSecond() + ")");
     }
 
     @Override
