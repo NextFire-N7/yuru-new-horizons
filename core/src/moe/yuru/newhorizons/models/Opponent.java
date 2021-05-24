@@ -14,4 +14,10 @@ public interface Opponent {
      */
     public void update(float delta);
 
+    /**
+     * Set the player's Town
+     * @param player
+     */
+    public void setPlayer(Town player);
+
 }

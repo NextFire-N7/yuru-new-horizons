@@ -15,6 +15,16 @@ public class OpponentNormal implements Opponent {
     private float coins;
     private ObjectMap<String, Float> resources;
 
+    public OpponentNormal() {
+        this.resources = new ObjectMap<>();
+
+        // Starting resources
+        coins = 10000f;
+        for (Faction faction : Faction.values()) {
+            resources.put(faction.name(), 1000f);
+        }
+    }
+
     @Override
     public void update(float delta) {
         Random rand = new Random();
@@ -31,7 +41,7 @@ public class OpponentNormal implements Opponent {
         
     }
 
-    void setPlayer(Town player) {
+    public void setPlayer(Town player) {
         this.player = player;
     }
 

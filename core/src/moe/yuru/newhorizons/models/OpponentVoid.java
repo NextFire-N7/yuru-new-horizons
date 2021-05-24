@@ -17,4 +17,10 @@ public class OpponentVoid implements Opponent {
     public void update(float delta) {
     }
 
+    @Override
+    public void setPlayer(Town player) {
+        // TODO Auto-generated method stub
+        
+    }
+    
 }

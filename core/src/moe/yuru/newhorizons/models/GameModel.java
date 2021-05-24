@@ -37,6 +37,7 @@ public class GameModel extends Notifier {
         super();
         town = new Town(mapName);
         this.opponent = opponent;
+        this.opponent.setPlayer(town);
         toPlace = null;
     }
 
