@@ -151,4 +151,25 @@ public class GameModel extends Notifier {
         return town.getResources(faction);
     }
 
+    /**
+     * @return if the game is Solo
+     */
+    public boolean isSolo() {
+        return this.opponent instanceof OpponentVoid;
+    }
+
+    /**
+     * @return oppponent coins
+     */
+    public float getOpponentCoins() {
+        return this.opponent.getCoins();
+    }
+
+    /**
+     * @param faction a game faction
+     * @return oppponent resources in this given faction
+     */
+    public float getOpponentResources(Faction faction) {
+        return this.opponent.getResources(faction);
+    }
 }

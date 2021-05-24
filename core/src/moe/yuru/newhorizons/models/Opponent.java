@@ -20,4 +20,15 @@ public interface Opponent {
      */
     public void setPlayer(Town player);
 
+    /**
+     * @return current coins balance
+     */
+    public float getCoins();
+
+    /**
+     * @param faction a game faction
+     * @return ressource balance in this faction
+     */
+    public float getResources(Faction faction);
+
 }

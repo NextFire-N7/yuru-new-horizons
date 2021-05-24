@@ -37,6 +37,12 @@ public class GameStage extends Stage implements Listener {
     private VisLabel industryLabel;
     private VisLabel politicsLabel;
 
+    private VisLabel coinsLabelVs;
+    private VisLabel scienceLabelVs;
+    private VisLabel cultureLabelVs;
+    private VisLabel industryLabelVs;
+    private VisLabel politicsLabelVs;
+
     private VisTable menuTable;
 
     /**
@@ -90,6 +96,41 @@ public class GameStage extends Stage implements Listener {
         statsTable.add(new VisLabel("Politics"));
         politicsLabel = new VisLabel("");
         statsTable.add(politicsLabel);
+
+        if (!game.getGameModel().isSolo()) {
+            // Enemy Stats table at the top of rightTable
+
+            rightTable.row();
+            VisTable statsTableVs = new VisTable(true);
+            rightTable.add(statsTableVs);
+            statsTableVs.top();
+            statsTableVs.columnDefaults(0).left();
+            statsTableVs.columnDefaults(1).expandX();
+
+            statsTableVs.add(new VisLabel("Enemy's Stats"));
+            statsTableVs.row();
+
+            // Labels whose going to display enemy's town balance
+            statsTableVs.add(new VisLabel("Coins"));
+            coinsLabelVs = new VisLabel("");
+            statsTableVs.add(coinsLabelVs);
+            statsTableVs.row();
+            statsTableVs.add(new VisLabel("Science"));
+            scienceLabelVs = new VisLabel("");
+            statsTableVs.add(scienceLabelVs);
+            statsTableVs.row();
+            statsTableVs.add(new VisLabel("Culture"));
+            cultureLabelVs = new VisLabel("");
+            statsTableVs.add(cultureLabelVs);
+            statsTableVs.row();
+            statsTableVs.add(new VisLabel("Industry"));
+            industryLabelVs = new VisLabel("");
+            statsTableVs.add(industryLabelVs);
+            statsTableVs.row();
+            statsTableVs.add(new VisLabel("Politics"));
+            politicsLabelVs = new VisLabel("");
+            statsTableVs.add(politicsLabelVs);
+        }
 
         // Menu table at the bottom of the right table
         rightTable.row();
@@ -148,6 +189,15 @@ public class GameStage extends Stage implements Listener {
         cultureLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.CULTURE)));
         industryLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.INDUSTRY)));
         politicsLabel.setText(String.valueOf((int) game.getGameModel().getTownResources(Faction.POLITICS)));
+
+        if (!game.getGameModel().isSolo()) {
+            // Update labels according to the opponent balance
+            coinsLabelVs.setText(String.valueOf((int) game.getGameModel().getOpponentCoins()));
+            scienceLabelVs.setText(String.valueOf((int) game.getGameModel().getOpponentResources(Faction.SCIENCE)));
+            cultureLabelVs.setText(String.valueOf((int) game.getGameModel().getOpponentResources(Faction.CULTURE)));
+            industryLabelVs.setText(String.valueOf((int) game.getGameModel().getOpponentResources(Faction.INDUSTRY)));
+            politicsLabelVs.setText(String.valueOf((int) game.getGameModel().getOpponentResources(Faction.POLITICS)));
+        }
     }
 
     @Override

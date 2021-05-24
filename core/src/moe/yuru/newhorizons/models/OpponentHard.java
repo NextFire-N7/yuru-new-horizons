@@ -4,18 +4,18 @@ import java.util.Random;
 import com.badlogic.gdx.utils.ObjectMap;
 
 /**
- * Normal difficulty opponent for versus games.
- * 
+ * Hard difficulty opponent for versus games.
+ * TODO
  * @author DinoGurnari
  */
-public class OpponentNormal implements Opponent {
+public class OpponentHard implements Opponent {
 
     private Town player;
 
     private float coins;
     private ObjectMap<String, Float> resources;
 
-    public OpponentNormal() {
+    public OpponentHard() {
         this.resources = new ObjectMap<>();
 
         // Starting resources
@@ -30,12 +30,13 @@ public class OpponentNormal implements Opponent {
         Random rand = new Random();
 
         // Coins
-        this.coins = player.getCoins()*0.8f + rand.nextInt((int) (player.getCoins()/5));
+        float randCoins = player.getCoins()*0.8f + rand.nextInt((int) (player.getCoins()/5));
+        addCoins(randCoins);
 
         // Faction resources
         for (Faction faction : Faction.values()) {
             float randResource = player.getResources(faction)*0.8f + rand.nextInt((int) (player.getResources(faction)/5));
-            setResources(faction, randResource);
+            addResources(faction, randResource);
         }
         
     }
@@ -45,12 +46,21 @@ public class OpponentNormal implements Opponent {
     }
 
     /**
+     * @param amount to add/remove
+     */
+    public void addCoins(float amount) {
+        if (coins + amount >= 0) {
+            coins += amount;
+        }
+    }
+
+    /**
      * @param faction a game faction
      * @param amount  of resources to add in this faction
      */
-    public void setResources(Faction faction, float amount) {
-        if (amount >= 0) {
-            resources.put(faction.name(), amount);
+    public void addResources(Faction faction, float amount) {
+        if (resources.get(faction.name()) + amount >= 0) {
+            resources.put(faction.name(), resources.get(faction.name()) + amount);
         }
     }
 
