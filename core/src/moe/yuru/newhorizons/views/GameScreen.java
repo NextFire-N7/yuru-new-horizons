@@ -60,7 +60,7 @@ public class GameScreen implements Screen, Listener {
         game.getFpslogger().log();
         game.getCamera().update();
 
-        // Black background
+        // Not so black background
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Update model
