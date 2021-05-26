@@ -7,6 +7,7 @@
         "faction": "CULTURE",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": 3,
         "stats": {
             "1": {
                 "coinCost": -1000,
@@ -53,6 +54,7 @@
         "faction": "SCIENCE",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": 5,
         "stats": {
             "1": {
                 "coinCost": -1000,
@@ -99,6 +101,7 @@
         "faction": "CULTURE",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": 10,
         "stats": {
             "1": {
                 "coinCost": -1000,
@@ -145,6 +148,7 @@
         "faction": "INDUSTRY",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": -5,
         "stats": {
             "1": {
                 "coinCost": -1000,
@@ -191,6 +195,7 @@
         "faction": "CULTURE",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": 2,
         "stats": {
             "1": {
                 "coinCost": -1000,
@@ -237,6 +242,7 @@
         "faction": "POLITICS",
         "sizeX": 100,
         "sizeY": 50,
+        "happiness": 5,
         "stats": {
             "1": {
                 "coinCost": -1000,

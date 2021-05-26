@@ -25,6 +25,7 @@ public class Town {
     private float population;
     private float populationPerSecond;
     private int houses;
+    private int happiness;
 
     /**
      * Do not use. Defined for the JSON deserializer.
@@ -50,6 +51,7 @@ public class Town {
         population = 0;
         populationPerSecond = 0f;
         houses = 0;
+        happiness = 0;
 
         // Starting resources
         coins = 10000f;
@@ -79,6 +81,23 @@ public class Town {
             population = houses;
             populationPerSecond = 0f;
         }
+        updateHappiness();
+    }
+
+    /**
+     * Black magic, not as polished as a Pokémon damage formula but it will do the
+     * trick.
+     */
+    private void updateHappiness() {
+        float happinessf = 0f;
+        for (BuildingInstance instance : buildings) {
+            happinessf += instance.getModel().getHappiness();
+        }
+        // Take town size in account
+        happinessf /= buildings.size;
+        // Take housing offer in account
+        happinessf *= 1 + (houses - population)/houses;
+        happiness = (int) happinessf;
     }
 
     /**
@@ -97,6 +116,8 @@ public class Town {
             resourcesPerSecond.put(instance.getModel().getFaction().name(), rpsPerFaction);
         }
         populationPerSecond = buildings.size / 50f;
+        // Account happiness
+        populationPerSecond *= 1 + happiness/100f;
     }
 
     /**
@@ -121,13 +142,6 @@ public class Town {
     }
 
     /**
-     * @return coins per seconds
-     */
-    public float getCoinspersec() {
-        return coinsPerSecond;
-    }
-
-    /**
      * @param amount to add/remove
      * @throws NegativeBalanceException if balance would become negative after this
      *                                  operation
@@ -140,19 +154,18 @@ public class Town {
     }
 
     /**
+     * @return coins income per second
+     */
+    public float getCoinsPerSecond() {
+        return coinsPerSecond;
+    }
+
+    /**
      * @param faction a game faction
      * @return ressource balance in this faction
      */
     public float getResources(Faction faction) {
         return resources.get(faction.name());
-    }
-
-    /**
-     * @param faction a game faction
-     * @return ressource per seconds for this faction
-     */
-    public float getResourcespersec(Faction faction) {
-        return resourcesPerSecond.get(faction.name(), 0f);
     }
 
     /**
@@ -166,13 +179,6 @@ public class Town {
             throw new NegativeBalanceException();
         }
         resources.put(faction.name(), resources.get(faction.name()) + amount);
-    }
-
-    /**
-     * @return coins income per second
-     */
-    public float getCoinsPerSecond() {
-        return coinsPerSecond;
     }
 
     /**
@@ -191,13 +197,6 @@ public class Town {
     }
 
     /**
-     * @return "babies" per second if that makes sense
-     */
-    public float getPopulationPerSecond() {
-        return populationPerSecond;
-    }
-
-    /**
      * @param population new people in town
      * @throws HousingCrisisException when more people than empty houses
      */
@@ -206,6 +205,13 @@ public class Town {
             throw new HousingCrisisException();
         }
         this.population += population;
+    }
+
+    /**
+     * @return "babies" per second if that makes sense
+     */
+    public float getPopulationPerSecond() {
+        return populationPerSecond;
     }
 
     /**
@@ -224,6 +230,13 @@ public class Town {
             throw new HousingCrisisException();
         }
         this.houses += houses;
+    }
+
+    /**
+     * @return happiness level of the town
+     */
+    public int getHappiness() {
+        return happiness;
     }
 
 }

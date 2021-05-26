@@ -34,7 +34,7 @@ public class OpponentNormal implements Opponent {
         if (Math.abs(player.getCoins() - this.coins) > 0.1f * player.getCoins()) {
             this.coins = player.getCoins() * 0.95f;
         } else {
-            this.coins = this.coins + delta * (0.75f + rand.nextFloat() / 2) * player.getCoinspersec();
+            this.coins = this.coins + delta * (0.75f + rand.nextFloat() / 2) * player.getCoinsPerSecond();
         }
 
         // Faction resources
@@ -45,7 +45,7 @@ public class OpponentNormal implements Opponent {
                 randResource = player.getResources(faction) * 0.95f;
             } else {
                 randResource = getResources(faction)
-                        + delta * (0.5f + rand.nextFloat() / 2) * player.getResourcespersec(faction);
+                        + delta * (0.5f + rand.nextFloat() / 2) * player.getResourcesPerSecond(faction);
             }
             setResources(faction, randResource);
         }

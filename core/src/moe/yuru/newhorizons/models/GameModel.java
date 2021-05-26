@@ -217,4 +217,11 @@ public class GameModel extends Notifier {
         return town.getHouses();
     }
 
+    /**
+     * @return town happinness
+     */
+    public int getHappiness() {
+        return town.getHappiness();
+    }
+
 }

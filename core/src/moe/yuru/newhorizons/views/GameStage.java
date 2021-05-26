@@ -42,6 +42,8 @@ public class GameStage extends Stage implements Listener {
     private VisLabel populationLabel;
     private VisLabel populationPerSecondLabel;
 
+    private VisLabel happinessLabel;
+
     private VisLabel coinsLabelVs;
     private VisLabel scienceLabelVs;
     private VisLabel cultureLabelVs;
@@ -101,12 +103,19 @@ public class GameStage extends Stage implements Listener {
             statsTable.add(perSecondLabels.get(faction));
         }
 
+        // Population
         statsTable.row();
         statsTable.add(new VisLabel("Population"));
         populationLabel = new VisLabel("");
         statsTable.add(populationLabel);
         populationPerSecondLabel = new VisLabel("");
         statsTable.add(populationPerSecondLabel);
+
+        // Happiness
+        statsTable.row();
+        statsTable.add(new VisLabel("Happiness"));
+        happinessLabel = new VisLabel("");
+        statsTable.add(happinessLabel);
 
         if (!game.getGameModel().isSolo()) {
             // Enemy Stats table at the top of rightTable
@@ -217,8 +226,11 @@ public class GameStage extends Stage implements Listener {
 
         // Population
         populationLabel.setText((int) game.getGameModel().getPopulation() + "/" + game.getGameModel().getHouses());
-        populationPerSecondLabel.setText("(+" + game.getGameModel().getPopulationPerSecond() + ")");
+        populationPerSecondLabel
+                .setText("(+" + String.format("%.02f", game.getGameModel().getPopulationPerSecond()) + ")");
 
+        // Happiness
+        happinessLabel.setText(String.valueOf(game.getGameModel().getHappiness()));
     }
 
     @Override
