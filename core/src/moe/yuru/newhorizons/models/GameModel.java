@@ -11,6 +11,7 @@ import moe.yuru.newhorizons.utils.Notifier;
  * it can notify possible registered listeners. Also serves as a {@link Town}
  * proxy.
  * 
+ * 
  * @author NextFire
  * @author GurnariD
  */
