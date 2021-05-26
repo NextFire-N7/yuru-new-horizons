@@ -58,13 +58,6 @@ public class BuildingInstance {
     }
 
     /**
-     * Level up this building.
-     */
-    public void levelUp() {
-        level++;
-    }
-
-    /**
      * @return this instance horizontal position
      */
     public float getPosX() {
@@ -72,24 +65,10 @@ public class BuildingInstance {
     }
 
     /**
-     * @param posX a new horizontal position
-     */
-    public void setPosX(float posX) {
-        this.posX = posX;
-    }
-
-    /**
      * @return this instance vertical position
      */
     public float getPosY() {
         return posY;
-    }
-
-    /**
-     * @param posY a new vertical position
-     */
-    public void setPosY(float posY) {
-        this.posY = posY;
     }
 
 }
