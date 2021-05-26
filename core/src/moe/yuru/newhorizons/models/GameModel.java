@@ -113,6 +113,15 @@ public class GameModel extends Notifier {
     }
 
     /**
+     * Destroy a new building.
+     * 
+     * @param building to destroy.
+     */
+    private void destruct(Building building) {
+        
+    }
+
+    /**
      * Ensure that the new building will not overlap existing ones.
      * 
      * @param building to place
