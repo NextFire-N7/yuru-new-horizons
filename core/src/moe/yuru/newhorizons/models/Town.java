@@ -22,6 +22,10 @@ public class Town {
     private float coinsPerSecond;
     private ObjectMap<String, Float> resourcesPerSecond; // Keys are strings as in JSON
 
+    private float population;
+    private float populationPerSecond;
+    private int houses;
+
     /**
      * Do not use. Defined for the JSON deserializer.
      */
@@ -43,6 +47,10 @@ public class Town {
         coinsPerSecond = 0f;
         resourcesPerSecond = new ObjectMap<>();
 
+        population = 0;
+        populationPerSecond = 0f;
+        houses = 0;
+
         // Starting resources
         coins = 10000f;
         for (Faction faction : Faction.values()) {
@@ -63,6 +71,14 @@ public class Town {
         for (Faction faction : Faction.values()) {
             addResources(faction, delta * resourcesPerSecond.get(faction.name(), 0f));
         }
+        // Population
+        try {
+            addPopulation(delta * populationPerSecond);
+        } catch (HousingCrisisException e) {
+            // Can't have more people in town
+            population = houses;
+            populationPerSecond = 0f;
+        }
     }
 
     /**
@@ -80,6 +96,7 @@ public class Town {
             rpsPerFaction += instance.getStats().getResourcesPerSecond();
             resourcesPerSecond.put(instance.getModel().getFaction().name(), rpsPerFaction);
         }
+        populationPerSecond = buildings.size / 50f;
     }
 
     /**
@@ -149,6 +166,64 @@ public class Town {
             throw new NegativeBalanceException();
         }
         resources.put(faction.name(), resources.get(faction.name()) + amount);
+    }
+
+    /**
+     * @return coins income per second
+     */
+    public float getCoinsPerSecond() {
+        return coinsPerSecond;
+    }
+
+    /**
+     * @param faction
+     * @return resource income per second
+     */
+    public float getResourcesPerSecond(Faction faction) {
+        return resourcesPerSecond.get(faction.name(), 0f);
+    }
+
+    /**
+     * @return town population
+     */
+    public float getPopulation() {
+        return population;
+    }
+
+    /**
+     * @return "babies" per second if that makes sense
+     */
+    public float getPopulationPerSecond() {
+        return populationPerSecond;
+    }
+
+    /**
+     * @param population new people in town
+     * @throws HousingCrisisException when more people than empty houses
+     */
+    public void addPopulation(float population) throws HousingCrisisException {
+        if (this.population + population > houses) {
+            throw new HousingCrisisException();
+        }
+        this.population += population;
+    }
+
+    /**
+     * @return number of houses in town
+     */
+    public int getHouses() {
+        return houses;
+    }
+
+    /**
+     * @param houses new houses in town (+/-)
+     * @throws HousingCrisisException when too much houses have been removed
+     */
+    public void addHouses(int houses) throws HousingCrisisException {
+        if (this.houses + houses < population) {
+            throw new HousingCrisisException();
+        }
+        this.houses += houses;
     }
 
 }

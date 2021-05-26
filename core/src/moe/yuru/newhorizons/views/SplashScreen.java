@@ -54,6 +54,8 @@ public class SplashScreen implements Screen {
         game.getFpslogger().log();
         game.getCamera().update();
 
+        // Not so black background
+        Gdx.gl.glClearColor(40 / 255f, 40 / 255f, 50 / 255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Drawing

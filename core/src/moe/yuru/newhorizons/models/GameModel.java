@@ -74,6 +74,13 @@ public class GameModel extends Notifier {
                 // Pay the construction
                 town.addCoins(toPlace.getStats(1).getCoinCost());
                 town.addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
+                // Add homes
+                try {
+                    town.addHouses(toPlace.getStats(1).getHomes());
+                } catch (HousingCrisisException e) {
+                    // We only add houses here, this exception should not be thrown...
+                    e.printStackTrace();
+                }
                 // Create the new instance
                 BuildingInstance instance = new BuildingInstance(toPlace, x, y);
                 town.getBuildings().add(instance);
@@ -86,7 +93,7 @@ public class GameModel extends Notifier {
                 notifyListeners(new Event(this, EventType.Construction.TO_PLACE, null));
             }
         } else {
-            // Position wasn't valid, retry
+            // Position was not valid, retry
             setToPlace(toPlace);
         }
     }
@@ -144,7 +151,7 @@ public class GameModel extends Notifier {
     }
 
     /**
-     * @param faction a game faction
+     * @param faction
      * @return town resources in this given faction
      */
     public float getTownResources(Faction faction) {
@@ -172,4 +179,41 @@ public class GameModel extends Notifier {
     public float getOpponentResources(Faction faction) {
         return this.opponent.getResources(faction);
     }
+
+     * @return town coins income per second
+     */
+    public float getCoinsPerSecond() {
+        return town.getCoinsPerSecond();
+    }
+
+    /**
+     * @param faction
+     * @return town resource income per second
+     */
+    public float getResourcesPerSecond(Faction faction) {
+        return town.getResourcesPerSecond(faction);
+    }
+
+    /**
+     * @return town population
+     */
+    public float getPopulation() {
+        return town.getPopulation();
+    }
+
+    /**
+     * @return "babies" per second if that makes sense
+     */
+    public float getPopulationPerSecond() {
+        return town.getPopulationPerSecond();
+    }
+
+    /**
+     * @return number of houses in town
+     */
+    public int getHouses() {
+        return town.getHouses();
+    }
+
+
 }
