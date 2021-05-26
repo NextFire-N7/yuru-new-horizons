@@ -121,6 +121,13 @@ public class Town {
     }
 
     /**
+     * @return coins per seconds
+     */
+    public float getCoinspersec() {
+        return coinsPerSecond;
+    }
+
+    /**
      * @param amount to add/remove
      * @throws NegativeBalanceException if balance would become negative after this
      *                                  operation
@@ -138,6 +145,14 @@ public class Town {
      */
     public float getResources(Faction faction) {
         return resources.get(faction.name());
+    }
+
+    /**
+     * @param faction a game faction
+     * @return ressource per seconds for this faction
+     */
+    public float getResourcespersec(Faction faction) {
+        return resourcesPerSecond.get(faction.name(), 0f);
     }
 
     /**

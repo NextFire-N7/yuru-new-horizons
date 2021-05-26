@@ -1,22 +1,21 @@
 package moe.yuru.newhorizons.models;
 
-import java.util.Random;
+import java.util.Random;   
 import com.badlogic.gdx.utils.ObjectMap;
-import java.lang.Math;  
 
 /**
- * Normal difficulty opponent for versus games.
- * 
+ * Hard difficulty opponent for versus games.
+ * TODO
  * @author DinoGurnari
  */
-public class OpponentNormal implements Opponent {
+public class OpponentHard implements Opponent {
 
     private Town player;
 
     private float coins;
     private ObjectMap<String, Float> resources;
 
-    public OpponentNormal() {
+    public OpponentHard() {
         this.resources = new ObjectMap<>();
 
         // Starting resources
@@ -31,22 +30,13 @@ public class OpponentNormal implements Opponent {
         Random rand = new Random();
 
         // Coins
-        if (Math.abs(player.getCoins() - this.coins) > 0.1f*player.getCoins()) {
-            this.coins = player.getCoins()*0.95f;
-        } else {
-            this.coins = this.coins + delta * (0.75f + rand.nextFloat()/2) * player.getCoinspersec();
-        }
+        float randCoins = player.getCoins()*0.8f + rand.nextInt((int) (player.getCoins()/5));
+        addCoins(randCoins);
 
         // Faction resources
         for (Faction faction : Faction.values()) {
-            float randResource;
-
-            if (Math.abs(player.getResources(faction) - getResources(faction)) > 0.1f*player.getResources(faction)) {
-                randResource = player.getResources(faction)*0.95f;
-            } else {
-                randResource = getResources(faction) + delta * (0.5f + rand.nextFloat()/2) * player.getResourcespersec(faction);
-            }
-            setResources(faction, randResource);
+            float randResource = player.getResources(faction)*0.8f + rand.nextInt((int) (player.getResources(faction)/5));
+            addResources(faction, randResource);
         }
         
     }
@@ -56,12 +46,21 @@ public class OpponentNormal implements Opponent {
     }
 
     /**
+     * @param amount to add/remove
+     */
+    public void addCoins(float amount) {
+        if (coins + amount >= 0) {
+            coins += amount;
+        }
+    }
+
+    /**
      * @param faction a game faction
      * @param amount  of resources to add in this faction
      */
-    public void setResources(Faction faction, float amount) {
-        if (amount >= 0) {
-            resources.put(faction.name(), amount);
+    public void addResources(Faction faction, float amount) {
+        if (resources.get(faction.name()) + amount >= 0) {
+            resources.put(faction.name(), resources.get(faction.name()) + amount);
         }
     }
 

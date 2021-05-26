@@ -17,4 +17,22 @@ public class OpponentVoid implements Opponent {
     public void update(float delta) {
     }
 
+    @Override
+    public void setPlayer(Town player) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public float getCoins() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public float getResources(Faction faction) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
 }

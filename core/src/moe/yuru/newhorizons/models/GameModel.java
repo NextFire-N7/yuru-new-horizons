@@ -37,6 +37,7 @@ public class GameModel extends Notifier {
         super();
         town = new Town(mapName);
         this.opponent = opponent;
+        this.opponent.setPlayer(town);
         toPlace = null;
     }
 
@@ -158,6 +159,27 @@ public class GameModel extends Notifier {
     }
 
     /**
+     * @return if the game is Solo
+     */
+    public boolean isSolo() {
+        return this.opponent instanceof OpponentVoid;
+    }
+
+    /**
+     * @return oppponent coins
+     */
+    public float getOpponentCoins() {
+        return this.opponent.getCoins();
+    }
+
+    /**
+     * @param faction a game faction
+     * @return oppponent resources in this given faction
+     */
+    public float getOpponentResources(Faction faction) {
+        return this.opponent.getResources(faction);
+    }
+
      * @return town coins income per second
      */
     public float getCoinsPerSecond() {
@@ -192,5 +214,6 @@ public class GameModel extends Notifier {
     public int getHouses() {
         return town.getHouses();
     }
+
 
 }
