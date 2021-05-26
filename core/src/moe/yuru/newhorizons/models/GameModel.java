@@ -179,7 +179,7 @@ public class GameModel extends Notifier {
     public float getOpponentResources(Faction faction) {
         return this.opponent.getResources(faction);
     }
-
+    /*
      * @return town coins income per second
      */
     public float getCoinsPerSecond() {
