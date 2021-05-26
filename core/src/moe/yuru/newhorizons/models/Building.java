@@ -22,6 +22,8 @@ public class Building {
 
     private IntMap<BuildingStats> stats;
 
+    private int happiness;
+
     /**
      * Do not use. Defined for the JSON deserializer.
      */
@@ -91,6 +93,13 @@ public class Building {
      */
     public BuildingStats getStats(int level) {
         return stats.get(level);
+    }
+
+    /**
+     * @return happinness return
+     */
+    public int getHappiness() {
+        return happiness;
     }
 
 }

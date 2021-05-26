@@ -25,6 +25,7 @@ public class Town {
     private float population;
     private float populationPerSecond;
     private int houses;
+    private int happiness;
 
     /**
      * Do not use. Defined for the JSON deserializer.
@@ -50,6 +51,7 @@ public class Town {
         population = 0;
         populationPerSecond = 0f;
         houses = 0;
+        happiness = 0;
 
         // Starting resources
         coins = 10000f;
@@ -224,6 +226,20 @@ public class Town {
             throw new HousingCrisisException();
         }
         this.houses += houses;
+    }
+
+    /**
+     * @return happiness level of the town
+     */
+    public int getHappiness() {
+        return happiness;
+    }
+
+    /**
+     * @param happiness to add
+     */
+    public void addHappiness(int happiness) {
+        this.happiness += happiness;
     }
 
 }
