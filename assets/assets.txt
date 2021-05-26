@@ -17,7 +17,7 @@ i:maps/west-e3.png:maps/west-e3-504bc3342ee11a6efb4e4b7fb3240453.png:1088724:ima
 i:maps/east-c1.png:maps/east-c1-d822fcee6d65576fe8bffc37b7a11d46.png:1049941:image/png:1
 i:maps/east-a5.png:maps/east-a5-38f527593b00fcb184a990e7fa7c555c.png:1133489:image/png:1
 i:maps/west-f1.png:maps/west-f1-1816b3c34c61adb7fa98f499baf26be9.png:1183591:image/png:1
-t:building_stock.json:building_stock-4cc1e8c4f928d1b5f9e91dbc26a6ef9b.json:7827:application/unknown:1
+t:building_stock.json:building_stock-0821b5a1587045276cf666cc268781b1.json:7973:application/unknown:1
 b:majuro_fino.ttf:majuro_fino-f4a7e9220306a60cd3f2858baca007a3.ttf:35952:application/unknown:1
 a:theme1.mp3:theme1-35099918c689f9fa303dbc6b5977c89a.mp3:5533044:audio/mpeg:1
 i:main_menu.png:main_menu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
