@@ -227,7 +227,8 @@ public class GameStage extends Stage implements Listener {
         // Population
         populationLabel.setText((int) game.getGameModel().getPopulation() + "/" + game.getGameModel().getHouses());
         populationPerSecondLabel
-                .setText("(+" + String.format("%.02f", game.getGameModel().getPopulationPerSecond()) + ")");
+                .setText("(+" + (int) (game.getGameModel().getPopulationPerSecond() * 100) / 100f + ")");
+        // (Would have used String.format but it does not work on html)
 
         // Happiness
         happinessLabel.setText(String.valueOf(game.getGameModel().getHappiness()));
