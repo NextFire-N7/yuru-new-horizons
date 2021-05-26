@@ -82,8 +82,6 @@ public class GameModel extends Notifier {
                     // We only add houses here, this exception should not be thrown...
                     e.printStackTrace();
                 }
-                // Add happiness
-                town.addHappiness(toPlace.getHappiness());
                 // Create the new instance
                 BuildingInstance instance = new BuildingInstance(toPlace, x, y);
                 town.getBuildings().add(instance);
@@ -217,6 +215,13 @@ public class GameModel extends Notifier {
      */
     public int getHouses() {
         return town.getHouses();
+    }
+
+    /**
+     * @return town happinness
+     */
+    public int getHappiness() {
+        return town.getHappiness();
     }
 
 }
