@@ -25,6 +25,7 @@ import moe.yuru.newhorizons.utils.Listener;
  * buttons.
  * 
  * @author NextFire
+ * @author GurnariD
  */
 public class GameStage extends Stage implements Listener {
 

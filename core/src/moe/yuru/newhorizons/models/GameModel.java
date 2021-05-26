@@ -12,6 +12,7 @@ import moe.yuru.newhorizons.utils.Notifier;
  * proxy.
  * 
  * @author NextFire
+ * @author GurnariD
  */
 public class GameModel extends Notifier {
 
@@ -179,6 +180,7 @@ public class GameModel extends Notifier {
     public float getOpponentResources(Faction faction) {
         return this.opponent.getResources(faction);
     }
+
     /*
      * @return town coins income per second
      */
@@ -214,6 +216,5 @@ public class GameModel extends Notifier {
     public int getHouses() {
         return town.getHouses();
     }
-
 
 }

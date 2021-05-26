@@ -4,6 +4,7 @@ package moe.yuru.newhorizons.models;
  * Void opponent for solo games.
  * 
  * @author NextFire
+ * @author GurnariD
  */
 public class OpponentVoid implements Opponent {
 
@@ -20,7 +21,7 @@ public class OpponentVoid implements Opponent {
     @Override
     public void setPlayer(Town player) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -34,5 +35,5 @@ public class OpponentVoid implements Opponent {
         // TODO Auto-generated method stub
         return 0;
     }
-    
+
 }

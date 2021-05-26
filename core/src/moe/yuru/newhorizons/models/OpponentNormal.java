@@ -1,8 +1,8 @@
 package moe.yuru.newhorizons.models;
 
 import java.util.Random;
+
 import com.badlogic.gdx.utils.ObjectMap;
-import java.lang.Math;  
 
 /**
  * Normal difficulty opponent for versus games.
@@ -31,24 +31,25 @@ public class OpponentNormal implements Opponent {
         Random rand = new Random();
 
         // Coins
-        if (Math.abs(player.getCoins() - this.coins) > 0.1f*player.getCoins()) {
-            this.coins = player.getCoins()*0.95f;
+        if (Math.abs(player.getCoins() - this.coins) > 0.1f * player.getCoins()) {
+            this.coins = player.getCoins() * 0.95f;
         } else {
-            this.coins = this.coins + delta * (0.75f + rand.nextFloat()/2) * player.getCoinspersec();
+            this.coins = this.coins + delta * (0.75f + rand.nextFloat() / 2) * player.getCoinspersec();
         }
 
         // Faction resources
         for (Faction faction : Faction.values()) {
             float randResource;
 
-            if (Math.abs(player.getResources(faction) - getResources(faction)) > 0.1f*player.getResources(faction)) {
-                randResource = player.getResources(faction)*0.95f;
+            if (Math.abs(player.getResources(faction) - getResources(faction)) > 0.1f * player.getResources(faction)) {
+                randResource = player.getResources(faction) * 0.95f;
             } else {
-                randResource = getResources(faction) + delta * (0.5f + rand.nextFloat()/2) * player.getResourcespersec(faction);
+                randResource = getResources(faction)
+                        + delta * (0.5f + rand.nextFloat() / 2) * player.getResourcespersec(faction);
             }
             setResources(faction, randResource);
         }
-        
+
     }
 
     public void setPlayer(Town player) {

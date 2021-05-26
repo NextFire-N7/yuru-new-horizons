@@ -1,11 +1,12 @@
 package moe.yuru.newhorizons.models;
 
-import java.util.Random;   
+import java.util.Random;
+
 import com.badlogic.gdx.utils.ObjectMap;
 
 /**
  * Hard difficulty opponent for versus games.
- * TODO
+ * 
  * @author DinoGurnari
  */
 public class OpponentHard implements Opponent {
@@ -30,15 +31,16 @@ public class OpponentHard implements Opponent {
         Random rand = new Random();
 
         // Coins
-        float randCoins = player.getCoins()*0.8f + rand.nextInt((int) (player.getCoins()/5));
+        float randCoins = player.getCoins() * 0.8f + rand.nextInt((int) (player.getCoins() / 5));
         addCoins(randCoins);
 
         // Faction resources
         for (Faction faction : Faction.values()) {
-            float randResource = player.getResources(faction)*0.8f + rand.nextInt((int) (player.getResources(faction)/5));
+            float randResource = player.getResources(faction) * 0.8f
+                    + rand.nextInt((int) (player.getResources(faction) / 5));
             addResources(faction, randResource);
         }
-        
+
     }
 
     public void setPlayer(Town player) {
