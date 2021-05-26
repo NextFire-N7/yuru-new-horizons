@@ -66,28 +66,11 @@ public class GameModel extends Notifier {
      * @return the building instance created
      * @throws NegativeBalanceException
      * @event {@code EventType.Construction.TO_PLACE}
-     * @event {@code EventType.Construction.VALIDATED} The construction is validated
-     *        and the player has paid. Returns instance.
      */
     public void validateConstruction(float x, float y) throws NegativeBalanceException {
         if (checkPosition(toPlace, x, y)) {
             try {
-                // Pay the construction
-                town.addCoins(toPlace.getStats(1).getCoinCost());
-                town.addResources(toPlace.getFaction(), toPlace.getStats(1).getResourcesCost());
-                // Add homes
-                try {
-                    town.addHouses(toPlace.getStats(1).getHomes());
-                } catch (HousingCrisisException e) {
-                    // We only add houses here, this exception should not be thrown...
-                    e.printStackTrace();
-                }
-                // Create the new instance
-                BuildingInstance instance = new BuildingInstance(toPlace, x, y);
-                town.getBuildings().add(instance);
-                town.updatePerSecond();
-                // Inform listeners
-                notifyListeners(new Event(this, EventType.Construction.VALIDATED, instance));
+                construct(toPlace, 1, x, y);
             } finally {
                 // Anyway there is nothing to place anymore
                 toPlace = null;
@@ -97,6 +80,36 @@ public class GameModel extends Notifier {
             // Position was not valid, retry
             setToPlace(toPlace);
         }
+    }
+
+    /**
+     * Pays and registers a new building.
+     * 
+     * @param building to construct
+     * @param level    of the building
+     * @param x        X axis position of the bottom left corner
+     * @param yY       axis position of the bottom left corner
+     * @throws NegativeBalanceException
+     * @event {@code EventType.Construction.VALIDATED} The construction is validated
+     *        and the player has paid. Returns instance.
+     */
+    private void construct(Building building, int level, float x, float y) throws NegativeBalanceException {
+        // Pay the construction
+        town.addCoins(building.getStats(level).getCoinCost());
+        town.addResources(building.getFaction(), building.getStats(level).getResourcesCost());
+        // Add homes
+        try {
+            town.addHouses(building.getStats(level).getHomes());
+        } catch (HousingCrisisException e) {
+            // We only add houses here, this exception should not be thrown...
+            e.printStackTrace();
+        }
+        // Create the new instance
+        BuildingInstance instance = new BuildingInstance(building, level, x, y);
+        town.getBuildings().add(instance);
+        town.updatePerSecond();
+        // Inform listeners
+        notifyListeners(new Event(this, EventType.Construction.VALIDATED, instance));
     }
 
     /**

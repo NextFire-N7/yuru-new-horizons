@@ -23,12 +23,13 @@ public class BuildingInstance {
 
     /**
      * @param model of the instance
+     * @param level of the instance
      * @param posX  of the bottom left corner
      * @param posY  of the bottom left corner
      */
-    public BuildingInstance(Building model, float posX, float posY) {
+    public BuildingInstance(Building model, int level, float posX, float posY) {
         this.model = model;
-        level = 1;
+        this.level = level;
         this.posX = posX;
         this.posY = posY;
     }
