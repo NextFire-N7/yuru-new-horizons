@@ -37,6 +37,9 @@ public class BuildingScreen implements Screen {
         characterStage = new CharacterStage(game, instance.getModel());
         characterStage.addRepeatCharaSoundListener();
 
+        // Right stats stage
+        buildingStatsStage = new BuildingStatsStage(game, instance.getModel(), instance.getLevel());
+
         background = AssetHelper.getCoverTexture(instance.getModel());
 
         // Inputs
@@ -74,6 +77,9 @@ public class BuildingScreen implements Screen {
 
         characterStage.act(delta);
         characterStage.draw();
+
+        buildingStatsStage.act(delta);
+        buildingStatsStage.draw();
     }
 
     @Override
