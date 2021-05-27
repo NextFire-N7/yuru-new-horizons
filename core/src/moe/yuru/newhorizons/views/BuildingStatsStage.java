@@ -41,6 +41,17 @@ public class BuildingStatsStage extends Stage {
         statsTable.setPosition(768, 0);
         //statsTable.defaults().grow().pad(10);
 
+        // Name and function labels
+        statsTable.add(new VisLabel(building.getFirstName() + building.getLastName()));
+        statsTable.row();
+        statsTable.add(new VisLabel(building.getFunction()));
+        statsTable.row();
+        
+        // Level label
+        statsTable.add(new VisLabel("Level :"));
+        statsTable.add(new VisLabel(String.valueOf(level)));
+        statsTable.row();
+
         // Coins balance
         statsTable.add(new VisLabel("Coins per Seconds :"));
         statsTable.add(new VisLabel(String.valueOf(this.stats.getCoinsPerSecond())));
