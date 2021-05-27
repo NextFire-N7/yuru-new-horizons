@@ -20,21 +20,21 @@ import moe.yuru.newhorizons.models.GameModel;
  */
 public class BuildingStatsStage extends Stage {
 
-    //private YuruNewHorizons game;
+    // private YuruNewHorizons game;
     private Building building;
     private BuildingStats stats;
 
-
     /**
      * Create a Building's stats stage for the correct building and level
-     * @param game the game instance
+     * 
+     * @param game     the game instance
      * @param building the building
-     * @param level its level
+     * @param level    its level
      */
     BuildingStatsStage(YuruNewHorizons game, Building building, int level) {
         super(game.getViewport(), game.getBatch());
         this.building = building;
-        //this.game = game;
+        // this.game = game;
         this.stats = building.getStats(level);
 
         // A full height table just at the right
@@ -61,12 +61,12 @@ public class BuildingStatsStage extends Stage {
         function.setColor(Color.BLACK);
         statsTable.add(function);
         statsTable.row();
-        
+
         // Level label
         VisLabel lvl = new VisLabel("Level :");
         lvl.setColor(Color.BLACK);
         statsTable.add(lvl);
-        VisLabel lvltxt= new VisLabel(String.valueOf(level));
+        VisLabel lvltxt = new VisLabel(String.valueOf(level));
         lvltxt.setColor(Color.BLACK);
         statsTable.add(lvltxt);
         statsTable.row();
@@ -137,10 +137,9 @@ public class BuildingStatsStage extends Stage {
             buttonTable.add(lvlupButton);
             GameModel GameModel = game.getGameModel();
 
-            //Disable button if not enough coins or resources
-            if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || 
-                (GameModel.getTownResources(building.getFaction()) < Math.abs(leveledUpStats.getResourcesCost())))
-            {
+            // Disable button if not enough coins or resources
+            if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || (GameModel
+                    .getTownResources(building.getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
                 lvlupButton.setDisabled(true);
             }
 
