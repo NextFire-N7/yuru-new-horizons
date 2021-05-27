@@ -280,5 +280,52 @@
                 "homes": 5
             }
         }
+    },
+    {
+        "id": "speedwagon",
+        "lastName": "Supidowagon",
+        "firstName": "Robato E. O.",
+        "function": "Speedwagon Foundation",
+        "faction": "SCIENCE",
+        "sizeX": 100,
+        "sizeY": 50,
+        "happiness": 10,
+        "stats": {
+            "1": {
+                "coinCost": -2000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 5,
+                "resourcesPerSecond": 15,
+                "homes": 0
+            },
+            "2": {
+                "coinCost": -4000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 10,
+                "resourcesPerSecond": 30,
+                "homes": 0
+            },
+            "3": {
+                "coinCost": -8000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 20,
+                "resourcesPerSecond": 40,
+                "homes": 0
+            },
+            "4": {
+                "coinCost": -16000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 80,
+                "homes": 0
+            },
+            "5": {
+                "coinCost": -32000,
+                "resourcesCost": -6000,
+                "coinsPerSecond": 40,
+                "resourcesPerSecond": 200,
+                "homes": 0
+            }
+        }
     }
 ]
