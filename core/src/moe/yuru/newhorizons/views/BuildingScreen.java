@@ -21,6 +21,7 @@ public class BuildingScreen implements Screen {
     private YuruNewHorizons game;
     private Texture background;
     private CharacterStage characterStage;
+    private BuildingStatsStage buildingStatsStage;
     private InputMultiplexer inputMultiplexer;
 
     /**
@@ -36,11 +37,15 @@ public class BuildingScreen implements Screen {
         characterStage = new CharacterStage(game, instance.getModel());
         characterStage.addRepeatCharaSoundListener();
 
+        // Right stats stage
+        buildingStatsStage = new BuildingStatsStage(game, instance.getModel(), instance.getLevel());
+
         background = AssetHelper.getCoverTexture(instance.getModel());
 
         // Inputs
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(characterStage);
+        inputMultiplexer.addProcessor(buildingStatsStage);
 
         // TODO: associated stage w/ exit button
         inputMultiplexer.addProcessor(new InputAdapter() {
@@ -72,6 +77,9 @@ public class BuildingScreen implements Screen {
 
         characterStage.act(delta);
         characterStage.draw();
+
+        buildingStatsStage.act(delta);
+        buildingStatsStage.draw();
     }
 
     @Override
