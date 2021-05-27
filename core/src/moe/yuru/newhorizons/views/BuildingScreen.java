@@ -21,6 +21,7 @@ public class BuildingScreen implements Screen {
     private YuruNewHorizons game;
     private Texture background;
     private CharacterStage characterStage;
+    private BuildingStatsStage buildingStatsStage;
     private InputMultiplexer inputMultiplexer;
 
     /**
@@ -41,6 +42,7 @@ public class BuildingScreen implements Screen {
         // Inputs
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(characterStage);
+        inputMultiplexer.addProcessor(buildingStatsStage);
 
         // TODO: associated stage w/ exit button
         inputMultiplexer.addProcessor(new InputAdapter() {
