@@ -11,6 +11,7 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
 import moe.yuru.newhorizons.models.BuildingStats;
+import moe.yuru.newhorizons.models.GameModel;
 
 /**
  * Shows the stats on the right
@@ -19,7 +20,7 @@ import moe.yuru.newhorizons.models.BuildingStats;
  */
 public class BuildingStatsStage extends Stage {
 
-    private YuruNewHorizons game;
+    //private YuruNewHorizons game;
     private Building building;
     private BuildingStats stats;
 
@@ -33,7 +34,7 @@ public class BuildingStatsStage extends Stage {
     BuildingStatsStage(YuruNewHorizons game, Building building, int level) {
         super(game.getViewport(), game.getBatch());
         this.building = building;
-        this.game = game;
+        //this.game = game;
         this.stats = building.getStats(level);
 
         // A full height table just at the right
@@ -96,25 +97,64 @@ public class BuildingStatsStage extends Stage {
         statsTable.add(homes);
         statsTable.add(homestxt);
 
-        // Menu table at the bottom of the right table
-        menuTable.row();
-        VisTable buttonTable = new VisTable(true);
-        menuTable.add(buttonTable);
-        buttonTable.bottom();
-        buttonTable.defaults().growX().height(30);
+        if (level < 5) {
+            // Costs table at the top of menu table
+            VisTable costsTable = new VisTable(true);
+            menuTable.row();
+            menuTable.add(costsTable);
+            costsTable.top();
+            costsTable.columnDefaults(0).left();
+            costsTable.columnDefaults(1).expandX();
 
-        // Adding button to the table
-        VisTextButton lvlupButton = new VisTextButton("Level up");
-        buttonTable.add(lvlupButton);
+            // Leveling up costs label
+            BuildingStats leveledUpStats = this.building.getStats(level + 1);
+            // Coins
+            VisLabel coinsCostLabel = new VisLabel("Coins to level up :");
+            coinsCostLabel.setColor(Color.BLACK);
+            VisLabel coinstxtCostLabel = new VisLabel(String.valueOf(Math.abs(leveledUpStats.getCoinCost())));
+            coinstxtCostLabel.setColor(Color.BLACK);
+            costsTable.add(coinsCostLabel);
+            costsTable.add(coinstxtCostLabel);
+            costsTable.row();
 
-        lvlupButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                 // TODO
+            // Resource
+            VisLabel resourceCostLabel = new VisLabel(this.building.getFaction().toString() + " to level up :");
+            resourceCostLabel.setColor(Color.BLACK);
+            VisLabel resourcetxtCostLabel = new VisLabel(String.valueOf(Math.abs(leveledUpStats.getResourcesCost())));
+            resourcetxtCostLabel.setColor(Color.BLACK);
+            costsTable.add(resourceCostLabel);
+            costsTable.add(resourcetxtCostLabel);
+
+            // Menu table at the bottom of the right table
+            menuTable.row();
+            VisTable buttonTable = new VisTable(true);
+            menuTable.add(buttonTable);
+            buttonTable.bottom();
+            buttonTable.defaults().growX().height(30);
+
+            // Adding button to the table
+            VisTextButton lvlupButton = new VisTextButton("Level up");
+            buttonTable.add(lvlupButton);
+            GameModel GameModel = game.getGameModel();
+
+            //Disable button if not enough coins or resources
+            if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || 
+                (GameModel.getTownResources(building.getFaction()) < Math.abs(leveledUpStats.getResourcesCost())))
+            {
+                lvlupButton.setDisabled(true);
             }
-        });
 
+            lvlupButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (!lvlupButton.isDisabled()) {
+                        super.clicked(event, x, y);
+                        // TODO
+                        System.out.println("Pouf level up");
+                    }
+                }
+            });
+        }
 
     }
 
