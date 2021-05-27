@@ -1,9 +1,12 @@
 package moe.yuru.newhorizons.views;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
+import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.Building;
@@ -20,7 +23,6 @@ public class BuildingStatsStage extends Stage {
     private Building building;
     private BuildingStats stats;
 
-    private VisTable statsTable;
 
     /**
      * Create a Building's stats stage for the correct building and level
@@ -34,37 +36,86 @@ public class BuildingStatsStage extends Stage {
         this.game = game;
         this.stats = building.getStats(level);
 
-        // A full height table just at the right of the map
-        statsTable = new VisTable();
-        addActor(statsTable);
-        statsTable.setSize(512, 720);
-        statsTable.setPosition(768, 0);
-        //statsTable.defaults().grow().pad(10);
+        // A full height table just at the right
+        VisTable menuTable = new VisTable();
+        addActor(menuTable);
+        menuTable.setSize(512, 720);
+        menuTable.setPosition(768, 0);
+        menuTable.defaults().grow().pad(10);
+
+        // Stats table at the top of menu table
+        VisTable statsTable = new VisTable(true);
+        menuTable.add(statsTable);
+        statsTable.top();
+        statsTable.columnDefaults(0).left();
+        statsTable.columnDefaults(1).expandX();
 
         // Name and function labels
-        statsTable.add(new VisLabel(building.getFirstName() + building.getLastName()));
+        VisLabel name = new VisLabel(building.getFirstName() + " " + building.getLastName());
+        name.setColor(Color.BLACK);
+        statsTable.add(name);
         statsTable.row();
-        statsTable.add(new VisLabel(building.getFunction()));
+
+        VisLabel function = new VisLabel(building.getFunction());
+        function.setColor(Color.BLACK);
+        statsTable.add(function);
         statsTable.row();
         
         // Level label
-        statsTable.add(new VisLabel("Level :"));
-        statsTable.add(new VisLabel(String.valueOf(level)));
+        VisLabel lvl = new VisLabel("Level :");
+        lvl.setColor(Color.BLACK);
+        statsTable.add(lvl);
+        VisLabel lvltxt= new VisLabel(String.valueOf(level));
+        lvltxt.setColor(Color.BLACK);
+        statsTable.add(lvltxt);
         statsTable.row();
 
         // Coins balance
-        statsTable.add(new VisLabel("Coins per Seconds :"));
-        statsTable.add(new VisLabel(String.valueOf(this.stats.getCoinsPerSecond())));
+        VisLabel coins = new VisLabel("Coins per Seconds :");
+        coins.setColor(Color.BLACK);
+        VisLabel coinstxt = new VisLabel(String.valueOf(this.stats.getCoinsPerSecond()));
+        coinstxt.setColor(Color.BLACK);
+        statsTable.add(coins);
+        statsTable.add(coinstxt);
         statsTable.row();
 
         // Resource label
-        statsTable.add(new VisLabel(this.building.getFaction().toString() + " per Seconds :"));
-        statsTable.add(new VisLabel(String.valueOf(this.stats.getResourcesPerSecond())));
+        VisLabel resource = new VisLabel(this.building.getFaction().toString() + " per Seconds :");
+        resource.setColor(Color.BLACK);
+        VisLabel resourcetxt = new VisLabel(String.valueOf(this.stats.getResourcesPerSecond()));
+        resourcetxt.setColor(Color.BLACK);
+        statsTable.add(resource);
+        statsTable.add(resourcetxt);
         statsTable.row();
 
         // Houses label
-        statsTable.add(new VisLabel("Number of Homes :"));
-        statsTable.add(new VisLabel(String.valueOf(this.stats.getHomes())));
+        VisLabel homes = new VisLabel("Number of Homes :");
+        homes.setColor(Color.BLACK);
+        VisLabel homestxt = new VisLabel(String.valueOf(this.stats.getHomes()));
+        homestxt.setColor(Color.BLACK);
+        statsTable.add(homes);
+        statsTable.add(homestxt);
+
+        // Menu table at the bottom of the right table
+        menuTable.row();
+        VisTable buttonTable = new VisTable(true);
+        menuTable.add(buttonTable);
+        buttonTable.bottom();
+        buttonTable.defaults().growX().height(30);
+
+        // Adding button to the table
+        VisTextButton lvlupButton = new VisTextButton("Level up");
+        buttonTable.add(lvlupButton);
+
+        lvlupButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                 // TODO
+            }
+        });
+
+
     }
 
 }
