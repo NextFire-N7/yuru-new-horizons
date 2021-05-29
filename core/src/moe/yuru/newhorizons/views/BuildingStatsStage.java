@@ -148,7 +148,6 @@ public class BuildingStatsStage extends Stage {
                         }
                         game.setScreen(game.getGameScreen());
                         dispose();
-                        System.out.println("Pouf level up");
                     }
                 }
             });
