@@ -44,12 +44,12 @@ public class BuildingStatsStage extends Stage {
         VisTable menuTable = new VisTable();
         // addActor(menuTable);
         statsWindow.add(menuTable);
-        statsWindow.setSize(512, 720);
-        statsWindow.setPosition(768, 0);
+        statsWindow.setSize(256, 360);
+        statsWindow.setPosition(896, 180);
 
         menuTable.setSize(512, 720);
         menuTable.setPosition(768, 0);
-        menuTable.defaults().grow().pad(10);
+        menuTable.defaults().grow().pad(20);
 
         // Stats table at the top of menu table
         VisTable statsTable = new VisTable(true);
