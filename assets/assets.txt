@@ -17,7 +17,7 @@ i:maps/west-e3.png:maps/west-e3-504bc3342ee11a6efb4e4b7fb3240453.png:1088724:ima
 i:maps/east-c1.png:maps/east-c1-d822fcee6d65576fe8bffc37b7a11d46.png:1049941:image/png:1
 i:maps/east-a5.png:maps/east-a5-38f527593b00fcb184a990e7fa7c555c.png:1133489:image/png:1
 i:maps/west-f1.png:maps/west-f1-1816b3c34c61adb7fa98f499baf26be9.png:1183591:image/png:1
-t:building_stock.json:building_stock-15654a6e49f28dcf6a13bd53acb8d06f.json:9335:application/unknown:1
+t:building_stock.json:building_stock-d6ace07ce8a1b3ae72103e4a275c37ae.json:10680:application/unknown:1
 b:majuro_fino.ttf:majuro_fino-f4a7e9220306a60cd3f2858baca007a3.ttf:35952:application/unknown:1
 a:theme1.mp3:theme1-35099918c689f9fa303dbc6b5977c89a.mp3:5533044:audio/mpeg:1
 i:main_menu.png:main_menu-ea6e6a48031ed648fc90afb165481384.png:3884087:image/png:1
@@ -42,7 +42,9 @@ i:characters/renchon_chara.png:characters/renchon_chara-39f91b30bc0a65d97e7a8afd
 a:characters/speedwagon_sound.mp3:characters/speedwagon_sound-bfd4a68513901cfe966375c8dbdb23a1.mp3:47989:audio/mpeg:1
 a:characters/chino_sound.mp3:characters/chino_sound-77c765b17f6d11bbd2e71b90e4c7d5a5.mp3:33644:audio/mpeg:1
 i:characters/kanna_icon.png:characters/kanna_icon-a71a406f693786df8e2444b1dcaf838f.png:31731:image/png:1
+i:characters/tonio_icon.png:characters/tonio_icon-26a9c64f9589021b3cba2a4ef4ab0cb4.png:296953:image/png:1
 i:characters/gu_icon.png:characters/gu_icon-b8f6b99e7d85b3b5cd104b725698c608.png:14598:image/png:1
+a:characters/tonio_sound.mp3:characters/tonio_sound-8786541f04c25dd994cdb0bc31047dc9.mp3:38236:audio/mpeg:1
 i:characters/shimarin_cover.png:characters/shimarin_cover-7491ee1a80e85940824e4942b9837401.png:12074581:image/png:1
 i:characters/gu_cover.png:characters/gu_cover-56ade8e02006cba132adda72cf28633c.png:4317468:image/png:1
 a:characters/kanna_sound.mp3:characters/kanna_sound-6c76055bc6fcf1e7a838ab3dbbff98a3.mp3:32116:audio/mpeg:1
@@ -50,6 +52,8 @@ i:characters/speedwagon_icon.png:characters/speedwagon_icon-4ebf7b2bf5a74ac76295
 i:characters/yui_icon.png:characters/yui_icon-aac01d5946431f9d811a276f26bf7cd6.png:21556:image/png:1
 i:characters/chino_cover.png:characters/chino_cover-e2f9ba7c3b03aa11d4fc1e9e8777955a.png:1885909:image/png:1
 a:characters/renchon_sound.mp3:characters/renchon_sound-ecf483d6c7ab2fd59128855c28a67a0a.mp3:32832:audio/mpeg:1
+i:characters/tonio_cover.png:characters/tonio_cover-cba6f1886de5159a8dc4a5044a585ae2.png:386187:image/png:1
+i:characters/tonio_chara.png:characters/tonio_chara-435aee1aef793697594955f2b0cf268c.png:282743:image/png:1
 a:theme2.mp3:theme2-f8eed997162ff1e6d69096d0f3f3e218.mp3:3404175:audio/mpeg:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1

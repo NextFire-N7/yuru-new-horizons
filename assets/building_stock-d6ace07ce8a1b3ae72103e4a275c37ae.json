@@ -327,5 +327,52 @@
                 "homes": 0
             }
         }
+    },
+    {
+        "id": "tonio",
+        "lastName": "Trussardi",
+        "firstName": "Tonio",
+        "function": "Trattoria Trussardi",
+        "faction": "CULTURE",
+        "sizeX": 100,
+        "sizeY": 50,
+        "happiness": 20,
+        "stats": {
+            "1": {
+                "coinCost": -3000,
+                "resourcesCost": -0,
+                "coinsPerSecond": 12,
+                "resourcesPerSecond": 3,
+                "homes": 1
+            },
+            "2": {
+                "coinCost": -4000,
+                "resourcesCost": -500,
+                "coinsPerSecond": 24,
+                "resourcesPerSecond": 8,
+                "homes": 2
+            },
+            "3": {
+                "coinCost": -6000,
+                "resourcesCost": -1000,
+                "coinsPerSecond": 48,
+                "resourcesPerSecond": 16,
+                "homes": 3
+            },
+            "4": {
+                "coinCost": -16000,
+                "resourcesCost": -2000,
+                "coinsPerSecond": 96,
+                "resourcesPerSecond": 32,
+                "homes": 4
+            },
+            "5": {
+                "coinCost": -32000,
+                "resourcesCost": -4000,
+                "coinsPerSecond": 192,
+                "resourcesPerSecond": 64,
+                "homes": 5
+            }
+        }
     }
 ]
