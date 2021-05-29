@@ -71,4 +71,11 @@ public class BuildingInstance {
         return posY;
     }
 
+    /**
+     * Level up the {@link BuildingInstance}
+     */
+    public void levelup() {
+        this.level = level + 1;
+        
+    }
 }

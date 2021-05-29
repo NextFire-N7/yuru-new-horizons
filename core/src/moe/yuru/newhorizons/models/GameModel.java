@@ -114,6 +114,33 @@ public class GameModel extends Notifier {
     }
 
     /**
+     * Level up a building.
+     * 
+     * @param building to level up
+     * @throws NegativeBalanceException
+     * @event {@code EventType.Construction.VALIDATED} The construction is validated
+     *        and the player has paid. Returns instance.
+     */
+    public void levelUpBuilding(BuildingInstance building) throws NegativeBalanceException {
+        int level = building.getLevel();
+        // Pay the construction
+        town.addCoins(building.getModel().getStats(level + 1).getCoinCost());
+        town.addResources(building.getModel().getFaction(), building.getModel().getStats(level + 1).getResourcesCost());
+        // Add homes
+        try {
+            town.addHouses(building.getModel().getStats(level + 1).getHomes() - building.getModel().getStats(level).getHomes());
+        } catch (HousingCrisisException e) {
+            // We only add houses here, this exception should not be thrown...
+            e.printStackTrace();
+        }
+
+        building.levelup();
+        town.updatePerSecond();
+        // Inform listeners
+        notifyListeners(new Event(this, EventType.Construction.LEVELED_UP, building));
+    }
+
+    /**
      * Ensure that the new building will not overlap existing ones.
      * 
      * @param building to place

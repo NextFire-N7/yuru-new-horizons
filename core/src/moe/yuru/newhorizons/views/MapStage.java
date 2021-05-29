@@ -68,6 +68,21 @@ public class MapStage extends Stage implements Listener {
             sound = AssetHelper.getCharaSound(instance.getModel());
             sound.play(game.getSoundVolume());
         }
+
+        // If a building has been leveled up and validated by the model
+        // modify the button on stage.
+        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.LEVELED_UP) {
+            BuildingInstance instance = (BuildingInstance) event.getValue();
+            addInstanceActor(instance);
+
+            // Play chara sound
+            if (sound != null) {
+                // dispose the old one
+                sound.dispose();
+            }
+            sound = AssetHelper.getCharaSound(instance.getModel());
+            sound.play(game.getSoundVolume());
+        }
     }
 
     /**

@@ -38,7 +38,7 @@ public class BuildingScreen implements Screen {
         characterStage.addRepeatCharaSoundListener();
 
         // Right stats stage
-        buildingStatsStage = new BuildingStatsStage(game, instance.getModel(), instance.getLevel());
+        buildingStatsStage = new BuildingStatsStage(game, instance, instance.getLevel());
 
         background = AssetHelper.getCoverTexture(instance.getModel());
 

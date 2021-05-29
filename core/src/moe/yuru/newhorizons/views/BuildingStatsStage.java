@@ -9,9 +9,10 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.kotcrab.vis.ui.widget.VisWindow;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
-import moe.yuru.newhorizons.models.Building;
+import moe.yuru.newhorizons.models.BuildingInstance;
 import moe.yuru.newhorizons.models.BuildingStats;
 import moe.yuru.newhorizons.models.GameModel;
+import moe.yuru.newhorizons.models.NegativeBalanceException;
 
 /**
  * Shows the stats on the right
@@ -20,9 +21,11 @@ import moe.yuru.newhorizons.models.GameModel;
  */
 public class BuildingStatsStage extends Stage {
 
-    // private YuruNewHorizons game;
-    private Building building;
+    private YuruNewHorizons game;
+    private BuildingInstance building;
     private BuildingStats stats;
+    private int level;
+    private VisTextButton lvlupButton;
 
     /**
      * Create a Building's stats stage for the correct building and level
@@ -31,13 +34,14 @@ public class BuildingStatsStage extends Stage {
      * @param building the building
      * @param level    its level
      */
-    BuildingStatsStage(YuruNewHorizons game, Building building, int level) {
+    BuildingStatsStage(YuruNewHorizons game, BuildingInstance building, int level) {
         super(game.getViewport(), game.getBatch());
         this.building = building;
-        // this.game = game;
-        this.stats = building.getStats(level);
+        this.game = game;
+        this.level = level;
+        this.stats = building.getStats();
 
-        VisWindow statsWindow = new VisWindow(building.getFunction());
+        VisWindow statsWindow = new VisWindow(building.getModel().getFunction());
         addActor(statsWindow);
 
         // A full height table just at the right
@@ -59,7 +63,7 @@ public class BuildingStatsStage extends Stage {
         statsTable.columnDefaults(1).expandX();
 
         // Name and function labels
-        VisLabel name = new VisLabel(building.getFirstName() + " " + building.getLastName());
+        VisLabel name = new VisLabel(building.getModel().getFirstName() + " " + building.getModel().getLastName());
         statsTable.add(name);
         statsTable.row();
 
@@ -78,7 +82,7 @@ public class BuildingStatsStage extends Stage {
         statsTable.row();
 
         // Resource label
-        VisLabel resource = new VisLabel(this.building.getFaction().toString() + " per Seconds :");
+        VisLabel resource = new VisLabel(this.building.getModel().getFaction().toString() + " per Seconds :");
         VisLabel resourcetxt = new VisLabel(String.valueOf(this.stats.getResourcesPerSecond()));
         statsTable.add(resource);
         statsTable.add(resourcetxt);
@@ -100,7 +104,7 @@ public class BuildingStatsStage extends Stage {
             costsTable.columnDefaults(1).expandX();
 
             // Leveling up costs label
-            BuildingStats leveledUpStats = this.building.getStats(level + 1);
+            BuildingStats leveledUpStats = this.building.getModel().getStats(level + 1);
             // Coins
             VisLabel coinsCostLabel = new VisLabel("Coins to level up :");
             VisLabel coinstxtCostLabel = new VisLabel(String.valueOf(Math.abs(leveledUpStats.getCoinCost())));
@@ -109,7 +113,7 @@ public class BuildingStatsStage extends Stage {
             costsTable.row();
 
             // Resource
-            VisLabel resourceCostLabel = new VisLabel(this.building.getFaction().toString() + " to level up :");
+            VisLabel resourceCostLabel = new VisLabel(this.building.getModel().getFaction().toString() + " to level up :");
             VisLabel resourcetxtCostLabel = new VisLabel(String.valueOf(Math.abs(leveledUpStats.getResourcesCost())));
             costsTable.add(resourceCostLabel);
             costsTable.add(resourcetxtCostLabel);
@@ -122,13 +126,13 @@ public class BuildingStatsStage extends Stage {
             buttonTable.defaults().growX().height(30);
 
             // Adding button to the table
-            VisTextButton lvlupButton = new VisTextButton("Level up");
+            this.lvlupButton = new VisTextButton("Level up");
             buttonTable.add(lvlupButton);
             GameModel GameModel = game.getGameModel();
 
             // Disable button if not enough coins or resources
             if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || (GameModel
-                    .getTownResources(building.getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
+                    .getTownResources(building.getModel().getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
                 lvlupButton.setDisabled(true);
             }
 
@@ -137,13 +141,29 @@ public class BuildingStatsStage extends Stage {
                 public void clicked(InputEvent event, float x, float y) {
                     if (!lvlupButton.isDisabled()) {
                         super.clicked(event, x, y);
-                        // TODO
+                        try {
+                            game.getGameModel().levelUpBuilding(building);
+                        } catch (NegativeBalanceException e) {
+                            e.printStackTrace();
+                        }
+                        game.setScreen(game.getGameScreen());
+                        dispose();
                         System.out.println("Pouf level up");
                     }
                 }
             });
         }
 
+    }
+
+    @Override
+    public void act(float delta) {
+        BuildingStats leveledUpStats = this.building.getModel().getStats(this.level + 1);
+        // Disable button if not enough coins or resources
+        if ((this.game.getGameModel().getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || (this.game.getGameModel()
+                .getTownResources(building.getModel().getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
+            lvlupButton.setDisabled(true);
+}
     }
 
 }
