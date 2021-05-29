@@ -161,9 +161,9 @@ public class BuildingStatsStage extends Stage {
     public void act(float delta) {
         BuildingStats leveledUpStats = this.building.getModel().getStats(this.level + 1);
         // Disable button if not enough coins or resources
-        if ((this.game.getGameModel().getTownCoins() < Math.abs(leveledUpStats.getCoinCost()))
+        if ( (level < 5) && ((this.game.getGameModel().getTownCoins() < Math.abs(leveledUpStats.getCoinCost()))
                 || (this.game.getGameModel().getTownResources(building.getModel().getFaction()) < Math
-                        .abs(leveledUpStats.getResourcesCost()))) {
+                        .abs(leveledUpStats.getResourcesCost())))) {
             lvlupButton.setDisabled(true);
         }
     }
