@@ -113,7 +113,8 @@ public class BuildingStatsStage extends Stage {
             costsTable.row();
 
             // Resource
-            VisLabel resourceCostLabel = new VisLabel(this.building.getModel().getFaction().toString() + " to level up :");
+            VisLabel resourceCostLabel = new VisLabel(
+                    this.building.getModel().getFaction().toString() + " to level up :");
             VisLabel resourcetxtCostLabel = new VisLabel(String.valueOf(Math.abs(leveledUpStats.getResourcesCost())));
             costsTable.add(resourceCostLabel);
             costsTable.add(resourcetxtCostLabel);
@@ -131,8 +132,9 @@ public class BuildingStatsStage extends Stage {
             GameModel GameModel = game.getGameModel();
 
             // Disable button if not enough coins or resources
-            if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || (GameModel
-                    .getTownResources(building.getModel().getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
+            if ((GameModel.getTownCoins() < Math.abs(leveledUpStats.getCoinCost()))
+                    || (GameModel.getTownResources(building.getModel().getFaction()) < Math
+                            .abs(leveledUpStats.getResourcesCost()))) {
                 lvlupButton.setDisabled(true);
             }
 
@@ -146,8 +148,8 @@ public class BuildingStatsStage extends Stage {
                         } catch (NegativeBalanceException e) {
                             e.printStackTrace();
                         }
+                        game.getScreen().dispose();
                         game.setScreen(game.getGameScreen());
-                        dispose();
                     }
                 }
             });
@@ -159,10 +161,11 @@ public class BuildingStatsStage extends Stage {
     public void act(float delta) {
         BuildingStats leveledUpStats = this.building.getModel().getStats(this.level + 1);
         // Disable button if not enough coins or resources
-        if ((this.game.getGameModel().getTownCoins() < Math.abs(leveledUpStats.getCoinCost())) || (this.game.getGameModel()
-                .getTownResources(building.getModel().getFaction()) < Math.abs(leveledUpStats.getResourcesCost()))) {
+        if ((this.game.getGameModel().getTownCoins() < Math.abs(leveledUpStats.getCoinCost()))
+                || (this.game.getGameModel().getTownResources(building.getModel().getFaction()) < Math
+                        .abs(leveledUpStats.getResourcesCost()))) {
             lvlupButton.setDisabled(true);
-}
+        }
     }
 
 }

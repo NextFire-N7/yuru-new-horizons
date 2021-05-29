@@ -96,7 +96,7 @@ public class Town {
         // Take town size in account
         happinessf /= buildings.size;
         // Take housing offer in account
-        happinessf *= 1 + (houses - population)/houses;
+        happinessf *= 1 + (houses - population) / houses;
         happiness = (int) happinessf;
     }
 
@@ -117,7 +117,7 @@ public class Town {
         }
         populationPerSecond = buildings.size / 50f;
         // Account happiness
-        populationPerSecond *= 1 + happiness/100f;
+        populationPerSecond *= 1 + happiness / 100f;
     }
 
     /**

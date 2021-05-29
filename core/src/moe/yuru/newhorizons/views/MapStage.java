@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import moe.yuru.newhorizons.YuruNewHorizons;
 import moe.yuru.newhorizons.models.BuildingInstance;
@@ -17,11 +18,13 @@ import moe.yuru.newhorizons.utils.Listener;
  * buildings.
  * 
  * @author NextFire
+ * @author DinoGurnari
  */
 public class MapStage extends Stage implements Listener {
 
     private YuruNewHorizons game;
     private Sound sound;
+    private ObjectMap<BuildingInstance, BuildingButton> buttons;
 
     /**
      * Creates a new MapStage and initializes already built buildings. It also
@@ -34,6 +37,7 @@ public class MapStage extends Stage implements Listener {
         this.game = game;
 
         // Initialization
+        buttons = new ObjectMap<>();
         for (BuildingInstance instance : game.getGameModel().getTownBuildings()) {
             addInstanceActor(instance);
         }
@@ -54,35 +58,35 @@ public class MapStage extends Stage implements Listener {
 
     @Override
     public void processEvent(Event event) {
-        // If a new building has been registered and validated by the model, call
-        // addInstanceActor to add the newly missing button on stage.
-        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.VALIDATED) {
-            BuildingInstance instance = (BuildingInstance) event.getValue();
-            addInstanceActor(instance);
-
-            // Play chara sound
-            if (sound != null) {
-                // dispose the old one
-                sound.dispose();
+        if (event.getSource() == game.getGameModel()) {
+            // If a new building has been registered and validated by the model, call
+            // addInstanceActor to add the newly missing button on stage.
+            if (event.getType() == EventType.Construction.VALIDATED) {
+                BuildingInstance instance = (BuildingInstance) event.getValue();
+                addInstanceActor(instance);
+                playInstanceSound(instance);
             }
-            sound = AssetHelper.getCharaSound(instance.getModel());
-            sound.play(game.getSoundVolume());
-        }
 
-        // If a building has been leveled up and validated by the model
-        // modify the button on stage.
-        if (event.getSource() == game.getGameModel() && event.getType() == EventType.Construction.LEVELED_UP) {
-            BuildingInstance instance = (BuildingInstance) event.getValue();
-            addInstanceActor(instance);
-
-            // Play chara sound
-            if (sound != null) {
-                // dispose the old one
-                sound.dispose();
+            // If a building has been leveled up and validated by the model
+            // modify the button on stage.
+            else if (event.getType() == EventType.Construction.LEVELED_UP) {
+                BuildingInstance instance = (BuildingInstance) event.getValue();
+                buttons.get(instance).updateLevel();
+                playInstanceSound(instance);
             }
-            sound = AssetHelper.getCharaSound(instance.getModel());
-            sound.play(game.getSoundVolume());
         }
+    }
+
+    /**
+     * @param instance
+     */
+    private void playInstanceSound(BuildingInstance instance) {
+        if (sound != null) {
+            // dispose the old one
+            sound.dispose();
+        }
+        sound = AssetHelper.getCharaSound(instance.getModel());
+        sound.play(game.getSoundVolume());
     }
 
     /**
@@ -93,6 +97,7 @@ public class MapStage extends Stage implements Listener {
     private void addInstanceActor(BuildingInstance instance) {
         // Place a new button where it must be placed
         BuildingButton button = new BuildingButton(instance);
+        buttons.put(instance, button);
         addActor(button);
 
         // Add a controller to switch to the building screen when clicking on the button

@@ -5,6 +5,7 @@ package moe.yuru.newhorizons.models;
  * player.
  * 
  * @author NextFire
+ * @author DinoGurnari
  */
 public class BuildingInstance {
 
@@ -75,7 +76,7 @@ public class BuildingInstance {
      * Level up the {@link BuildingInstance}
      */
     public void levelup() {
-        this.level = level + 1;
-        
+        level++;
     }
+
 }

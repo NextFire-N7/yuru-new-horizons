@@ -13,7 +13,7 @@ import moe.yuru.newhorizons.utils.Notifier;
  * 
  * 
  * @author NextFire
- * @author GurnariD
+ * @author DinoGurnari
  */
 public class GameModel extends Notifier {
 
@@ -128,7 +128,8 @@ public class GameModel extends Notifier {
         town.addResources(building.getModel().getFaction(), building.getModel().getStats(level + 1).getResourcesCost());
         // Add homes
         try {
-            town.addHouses(building.getModel().getStats(level + 1).getHomes() - building.getModel().getStats(level).getHomes());
+            town.addHouses(building.getModel().getStats(level + 1).getHomes()
+                    - building.getModel().getStats(level).getHomes());
         } catch (HousingCrisisException e) {
             // We only add houses here, this exception should not be thrown...
             e.printStackTrace();

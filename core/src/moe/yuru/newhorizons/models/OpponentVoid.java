@@ -4,7 +4,7 @@ package moe.yuru.newhorizons.models;
  * Void opponent for solo games.
  * 
  * @author NextFire
- * @author GurnariD
+ * @author DinoGurnari
  */
 public class OpponentVoid implements Opponent {
 

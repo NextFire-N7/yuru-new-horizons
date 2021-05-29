@@ -4,7 +4,7 @@ package moe.yuru.newhorizons.models;
  * Represents player's opponent.
  * 
  * @author NextFire
- * @author GurnariD
+ * @author DinoGurnari
  */
 public interface Opponent {
 
