@@ -20,7 +20,7 @@ jobs:
       - name: Build desktop jar
         run: ./gradlew desktop:dist
       - name: Upload desktop jar
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Desktop JAR
           path: desktop/build/libs/desktop*.jar
